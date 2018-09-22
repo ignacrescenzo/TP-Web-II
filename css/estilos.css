@@ -1,3 +1,31 @@
 .container-fluid{
 	
 }
+.header{
+	height: 80px;
+	border: black solid 1px;
+	padding: 10px;
+}
+.bar div{
+	margin: 0px 10px;
+}
+.title{
+	text-align: center;
+}
+
+.search input[type="text"]{
+	width: 330px;
+	padding: 7px;
+}
+.search input{
+	height: 40px;
+}
+
+.ofertas .item{
+	height: 110px;
+	width: 110px;
+	border: red solid 1px;
+}
+.roles{
+	padding: 0px 35px;
+}
