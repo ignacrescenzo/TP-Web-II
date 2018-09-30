@@ -25,7 +25,14 @@
 	height: 110px;
 	width: 110px;
 	border: red solid 1px;
+	margin: 0px 7px;
 }
 .roles{
 	padding: 0px 35px;
+}
+.itemComercio{
+	height: 150px;
+	width: 150px;
+	border: red solid 1px;
+	margin: 0px 7px;
 }
