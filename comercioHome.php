@@ -2,7 +2,7 @@
 <html lang="es">
 	<head>
 		<meta charset="UTF-8">
-		<title>Nombre Pagina</title>
+		<title>Home Comercios</title>
 		<link rel="stylesheet" href="./css/bootstrap.min.css">
 		<link rel="stylesheet" href="./css/estilosIndex.css">
 		<script src="./js/bootstrap.min.js"></script>
@@ -14,6 +14,9 @@
 				<div class="logo"> ACA VA EL LOGO Y EL NOMBRE</div>
 					<div class="bar d-flex">
 						<div class="sesion">Bienvenido "Comercio"</div>
+						<div class="sesion"><a href="">Mis Menus</a></div>
+						<div class="sesion"><a href="">Mis Ofertas</a></div>
+						<div class="sesion"><a href="">Estadisticas</a></div>
 						<div class="sesion"><a href="">Cerrar sesión</a></div>
 					</div>
 			</div>
