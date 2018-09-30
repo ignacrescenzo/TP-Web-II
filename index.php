@@ -3,10 +3,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Nombre Pagina</title>
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/estilosIndex.css">
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery-3.3.1.min.js"></script>
+	<link rel="stylesheet" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" href="./css/estilosIndex.css">
+	<script src="./js/bootstrap.min.js"></script>
+	<script src="./js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 	<div class="container-fluid px-0">
