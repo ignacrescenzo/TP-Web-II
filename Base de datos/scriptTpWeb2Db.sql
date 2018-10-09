@@ -20,7 +20,8 @@ USE `tpWeb2Db` ;
 CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Rol` (
   `idRol` INT NOT NULL,
   `tipo` VARCHAR(45) NULL,
-  PRIMARY KEY (`idRol`))
+  PRIMARY KEY (`idRol`),
+  UNIQUE INDEX `tipo_UNIQUE` (`tipo` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 
@@ -43,6 +44,7 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Comercio` (
   `email` VARCHAR(45) NULL,
   `PuntoDeVenta_idPuntoDeVenta` INT NOT NULL,
   PRIMARY KEY (`idComercio`),
+  UNIQUE INDEX `nombre_UNIQUE` (`nombre` ASC) VISIBLE,
   CONSTRAINT `fk_Comercio_PuntoDeVenta1`
     FOREIGN KEY (`PuntoDeVenta_idPuntoDeVenta`)
     REFERENCES `tpWeb2Db`.`PuntoDeVenta` (`idPuntoDeVenta`)
@@ -67,6 +69,7 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Usuario` (
   `estado` VARCHAR(45) NULL,
   `Comercio_idComercio` INT NOT NULL,
   PRIMARY KEY (`idUsuario`, `Rol_idRol`, `Comercio_idComercio`),
+  UNIQUE INDEX `nombreUsuario_UNIQUE` (`nombreUsuario` ASC) VISIBLE,
   CONSTRAINT `fk_Usuario_Rol1`
     FOREIGN KEY (`Rol_idRol`)
     REFERENCES `tpWeb2Db`.`Rol` (`idRol`)
@@ -179,3 +182,5 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+insert into Rol (idRol,tipo) values (1,'Administrador'),(2,'Cliente'),(3,'Delivery'),(4,'OperadorComercio');
