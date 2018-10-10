@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Usuario` (
   `Rol_idRol` INT NOT NULL,
   `direccion` VARCHAR(45) NULL,
   `telefono` BIGINT(12) NULL,
-  `estado` VARCHAR(45) NULL,
+  `estado` TINYINT(1) NULL,
   `Comercio_idComercio` INT NOT NULL,
   PRIMARY KEY (`idUsuario`, `Rol_idRol`, `Comercio_idComercio`),
   UNIQUE INDEX `nombreUsuario_UNIQUE` (`nombreUsuario` ASC) VISIBLE,
