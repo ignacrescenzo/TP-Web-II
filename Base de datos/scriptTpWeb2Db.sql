@@ -126,7 +126,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Menu` (
   `idMenu` INT NOT NULL AUTO_INCREMENT,
-  `foto` VARCHAR(45) NULL,
+  `foto` VARCHAR(200) NULL,
   `descripcion` VARCHAR(45) NULL,
   `Precio_idPrecio` INT NOT NULL,
   PRIMARY KEY (`idMenu`, `Precio_idPrecio`),
