@@ -5,6 +5,7 @@
 		<title>Home Comercios</title>
 		<link rel="stylesheet" href="./css/bootstrap.min.css">
 		<link rel="stylesheet" href="./css/estilosIndex.css">
+		<link rel="stylesheet" href="./css/comercioHome.css">
 		<script src="./js/bootstrap.min.js"></script>
 		<script src="./js/jquery-3.3.1.min.js"></script>
 	</head>
@@ -20,13 +21,10 @@
 						<div class="sesion"><a href="">Cerrar sesión</a></div>
 					</div>
 			</div>
-			<div class="header d-flex">
-				<div class="bar d-flex">
-					<div class="banner"><h1>Banner</h1></div>
-					<input type="submit" name="modificar" value="modificar">
-				</div>
+			<div class="banner d-flex flex-column align-items-center">
+				<div><h3>Banner</h3></div>
 			</div>
-			<div class="title">
+			<div class="title mt-4">
 				<h1>Mis Menus</h1>
 				<div class="container">
 					<div class="row">	 
@@ -98,10 +96,10 @@
 						</div>
 					</div>
 				</div>
-				<a href="#" class="btn btn-primary">Ver Todos</a>
+				<!-- <a href="#" class="btn btn-primary mt-3">Ver Todos</a> -->
 			</div>
 		
-			<div class="title">
+			<div class="title mt-4">
 					<h1>Mis Ofertas</h1>
 					<div class="container">
 						<div class="row">	 
@@ -140,43 +138,23 @@
 							</div>
 						</div>
 					</div>
-				<a href="#" class="btn btn-primary">Ver Todos</a>
+				<!-- <a href="#" class="btn btn-primary mt-3">Ver Todos</a> -->
 			</div>
-			<div class="title">
-					<h1>Registro de Activides</h1>
-					<div class="container">
-						<div class="row">
-							<div class="col-md-4">
-								<div class="card">
-									<img class="card-img-top" src=".jpg" alt="Mi Imagen">
-									<div class="card-body">
-										<h4 class="card-title">Ventas</h4>
-										<p class="card-text">Descripcion</p>
-									</div>
-								</div> 
-							</div>
-							<div class="col-md-4">
-								<div class="card">
-									<img class="card-img-top" src=".jpg" alt="Mi Imagen">
-									<div class="card-body">
-										<h4 class="card-title">Pagos</h4>
-										<p class="card-text">Descripcion</p>
-									</div>
-								</div> 
-							</div>
-							<div class="col-md-4">
-								<div class="card">
-									<img class="card-img-top" src=".jpg" alt="Mi Imagen">
-									<div class="card-body">
-										<h4 class="card-title">Actividad</h4>
-										<p class="card-text">Descripcion</p>
-									</div>
-								</div> 
-							</div>
-						</div>
-					</div>
-					<a href="#" class="btn btn-primary">Ver Todos</a>
+			<div class="estadisticas row text-center mt-5">
+				<div class="col col-md-4 registro">
+					<h5>Ventas</h5>
+				</div>
+				<div class="col col-md-4 registro">
+				<h5>Pagos</h5>
+				</div>
+				<div class="col col-md-4 registro">
+				<h5>Actividad</h5>
+				</div>	
 			</div>
+				<!-- <div class="text-center mb-3">
+				<a href="#" class="btn btn-primary mt-3">Ver Todos</a>
+				</div> -->
+		</div>
 		<div class="footer d-flex justify-content-center mt-4 pt-1">
 				INFORMACION SOBRE LA EMPRESA, FOOTER LINKS ETC...
 		</div>
