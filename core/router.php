@@ -12,14 +12,14 @@ class Router
     }
 
     function start(){
-        $routes = Router::parseRoutes();
-        $moduleName = Router::extractModuleName($routes);
-        $action = Router::extractActionName($routes);
-        $_GET = Router::extractGetParams();
+        $routes = Router->parseRoutes();
+        $moduleName = Router->extractModuleName($routes);
+        $action = Router->extractActionName($routes);
+        $_GET = Router->extractGetParams();
 
-        $controller = Router::createController($moduleName);
+        $controller = Router->createController($moduleName);
 
-        Router::executeActionFromController($controller, $action);
+        Router->executeActionFromController($controller, $action);
     }
 
     private function parseRoutes(){
@@ -46,7 +46,7 @@ class Router
             include $controllerPath;
             $controller = new $controllerName;
 
-            $model = Router::createModel($moduleName);
+            $model = Router->createModel($moduleName);
             if( $model ){
                 $controller->model = $model;
             }
@@ -76,12 +76,12 @@ class Router
             //Ejecuto el metodo
             $controller->$action();
         } else {
-            Router::ErrorPage404();
+            Router->ErrorPage404();
         }
     }
 
     function ErrorPage404(){
-        $host = 'http://'.$_SERVER['HTTP_HOST'].'/';
+        $host = 'http://'.$_SERVER['HTTP_HOST'].'/TP-Web-II/';
         header('HTTP/1.1 404 Not Found');
         header("Status: 404 Not Found");
         header('Location:'.$host.'error/error404');
