@@ -11,3 +11,5 @@ $path = Path::getInstance("application/config/path.ini");
 
 $router = new Router($_SERVER['REQUEST_URI']);
 $router->start();
+
+?>
