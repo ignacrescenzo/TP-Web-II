@@ -26,30 +26,15 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `tpWeb2Db`.`PuntoDeVenta`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`PuntoDeVenta` (
-  `idPuntoDeVenta` INT NOT NULL AUTO_INCREMENT,
-  `direccion` VARCHAR(45) NULL,
-  PRIMARY KEY (`idPuntoDeVenta`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `tpWeb2Db`.`Comercio`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Comercio` (
   `idComercio` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NULL,
   `email` VARCHAR(45) NULL,
-  `PuntoDeVenta_idPuntoDeVenta` INT NOT NULL,
+  `banner` VARCHAR(200) NULL,
   PRIMARY KEY (`idComercio`),
-  UNIQUE INDEX `nombre_UNIQUE` (`nombre` ASC) VISIBLE,
-  CONSTRAINT `fk_Comercio_PuntoDeVenta1`
-    FOREIGN KEY (`PuntoDeVenta_idPuntoDeVenta`)
-    REFERENCES `tpWeb2Db`.`PuntoDeVenta` (`idPuntoDeVenta`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  UNIQUE INDEX `nombre_UNIQUE` (`nombre` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 
@@ -67,8 +52,8 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Usuario` (
   `direccion` VARCHAR(45) NULL,
   `telefono` BIGINT(12) NULL,
   `estado` TINYINT(1) NULL,
-  `Comercio_idComercio` INT NOT NULL,
-  PRIMARY KEY (`idUsuario`, `Rol_idRol`, `Comercio_idComercio`),
+  `Comercio_idComercio` INT NULL,
+  PRIMARY KEY (`idUsuario`),
   UNIQUE INDEX `nombreUsuario_UNIQUE` (`nombreUsuario` ASC) VISIBLE,
   CONSTRAINT `fk_Usuario_Rol1`
     FOREIGN KEY (`Rol_idRol`)
@@ -84,27 +69,46 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `tpWeb2Db`.`PuntoDeVenta`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`PuntoDeVenta` (
+  `idPuntoDeVenta` INT NOT NULL AUTO_INCREMENT,
+  `direccion` VARCHAR(45) NULL,
+  `Comercio_idComercio` INT NOT NULL,
+  PRIMARY KEY (`idPuntoDeVenta`),
+  CONSTRAINT `fk_PuntoDeVenta_Comercio1`
+    FOREIGN KEY (`Comercio_idComercio`)
+    REFERENCES `tpWeb2Db`.`Comercio` (`idComercio`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `tpWeb2Db`.`Pedido`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Pedido` (
   `idPedido` INT NOT NULL AUTO_INCREMENT,
   `numero` INT NULL,
-  `horaEntrega` VARCHAR(45) NULL,
-  `horaRetiro` VARCHAR(45) NULL,
+  `fechaHoraEntrega` DATETIME NULL,
+  `fechaHoraRetiro` DATETIME NULL,
   `Usuario_idCliente` INT NOT NULL,
-  `Usuario_cliente_idRol` INT NOT NULL,
-  `Usuario_Comercio_idComercio` INT NOT NULL,
   `Usuario_idDelivery` INT NOT NULL,
-  `Usuario_delivery_idRol` INT NOT NULL,
-  PRIMARY KEY (`idPedido`, `Usuario_idCliente`, `Usuario_cliente_idRol`, `Usuario_Comercio_idComercio`, `Usuario_idDelivery`, `Usuario_delivery_idRol`),
+  `PuntoDeVenta_idPuntoDeVenta` INT NOT NULL,
+  PRIMARY KEY (`idPedido`),
   CONSTRAINT `fk_Pedido_Usuario1`
-    FOREIGN KEY (`Usuario_idCliente` , `Usuario_cliente_idRol` , `Usuario_Comercio_idComercio`)
-    REFERENCES `tpWeb2Db`.`Usuario` (`idUsuario` , `Rol_idRol` , `Comercio_idComercio`)
+    FOREIGN KEY (`Usuario_idCliente`)
+    REFERENCES `tpWeb2Db`.`Usuario` (`idUsuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Pedido_Usuario2`
-    FOREIGN KEY (`Usuario_idDelivery` , `Usuario_delivery_idRol`)
-    REFERENCES `tpWeb2Db`.`Usuario` (`idUsuario` , `Rol_idRol`)
+    FOREIGN KEY (`Usuario_idDelivery`)
+    REFERENCES `tpWeb2Db`.`Usuario` (`idUsuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Pedido_PuntoDeVenta1`
+    FOREIGN KEY (`PuntoDeVenta_idPuntoDeVenta`)
+    REFERENCES `tpWeb2Db`.`PuntoDeVenta` (`idPuntoDeVenta`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -126,10 +130,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Menu` (
   `idMenu` INT NOT NULL AUTO_INCREMENT,
-  `foto` VARCHAR(200) NULL,
+  `foto` VARCHAR(45) NULL,
   `descripcion` VARCHAR(45) NULL,
   `Precio_idPrecio` INT NOT NULL,
-  PRIMARY KEY (`idMenu`, `Precio_idPrecio`),
+  PRIMARY KEY (`idMenu`),
   CONSTRAINT `fk_Menu_Precio1`
     FOREIGN KEY (`Precio_idPrecio`)
     REFERENCES `tpWeb2Db`.`Precio` (`idPrecio`)
@@ -164,16 +168,15 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`PuntoDeVenta_has_Menu` (
   `PuntoDeVenta_idPuntoDeVenta` INT NOT NULL,
   `Menu_idMenu` INT NOT NULL,
-  `Menu_Precio_idPrecio` INT NOT NULL,
-  PRIMARY KEY (`PuntoDeVenta_idPuntoDeVenta`, `Menu_idMenu`, `Menu_Precio_idPrecio`),
+  PRIMARY KEY (`PuntoDeVenta_idPuntoDeVenta`, `Menu_idMenu`),
   CONSTRAINT `fk_PuntoDeVenta_has_Menu_PuntoDeVenta1`
     FOREIGN KEY (`PuntoDeVenta_idPuntoDeVenta`)
     REFERENCES `tpWeb2Db`.`PuntoDeVenta` (`idPuntoDeVenta`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_PuntoDeVenta_has_Menu_Menu1`
-    FOREIGN KEY (`Menu_idMenu` , `Menu_Precio_idPrecio`)
-    REFERENCES `tpWeb2Db`.`Menu` (`idMenu` , `Precio_idPrecio`)
+    FOREIGN KEY (`Menu_idMenu`)
+    REFERENCES `tpWeb2Db`.`Menu` (`idMenu`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -183,4 +186,4 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
-insert into Rol (idRol,tipo) values (1,'Administrador'),(2,'Cliente'),(3,'Delivery'),(4,'OperadorComercio');
+insert into Rol values(1,'Administrador'),(2,'Cliente'),(3,'Delivery'),(4,'OperadorComercio');

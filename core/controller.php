@@ -9,6 +9,6 @@ class Controller {
         $this->view = new View();
     }
 
-    function action_index(){
+    function action(){
     }
 }
