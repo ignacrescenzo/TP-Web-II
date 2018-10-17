@@ -1,7 +1,19 @@
 <?php
-
+include 'application/model/model_usuario.php';
 class Controller_Login extends Controller{
     function index(){
-        $this->view->generate('login_view.php', 'template_view.php');
+        $this->view->generateSt('login_view.php');
+    }
+
+    function validarlogin(){
+        $usuario = new Model_Usuario();
+
+        $nombreUsuario = $_POST['nombreUsuario'];
+        $clave = $_POST['clave'];
+        $res =  $usuario->validarlogin($nombreUsuario,$clave);
+
+
+        if($res==true)
+            $this->view->generateSt('home_view.php');
     }
 }

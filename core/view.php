@@ -9,8 +9,11 @@ class View{
     }
 
     function generate($content_view, $template_view, $data = null){
-
         include $this->path->getPath("view", $template_view );
+    }
+
+    function generateSt($content_view, $data = null){
+        include $this->path->getPath("view",$content_view);
     }
 
     function generateErrorView($content_view){

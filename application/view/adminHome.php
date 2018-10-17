@@ -62,10 +62,6 @@
 				</div>
 			</div>
 		</div>
-		
-		<div class="footer d-flex justify-content-center mt-4 pt-1">
-			INFORMACION SOBRE LA EMPRESA, FOOTER LINKS ETC...
-		</div>
 	</div>
 </body>
 </html>
