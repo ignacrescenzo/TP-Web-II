@@ -13,8 +13,8 @@
 		<div class="header d-flex justify-content-between align-items-center">
 			<div class="logo"> ACA VA EL LOGO Y EL NOMBRE</div>
 			<div class="bar d-flex">
-				<div class="sesion"><a href="">Iniciar sesión</a></div>
-				<div class="sesion"><a href="">Restaurantes</a></div>
+				<div class="sesion"><a href="/login">Iniciar sesión</a></div>
+				<div class="sesion"><a href="/main/listarcomercios">Restaurantes</a></div>
 			</div>
 		</div>
 		<div class="title mt-5 pt-2">
@@ -50,10 +50,6 @@
 					COMERCIO 5
 				</div>
 			</div>
-		</div>
-		<div class="roles d-flex justify-content-between mt-3">
-			<div><a href="">Entrar como delivery</a></div>
-			<div><a href="">Entrar como restaurante</a></div>
 		</div>
 		<div class="footer d-flex justify-content-center mt-4 pt-1">
 			INFORMACION SOBRE LA EMPRESA, FOOTER LINKS ETC...

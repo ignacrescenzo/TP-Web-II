@@ -25,6 +25,11 @@
 				<div><h3>Banner</h3></div>
 			</div>
 			<div class="title mt-4">
+                <div>
+                    <a href="/comercio/mostrarformulariomenu">
+                        Agregar Menu
+                    </a>
+                </div>
 				<h1>Mis Menus</h1>
 				<div class="container">
 					<div class="row">	 
