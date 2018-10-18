@@ -5,7 +5,7 @@ class Model_Menu extends Model
     private $idMenu;
     private $descripcion;
     private $foto;
-    private $precio;
+    public $precio;
     public function crearMenu($desc,$foto,$precio)
     {
         $this->descripcion = $desc;
@@ -22,7 +22,7 @@ class Model_Menu extends Model
         $numeroFilas=mysqli_num_rows($result);
         if($numeroFilas==0)
         {
-            $sql = "insert into menu (foto,descripcion,Precio_idPrecio) values($this->foto','$this->descripcion','$this->precio->consultarId()');";
+            $sql = "insert into menu (foto,descripcion,Precio_idPrecio) values('$this->foto','$this->descripcion','$this->precio->consultarId()');";
 
             header("location:/comercio");
             mysqli_query($conn,$sql);

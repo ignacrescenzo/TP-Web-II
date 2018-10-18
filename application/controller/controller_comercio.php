@@ -7,6 +7,6 @@ class Controller_Comercio extends Controller
         $this->view->generateSt('comercioHome.php');
     }
     function mostrarformulariomenu(){
-        $this->view->generateSt('comercioHome.php');
+        $this->view->generateSt('cargarMenuComercios.php');
     }
 }

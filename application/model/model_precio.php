@@ -24,6 +24,10 @@ class Model_Precio extends Model
 
  }
  public function consultarId(){
-     return $this->idPrecio;
+     $conn = mysqli_connect("localhost","root","admin","tpweb2db");
+     $sql = "SELECT MAX(idPrecio) FROM precio";
+     $result = mysqli_query($conn,$sql);
+     $id = mysqli_fetch_assoc($result);
+     return $id;
  }
 }
