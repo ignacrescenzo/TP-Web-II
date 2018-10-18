@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Rol` (
   `idRol` INT NOT NULL,
   `tipo` VARCHAR(45) NULL,
   PRIMARY KEY (`idRol`),
-  UNIQUE INDEX `tipo_UNIQUE` (`tipo` ASC) VISIBLE)
+  UNIQUE INDEX `tipo_UNIQUE` (`tipo` ASC) )
 ENGINE = InnoDB;
 
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Comercio` (
   `email` VARCHAR(45) NULL,
   `banner` VARCHAR(200) NULL,
   PRIMARY KEY (`idComercio`),
-  UNIQUE INDEX `nombre_UNIQUE` (`nombre` ASC) VISIBLE)
+  UNIQUE INDEX `nombre_UNIQUE` (`nombre` ASC))
 ENGINE = InnoDB;
 
 
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Usuario` (
   `estado` TINYINT(1) NULL,
   `Comercio_idComercio` INT NULL,
   PRIMARY KEY (`idUsuario`),
-  UNIQUE INDEX `nombreUsuario_UNIQUE` (`nombreUsuario` ASC) VISIBLE,
+  UNIQUE INDEX `nombreUsuario_UNIQUE` (`nombreUsuario` ASC),
   CONSTRAINT `fk_Usuario_Rol1`
     FOREIGN KEY (`Rol_idRol`)
     REFERENCES `tpWeb2Db`.`Rol` (`idRol`)

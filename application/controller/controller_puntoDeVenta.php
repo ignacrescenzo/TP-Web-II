@@ -1,5 +1,5 @@
 <?php
-class Controller_Comercio extends Controller
+class Controller_PuntoDeVenta extends Controller
 {
 
     function index(){

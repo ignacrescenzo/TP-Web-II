@@ -26,7 +26,7 @@
 			</div>
 			<div class="title mt-4">
                 <div>
-                    <a href="/comercio/mostrarformulariomenu">
+                    <a href="/puntoDeVenta/mostrarformulariomenu">
                         Agregar Menu
                     </a>
                 </div>

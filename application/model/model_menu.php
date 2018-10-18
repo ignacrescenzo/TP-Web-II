@@ -1,11 +1,11 @@
 <?php
-include 'application/model/model_precio.php';
 class Model_Menu extends Model
 {
     private $idMenu;
     private $descripcion;
     private $foto;
-    public $precio;
+    private $idPrecio;
+
     public function crearMenu($desc,$foto,$precio)
     {
         $this->descripcion = $desc;
@@ -15,14 +15,18 @@ class Model_Menu extends Model
         $this->precio = $objetoPrecio;
     }
 
+    public function getPrecio(){
+        return $this->precio;
+    }
+
     public function cargarABd(){
-        $conn = mysqli_connect("localhost","root","admin","tpweb2db");
+        $conn = mysqli_connect("localhost","root","","tpweb2db");
         $sql="select * from menu where descripcion='$this->descripcion';";
         $result = mysqli_query($conn,$sql);
         $numeroFilas=mysqli_num_rows($result);
         if($numeroFilas==0)
         {
-            $sql = "insert into menu (foto,descripcion,Precio_idPrecio) values('$this->foto','$this->descripcion','$this->precio->consultarId()');";
+            $sql = "insert into menu (foto,descripcion,Precio_idPrecio) values('$this->foto','$this->descripcion','$this->$precio->consultarId()');";
 
             header("location:/comercio");
             mysqli_query($conn,$sql);
