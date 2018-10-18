@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="../resources/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../resources/css/login.css">
-    <script src="../resources/js/bootstrap.min.js"></script>
-    <script src="../resources/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="../application/resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../application/resources/css/login.css">
+    <script src="../application/resources/js/bootstrap.min.js"></script>
+    <script src="../application/resources/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
     <div id="fullscreen_bg" class="fullscreen_bg">

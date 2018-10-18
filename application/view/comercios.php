@@ -1,13 +1,16 @@
+<?php
+if (!isset($_SESSION)) { session_start(); }
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<title>Nombre Pagina</title>
-	<link rel="stylesheet" href="../resources/css/bootstrap.min.css">
-	<link rel="stylesheet" href="../resources/css/estilosIndex.css">
-    <link rel="stylesheet" href="../resources/css/comercios.css">
-	<script src="../resources/js/bootstrap.min.js"></script>
-	<script src="../resources/js/jquery-3.3.1.min.js"></script>
+	<link rel="stylesheet" href="../application/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../application/resources/css/estilosIndex.css">
+    <link rel="stylesheet" href="../application/resources/css/comercios.css">
+	<script src="../application/resources/js/bootstrap.min.js"></script>
+	<script src="../application/resources/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 	<div class="container-fluid px-0">

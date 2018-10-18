@@ -1,4 +1,7 @@
 <?php
+if (!isset($_SESSION)) { session_start(); }
+?>
+<?php
 class Model_Menu extends Model
 {
     private $idMenu;
@@ -6,13 +9,20 @@ class Model_Menu extends Model
     private $foto;
     private $idPrecio;
 
+    function obtenerIdSegunPrecio($precio){
+        $conn = mysqli_connect("localhost","root","","tpweb2db");
+        $sql="select * from precio where monto='$precio';";
+        $result = mysqli_query($conn,$sql);
+        $precio = mysqli_fetch_assoc($result);
+        $id = $precio['idPrecio'];
+        return $id;
+    }
+
     public function crearMenu($desc,$foto,$precio)
     {
         $this->descripcion = $desc;
         $this->foto = $foto;
-        $objetoPrecio = new Model_Precio();
-        $objetoPrecio->crearPrecio($precio);
-        $this->precio = $objetoPrecio;
+        $this->idPrecio = $this->obtenerIdSegunPrecio($precio);
     }
 
     public function getPrecio(){
@@ -26,20 +36,16 @@ class Model_Menu extends Model
         $numeroFilas=mysqli_num_rows($result);
         if($numeroFilas==0)
         {
-            $sql = "insert into menu (foto,descripcion,Precio_idPrecio) values('$this->foto','$this->descripcion','$this->$precio->consultarId()');";
-
-            header("location:/comercio");
+            $sql = "insert into menu (foto,descripcion,Precio_idPrecio) values('$this->foto','$this->descripcion',$this->idPrecio);";
+            header("location:/puntoDeVenta");
             mysqli_query($conn,$sql);
         }
-        else{
-
-            echo "<div style='text-align:center;margin-top:150px;'><h1>YA EXISTE ESE MENU!</h1><br>";
-            echo "<a href='/comercio'>VOLVER</a></div>";
-        }
     }
-
     public function eliminar(){
         ///LOGICA PARA ELIMINAR DE LA BD
+    }
+    public function mostrarMenu(){
+        echo $this->descripcion;
     }
 
 }

@@ -1,13 +1,16 @@
+<?php
+if (!isset($_SESSION)) { session_start(); }
+?>
 <!DOCTYPE html>
 <html lang="es">
 	<head>
 		<meta charset="UTF-8">
 		<title>Home Comercios</title>
-		<link rel="stylesheet" href="../resources/css/bootstrap.min.css">
-		<link rel="stylesheet" href="../resources/css/estilosIndex.css">
-		<link rel="stylesheet" href="../resources/css/comercioHome.css">
-		<script src="../resources/js/bootstrap.min.js"></script>
-		<script src="../resources/js/jquery-3.3.1.min.js"></script>
+		<link rel="stylesheet" href="../application/resources/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../application/resources/css/estilosIndex.css">
+		<link rel="stylesheet" href="../application/resources/css/comercioHome.css">
+		<script src="../application/resources/js/bootstrap.min.js"></script>
+		<script src="../application/resources/js/jquery-3.3.1.min.js"></script>
 	</head>
 	<body>
 		<div class="container-fluid px-0">
@@ -24,85 +27,38 @@
 			<div class="banner d-flex flex-column align-items-center">
 				<div><h3>Banner</h3></div>
 			</div>
-			<div class="title mt-4">
-                <div>
+                <div class="text-center mb-5">
                     <a href="/puntoDeVenta/mostrarformulariomenu">
                         Agregar Menu
                     </a>
                 </div>
+            <div class="text-center">
 				<h1>Mis Menus</h1>
+            </div>
 				<div class="container">
-					<div class="row">	 
-						<div class="col-md-4">
-							<div class="card">
-								<img class="card-img-top" src=".jpg" alt="Mi Imagen">
-								<div class="card-body">
-									<h4 class="card-title">Menu 1</h4>
-									<p class="card-text">Descripcion</p>
-									<a href="#" class="btn btn-primary">Modificar</a>
-									<a href="#" class="btn btn-primary">Ver</a>
-								</div>
-							</div> 
-						</div>
-						<div class="col-md-4">
-							<div class="card">
-								<img class="card-img-top" src=".jpg" alt="Mi Imagen">
-								<div class="card-body">
-									<h4 class="card-title">Menu 2</h4>
-									<p class="card-text">Descripcion</p>
-									<a href="#" class="btn btn-primary">Modificar</a>
-									<a href="#" class="btn btn-primary">Ver</a>
-								</div>
-							</div> 
-						</div>
-						<div class="col-md-4">
-							<div class="card">
-								<img class="card-img-top" src=".jpg" alt="Mi Imagen">
-								<div class="card-body">
-									<h4 class="card-title">Menu 3</h4>
-									<p class="card-text">Descripcion</p>
-									<a href="#" class="btn btn-primary">Modificar</a>
-									<a href="#" class="btn btn-primary">Ver</a>
-								</div>
-							</div> 
-						</div>
-						<div class="col-md-4">
-							<div class="card">
-								<img class="card-img-top" src=".jpg" alt="Mi Imagen">
-								<div class="card-body">
-									<h4 class="card-title">Menu 4</h4>
-									<p class="card-text">Descripcion</p>
-									<a href="#" class="btn btn-primary">Modificar</a>
-									<a href="#" class="btn btn-primary">Ver</a>
-								</div>
-							</div> 
-						</div>
-						<div class="col-md-4">
-							<div class="card">
-								<img class="card-img-top" src=".jpg" alt="Mi Imagen">
-								<div class="card-body">
-									<h4 class="card-title">Menu 5</h4>
-									<p class="card-text">Descripcion</p>
-									<a href="#" class="btn btn-primary">Modificar</a>
-									<a href="#" class="btn btn-primary">Ver</a>
-								</div>
-							</div> 
-						</div>
-						<div class="col-md-4">
-							<div class="card">
-								<img class="card-img-top" src=".jpg" alt="Mi Imagen">
-								<div class="card-body">
-									<h4 class="card-title">Menu 6</h4>
-									<p class="card-text">Descripcion</p>
-									<a href="#" class="btn btn-primary">Modificar</a>
-									<a href="#" class="btn btn-primary">Ver</a>
-								</div>
-							</div> 
-						</div>
+					<div class="row">
+                        <?php
+                        $conn = mysqli_connect("localhost","root","","tpweb2db");
+                        $sql = "select * from menu m inner join precio p on p.idPrecio = m.Precio_idPrecio";
+                        $result = mysqli_query($conn,$sql);
+                        while($menues = mysqli_fetch_assoc($result)) {
+                            echo"<div class='col-md-4'>
+							<div class='card'>
+								<img class='card-img-top' src='".$menues['foto']."' alt='Mi Imagen' width='120px' height='120px'>
+								<div class='card-body'>
+									<h4 class='card-title'>Menu ".$menues['idMenu']."</h4>
+									<p class='card-text'>".$menues['descripcion']."</p>
+									<p class='card-text'>".$menues['monto']."</p>
+									<a href='#' class='btn btn-primary'>Modificar</a>
+									<a href='#' class='btn btn-primary'>Ver</a>
+                                </div>
+                                </div> 
+                            </div>";
+                            }
+                        ?>
 					</div>
 				</div>
 				<!-- <a href="#" class="btn btn-primary mt-3">Ver Todos</a> -->
-			</div>
 		
 			<div class="title mt-4">
 					<h1>Mis Ofertas</h1>
@@ -159,7 +115,6 @@
 				<!-- <div class="text-center mb-3">
 				<a href="#" class="btn btn-primary mt-3">Ver Todos</a>
 				</div> -->
-		</div>
 		</div>
 	</body>
 </html>

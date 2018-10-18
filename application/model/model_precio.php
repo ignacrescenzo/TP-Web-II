@@ -17,16 +17,23 @@ class Model_Precio extends Model
      $numeroFilas=mysqli_num_rows($result);
      if($numeroFilas==0)
      {
-         $sql = "insert into precio (monto,porcDesc) values('$this->monto','$this->porcentajeDescuento');";
+         $sql = "insert into precio (monto,porcDesc) values($this->monto,0);";
          mysqli_query($conn,$sql);
+         $this->cargarId();
+     }
+     else{
+         $precio = mysqli_fetch_assoc($result);
+         $this->idPrecio = $precio['idPrecio'];
      }
 
  }
  public function consultarId(){
-     $conn = mysqli_connect("localhost","root","","tpweb2db");
-     $sql = "SELECT MAX(idPrecio) FROM precio";
-     $result = mysqli_query($conn,$sql);
-     $precio = mysqli_fetch_assoc($result);
-     return $precio['idPrecio'];
+     return $this->idPrecio;
  }
+    public function cargarId(){
+        $conn = mysqli_connect("localhost","root","","tpweb2db");
+        $sql = "SELECT MAX(idPrecio) FROM precio";
+        $id = mysqli_query($conn,$sql);
+        $this->idPrecio =  $id;
+    }
 }
