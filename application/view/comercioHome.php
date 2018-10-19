@@ -11,6 +11,7 @@ if (!isset($_SESSION)) { session_start(); }
 		<link rel="stylesheet" href="../application/resources/css/comercioHome.css">
 		<script src="../application/resources/js/bootstrap.min.js"></script>
 		<script src="../application/resources/js/jquery-3.3.1.min.js"></script>
+        <script src="../application/resources/js/comercioHome.js"></script>
 	</head>
 	<body>
 		<div class="container-fluid px-0">
@@ -46,11 +47,11 @@ if (!isset($_SESSION)) { session_start(); }
 							<div class='card'>
 								<img class='card-img-top' src='".$menues['foto']."' alt='Mi Imagen' width='120px' height='120px'>
 								<div class='card-body'>
-									<h4 class='card-title'>Menu ".$menues['idMenu']."</h4>
+									<h4 class='card-title'>Menu "."<span id ='menuId'>".$menues['idMenu']."</span></h4>
 									<p class='card-text'>".$menues['descripcion']."</p>
 									<p class='card-text'>".$menues['monto']."</p>
 									<a href='#' class='btn btn-primary'>Modificar</a>
-									<a href='#' class='btn btn-primary'>Ver</a>
+									<a href='../core/helpers/eliminarMenu.php?variable=".$menues['descripcion']."' class='btn btn-danger text-white'>Eliminar</a>
                                 </div>
                                 </div> 
                             </div>";

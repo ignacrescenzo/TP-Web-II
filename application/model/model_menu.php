@@ -37,8 +37,9 @@ class Model_Menu extends Model
         if($numeroFilas==0)
         {
             $sql = "insert into menu (foto,descripcion,Precio_idPrecio) values('$this->foto','$this->descripcion',$this->idPrecio);";
-            header("location:/puntoDeVenta");
             mysqli_query($conn,$sql);
+            header("location:/puntoDeVenta");
+
         }
     }
     public function eliminar(){

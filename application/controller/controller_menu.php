@@ -20,8 +20,9 @@ class Controller_Menu extends Controller
         $this->model->modificarMenu();
         $this->model->cargarABd();
     }
-    function eliminarmenu()
+    function eliminar()
     {
-        $this->model->eliminar();
+        $_POST['id'];
+        //$this->model->eliminar();
     }
 }
