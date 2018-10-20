@@ -1,6 +1,8 @@
 <?php
 include 'application/model/model_usuario.php';
 class Controller_Login extends Controller{
+  
+   //funcion que ejecuta por defecto 
     function index(){
         $this->view->generateSt('login_view.php');
     }

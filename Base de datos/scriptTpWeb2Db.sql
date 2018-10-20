@@ -2,6 +2,7 @@
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
 -- -----------------------------------------------------
 -- Schema tpWeb2Db
 -- -----------------------------------------------------
@@ -11,6 +12,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `tpWeb2Db` DEFAULT CHARACTER SET utf8 ;
 USE `tpWeb2Db` ;
+
 
 -- -----------------------------------------------------
 -- Table `tpWeb2Db`.`Rol`
@@ -40,7 +42,7 @@ ENGINE = InnoDB;
 -- Table `tpWeb2Db`.`Usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Usuario` (
-  `idUsuario` INT NOT NULL AUTO_INCREMENT,
+  `idUsuario` INT NOT NULL ,
   `nombreUsuario` VARCHAR(45) NULL,
   `clave` VARCHAR(45) NULL,
   `email` VARCHAR(45) NULL,
@@ -122,12 +124,13 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Precio` (
   PRIMARY KEY (`idPrecio`))
 ENGINE = InnoDB;
 
+
 -- -----------------------------------------------------
 -- Table `tpWeb2Db`.`Menu`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Menu` (
   `idMenu` INT NOT NULL AUTO_INCREMENT,
-  `foto` VARCHAR(300) NULL,
+  `foto` VARCHAR(45) NULL,
   `descripcion` VARCHAR(45) NULL,
   `Precio_idPrecio` INT NOT NULL,
   PRIMARY KEY (`idMenu`),
@@ -184,3 +187,34 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 insert into Rol values(1,'Administrador'),(2,'Cliente'),(3,'Delivery'),(4,'OperadorComercio');
+
+
+-- -----------------------------------------------------
+-- Usuarios de prueba para login
+-- -----------------------------------------------------
+
+insert into Usuario values( 1,'pepe','1234' ,null , null, null, 2, null, null, null, null);
+
+
+
+
+ `idUsuario` INT NOT NULL ,
+  `nombreUsuario` VARCHAR(45) NULL,
+  `clave` VARCHAR(45) NULL,
+  `email` VARCHAR(45) NULL,
+  `nombre` VARCHAR(45) NULL,
+  `apellido` VARCHAR(45) NULL,
+  `Rol_idRol` INT NOT NULL,
+  `direccion` VARCHAR(45) NULL,
+  `telefono` BIGINT(12) NULL,
+  `estado` TINYINT(1) NULL,
+  `Comercio_idComercio` INT NULL,
+
+  
+
+
+
+
+
+
+
