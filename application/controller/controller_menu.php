@@ -17,9 +17,12 @@ class Controller_Menu extends Controller
     }
 
     function modificar()
-    {   
-  
-    $this->model->grabarModificacionMenu();
+    {
+        $precio = new Model_Precio();
+        $precio->crearPrecio($_POST['precio']);
+        $precio->cargarABd();
+        $precio->eliminarSiEsNecesario();
+        $this->model->grabarModificacionMenu($_POST['idMenu'],$_POST['foto'],$_POST['descripcion'],$precio->consultarId());
     
     }
 

@@ -36,4 +36,11 @@ class Model_Precio extends Model
         $id = mysqli_query($conn,$sql);
         $this->idPrecio =  $id;
     }
+
+    public function eliminarSiEsNecesario(){
+        $conn = mysqli_connect("localhost","root","","tpweb2db");
+        $query = "delete from precio where idPrecio not in 
+          (select Precio_idPrecio from menu);";
+        $result = mysqli_query($conn,$query);
+    }
 }

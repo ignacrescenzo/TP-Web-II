@@ -49,27 +49,18 @@ class Model_Menu extends Model
         echo $this->descripcion;
     }
 
-    public function grabarModificacionMenu(){
+    public function grabarModificacionMenu($id,$foto,$descripcion,$idPrecio){
+        $conn = mysqli_connect("localhost","root","","tpweb2db");
 
-        $conn = mysqli_connect("localhost","root","","tpweb2db"); 
+        $grabar = "update menu 
+                   set  foto = '$foto', descripcion = '$descripcion', Precio_idPrecio=$idPrecio 
+                   where idMenu = $id";
+        echo $grabar;
+       // mysqli_query($conn,$grabar);
 
-        $foto=($_POST['foto']);
-        $descripcion=($_POST['descripcion']);
-        $idMenu=($_POST['idMenu']);
-
-        $grabar="UPDATE menu SET  foto = '$foto', descripcion = '$descripcion' WHERE idMenu = '$idMenu';";
-        $result = mysqli_query($conn,$grabar);
-   
-        $precio=($_POST['precio']);
-        $grabar="UPDATE precio SET  monto= '$precio'WHERE idPrecio = '$idMenu';";
-        $result = mysqli_query($conn,$grabar);
-       
-
-        header("location:/puntoDeVenta");
-        
-        
-        
+        //header("location:/puntoDeVenta");
     }
+
     public function traerParaFormulario($desc){
         $conn = mysqli_connect("localhost","root","","tpweb2db");
         $sql="SELECT * FROM menu m inner join precio p on m.Precio_idPrecio=p.idPrecio WHERE m.descripcion = '$desc'";
