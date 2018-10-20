@@ -70,6 +70,13 @@ class Model_Menu extends Model
         
         
     }
+    public function traerParaFormulario($desc){
+        $conn = mysqli_connect("localhost","root","","tpweb2db");
+        $sql="SELECT * FROM menu m inner join precio p on m.Precio_idPrecio=p.idPrecio WHERE m.descripcion = '$desc'";
+        $result= mysqli_query($conn,$sql);
+        $rows= mysqli_fetch_assoc($result);
+        return $rows;
+    }
 
 }
 

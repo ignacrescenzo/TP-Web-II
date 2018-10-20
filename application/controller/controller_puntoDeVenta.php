@@ -1,4 +1,5 @@
 <?php
+include 'application/model/model_menu.php';
 class Controller_PuntoDeVenta extends Controller
 {
 
@@ -15,6 +16,8 @@ class Controller_PuntoDeVenta extends Controller
     }
 
       function mostrarformulariomodificarmenu(){
-        $this->view->generateSt('modificarMenuComercios.php');
+          $menu = new Model_Menu();
+          $rows = $menu->traerParaFormulario($_GET["d"]);
+        $this->view->generateSt('modificarMenuComercios.php', $rows);
     }
 }
