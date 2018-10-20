@@ -49,6 +49,28 @@ class Model_Menu extends Model
         echo $this->descripcion;
     }
 
+    public function grabarModificacionMenu(){
+
+        $conn = mysqli_connect("localhost","root","","tpweb2db"); 
+
+        $foto=($_POST['foto']);
+        $descripcion=($_POST['descripcion']);
+        $idMenu=($_POST['idMenu']);
+
+        $grabar="UPDATE menu SET  foto = '$foto', descripcion = '$descripcion' WHERE idMenu = '$idMenu';";
+        $result = mysqli_query($conn,$grabar);
+   
+        $precio=($_POST['precio']);
+        $grabar="UPDATE precio SET  monto= '$precio'WHERE idPrecio = '$idMenu';";
+        $result = mysqli_query($conn,$grabar);
+       
+
+        header("location:/puntoDeVenta");
+        
+        
+        
+    }
+
 }
 
 ?>

@@ -15,11 +15,14 @@ class Controller_Menu extends Controller
         }
         $this->model->cargarABd();
     }
+
     function modificarmenu()
-    {
-        $this->model->modificarMenu();
-        $this->model->cargarABd();
+    {   
+  
+    $this->model->grabarModificacionMenu();
+    
     }
+
     function eliminar()
     {
         $_POST['id'];

@@ -9,4 +9,12 @@ class Controller_PuntoDeVenta extends Controller
     function mostrarformulariomenu(){
         $this->view->generateSt('cargarMenuComercios.php');
     }
+
+    function eliminarmenu(){
+        $this->view->generateSt('cargarMenuComercios.php');
+    }
+
+      function mostrarformulariomodificarmenu(){
+        $this->view->generateSt('modificarMenuComercios.php');
+    }
 }
