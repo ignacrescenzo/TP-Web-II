@@ -16,7 +16,7 @@ class Controller_Menu extends Controller
         $this->model->cargarABd();
     }
 
-    function modificarmenu()
+    function modificar()
     {   
   
     $this->model->grabarModificacionMenu();

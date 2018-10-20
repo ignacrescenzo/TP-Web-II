@@ -22,7 +22,7 @@ $rows= mysqli_fetch_assoc($result);
 <body>
 <div id="fullscreen_bg" class="fullscreen_bg">
     <div class="container">
-        <form class="form-signin" method="POST" action="../menu/modificarmenu" enctype="application/x-www-form-urlencodes">
+        <form class="form-signin" method="POST" action="../menu/modificar" enctype="application/x-www-form-urlencodes">
             <h1 class="form-signin-heading text-muted">Cambiar datos del Menu</h1>
             <div class="form-group mb-2">
                 <input type="text" name="descripcion" placeholder="Ingrese Descripcion" class="form-control" value=<?php echo $rows['descripcion']; ?>>
