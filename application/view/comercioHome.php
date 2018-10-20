@@ -50,7 +50,7 @@ if (!isset($_SESSION)) { session_start(); }
 									<h4 class='card-title'>Menu "."<span id ='menuId'>".$menues['idMenu']."</span></h4>
 									<p class='card-text'>".$menues['descripcion']."</p>
 									<p class='card-text'>".$menues['monto']."</p>
-									<a href='/puntoDeVenta/mostrarformulariomodificarmenu?idMenu=".$menues['idMenu']."&precio=".$menues['monto']."' class='btn btn-primary'>Modificar</a>
+									<a href='/puntoDeVenta/mostrarformulariomodificarmenu?d=".$menues['descripcion']."' class='btn btn-primary'>Modificar</a>
 									<a href='../core/helpers/eliminarMenu.php?variable=".$menues['descripcion']."' class='btn btn-danger text-white'>Eliminar</a>
                                 </div>
                                 </div> 

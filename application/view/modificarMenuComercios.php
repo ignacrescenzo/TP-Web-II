@@ -2,11 +2,11 @@
 if (!isset($_SESSION)) { session_start(); }
 
 $conn = mysqli_connect("localhost","root","","tpweb2db");
-$busqueda=($_GET["idMenu"]);
-$precio=($_GET["precio"]);
-$sql="SELECT * FROM Menu WHERE idMenu = '$busqueda'";
+$busqueda=($_GET["d"]);
+echo $busqueda;
+$sql="SELECT * FROM menu m inner join precio p on m.Precio_idPrecio=p.idPrecio WHERE m.descripcion = '$busqueda'";
 $result= mysqli_query($conn,$sql);
-$rows= mysqli_fetch_assoc($result); 
+$rows= mysqli_fetch_assoc($result);
 
 ?>
 <!DOCTYPE html>
@@ -28,13 +28,13 @@ $rows= mysqli_fetch_assoc($result);
                 <input type="text" name="descripcion" placeholder="Ingrese Descripcion" class="form-control" value=<?php echo $rows['descripcion']; ?>>
             </div>
             <div class="form-group mb-2">
-                <input type="text" name="precio" placeholder="Ingrese Precio" class="form-control" value=<?php echo $precio; ?>>
+                <input type="text" name="precio" placeholder="Ingrese Precio" class="form-control" value=<?php echo $rows['monto']; ?>>
             </div>
             <div class="form-group mb-2">
                 <input type="text" name="foto" placeholder="Ingrese URL de foto" class="form-control" value=<?php echo $rows['foto']; ?>>
             </div>
             <div class="form-group mb-2">
-                <input type="hidden" name="idMenu"  class="form-control" value=<?php echo $busqueda; ?>>
+                <input type="hidden" name="idMenu"  class="form-control" value=<?php echo $rows['idMenu']; ?>>
             </div>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">
                 Modificar
