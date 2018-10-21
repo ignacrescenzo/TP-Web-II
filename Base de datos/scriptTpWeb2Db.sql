@@ -186,35 +186,24 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
-insert into Rol values(1,'Administrador'),(2,'Cliente'),(3,'Delivery'),(4,'OperadorComercio');
+insert into Rol 
+values
+(1,'Administrador'),(2,'Cliente'),(3,'Delivery'),(4,'OperadorComercio');
 
 
 -- -----------------------------------------------------
 -- Usuarios de prueba para login
 -- -----------------------------------------------------
 
-insert into Usuario values( 1,'pepe','1234' ,null , null, null, 2, null, null, null, null);
+insert into Usuario(idUsuario, nombreUsuario, clave, Rol_idRol)
+values
+( 1,'admin1','1111' ,1),
+( 2,'cliente1','2222' ,2),
+( 3,'delivery1','3333' ,3),
+( 4,'opcomercio1','4444' ,4);
 
-
-
-
- `idUsuario` INT NOT NULL ,
-  `nombreUsuario` VARCHAR(45) NULL,
-  `clave` VARCHAR(45) NULL,
-  `email` VARCHAR(45) NULL,
-  `nombre` VARCHAR(45) NULL,
-  `apellido` VARCHAR(45) NULL,
-  `Rol_idRol` INT NOT NULL,
-  `direccion` VARCHAR(45) NULL,
-  `telefono` BIGINT(12) NULL,
-  `estado` TINYINT(1) NULL,
-  `Comercio_idComercio` INT NULL,
-
-  
-
-
-
-
-
-
-
+/*datos de rol
+select r.tipo as rol 
+from Usuario as u inner join Rol as r on u.Rol_idRol = r.idRol 
+where u.nombreUsuario = 'admin1' and u.clave='1111';
+*/

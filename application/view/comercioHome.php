@@ -1,5 +1,9 @@
 <?php
-if (!isset($_SESSION)) { session_start(); }
+	session_start();
+	if(!isset($_SESSION["login"])){
+		include("error/error404_view.php");
+		exit;
+	}
 ?>
 <!DOCTYPE html>
 <html lang="es">

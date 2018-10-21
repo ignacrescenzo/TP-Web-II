@@ -17,12 +17,13 @@ class Model_Usuario extends Model{
    public function validarlogin($u,$c){
    $db=BaseDeDatos::conectarBD();
  
-    $sql= 'select * from Usuario where nombreUsuario="'.$u.'" and clave="'.$c.'" ';
+    $sql= 'select Rol.tipo as rol from Usuario inner join Rol on Usuario.Rol_idRol = Rol.idRol where Usuario.nombreUsuario="'.$u.'" and Usuario.clave="'.$c.'"; ';
     
     $result=mysqli_query($db,$sql);
-
-    if (mysqli_num_rows($result)==1) {
-      return true;
+	$rows=mysqli_fetch_assoc($result);
+    if (mysqli_num_rows($result)==1){
+		$rol=($rows['rol']);
+		return $rol;
       }else{
         echo "Error al buscar el usuario";
       }
@@ -30,3 +31,4 @@ class Model_Usuario extends Model{
    }
 
 }
+?>
