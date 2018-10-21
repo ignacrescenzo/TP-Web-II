@@ -1,4 +1,5 @@
 <?php
+require_once 'modelo_conexion_base_de_datos.php';
 class Model_Precio extends Model
 {
  private $idPrecio;
@@ -11,7 +12,7 @@ class Model_Precio extends Model
      $this->monto = $cantidad;
  }
  public function cargarABd(){
-     $conn = mysqli_connect("localhost","root","","tpweb2db");
+    $conn = BaseDeDatos::conectarBD();
      $sql="select * from precio where monto='$this->monto';";
      $result = mysqli_query($conn,$sql);
      $numeroFilas=mysqli_num_rows($result);
@@ -38,7 +39,7 @@ class Model_Precio extends Model
     }
 
     public function eliminarSiEsNecesario(){
-        $conn = mysqli_connect("localhost","root","","tpweb2db");
+        $conn =BaseDeDatos::conectarBD();
         $query = "delete from precio where idPrecio not in 
           (select Precio_idPrecio from menu);";
         $result = mysqli_query($conn,$query);
