@@ -1,5 +1,9 @@
 <?php
-if (!isset($_SESSION)) { session_start(); }
+	session_start();
+	if(!isset($_SESSION["login"])){
+		include("error/error404_view.php");
+		exit;
+	}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -50,7 +54,7 @@ if (!isset($_SESSION)) { session_start(); }
 									<h4 class='card-title'>Menu "."<span id ='menuId'>".$menues['idMenu']."</span></h4>
 									<p class='card-text'>".$menues['descripcion']."</p>
 									<p class='card-text'>".$menues['monto']."</p>
-									<a href='/puntoDeVenta/mostrarformulariomodificarmenu?d=".$menues['descripcion']."' class='btn btn-primary'>Modificar</a>
+									<a href='#' class='btn btn-primary'>Modificar</a>
 									<a href='../core/helpers/eliminarMenu.php?variable=".$menues['descripcion']."' class='btn btn-danger text-white'>Eliminar</a>
                                 </div>
                                 </div> 
