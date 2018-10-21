@@ -1,4 +1,5 @@
 <?php
+include 'application/model/model_menu.php';
 class Controller_PuntoDeVenta extends Controller
 {
 
@@ -8,5 +9,15 @@ class Controller_PuntoDeVenta extends Controller
     }
     function mostrarformulariomenu(){
         $this->view->generateSt('cargarMenuComercios.php');
+    }
+
+    function eliminarmenu(){
+        $this->view->generateSt('cargarMenuComercios.php');
+    }
+
+      function mostrarformulariomodificarmenu(){
+          $menu = new Model_Menu();
+          $rows = $menu->traerParaFormulario(urldecode($_GET["d"]));
+          $this->view->generateSt('modificarMenuComercios.php', $rows);
     }
 }

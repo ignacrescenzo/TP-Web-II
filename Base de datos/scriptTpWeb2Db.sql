@@ -5,7 +5,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema tpWeb2Db
 -- -----------------------------------------------------
-
+/*drop table precio;*/
 -- -----------------------------------------------------
 -- Schema tpWeb2Db
 -- -----------------------------------------------------
@@ -184,3 +184,8 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 insert into Rol values(1,'Administrador'),(2,'Cliente'),(3,'Delivery'),(4,'OperadorComercio');
+
+
+/*CONSULTAS DE PRUEBA SELECT * FROM tpweb2db.precio;
+select idPrecio from precio where idPrecio not in 
+          (select Precio_idPrecio from menu);*/

@@ -46,7 +46,23 @@ class Model_Menu extends Model
         ///LOGICA PARA ELIMINAR DE LA BD
     }
     public function mostrarMenu(){
-        echo $this->descripcion;
+    }
+
+    public function grabarModificacionMenu($id,$foto,$descripcion,$idPrecio){
+        $conn = mysqli_connect("localhost","root","","tpweb2db");
+        $grabar = "update menu
+                   set  foto ='$foto', descripcion ='$descripcion', Precio_idPrecio=$idPrecio 
+                   where idMenu =$id;";
+        mysqli_query($conn,$grabar);
+        header("location:/puntoDeVenta");
+    }
+
+    public function traerParaFormulario($desc){
+        $conn = mysqli_connect("localhost","root","","tpweb2db");
+        $sql="SELECT * FROM menu m inner join precio p on m.Precio_idPrecio=p.idPrecio WHERE m.descripcion = '$desc'";
+        $result= mysqli_query($conn,$sql);
+        $rows= mysqli_fetch_assoc($result);
+        return $rows;
     }
 
 }

@@ -15,14 +15,20 @@ class Controller_Menu extends Controller
         }
         $this->model->cargarABd();
     }
-    function modificarmenu()
+
+    function modificar()
     {
-        $this->model->modificarMenu();
-        $this->model->cargarABd();
+        $precio = new Model_Precio();
+        $precio->crearPrecio($_POST['precio']);
+        $precio->cargarABd();
+        $this->model->grabarModificacionMenu($_POST['idMenu'],$_POST['foto'],$_POST['descripcion'],$precio->consultarId());
+        $precio->eliminarSiEsNecesario();
+    
     }
+
     function eliminar()
     {
-        $_POST['id'];
+        ///$_POST['id'];
         //$this->model->eliminar();
     }
 }
