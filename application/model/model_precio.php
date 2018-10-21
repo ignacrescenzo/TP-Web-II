@@ -19,7 +19,7 @@ class Model_Precio extends Model
      {
          $sql = "insert into precio (monto,porcDesc) values($this->monto,0);";
          mysqli_query($conn,$sql);
-         $this->cargarId();
+         $this->cargarId($conn);
      }
      else{
          $precio = mysqli_fetch_assoc($result);
@@ -30,11 +30,11 @@ class Model_Precio extends Model
  public function consultarId(){
      return $this->idPrecio;
  }
-    public function cargarId(){
-        $conn = mysqli_connect("localhost","root","","tpweb2db");
+    public function cargarId($conn){
         $sql = "SELECT MAX(idPrecio) FROM precio";
-        $id = mysqli_query($conn,$sql);
-        $this->idPrecio =  $id;
+        $res = mysqli_query($conn,$sql);
+        $id = mysqli_fetch_assoc($res);
+        $this->idPrecio =  current($id);
     }
 
     public function eliminarSiEsNecesario(){

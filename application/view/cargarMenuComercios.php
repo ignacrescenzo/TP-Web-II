@@ -14,7 +14,7 @@ if (!isset($_SESSION)) { session_start(); }
 <body>
 <div id="fullscreen_bg" class="fullscreen_bg">
     <div class="container">
-        <form class="form-signin" method="POST" action="../menu/nuevo" enctype="application/x-www-form-urlencodes">
+        <form class="form-signin" method="POST" action="../menu/nuevo" enctype="application/x-www-form-urlencoded">
             <h1 class="form-signin-heading text-muted">Ingresar nuevo menu</h1>
             <div class="form-group mb-2">
                 <input type="text" name="descripcion" placeholder="Ingrese Descripcion" class="form-control">
