@@ -1,8 +1,9 @@
 <?php
-	session_start();
 	if(!isset($_SESSION["login"])){
-		include("error/error404_view.php");
-		exit;
+		echo "INISIA SESION WACHO";
+        echo "<br>";
+        echo "<a href='/login'>Iniciar sesion</a>";
+        exit;
 	}
 ?>
 <!DOCTYPE html>

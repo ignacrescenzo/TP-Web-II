@@ -21,7 +21,7 @@ class Controller_Login extends Controller{
 				break;
 			case "Cliente":
 				$_SESSION["login"]="sessionCliente";
-				$this->view->generateSt('home_view.php');
+				$this->view->generateSt('comercios.php');
 				break;
 			case "Delivery":
 				$_SESSION["login"]="sessionDelivery";

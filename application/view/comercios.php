@@ -1,8 +1,9 @@
 <?php
-	session_start();
-	if(isset($_SESSION["login"])){
-		include("error/error404_view.php");
-		exit;
+	if(!isset($_SESSION["login"])){
+		echo "INISIA SESION WACHO";
+        echo "<br>";
+        echo "<a href='/login'>Iniciar sesion</a>";
+        exit;
 	}
 ?>
 <!DOCTYPE html>
@@ -22,7 +23,7 @@
 			<div class="logo"> ACA VA EL LOGO Y EL NOMBRE</div>
 			<div class="bar d-flex">
 				<div class="sesion">Bienvenido "Usuario"</div>
-				<div class="sesion"><a href="">Cerrar sesión</a></div>
+				<div class="sesion"><a href="/login/cerrarsesion">Cerrar sesión</a></div>
 			</div>
 		</div>
         <div class="title mt-3">

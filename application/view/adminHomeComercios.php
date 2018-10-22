@@ -1,3 +1,12 @@
+<?php 
+	if(!isset($_SESSION["login"])){
+		echo "INISIA SESION WACHO";
+        echo "<br>";
+        echo "<a href='/login'>Iniciar sesion</a>";
+        exit;
+	}
+ ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
