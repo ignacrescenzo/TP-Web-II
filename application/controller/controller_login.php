@@ -33,5 +33,11 @@ class Controller_Login extends Controller{
 				break;
 		}
     }
+
+    function cerrarsesion(){
+    	//$this->model->cerrarsesion();
+    	$this->view->generateSt('cerrarSesion.php');
+    }
+   
 }
 ?>

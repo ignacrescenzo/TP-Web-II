@@ -26,7 +26,7 @@
 						<div class="sesion"><a href="">Mis Menus</a></div>
 						<div class="sesion"><a href="">Mis Ofertas</a></div>
 						<div class="sesion"><a href="">Estadisticas</a></div>
-						<div class="sesion"><a href="">Cerrar sesión</a></div>
+						<div class="sesion"><a href="/login/cerrarsesion">Cerrar sesión</a></div>
 					</div>
 			</div>
 			<div class="banner d-flex flex-column align-items-center">

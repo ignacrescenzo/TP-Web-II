@@ -30,5 +30,10 @@ class Model_Usuario extends Model{
 
    }
 
+   public function cerrarsesion(){
+    session_destroy();
+    header("location:/main");
+   }
+
 }
 ?>
