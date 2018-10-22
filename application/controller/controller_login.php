@@ -17,11 +17,11 @@ class Controller_Login extends Controller{
 		switch ($rol){
 			case "Administrador":
 				$_SESSION["login"]="sessionAdmin";
-				$this->view->generateSt('adminHome.php');
+    			$this->view->generateSt('adminHome.php');
 				break;
 			case "Cliente":
 				$_SESSION["login"]="sessionCliente";
-				$this->view->generateSt('comercios.php');
+				$this->view->generateSt('home_view.php');
 				break;
 			case "Delivery":
 				$_SESSION["login"]="sessionDelivery";
