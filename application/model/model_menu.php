@@ -22,7 +22,19 @@ class Model_Menu extends Model
     public function crearMenu($desc,$foto,$precio)
     {
         $this->descripcion = $desc;
-        $this->foto = $foto;
+
+        if(file_exists("application/resources/upload/" . $foto["name"]))
+            {
+            echo $foto["name"] . " ya existe. ";
+            }
+            else
+            {
+            move_uploaded_file($foto["tmp_name"],
+            "application/resources/upload/"." . $foto["name"]);
+            $this->foto=$foto["name"];
+            echo "Almacenado en: " . "application/resources/upload/" . $foto["name"];
+            }
+
         $this->idPrecio = $this->obtenerIdSegunPrecio($precio);
     }
 
@@ -51,9 +63,22 @@ class Model_Menu extends Model
 
     public function grabarModificacionMenu($id,$foto,$descripcion,$idPrecio){
         $conn =BaseDeDatos::conectarBD();
+
+        if(file_exists("application/resources/upload/" . $foto["name"]))
+            {
+            echo $foto["name"] . " ya existe. ";
+            }
+            else
+            {
+            move_uploaded_file($foto["tmp_name"],
+            "application/resources/upload/" . $foto["name"]);
+            $this->foto=$foto["name"];
+            echo "Almacenado en: " . "application/resources/upload/" . $foto["name"];
+        }
         $grabar = "update menu
-                   set  foto ='$foto', descripcion ='$descripcion', Precio_idPrecio=$idPrecio 
+                   set  foto ='".$foto["name"]."', descripcion ='$descripcion', Precio_idPrecio=$idPrecio 
                    where idMenu =$id;";
+
         mysqli_query($conn,$grabar);
         header("location:/puntoDeVenta");
     }

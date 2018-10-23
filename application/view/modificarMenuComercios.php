@@ -15,14 +15,14 @@ if (!isset($_SESSION)) { session_start(); }
 
     <div id="fullscreen_bg" class="fullscreen_bg">
         <div class="container">
-            <form class="form-signin" method="POST" action="../menu/modificar">
+            <form class="form-signin" enctype="multipart/form-data" method="POST" action="../menu/modificar">
                 <h1 class="form-signin-heading text-muted">Cambiar datos del Menu</h1>
                 <div class="form-group mb-2">
                     <input type="text" name="descripcion" placeholder="Ingrese Descripcion" class="form-control" value="<?php echo $data['descripcion']; ?>" >
                 </div>
                 <div class="form-group mb-2">
                       <div class="form-group mb-2">
-                    <input type="text" name="foto" placeholder="Ingrese URL de foto" class="form-control" value="<?php echo $data['foto']; ?>" >
+                    <input type="file" name="file" placeholder="Cargue la imagen" class="form-control" value="<?php echo $data['foto']; ?>" >
                 </div>
                 <div class="form-group mb-2">
                     <input type="text" name="precio" placeholder="Ingrese Precio" class="form-control" value="<?php echo $data['monto']; ?>" >
