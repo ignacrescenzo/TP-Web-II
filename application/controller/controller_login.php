@@ -35,8 +35,9 @@ class Controller_Login extends Controller{
     }
 
     function cerrarsesion(){
-    	//$this->model->cerrarsesion();
-    	$this->view->generateSt('cerrarSesion.php');
+		//$this->model->cerrarsesion();
+		include 'core/helpers/cerrarSesion.php';
+    	$this->view->generateSt('home_view.php');
     }
    
 }
