@@ -1,8 +1,9 @@
 <?php
-	session_start();
-	if(!isset($_SESSION["login"])){
-		include("error/error404_view.php");
-		exit;
+		if(!isset($_SESSION["login"])){
+		echo "INISIA SESION WACHO";
+        echo "<br>";
+        echo "<a href='/login'>Iniciar sesion</a>";
+        exit;
 	}
 ?>
 <!DOCTYPE html>
@@ -26,7 +27,7 @@
 						<div class="sesion"><a href="">Mis Menus</a></div>
 						<div class="sesion"><a href="">Mis Ofertas</a></div>
 						<div class="sesion"><a href="">Estadisticas</a></div>
-						<div class="sesion"><a href="">Cerrar sesión</a></div>
+						<div class="sesion"><a href="/login/cerrarsesion">Cerrar sesión</a></div>
 					</div>
 			</div>
 			<div class="banner d-flex flex-column align-items-center">
@@ -49,7 +50,7 @@
                         while($menues = mysqli_fetch_assoc($result)) {
                             echo"<div class='col-md-4'>
 							<div class='card'>
-								<img class='card-img-top' src='".$menues['foto']."' alt='Mi Imagen' width='120px' height='120px'>
+								<img class='card-img-top' src='/application/resources/upload/".$menues['foto']."' alt='Mi Imagen' width='120px' height='120px'>
 								<div class='card-body'>
 									<h4 class='card-title'>Menu "."<span id ='menuId'>".$menues['idMenu']."</span></h4>
 									<p class='card-text'>".$menues['descripcion']."</p>

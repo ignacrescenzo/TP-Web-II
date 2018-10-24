@@ -2,6 +2,7 @@
 if (!isset($_SESSION)) { session_start(); }
 ?>
 <?php
+require_once 'modelo_conexion_base_de_datos.php';
 class Model_Menu extends Model
 {
     private $idMenu;
@@ -10,7 +11,7 @@ class Model_Menu extends Model
     private $idPrecio;
 
     function obtenerIdSegunPrecio($precio){
-        $conn = mysqli_connect("localhost","root","","tpweb2db");
+        $conn =BaseDeDatos::conectarBD();
         $sql="select * from precio where monto='$precio';";
         $result = mysqli_query($conn,$sql);
         $precio = mysqli_fetch_assoc($result);
@@ -21,7 +22,19 @@ class Model_Menu extends Model
     public function crearMenu($desc,$foto,$precio)
     {
         $this->descripcion = $desc;
-        $this->foto = $foto;
+
+        if(file_exists("application/resources/upload/" . $foto["name"]))
+            {
+            echo $foto["name"] . " ya existe. ";
+            }
+            else
+            {
+            move_uploaded_file($foto["tmp_name"],
+            "application/resources/upload/".$foto["name"]);
+            $this->foto=$foto["name"];
+            echo "Almacenado en: "."application/resources/upload/" . $foto["name"];
+            }
+
         $this->idPrecio = $this->obtenerIdSegunPrecio($precio);
     }
 
@@ -30,7 +43,7 @@ class Model_Menu extends Model
     }
 
     public function cargarABd(){
-        $conn = mysqli_connect("localhost","root","","tpweb2db");
+        $conn =BaseDeDatos::conectarBD();
         $sql="select * from menu where descripcion='$this->descripcion';";
         $result = mysqli_query($conn,$sql);
         $numeroFilas=mysqli_num_rows($result);
@@ -49,16 +62,29 @@ class Model_Menu extends Model
     }
 
     public function grabarModificacionMenu($id,$foto,$descripcion,$idPrecio){
-        $conn = mysqli_connect("localhost","root","","tpweb2db");
+        $conn =BaseDeDatos::conectarBD();
+
+        if(file_exists("application/resources/upload/" . $foto["name"]))
+            {
+            echo $foto["name"] . " ya existe. ";
+            }
+            else
+            {
+            move_uploaded_file($foto["tmp_name"],
+            "application/resources/upload/" . $foto["name"]);
+            $this->foto=$foto["name"];
+            echo "Almacenado en: " . "application/resources/upload/" . $foto["name"];
+        }
         $grabar = "update menu
-                   set  foto ='$foto', descripcion ='$descripcion', Precio_idPrecio=$idPrecio 
+                   set  foto ='".$foto["name"]."', descripcion ='$descripcion', Precio_idPrecio=$idPrecio 
                    where idMenu =$id;";
+
         mysqli_query($conn,$grabar);
         header("location:/puntoDeVenta");
     }
 
     public function traerParaFormulario($desc){
-        $conn = mysqli_connect("localhost","root","","tpweb2db");
+        $conn =BaseDeDatos::conectarBD();
         $sql="SELECT * FROM menu m inner join precio p on m.Precio_idPrecio=p.idPrecio WHERE m.descripcion = '$desc'";
         $result= mysqli_query($conn,$sql);
         $rows= mysqli_fetch_assoc($result);

@@ -10,8 +10,8 @@ class Controller_Menu extends Controller
         $precio->crearPrecio($_POST['precio']);
         $precio->cargarABd();
         //$precio->cargarId();
-        if(isset($_POST['descripcion'])&&isset($_POST['foto'])&&isset($_POST['precio'])) {
-            $this->model->crearMenu($_POST['descripcion'], $_POST['foto'], $_POST['precio']);
+        if(isset($_POST['descripcion'])&&isset($_POST['precio'])&&isset($_FILES["file"]["name"])) {
+            $this->model->crearMenu($_POST['descripcion'], $_FILES["file"], $_POST['precio']);
         }
         $this->model->cargarABd();
     }
@@ -21,7 +21,7 @@ class Controller_Menu extends Controller
         $precio = new Model_Precio();
         $precio->crearPrecio($_POST['precio']);
         $precio->cargarABd();
-        $this->model->grabarModificacionMenu($_POST['idMenu'],$_POST['foto'],$_POST['descripcion'],$precio->consultarId());
+        $this->model->grabarModificacionMenu($_POST['idMenu'],$_FILES["file"],$_POST['descripcion'],$precio->consultarId());
         $precio->eliminarSiEsNecesario();
     
     }

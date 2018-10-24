@@ -17,7 +17,7 @@ class Controller_Login extends Controller{
 		switch ($rol){
 			case "Administrador":
 				$_SESSION["login"]="sessionAdmin";
-				$this->view->generateSt('adminHome.php');
+    			$this->view->generateSt('adminHome.php');
 				break;
 			case "Cliente":
 				$_SESSION["login"]="sessionCliente";
@@ -33,5 +33,12 @@ class Controller_Login extends Controller{
 				break;
 		}
     }
+
+    function cerrarsesion(){
+		//$this->model->cerrarsesion();
+		include 'core/helpers/cerrarSesion.php';
+    	$this->view->generateSt('home_view.php');
+    }
+   
 }
 ?>

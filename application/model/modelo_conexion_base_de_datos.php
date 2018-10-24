@@ -4,8 +4,7 @@
 		static function  conectarBD(){
 			$server="localhost";
 			$usuario="root";
-			//$clave="";
-			$clave="ale37376896";
+			$clave="";
 			$baseDeDatos="tpWeb2Db";
 
 			$conexion=mysqli_connect($server, $usuario, $clave, $baseDeDatos) or die("Error al conectar a la base de datos");
