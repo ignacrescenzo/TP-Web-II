@@ -50,7 +50,7 @@
                         while($menues = mysqli_fetch_assoc($result)) {
                             echo"<div class='col-md-4'>
 							<div class='card'>
-								<img class='card-img-top' src='application/resources/upload/".$menues['foto']."' alt='Mi Imagen' width='120px' height='120px'>
+								<img class='card-img-top' src='/application/resources/upload/".$menues['foto']."' alt='Mi Imagen' width='120px' height='120px'>
 								<div class='card-body'>
 									<h4 class='card-title'>Menu "."<span id ='menuId'>".$menues['idMenu']."</span></h4>
 									<p class='card-text'>".$menues['descripcion']."</p>
