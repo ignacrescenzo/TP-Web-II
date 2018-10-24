@@ -30,9 +30,9 @@ class Model_Menu extends Model
             else
             {
             move_uploaded_file($foto["tmp_name"],
-            "application/resources/upload/"." . $foto["name"]);
+            "application/resources/upload/".$foto["name"]);
             $this->foto=$foto["name"];
-            echo "Almacenado en: " . "application/resources/upload/" . $foto["name"];
+            echo "Almacenado en: "."application/resources/upload/" . $foto["name"];
             }
 
         $this->idPrecio = $this->obtenerIdSegunPrecio($precio);
