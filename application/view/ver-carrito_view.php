@@ -11,5 +11,9 @@ if($data)
         echo "<br />";
         echo "Descripcion: ".$producto["descripcion"];
         echo "<br />";
-    }    
+    }
+    echo "<br />";
+    echo "<br />";
+    echo "<br />";
+    echo "El precio total es $".$producto["cantidad"]*$producto["precio"];    
 }
