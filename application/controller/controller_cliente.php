@@ -8,13 +8,19 @@ class Controller_Cliente extends Controller{
         $array = $menu->obtenerArrayProducto($descripcion);      	
         $carrito = new Model_Carrito();
         $carrito->add($array);
-        
+        $this->view->generateSt('menu_view.php');
     }
 
     public function verCarrito(){
         $carrito = new Model_Carrito();
         $carro = $carrito->get_content();
         $this->view->generateSt('ver-carrito_view.php',$carro);
+    }
+
+    public function eliminarCarrito(){
+        $carrito = new Model_Carrito();
+        $carrito->destroy();
+        $this->view->generateSt('menu_view.php');
     }
 
 
