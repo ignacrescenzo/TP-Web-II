@@ -28,6 +28,7 @@
 					<div class="bar d-flex">
 						<div class="sesion">Bienvenido "Usuario"</div>
 						<div class="sesion"><a href="/login/cerrarsesion">Cerrar sesión</a></div>
+						<div class="sesion"><a href="/login/iracomercios">Volver a comercios</a></div>
 					</div>
 			</div>
 			<div class="banner d-flex flex-column align-items-center">

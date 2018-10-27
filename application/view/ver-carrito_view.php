@@ -15,5 +15,7 @@ if($data)
     echo "<br />";
     echo "<br />";
     echo "<br />";
-    echo "El precio total es $".$producto["cantidad"]*$producto["precio"];    
+    echo "El precio total es $".$producto["cantidad"]*$producto["precio"]; 
+    echo "<br />";
+    echo "<a class='btn btn-danger' href='/cliente/eliminarCarrito'>Vaciar Carrito</a>"; 
 }
