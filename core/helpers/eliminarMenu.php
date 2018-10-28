@@ -1,6 +1,7 @@
 <?php
 header("location:/puntoDeVenta");
-$conn = mysqli_connect("localhost","root","","tpweb2db");
+//$conn = mysqli_connect("localhost","root","","tpweb2db");
+$conn = mysqli_connect("localhost","root","0000","tpweb2db");
 $descripcion = $_GET['variable'];
 $queryPrecio = "select * from menu where descripcion='$descripcion'";
 $result = mysqli_query($conn,$queryPrecio);

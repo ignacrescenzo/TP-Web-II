@@ -36,40 +36,44 @@
             <div class="banner d-flex flex-column align-items-center">
                 <div><h3>Banner</h3></div>
             </div>
-            
+				<div class="container">
                 <?php
-if($data)
-{
-    foreach($data as $producto)
-    {
+				
+	if($data)
+	{
+		$total=0;
+		foreach($data as $producto)
+		{
 
-        echo"<div class='col-md-3'>
-                            <div class='card'>
-                                
-                                <div class='card-body'>
-                                    <h4 class='card-title'>Descripcion: "."<span id ='menuId'>".$producto["descripcion"]."</span></h4>
-                                    <p class='card-text'>Cantidad: ".$producto["cantidad"]."</p>
-                                    <p class='card-text'>Precio: ".$producto["precio"]."</p>
-                                     <p class='card-text'>IdProducto: ".$producto["id"]."</p>
-                                      <p class='card-text'>Total: $".$producto["cantidad"]*$producto["precio"]."</p>
-                                </div>
-                                </div> 
-                            </div>";
-    }
-
-    echo "<br />";
-    echo "El precio total es $".$producto["cantidad"]*$producto["precio"]; 
-    echo "<br />";
-    echo "<br />";
-    echo "<a class='btn btn-danger' href='/cliente/eliminarCarrito'>Vaciar Carrito</a>"; 
-  
-} else{
-    
-    echo "<script>alert('El carro esta vacio');</script>";
-    echo "<h1>Carro vacio</h1>";
-}
+			echo"<div class='col-md-3'>
+								<div class='card'>
+									
+									<div class='card-body'>
+										<h4 class='card-title'>Descripcion: "."<span id ='menuId'>".$producto["descripcion"]."</span></h4>
+										<p class='card-text'>Cantidad: ".$producto["cantidad"]."</p><a class='btn btn-danger' href='/cliente/sumarProducto?id=".$producto['id']."'>+</a><a class='btn btn-primary' href='/cliente/restarProducto?id=".$producto['id']."'>-</a>
+										<p class='card-text'>Precio: ".$producto["precio"]."</p>
+										<p class='card-text'>IdProducto: ".$producto["id"]."</p>
+										<p class='card-text'>Total: $".$producto["cantidad"]*$producto["precio"]."</p> 
+									</div>
+									</div> 
+								</div>";
+						$total+=($producto["cantidad"]*$producto["precio"]);
+			echo"<a class='btn btn-danger' href='/cliente/eliminarProducto?id=".$producto['id']."'>Elminar</a>";
+		}
+		echo "<br />";
+		echo "El precio total es $".$total;
+		echo "<br />";
+		echo "<br />";
+		echo "<a class='btn btn-primary' href='/puntoDeVenta/mostrarMenu'>Volver a Menu</a>"; 
+		echo "<a class='btn btn-danger' href='/cliente/eliminarCarrito'>Vaciar Carrito</a>"; 
+	} else{
+		
+		echo "<script>alert('El carro esta vacio');</script>";
+		echo "<h1>Carro vacio</h1>";
+		echo "<a class='btn btn-primary' href='/puntoDeVenta/mostrarMenu'>Volver a Menu</a>";
+	}
 ?>
-        
+		</div>    
     </body>
     <script src="/application/resources/js/menu_view.js"></script>
 </html>

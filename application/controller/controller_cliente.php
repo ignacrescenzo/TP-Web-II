@@ -1,4 +1,5 @@
 <?php
+
 include 'application/model/model_menu.php';
 include 'application/model/model_carrito.php';
 class Controller_Cliente extends Controller{
@@ -22,6 +23,22 @@ class Controller_Cliente extends Controller{
         $carrito->destroy();
         $this->view->generateSt('menu_view.php');
     }
-
-
+	public function eliminarProducto(){
+        $carrito = new Model_Carrito();
+		$id = md5($_GET["id"]);
+		$carrito->remove_producto($id);
+		$this->view->generateSt('ver-carrito_view.php',$carrito->get_content());
+    }
+	public function sumarProducto(){
+        $carrito = new Model_Carrito();
+		$id = md5($_GET["id"]);
+		$carrito->aumentarCantidad($id);
+		$this->view->generateSt('ver-carrito_view.php',$carrito->get_content());
+	}
+	public function restarProducto(){
+        $carrito = new Model_Carrito();
+		$id = md5($_GET["id"]);
+		$carrito->reducirCantidad($id);
+		$this->view->generateSt('ver-carrito_view.php',$carrito->get_content());
+	}
 }

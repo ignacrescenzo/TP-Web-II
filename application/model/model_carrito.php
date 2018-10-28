@@ -163,7 +163,7 @@ class Model_Carrito extends Model{
         unset($_SESSION["carrito"][$unique_id]);
         $this->update_carrito();
         $this->update_precio_cantidad();
-        return true;
+		return true;
     }
     //eliminamos el contenido del carrito por completo
     public function destroy()
@@ -177,4 +177,10 @@ class Model_Carrito extends Model{
     {
         self::__construct();
     }
+	public function aumentarCantidad($unique_id){
+	//logica del boton sumar
+	}
+	public function reducirCantidad($unique_id){
+	//logica del boton restar
+	}
 }
