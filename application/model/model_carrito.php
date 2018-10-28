@@ -177,4 +177,10 @@ class Model_Carrito extends Model{
     {
         self::__construct();
     }
+	public function aumentarCantidad($unique_id){
+	//logica del boton sumar
+	}
+	public function reducirCantidad($unique_id){
+	//logica del boton restar
+	}
 }

@@ -29,5 +29,15 @@ class Controller_Cliente extends Controller{
 		$carrito->remove_producto($id);
 		$this->view->generateSt('ver-carrito_view.php',$carrito->get_content());
     }
-
+	public function sumarProducto(){
+        $carrito = new Model_Carrito();
+		$id = md5($_GET["id"]);
+		$carrito->aumentarCantidad($id);
+		$this->view->generateSt('ver-carrito_view.php',$carrito->get_content());
+	}
+	public function restarProducto(){
+        $carrito = new Model_Carrito();
+		$id = md5($_GET["id"]);
+		$this->view->generateSt('ver-carrito_view.php',$carrito->get_content());
+	}
 }

@@ -50,7 +50,7 @@
 									
 									<div class='card-body'>
 										<h4 class='card-title'>Descripcion: "."<span id ='menuId'>".$producto["descripcion"]."</span></h4>
-										<p class='card-text'>Cantidad: ".$producto["cantidad"]."</p>
+										<p class='card-text'>Cantidad: ".$producto["cantidad"]."</p><a class='btn btn-danger' href='/cliente/sumarProducto?id=".$producto['id']."'>+</a><a class='btn btn-primary' href='/cliente/restarProducto?id=".$producto['id']."'>-</a>
 										<p class='card-text'>Precio: ".$producto["precio"]."</p>
 										<p class='card-text'>IdProducto: ".$producto["id"]."</p>
 										<p class='card-text'>Total: $".$producto["cantidad"]*$producto["precio"]."</p> 
