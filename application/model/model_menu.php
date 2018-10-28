@@ -91,6 +91,21 @@ class Model_Menu extends Model
         return $rows;
     }
 
+    public function obtenerArrayProducto($descripcion){
+        $conn =BaseDeDatos::conectarBD();
+        $sql="SELECT * FROM menu m inner join precio p on m.Precio_idPrecio=p.idPrecio WHERE m.descripcion = '$descripcion'";
+        $result= mysqli_query($conn,$sql);
+        $rows= mysqli_fetch_assoc($result);
+        $array = array(
+            "id" => $rows['idMenu'],
+            "cantidad" => 1,
+            "precio" => $rows['monto'],
+            "descripcion" => $rows['descripcion']
+        );
+
+        return $array;
+    }
+
 }
 
 ?>

@@ -76,35 +76,9 @@
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo officiis commodi in, exercitationem hic repudiandae modi aut sit a, placeat, sunt tempore. Vel, possimus hic.
                         </div>
                         <div class="d-flex justify-content-end">
-                            <input type="button" value="Ver menú">
-                        </div>
-                    </div>
-                </div>
-                <div class="row comercio">
-                    <div class="col col-4 img">
-                        IMAGEN
-                    </div>
-                    <div class="col col-8">
-                        <div class="nombreComercio">Nombre Comercio</div>
-                        <div class="descripcion">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo officiis commodi in, exercitationem hic repudiandae modi aut sit a, placeat, sunt tempore. Vel, possimus hic.
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <input type="button" value="Ver menú">
-                        </div>
-                    </div>
-                </div>
-                <div class="row comercio">
-                    <div class="col col-4 img">
-                        IMAGEN
-                    </div>
-                    <div class="col col-8">
-                        <div class="nombreComercio">Nombre Comercio</div>
-                        <div class="descripcion">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo officiis commodi in, exercitationem hic repudiandae modi aut sit a, placeat, sunt tempore. Vel, possimus hic.
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <input type="button" value="Ver menú">
+                            <a href="/puntoDeVenta/mostrarMenu">
+                                <input type="button" value="Ver menú">
+                            </a>
                         </div>
                     </div>
                 </div>

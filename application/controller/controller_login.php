@@ -40,5 +40,9 @@ class Controller_Login extends Controller{
     	$this->view->generateSt('home_view.php');
     }
    
+   function iracomercios(){
+   	$this->view->generateSt('comercios.php');
+   }
+
 }
 ?>
