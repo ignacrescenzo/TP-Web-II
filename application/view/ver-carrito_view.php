@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="../application/resources/css/bootstrap.min.css">
         <link rel="stylesheet" href="../application/resources/css/estilosIndex.css">
         <link rel="stylesheet" href="../application/resources/css/comercioHome.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <script src="../application/resources/js/bootstrap.min.js"></script>
         <script src="../application/resources/js/jquery-3.3.1.min.js"></script>
         <script src="../application/resources/js/comercioHome.js"></script>
@@ -33,10 +34,9 @@
                         <div class="sesion"><a href="/login/iracomercios">Volver a comercios</a></div>
                     </div>
             </div>
-            <div class="banner d-flex flex-column align-items-center">
-                <div><h3>Banner</h3></div>
-            </div>
+        
 				<div class="container">
+
                 <?php
 				
 	if($data)
@@ -45,23 +45,24 @@
 		foreach($data as $producto)
 		{
 
-			echo"<div class='col-md-3'>
-								<div class='card'>
-									
-									<div class='card-body'>
-										<h4 class='card-title'>Descripcion: "."<span id ='menuId'>".$producto["descripcion"]."</span></h4>
-										<p class='card-text'>Cantidad: ".$producto["cantidad"]."</p><a class='btn btn-danger' href='/cliente/sumarProducto?id=".$producto['id']."'>+</a><a class='btn btn-primary' href='/cliente/restarProducto?id=".$producto['id']."'>-</a>
-										<p class='card-text'>Precio: ".$producto["precio"]."</p>
-										<p class='card-text'>IdProducto: ".$producto["id"]."</p>
-										<p class='card-text'>Total: $".$producto["cantidad"]*$producto["precio"]."</p> 
-									</div>
-									</div> 
-								</div>";
-						$total+=($producto["cantidad"]*$producto["precio"]);
-			echo"<a class='btn btn-danger' href='/cliente/eliminarProducto?id=".$producto['id']."'>Elminar</a>";
+     echo "
+     <li><h2>Productos</h2></li>
+        <ul class='w3-ul w3-card-4 ' style='width:50%'>
+          <div>
+            <li><p class='card-text'>Descripcion: "."<span id ='menuId'>".$producto["descripcion"]."</span></p>
+                <p class='card-text'>Cantidad: ".$producto["cantidad"]." <a class='w3-button w3-tiny w3-circle w3-black w3-border' href='/cliente/sumarProducto?id=".$producto['id']."'>+</a><a class='w3-button w3-tiny w3-circle w3-black w3-border' href='/cliente/restarProducto?id=".$producto['id']."'>-</a></p>
+                <p class='card-text'>Precio: ".$producto["precio"]."</p>
+                <p class='card-text'>IdProducto: ".$producto["id"]."</p>
+                <p class='card-text'>Total: $".$producto["cantidad"]*$producto["precio"]."</p> 
+                <a class='btn btn-danger' href='/cliente/eliminarProducto?id=".$producto['id']."'>Elminar</a>
+            </li>
+          </div>
+        </ul>
+            ";
+                $total+=($producto["cantidad"]*$producto["precio"]);
 		}
 		echo "<br />";
-		echo "El precio total es $".$total;
+		echo "<h3>El precio total es $".$total."</h3>";
 		echo "<br />";
 		echo "<br />";
 		echo "<a class='btn btn-primary' href='/puntoDeVenta/mostrarMenu'>Volver a Menu</a>"; 
