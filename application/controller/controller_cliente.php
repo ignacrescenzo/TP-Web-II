@@ -38,6 +38,7 @@ class Controller_Cliente extends Controller{
 	public function restarProducto(){
         $carrito = new Model_Carrito();
 		$id = md5($_GET["id"]);
+		$carrito->reducirCantidad($id);
 		$this->view->generateSt('ver-carrito_view.php',$carrito->get_content());
 	}
 }

@@ -44,8 +44,8 @@
 				<div class="container">
 					<div class="row">
                         <?php
-                        //$conn = mysqli_connect("localhost","root","","tpweb2db");
-						$conn = mysqli_connect("localhost","root","0000","tpweb2db");
+                        $conn = mysqli_connect("localhost","root","","tpweb2db");
+						//$conn = mysqli_connect("localhost","root","0000","tpweb2db");
                         $sql = "select * from menu m inner join precio p on p.idPrecio = m.Precio_idPrecio";
                         $result = mysqli_query($conn,$sql);
                         while($menues = mysqli_fetch_assoc($result)) {
