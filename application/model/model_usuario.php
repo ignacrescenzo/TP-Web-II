@@ -26,6 +26,8 @@ class Model_Usuario extends Model{
 		return $rol;
       }else{
         echo "Error al buscar el usuario";
+        echo "<br>";
+        echo "<a href='/main/index'>Volver</a>";
       }
 
    }

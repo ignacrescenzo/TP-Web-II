@@ -40,7 +40,7 @@
 				<div class="container">
 				<a class='btn btn-info verCarrito' href='/cliente/verCarrito'>Ir al carrito!</a>
 				<div class="text-center">
-				<a class='btn btn-danger' href='/cliente/eliminarCarrito'>Vaciar Carrito</a>
+				
 				</div>
 					<div class="row">
                         <?php
