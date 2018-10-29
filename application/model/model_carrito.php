@@ -135,7 +135,7 @@ class Model_Carrito extends Model{
         //articulos_total y precio_total
         unset($carrito["articulos_total"]);
         unset($carrito["precio_total"]);
-        return $carrito == null ? null : $carrito;
+        return $carrito == null ? null : array_reverse($carrito);
     }
     //método que llamamos al insertar un nuevo producto al 
     //carrito para eliminarlo si existia, así podemos insertarlo

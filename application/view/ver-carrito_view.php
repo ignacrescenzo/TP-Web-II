@@ -34,30 +34,32 @@
 				<div class="container">
 
                 <?php
-				
+				echo "<div class='d-flex'>";
 	if($data)
 	{
 		$total=0;
 		foreach($data as $producto)
 		{
 			$cantidad=$producto["cantidad"];
-			echo"<div class='col-md-3'>
-								<div class='card'>
-									
-									<div class='card-body'>
-										<h4 class='card-title'>Descripcion: "."<span id ='menuId'>".$producto["descripcion"]."</span></h4>
-									    <p class='card-text'>Cantidad:".$producto["cantidad"]."</p>
-										<a class='btn btn-danger' href='/cliente/sumarProducto?d=".$producto['descripcion']."'>+</a>
-										<a class='btn btn-primary' href='/cliente/restarProducto?d=".$producto['descripcion']."'>-</a>
-										<p class='card-text'>Precio: ".$producto["precio"]."</p>
-										<p class='card-text'>IdProducto: ".$producto["id"]."</p>
-										<p class='card-text'>Total: $".$producto["cantidad"]*$producto["precio"]."</p> 
-									</div>
-									</div> 
-								</div>";
+			echo"
+					<div class='col-md-3'>
+						<div class='card'>
+							<div class='card-body'>
+								<h4 class='card-title'>Descripcion: "."<span id ='menuId'>".$producto["descripcion"]."</span></h4>
+								<p class='card-text'>Cantidad:".$producto["cantidad"]."</p>
+								<a class='btn btn-danger' href='/cliente/sumarProducto?d=".$producto['descripcion']."'>+</a>
+								<a class='btn btn-primary' href='/cliente/restarProducto?d=".$producto['descripcion']."'>-</a>
+								<p class='card-text'>Precio: ".$producto["precio"]."</p>
+								<p class='card-text'>IdProducto: ".$producto["id"]."</p>
+								<p class='card-text'>Total: $".$producto["cantidad"]*$producto["precio"]."</p> 
+							</div>
+						</div>
+						<a class='btn btn-danger' href='/cliente/eliminarProducto?id=".$producto['id']."'>Eliminar</a> 
+					</div>";
 						$total+=($producto["cantidad"]*$producto["precio"]);
-			echo"<a class='btn btn-danger' href='/cliente/eliminarProducto?id=".$producto['id']."'>Elminar</a>";
 		}
+		echo "</div>";
+
 		echo "<br />";
 		echo "<h3>El precio total es $".$total."</h3>";
 		echo "<br />";

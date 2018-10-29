@@ -9,7 +9,7 @@ class Controller_Cliente extends Controller{
         $array = $menu->obtenerArrayProducto($descripcion);      	
         $carrito = new Model_Carrito();
         $carrito->add($array);
-        $this->view->generateSt('menu_view.php');
+        header("location:/puntoDeVenta/mostrarMenu");
     }
 
     public function verCarrito(){
@@ -26,8 +26,8 @@ class Controller_Cliente extends Controller{
 	public function eliminarProducto(){
         $carrito = new Model_Carrito();
 		$id = md5($_GET["id"]);
-		$carrito->remove_producto($id);
-		$this->view->generateSt('ver-carrito_view.php',$carrito->get_content());
+        $carrito->remove_producto($id);
+        header("location:/cliente/verCarrito");
     }
 	public function sumarProducto(){
         $menu = new Model_Menu();
@@ -35,7 +35,7 @@ class Controller_Cliente extends Controller{
         $array = $menu->obtenerArrayProducto($descripcion);      	
         $carrito = new Model_Carrito();
         $carrito->add($array);
-        $this->view->generateSt('ver-carrito_view.php',$carrito->get_content());
+        header("location:/cliente/verCarrito");
 	}
 	public function restarProducto(){
         $menu = new Model_Menu();
@@ -43,6 +43,6 @@ class Controller_Cliente extends Controller{
         $array = $menu->obtenerArrayProducto($descripcion);      	
         $carrito = new Model_Carrito();
         $carrito->restar($array);
-        $this->view->generateSt('ver-carrito_view.php',$carrito->get_content());
+        header("location:/cliente/verCarrito");
 	}
 }
