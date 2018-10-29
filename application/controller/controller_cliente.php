@@ -30,10 +30,13 @@ class Controller_Cliente extends Controller{
 		$this->view->generateSt('ver-carrito_view.php',$carrito->get_content());
     }
 	public function sumarProducto(){
+        $menu = new Model_Menu();
+        $descripcion = $_GET["d"];
+        $array = $menu->obtenerArrayProducto($descripcion);      	
         $carrito = new Model_Carrito();
-		$id = md5($_GET["id"]);
-		$carrito->aumentarCantidad($id);
-		$this->view->generateSt('ver-carrito_view.php',$carrito->get_content());
+        $carrito->add($array);
+		$carro=$carrito->get_content();
+        $this->view->generateSt('ver-carrito_view.php',$carro);
 	}
 	public function restarProducto(){
         $carrito = new Model_Carrito();

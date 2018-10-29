@@ -6,8 +6,6 @@
         exit;
     }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -19,9 +17,7 @@
         <script src="../application/resources/js/bootstrap.min.js"></script>
         <script src="../application/resources/js/jquery-3.3.1.min.js"></script>
         <script src="../application/resources/js/comercioHome.js"></script>
-        <link rel="stylesheet" href="../application/resources/css/menu_view.css">
-
-        
+        <link rel="stylesheet" href="../application/resources/css/menu_view.css">      
     </head>
     <body>
         <div class="container-fluid px-0">
@@ -44,13 +40,14 @@
 		$total=0;
 		foreach($data as $producto)
 		{
-
+			$cantidad=$producto["cantidad"];
 			echo"<div class='col-md-3'>
 								<div class='card'>
 									
 									<div class='card-body'>
 										<h4 class='card-title'>Descripcion: "."<span id ='menuId'>".$producto["descripcion"]."</span></h4>
-										<p class='card-text'>Cantidad: ".$producto["cantidad"]."</p><a class='btn btn-danger' href='/cliente/sumarProducto?id=".$producto['id']."'>+</a><a class='btn btn-primary' href='/cliente/restarProducto?id=".$producto['id']."'>-</a>
+									    <p class='card-text'>Cantidad:".$producto["cantidad"]."</p>
+										<a class='btn btn-danger' href='/cliente/sumarProducto?d=".$producto['descripcion']."'>+</a>
 										<p class='card-text'>Precio: ".$producto["precio"]."</p>
 										<p class='card-text'>IdProducto: ".$producto["id"]."</p>
 										<p class='card-text'>Total: $".$producto["cantidad"]*$producto["precio"]."</p> 
