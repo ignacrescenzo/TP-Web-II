@@ -35,8 +35,7 @@ class Controller_Cliente extends Controller{
         $array = $menu->obtenerArrayProducto($descripcion);      	
         $carrito = new Model_Carrito();
         $carrito->add($array);
-		$carro=$carrito->get_content();
-        $this->view->generateSt('ver-carrito_view.php',$carro);
+        $this->view->generateSt('ver-carrito_view.php',$carrito->get_content());
 	}
 	public function restarProducto(){
         $carrito = new Model_Carrito();
