@@ -40,24 +40,6 @@
 		$total=0;
 		foreach($data as $producto)
 		{
-<<<<<<< HEAD
-
-     echo "
-     <li><h2>Productos</h2></li>
-        <ul class='w3-ul w3-card-4 ' style='width:50%'>
-          <div>
-            <li><p class='card-text'>Descripcion: "."<span id ='menuId'>".$producto["descripcion"]."</span></p>
-                <p class='card-text'>Cantidad: ".$producto["cantidad"]." <a class='w3-button w3-tiny w3-circle w3-black w3-border' href='/cliente/sumarProducto?id=".$producto['id']."'>+</a><a class='w3-button w3-tiny w3-circle w3-black w3-border' href='/cliente/restarProducto?id=".$producto['id']."'>-</a></p>
-                <p class='card-text'>Precio: ".$producto["precio"]."</p>
-                <p class='card-text'>IdProducto: ".$producto["id"]."</p>
-                <p class='card-text'>Total: $".$producto["cantidad"]*$producto["precio"]."</p> 
-                <a class='btn btn-danger' href='/cliente/eliminarProducto?id=".$producto['id']."'>Elminar</a>
-            </li>
-          </div>
-        </ul>
-            ";
-                $total+=($producto["cantidad"]*$producto["precio"]);
-=======
 			$cantidad=$producto["cantidad"];
 			echo"<div class='col-md-3'>
 								<div class='card'>
@@ -75,7 +57,6 @@
 								</div>";
 						$total+=($producto["cantidad"]*$producto["precio"]);
 			echo"<a class='btn btn-danger' href='/cliente/eliminarProducto?id=".$producto['id']."'>Elminar</a>";
->>>>>>> refs/remotes/origin/Gabriel
 		}
 		echo "<br />";
 		echo "<h3>El precio total es $".$total."</h3>";
