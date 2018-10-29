@@ -60,7 +60,7 @@ class Model_Carrito extends Model{
         //saber el precio total de la suma de este artículo
         $articulo["total"] = $articulo["cantidad"] * $articulo["precio"];
         //primero debemos eliminar el producto si es que estaba en el carrito
-        $this->unset_producto($unique_id);
+        ///COMENTO ESTA LINEA PARA QUE NO ME SAQUE EL PRODUCTO Y NO ME CAMBIE EL ORDEN $this->unset_producto($unique_id);
         ///ahora añadimos el producto al carrito
         $_SESSION["carrito"][$unique_id] = $articulo;
         //actualizamos el carrito
@@ -222,7 +222,7 @@ class Model_Carrito extends Model{
         //saber el precio total de la suma de este artículo
         $articulo["total"] = $articulo["cantidad"] * $articulo["precio"];
         //primero debemos eliminar el producto si es que estaba en el carrito
-        $this->unset_producto($unique_id);
+        ///COMENTO ESTA LINEA PARA QUE NO ME SAQUE EL PRODUCTO Y NO ME CAMBIE EL ORDEN $this->unset_producto($unique_id);
         ///ahora añadimos el producto al carrito
         $_SESSION["carrito"][$unique_id] = $articulo;
         //actualizamos el carrito
