@@ -1,11 +1,13 @@
 -- MySQL Workbench Forward Engineering
+
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
 -- -----------------------------------------------------
 -- Schema tpWeb2Db
 -- -----------------------------------------------------
-/*drop table precio;*/
+
 -- -----------------------------------------------------
 -- Schema tpWeb2Db
 -- -----------------------------------------------------
@@ -19,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Rol` (
   `idRol` INT NOT NULL,
   `tipo` VARCHAR(45) NULL,
   PRIMARY KEY (`idRol`),
-  UNIQUE INDEX `tipo_UNIQUE` (`tipo` ASC) )
+  UNIQUE INDEX `tipo_UNIQUE` (`tipo` ASC))
 ENGINE = InnoDB;
 
 
@@ -91,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Pedido` (
   `fechaHoraEntrega` DATETIME NULL,
   `fechaHoraRetiro` DATETIME NULL,
   `Usuario_idCliente` INT NOT NULL,
-  `Usuario_idDelivery` INT NOT NULL,
+  `Usuario_idDelivery` INT NULL,
   `PuntoDeVenta_idPuntoDeVenta` INT NOT NULL,
   PRIMARY KEY (`idPedido`),
   CONSTRAINT `fk_Pedido_Usuario1`
@@ -122,12 +124,13 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Precio` (
   PRIMARY KEY (`idPrecio`))
 ENGINE = InnoDB;
 
+
 -- -----------------------------------------------------
 -- Table `tpWeb2Db`.`Menu`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Menu` (
   `idMenu` INT NOT NULL AUTO_INCREMENT,
-  `foto` VARCHAR(300) NULL,
+  `foto` VARCHAR(45) NULL,
   `descripcion` VARCHAR(45) NULL,
   `Precio_idPrecio` INT NOT NULL,
   PRIMARY KEY (`idMenu`),
@@ -182,28 +185,3 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
-insert into Rol 
-values
-(1,'Administrador'),(2,'Cliente'),(3,'Delivery'),(4,'OperadorComercio');
-
-/*CONSULTAS DE PRUEBA SELECT * FROM tpweb2db.precio;
-select idPrecio from precio where idPrecio not in 
-          (select Precio_idPrecio from menu);*/
-
--- -----------------------------------------------------
--- Usuarios de prueba para login
--- -----------------------------------------------------
-
-insert into Usuario(idUsuario, nombreUsuario, clave, Rol_idRol)
-values
-( 1,'admin1','1111' ,1),
-( 2,'cliente1','2222' ,2),
-( 3,'delivery1','3333' ,3),
-( 4,'opcomercio1','4444' ,4);
-
-/*datos de rol
-select r.tipo as rol 
-from Usuario as u inner join Rol as r on u.Rol_idRol = r.idRol 
-where u.nombreUsuario = 'admin1' and u.clave='1111';
-*/
