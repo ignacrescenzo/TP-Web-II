@@ -2,6 +2,7 @@
 
 include 'application/model/model_menu.php';
 include 'application/model/model_carrito.php';
+include 'application/model/model_usuario.php';
 class Controller_Cliente extends Controller{
     public function agregarAlCarrito(){
         $menu = new Model_Menu();
@@ -44,5 +45,20 @@ class Controller_Cliente extends Controller{
         $carrito = new Model_Carrito();
         $carrito->restar($array);
         header("location:/cliente/verCarrito");
-	}
+    }
+    public function registrar(){
+        $this->view->generateSt("registrar-cliente_view.php");
+    }
+    public function validarCliente(){
+        $usuario = new Model_Usuario();
+        $username = $_POST['nombreUsuario'];
+        $password = $_POST['clave'];
+        $email = $_POST['email'];
+        $name = $_POST['nombre'];
+        $surname = $_POST['apellido'];
+        $direccion = $_POST['direccion'];
+        $tel = $_POST['telefono'];
+        $usuario->insertarCliente($username,$password,$email,$name,$surname,$direccion,$tel);
+        header("location:/login");
+    }
 }

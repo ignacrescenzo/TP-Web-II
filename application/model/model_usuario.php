@@ -1,8 +1,5 @@
 <?php
 
-include 'modelo_conexion_base_de_datos.php';
-
-
 class Model_Usuario extends Model{
 
   private $db;
@@ -35,6 +32,12 @@ class Model_Usuario extends Model{
    public function cerrarsesion(){
     session_destroy();
     header("location:/main");
+   }
+
+   public function insertarCliente($username,$password,$email,$name,$surname,$direccion,$tel){
+    $db=BaseDeDatos::conectarBD();
+    $sql = "insert into Usuario (nombreUsuario,clave,email,nombre,apellido,direccion,telefono,Rol_idRol) values ('".$username."','".$password."','".$email."','".$name."','".$surname."','".$direccion."','".$tel."',2);";
+    $result = mysqli_query($db,$sql);
    }
 
 }
