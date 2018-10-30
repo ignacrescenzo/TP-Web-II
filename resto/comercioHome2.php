@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Restó | Comercios</title>
+    <title>Restó | Comercios | Mis Menús</title>
     <meta name="description" content="Free Bootstrap Theme by uicookies.com">
     <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
     
@@ -121,7 +121,10 @@
             <div class="probootstrap-heading">
               <h2 class="primary-heading">Mis</h2>
               <h3 style="color: black;" class="secondary-heading">Menús</h3>
-            </div>
+            </div> <br>
+            <div class="form-group">
+                <input type="submit" name="c_submit" id="c_submit" value="Agregar nuevo menú" class="btn btn-primary btn-lg">
+              </div> <br>
           </div>
         </div>
       </div>
@@ -129,21 +132,38 @@
         <div class="row">
           <div class="col-md-6">
             <ul class="menus">
+             <?php
+                        $conn = mysqli_connect("localhost","root","","tpweb2db");
+                        $sql = "select * from menu m inner join precio p on p.idPrecio = m.Precio_idPrecio";
+                        $result = mysqli_query($conn,$sql);
+                        while($menues = mysqli_fetch_assoc($result)) {
+                        ?>
+                          
               <li>
-                <figure class="image"><img src="img/hamb1.jpg" alt="Free Bootstrap Template by uicookies.com"></figure>
+              <?php echo '<figure class="image"> <img src="/application/resources/upload/'.$menues['foto'].'" width="100px";/> </figure>'; ?>
                 <div class="text">
-                  <span class="price">$22.99</span>
-                  <h3>Fried Potatoes with Garlic</h3>
-                  <p>Crab / Potatoes / Rice</p>
-                </div>
-              </li>
-              <li>
+                  <span class="price"> $<?php echo "$menues[monto]"; ?> </span>
+                  <h3> <?php echo "$menues[idMenu]"; ?> </h3>
+                  <p> <?php echo "$menues[descripcion]"; ?> </p>
+                <a href="#" class="probootstrap-custom-link">Modificar</a>
+                <a href="#" class="probootstrap-custom-link">Eliminar</a>
+                <?php 
+                echo"
+                <a href='/puntoDeVenta/mostrarformulariomodificarmenu?d=".$menues['descripcion']."' class='btn btn-primary'>Modificar</a>
+                  <a href='../core/helpers/eliminarMenu.php?variable=".$menues['descripcion']."' class='btn btn-danger text-white'>Eliminar</a>
+                  " ?>
+                </div> <br> <br>
+             </li>
+              <?php } ?>
+              <!-- <li>
                 <figure class="image"><img src="img/hamb2.jpg" alt="Free Bootstrap Template by uicookies.com"></figure>
                 <div class="text">
                   <span class="price">$22.99</span>
                   <h3>Tuna Roast Source</h3>
                   <p>Crab / Potatoes / Rice</p>
-                </div>
+                <a href="#" class="probootstrap-custom-link">Modificar</a>
+                <a href="#" class="probootstrap-custom-link">Eliminar</a>
+                </div> <br>
               </li>
               <li>
                 <figure class="image"><img src="img/hamb3.jpg" alt="Free Bootstrap Template by uicookies.com"></figure>
@@ -151,6 +171,8 @@
                   <span class="price">$22.99</span>
                   <h3>Roast Beef (4 sticks)</h3>
                   <p>Crab / Potatoes / Rice</p>
+                <a href="#" class="probootstrap-custom-link">Modificar</a>
+                <a href="#" class="probootstrap-custom-link">Eliminar</a>
                 </div>
               </li>
               <li>
@@ -159,7 +181,9 @@
                   <span class="price">$22.99</span>
                   <h3>Salted Fried Chicken</h3>
                   <p>Crab / Potatoes / Rice</p>
-                </div>
+                <a href="#" class="probootstrap-custom-link">Modificar</a>
+                <a href="#" class="probootstrap-custom-link">Eliminar</a>
+                </div> <br>
               </li>
             </ul>
           </div>
@@ -171,7 +195,9 @@
                   <span class="price">$22.99</span>
                   <h3>Baked Potato Pizza</h3>
                   <p>Crab / Potatoes / Rice</p>
-                </div>
+                <a href="#" class="probootstrap-custom-link">Modificar</a>
+                <a href="#" class="probootstrap-custom-link">Eliminar</a>
+                </div> <br>
               </li>
               <li>
                 <figure class="image"><img src="img/hamb6.jpg" alt="Free Bootstrap Template by uicookies.com"></figure>
@@ -179,7 +205,9 @@
                   <span class="price">$22.99</span>
                   <h3>Fried Potatoes with Garlic</h3>
                   <p>Crab / Potatoes / Rice</p>
-                </div>
+                <a href="#" class="probootstrap-custom-link">Modificar</a>
+                <a href="#" class="probootstrap-custom-link">Eliminar</a>
+                </div> <br>
               </li>
               <li>
                 <figure class="image"><img src="img/hamb7.jpg" alt="Free Bootstrap Template by uicookies.com"></figure>
@@ -187,7 +215,9 @@
                   <span class="price">$22.99</span>
                   <h3>Salted Fried Chicken</h3>
                   <p>Crab / Potatoes / Rice</p>
-                </div>
+                <a href="#" class="probootstrap-custom-link">Modificar</a>
+                <a href="#" class="probootstrap-custom-link">Eliminar</a>
+                </div> <br>
               </li>
               <li>
                 <figure class="image"><img src="img/hamb8.jpg" alt="Free Bootstrap Template by uicookies.com"></figure>
@@ -195,13 +225,15 @@
                   <span class="price">$22.99</span>
                   <h3>Tuna Roast Source</h3>
                   <p>Crab / Potatoes / Rice</p>
-                </div>
-              </li>
+                <a href="#" class="probootstrap-custom-link">Modificar</a>
+                <a href="#" class="probootstrap-custom-link">Eliminar</a>
+                </div> <br>
+              </li> -->
             </ul>
           </div>
         </div>
       </div>
-    </section>
+    </section> 
 
 
 <!-- FOOTER -->
