@@ -14,7 +14,6 @@
         <link rel="stylesheet" href="../application/resources/css/bootstrap.min.css">
         <link rel="stylesheet" href="../application/resources/css/estilosIndex.css">
         <link rel="stylesheet" href="../application/resources/css/comercioHome.css">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <script src="../application/resources/js/bootstrap.min.js"></script>
         <script src="../application/resources/js/jquery-3.3.1.min.js"></script>
         <script src="../application/resources/js/comercioHome.js"></script>

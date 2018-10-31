@@ -15,6 +15,17 @@ class Model_Pedido extends Model
 	private $Usuario_idDelivery;
 	private $PuntoDeVenta_idPuntoDeVenta;
 
-
+	function obtenerIdPedido($pedido){
+        $conn =BaseDeDatos::conectarBD();
+        $sql="select * from pedido where idPedido='$idPedido';";
+        $result = mysqli_query($conn,$sql);
+        $pedido = mysqli_fetch_assoc($result);
+        $idPedido = $pedido['idPedido'];
+        return $idPedido;
+    }
+        
+    function cargarPedidoABd(){
+    	
+    }    
 
  }
