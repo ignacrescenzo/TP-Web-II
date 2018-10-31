@@ -52,7 +52,7 @@ class Controller_Cliente extends Controller{
     public function validarCliente(){
         $usuario = new Model_Usuario();
         $username = $_POST['nombreUsuario'];
-        $password = $_POST['clave'];
+        $password = md5($_POST['clave']);
         $email = $_POST['email'];
         $name = $_POST['nombre'];
         $surname = $_POST['apellido'];
