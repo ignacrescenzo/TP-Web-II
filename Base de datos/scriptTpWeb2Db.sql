@@ -44,7 +44,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Usuario` (
   `idUsuario` INT NOT NULL AUTO_INCREMENT,
   `nombreUsuario` VARCHAR(45) NULL,
-  `clave` VARCHAR(45) NULL,
+  `clave` VARCHAR(150) NULL,
   `email` VARCHAR(45) NULL,
   `nombre` VARCHAR(45) NULL,
   `apellido` VARCHAR(45) NULL,
@@ -185,3 +185,14 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+insert into Rol 
+values
+(1,'Administrador'),(2,'Cliente'),(3,'Delivery'),(4,'OperadorComercio');
+
+insert into Usuario(idUsuario, nombreUsuario, clave, Rol_idRol)
+values
+( 1,'admin1',md5('1111'),1),
+( 2,'cliente1',md5('2222'),2),
+( 3,'delivery1',md5('3333'),3),
+( 4,'opcomercio1',md5('4444'),4);

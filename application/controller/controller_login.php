@@ -11,7 +11,7 @@ class Controller_Login extends Controller{
 		
         $usuario = new Model_Usuario();
         $nombreUsuario = $_POST['nombreUsuario'];
-        $clave = $_POST['clave'];
+        $clave = md5($_POST['clave']);
         $rol =  $usuario->validarlogin($nombreUsuario,$clave);
 		
 		switch ($rol){
