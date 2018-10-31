@@ -65,7 +65,10 @@
 		echo "<br />";
 		echo "<br />";
 		echo "<a class='btn btn-primary' href='/puntoDeVenta/mostrarMenu'>Volver a Menu</a>"; 
-		echo "<a class='btn btn-danger' href='/cliente/eliminarCarrito'>Vaciar Carrito</a>"; 
+		echo "<a class='btn btn-danger' href='/cliente/eliminarCarrito'>Vaciar Carrito</a>";
+		echo "<br />";
+		echo "<br />"; 
+		echo "<a class='btn btn-danger' href='/pedido/nuevoPedido'>Confirmar pedido</a>"; 
 	} else{
 		
 		echo "<script>alert('El carro esta vacio');</script>";
