@@ -40,11 +40,10 @@
 			</div>
 					<div class="row">
                         <?php
-						if($data != null){
+						if(mysqli_fetch_assoc($data) != null){
 							while($menues = mysqli_fetch_assoc($data)) {
 								$idComercio = $menues['Comercio_idComercio'];
-								
-								echo"<div class='col-md-4'>
+								echo "<div class='col-md-4'>
 										<div class='card'>
 											<img class='card-img-top' src='/application/resources/upload/".$menues['foto']."' alt='Mi Imagen' width='120px' height='120px'>
 											<div class='card-body'>
@@ -65,7 +64,7 @@
 						}	
                         ?>
 					</div>
-				</div>
+				
 		
 			<div class="title mt-4">
 					<h1>Ofertas</h1>

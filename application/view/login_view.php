@@ -18,7 +18,7 @@
                 <button class="btn btn-lg btn-primary btn-block" type="submit">
                     Ingresar
                 </button>
-             <a href="/login/cerrarsesion" class="btn btn-lg btn-primary btn-block">Volver</a> 
+             <a href="/main" class="btn btn-lg btn-primary btn-block">Volver</a> 
             </form>
             
         </div>
