@@ -66,22 +66,27 @@
                 </div>
             </div>
             <div class="col col-9">
-                <div class="row comercio">
-                    <div class="col col-4 img">
-                        IMAGEN
-                    </div>
-                    <div class="col col-8">
-                        <div class="nombreComercio">Nombre Comercio</div>
-                        <div class="descripcion">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo officiis commodi in, exercitationem hic repudiandae modi aut sit a, placeat, sunt tempore. Vel, possimus hic.
+            <?php
+				while($rows = mysqli_fetch_assoc($data)) { 
+                    echo "
+                    <div class='row comercio'>
+                        <div class='col col-4 img'>
+                            IMAGEN
                         </div>
-                        <div class="d-flex justify-content-end">
-                            <a href="/puntoDeVenta/mostrarMenu">
-                                <input type="button" value="Ver menú">
-                            </a>
+                        <div class='col col-8'>
+                            <div class='nombreComercio'>".$rows['nombre']."</div>
+                            <div class='descripcion'>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo officiis commodi in, exercitationem hic repudiandae modi aut sit a, placeat, sunt tempore. Vel, possimus hic.
+                            </div>
+                            <div class='d-flex justify-content-end'>
+                                <a href='/puntoDeVenta/mostrarMenu?c=".$rows['idComercio']."'>
+                                    <input type='button' value='Ver menú'>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </div>";
+                }
+			    ?>
             </div>
         </div>
         <div class="footer d-flex justify-content-center mt-4 pt-1">

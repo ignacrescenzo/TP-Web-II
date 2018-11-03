@@ -6,17 +6,20 @@ include 'application/model/model_usuario.php';
 class Controller_Cliente extends Controller{
     public function agregarAlCarrito(){
         $menu = new Model_Menu();
+        $idComercio = $_GET['c'];
+        $menus = $menu->listarMenus($idComercio);
         $descripcion = $_GET["d"];
-        $array = $menu->obtenerArrayProducto($descripcion);      	
+        $array = $menu->obtenerArrayProducto(urldecode($descripcion));      	
         $carrito = new Model_Carrito();
         $carrito->add($array);
-        header("location:/puntoDeVenta/mostrarMenu");
-    }
+        $this->view->generateSt('menu_view.php',$menus); 
+       }
 
     public function verCarrito(){
         $carrito = new Model_Carrito();
         $carro = $carrito->get_content();
-        $this->view->generateSt('ver-carrito_view.php',$carro);
+        $idComercio = $_GET['c'];
+        $this->view->generateSt('ver-carrito_view.php',$carro,$idComercio);
     }
 
     public function eliminarCarrito(){
@@ -28,23 +31,23 @@ class Controller_Cliente extends Controller{
         $carrito = new Model_Carrito();
 		$id = md5($_GET["id"]);
         $carrito->remove_producto($id);
-        header("location:/cliente/verCarrito");
+        $this->verCarrito();
     }
 	public function sumarProducto(){
         $menu = new Model_Menu();
         $descripcion = $_GET["d"];
-        $array = $menu->obtenerArrayProducto($descripcion);      	
+        $array = $menu->obtenerArrayProducto(urldecode($descripcion));      	
         $carrito = new Model_Carrito();
         $carrito->add($array);
-        header("location:/cliente/verCarrito");
+        $this->verCarrito();
 	}
 	public function restarProducto(){
         $menu = new Model_Menu();
         $descripcion = $_GET["d"];
-        $array = $menu->obtenerArrayProducto($descripcion);      	
+        $array = $menu->obtenerArrayProducto(urldecode($descripcion));      	
         $carrito = new Model_Carrito();
         $carrito->restar($array);
-        header("location:/cliente/verCarrito");
+        $this->verCarrito();
     }
     public function registrar(){
         $this->view->generateSt("registrar-cliente_view.php");

@@ -1,5 +1,6 @@
 <?php
 	include 'application/model/model_usuario.php';
+	include 'application/model/model_comercio.php';
 class Controller_Login extends Controller{
   
    //funcion que ejecuta por defecto 
@@ -20,7 +21,9 @@ class Controller_Login extends Controller{
 				break;
 			case "Cliente":
 				$_SESSION["login"]="sessionCliente";
-				$this->view->generateSt('comercios.php');
+				$comercio = new Model_Comercio();
+				$comercios = $comercio->listarComercios();
+				$this->view->generateSt('comercios.php',$comercios);
 				break;
 			case "Delivery":
 				$_SESSION["login"]="sessionDelivery";
