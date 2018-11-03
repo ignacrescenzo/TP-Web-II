@@ -37,18 +37,13 @@
             <div class="text-center">
 				<h1>Menus disponibles</h1>
             </div>
-				<div class="container">
-				<a class='btn btn-info verCarrito' href='/cliente/verCarrito'>Ir al carrito!</a>
-				<div class="text-center">
+				
 				
 				</div>
 					<div class="row">
                         <?php
-                        $conn = mysqli_connect("localhost","root","","tpweb2db");
-						//$conn = mysqli_connect("localhost","root","0000","tpweb2db");
-                        $sql = "select * from menu m inner join precio p on p.idPrecio = m.Precio_idPrecio";
-                        $result = mysqli_query($conn,$sql);
-                        while($menues = mysqli_fetch_assoc($result)) {
+                        while($menues = mysqli_fetch_assoc($data)) {
+							$idComercio = $menues['Comercio_idComercio'];
                             echo"<div class='col-md-4'>
 							<div class='card'>
 								<img class='card-img-top' src='/application/resources/upload/".$menues['foto']."' alt='Mi Imagen' width='120px' height='120px'>
@@ -56,7 +51,7 @@
 									<h4 class='card-title'>Menu "."<span id ='menuId'>".$menues['idMenu']."</span></h4>
 									<p class='card-text'>".$menues['descripcion']."</p>
 									<p class='card-text'>".$menues['monto']."</p>
-									<a class='btn btn-primary agregarCarrito' href='/cliente/agregarAlCarrito?d=".$menues['descripcion']."'>Comprar</a>
+									<a class='btn btn-primary agregarCarrito' href='/cliente/agregarAlCarrito?c=".$menues['Comercio_idComercio']."&d=".$menues['descripcion']."'>Comprar</a>
                                 </div>
                                 </div> 
                             </div>";
@@ -87,6 +82,9 @@
 				<a href="#" class="btn btn-primary mt-3">Ver Todos</a>
 				</div> -->
 		</div>
+		<div class="container">
+			<?php echo "<a class='btn btn-info verCarrito' href='/cliente/verCarrito?c=".$idComercio."'>Ir al carrito!</a>"; ?> 
+		<div class="text-center">
 	</body>
 	<script src="/application/resources/js/menu_view.js"></script>
 </html>

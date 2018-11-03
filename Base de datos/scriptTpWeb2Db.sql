@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Comercio` (
   `idComercio` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NULL,
   `email` VARCHAR(45) NULL,
+  `direccion` VARCHAR(45) NULL,
   `banner` VARCHAR(200) NULL,
   PRIMARY KEY (`idComercio`),
   UNIQUE INDEX `nombre_UNIQUE` (`nombre` ASC))
@@ -49,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Usuario` (
   `nombre` VARCHAR(45) NULL,
   `apellido` VARCHAR(45) NULL,
   `Rol_idRol` INT NOT NULL,
-  `direccion` VARCHAR(45) NULL,
+  `domicilio` VARCHAR(100) NULL,
   `telefono` BIGINT(12) NULL,
   `estado` TINYINT(1) NULL,
   `Comercio_idComercio` INT NULL,
@@ -89,12 +90,11 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Pedido` (
   `idPedido` INT NOT NULL AUTO_INCREMENT,
-  `numero` INT NULL,
   `fechaHoraEntrega` DATETIME NULL,
   `fechaHoraRetiro` DATETIME NULL,
   `Usuario_idCliente` INT NOT NULL,
   `Usuario_idDelivery` INT NULL,
-  `PuntoDeVenta_idPuntoDeVenta` INT NOT NULL,
+  `Comercio_idComercio` INT NOT NULL,
   PRIMARY KEY (`idPedido`),
   CONSTRAINT `fk_Pedido_Usuario1`
     FOREIGN KEY (`Usuario_idCliente`)
@@ -106,9 +106,9 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Pedido` (
     REFERENCES `tpWeb2Db`.`Usuario` (`idUsuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Pedido_PuntoDeVenta1`
-    FOREIGN KEY (`PuntoDeVenta_idPuntoDeVenta`)
-    REFERENCES `tpWeb2Db`.`PuntoDeVenta` (`idPuntoDeVenta`)
+  CONSTRAINT `Comercio_idComercio`
+    FOREIGN KEY (`Comercio_idComercio`)
+    REFERENCES `tpWeb2Db`.`Comercio` (`idComercio`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -133,10 +133,16 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Menu` (
   `foto` VARCHAR(45) NULL,
   `descripcion` VARCHAR(45) NULL,
   `Precio_idPrecio` INT NOT NULL,
+  `idPuntoDeVenta` INT NOT NULL,
   PRIMARY KEY (`idMenu`),
   CONSTRAINT `fk_Menu_Precio1`
     FOREIGN KEY (`Precio_idPrecio`)
     REFERENCES `tpWeb2Db`.`Precio` (`idPrecio`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+    CONSTRAINT `fk_Menu_PuntoDeVenta`
+    FOREIGN KEY (`idPuntoDeVenta`)
+    REFERENCES `tpWeb2Db`.`puntodeventa` (`idPuntoDeVenta`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -190,9 +196,38 @@ insert into Rol
 values
 (1,'Administrador'),(2,'Cliente'),(3,'Delivery'),(4,'OperadorComercio');
 
-insert into Usuario(idUsuario, nombreUsuario, clave, Rol_idRol)
+insert into comercio
 values
-( 1,'admin1',md5('1111'),1),
-( 2,'cliente1',md5('2222'),2),
-( 3,'delivery1',md5('3333'),3),
-( 4,'opcomercio1',md5('4444'),4);
+(1,'Comercio 1','a@a.com','direccion falsa',null),
+(2,'Comercio 2','b@b.com','direccion falsa2',null);
+
+
+
+
+insert into puntodeventa
+values
+(1,'direccion 1',1),(2,'direccion 2',2);
+
+insert into Usuario(idUsuario, nombreUsuario, clave, Rol_idRol,Comercio_idComercio,domicilio)
+values
+( 1,'admin1',md5('1111'),1,null,null),
+( 2,'cliente1',md5('2222'),2,null,'otra direccion falsa'),
+( 3,'delivery1',md5('3333'),3,null,null),
+( 4,'opcomercio1',md5('4444'),4,1,null);
+
+insert into precio 
+values 
+(1,120,null),
+(2,140,null);
+
+insert into menu
+values
+(1,null,'Carne con papas',1,1),
+(2,null,'Hamburguesa',2,1);
+
+/*
+OBTENER MENUS DE UN COMERCIO
+select * from menu m 
+						 inner join precio p on p.idPrecio = m.Precio_idPrecio
+						 inner join puntodeventa pdv on pdv.idPuntoDeVenta = m.idPuntoDeVenta
+						 inner join comercio com on com.idComercio = pdv.Comercio_idComercio  where com.idComercio = 1;*/

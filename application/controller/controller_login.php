@@ -1,5 +1,6 @@
 <?php
 	include 'application/model/model_usuario.php';
+	include 'application/model/model_comercio.php';
 class Controller_Login extends Controller{
   
    //funcion que ejecuta por defecto 
@@ -12,8 +13,7 @@ class Controller_Login extends Controller{
         $usuario = new Model_Usuario();
         $nombreUsuario = $_POST['nombreUsuario'];
         $clave = md5($_POST['clave']);
-        $rol =  $usuario->validarlogin($nombreUsuario,$clave);
-		
+		$rol =  $usuario->validarlogin($nombreUsuario,$clave);
 		switch ($rol){
 			case "Administrador":
 				$_SESSION["login"]="sessionAdmin";
@@ -21,7 +21,10 @@ class Controller_Login extends Controller{
 				break;
 			case "Cliente":
 				$_SESSION["login"]="sessionCliente";
-				$this->view->generateSt('comercios.php');
+				$_SESSION['id'] = $usuario->obtenerIdCliente($nombreUsuario);
+				$comercio = new Model_Comercio();
+				$comercios = $comercio->listarComercios();
+				$this->view->generateSt('comercios.php',$comercios);
 				break;
 			case "Delivery":
 				$_SESSION["login"]="sessionDelivery";
@@ -29,7 +32,8 @@ class Controller_Login extends Controller{
 				break;
 			case "OperadorComercio":
 				$_SESSION["login"]="sessionOpComercio";
-				$this->view->generateSt('comercioHome.php');
+				$idComercio = $usuario->obtenerIdComercio($nombreUsuario);
+				$this->view->generateSt('comercioHome.php',$idComercio);
 				break;
 		}
     }
