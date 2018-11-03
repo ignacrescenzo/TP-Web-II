@@ -9,7 +9,7 @@ class Model_Menu extends Model
     private $descripcion;
     private $foto;
     private $idPrecio;
-
+    private $idPuntoDeVenta;
     function obtenerIdSegunPrecio($precio){
         $conn =BaseDeDatos::conectarBD();
         $sql="select * from precio where monto='$precio';";
@@ -19,10 +19,10 @@ class Model_Menu extends Model
         return $id;
     }
 
-    public function crearMenu($desc,$foto,$precio)
+    public function crearMenu($desc,$foto,$precio,$idPuntoDeVenta)
     {
         $this->descripcion = $desc;
-
+        $this->idPuntoDeVenta = $idPuntoDeVenta;
         if(file_exists("application/resources/upload/" . $foto["name"]))
             {
             echo $foto["name"] . " ya existe. ";
@@ -49,7 +49,7 @@ class Model_Menu extends Model
         $numeroFilas=mysqli_num_rows($result);
         if($numeroFilas==0)
         {
-            $sql = "insert into menu (foto,descripcion,Precio_idPrecio) values('$this->foto','$this->descripcion',$this->idPrecio);";
+            $sql = "insert into menu (foto,descripcion,Precio_idPrecio,idPuntoDeVenta) values('$this->foto','$this->descripcion',$this->idPrecio,$this->idPuntoDeVenta);";
             mysqli_query($conn,$sql);
             header("location:/puntoDeVenta");
 

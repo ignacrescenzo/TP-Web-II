@@ -34,7 +34,7 @@
 				<div><h3>Banner</h3></div>
 			</div>
                 <div class="text-center mb-5">
-                    <a href="/puntoDeVenta/mostrarformulariomenu">
+                    <a href="/puntoDeVenta/mostrarformulariomenu?c=<?php echo $data; ?>">
                         Agregar Menu
                     </a>
                 </div>
@@ -46,7 +46,10 @@
                         <?php
                         $conn = mysqli_connect("localhost","root","","tpweb2db");
 						//$conn = mysqli_connect("localhost","root","0000","tpweb2db");
-                        $sql = "select * from menu m inner join precio p on p.idPrecio = m.Precio_idPrecio";
+						$sql = "select * from menu m 
+						 inner join precio p on p.idPrecio = m.Precio_idPrecio
+						 inner join puntodeventa pdv on pdv.idPuntoDeVenta = m.idPuntoDeVenta
+						 inner join comercio com on com.idComercio = pdv.Comercio_idComercio  where com.idComercio = ".$data.";";
                         $result = mysqli_query($conn,$sql);
                         while($menues = mysqli_fetch_assoc($result)) {
                             echo"<div class='col-md-4'>

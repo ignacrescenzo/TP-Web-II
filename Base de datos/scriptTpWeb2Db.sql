@@ -133,10 +133,16 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Menu` (
   `foto` VARCHAR(45) NULL,
   `descripcion` VARCHAR(45) NULL,
   `Precio_idPrecio` INT NOT NULL,
+  `idPuntoDeVenta` INT NOT NULL,
   PRIMARY KEY (`idMenu`),
   CONSTRAINT `fk_Menu_Precio1`
     FOREIGN KEY (`Precio_idPrecio`)
     REFERENCES `tpWeb2Db`.`Precio` (`idPrecio`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+    CONSTRAINT `fk_Menu_PuntoDeVenta`
+    FOREIGN KEY (`idPuntoDeVenta`)
+    REFERENCES `tpWeb2Db`.`puntodeventa` (`idPuntoDeVenta`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -190,9 +196,34 @@ insert into Rol
 values
 (1,'Administrador'),(2,'Cliente'),(3,'Delivery'),(4,'OperadorComercio');
 
-insert into Usuario(idUsuario, nombreUsuario, clave, Rol_idRol)
+insert into comercio
 values
-( 1,'admin1',md5('1111'),1),
-( 2,'cliente1',md5('2222'),2),
-( 3,'delivery1',md5('3333'),3),
-( 4,'opcomercio1',md5('4444'),4);
+(1,'Comercio 1','a@a.com',null);
+
+insert into puntodeventa
+values
+(1,'direccion 1',1);
+
+insert into Usuario(idUsuario, nombreUsuario, clave, Rol_idRol,Comercio_idComercio)
+values
+( 1,'admin1',md5('1111'),1,null),
+( 2,'cliente1',md5('2222'),2,null),
+( 3,'delivery1',md5('3333'),3,null),
+( 4,'opcomercio1',md5('4444'),4,1);
+
+insert into precio 
+values 
+(1,120,null),
+(2,140,null);
+
+insert into menu
+values
+(1,null,'Carne con papas',1,1),
+(2,null,'Hamburguesa',2,1);
+
+/*
+OBTENER MENUS DE UN COMERCIO
+select * from menu m 
+						 inner join precio p on p.idPrecio = m.Precio_idPrecio
+						 inner join puntodeventa pdv on pdv.idPuntoDeVenta = m.idPuntoDeVenta
+						 inner join comercio com on com.idComercio = pdv.Comercio_idComercio  where com.idComercio = 1;*/

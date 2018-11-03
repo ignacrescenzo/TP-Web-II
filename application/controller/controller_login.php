@@ -12,8 +12,7 @@ class Controller_Login extends Controller{
         $usuario = new Model_Usuario();
         $nombreUsuario = $_POST['nombreUsuario'];
         $clave = md5($_POST['clave']);
-        $rol =  $usuario->validarlogin($nombreUsuario,$clave);
-		
+		$rol =  $usuario->validarlogin($nombreUsuario,$clave);
 		switch ($rol){
 			case "Administrador":
 				$_SESSION["login"]="sessionAdmin";
@@ -29,7 +28,8 @@ class Controller_Login extends Controller{
 				break;
 			case "OperadorComercio":
 				$_SESSION["login"]="sessionOpComercio";
-				$this->view->generateSt('comercioHome.php');
+				$idComercio = $usuario->obtenerIdComercio($nombreUsuario);
+				$this->view->generateSt('comercioHome.php',$idComercio);
 				break;
 		}
     }

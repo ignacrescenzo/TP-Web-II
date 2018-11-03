@@ -11,7 +11,7 @@ class Controller_Menu extends Controller
         $precio->cargarABd();
         //$precio->cargarId();
         if(isset($_POST['descripcion'])&&isset($_POST['precio'])&&isset($_FILES["file"]["name"])) {
-            $this->model->crearMenu($_POST['descripcion'], $_FILES["file"], $_POST['precio']);
+            $this->model->crearMenu($_POST['descripcion'], $_FILES["file"], $_POST['precio'],$_POST['idPuntoDeVenta']);
         }
         $this->model->cargarABd();
     }

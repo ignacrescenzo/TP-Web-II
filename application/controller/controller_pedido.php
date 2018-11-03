@@ -8,11 +8,8 @@ include 'application/model/model_pedido.php';
 
 class Controller_Pedido extends Controller{
 
-	public function nuevoPedido(){
-	
+	public function nuevoPedido(){l
 	$pedido = new Model_Pedido();
-
-
 	$carrito = new Model_Carrito();
     $carrito->destroy();
 	header("location:/puntoDeVenta/mostrarMenu");    

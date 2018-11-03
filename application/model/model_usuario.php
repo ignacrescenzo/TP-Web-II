@@ -39,6 +39,19 @@ class Model_Usuario extends Model{
     $sql = "insert into Usuario (nombreUsuario,clave,email,nombre,apellido,direccion,telefono,Rol_idRol) values ('".$username."','".$password."','".$email."','".$name."','".$surname."','".$direccion."','".$tel."',2);";
     $result = mysqli_query($db,$sql);
    }
+   public function insertarOperadorComercio($username,$password,$comercioId){
+    $db=BaseDeDatos::conectarBD();
+    $sql = "insert into Usuario (nombreUsuario,clave,Comercio_idComercio,Rol_idRol) values ('".$username."','".$password."','".$comercioId."',4);";
+    $result = mysqli_query($db,$sql);
+   }
+   ///OBTENER ID DEL COMERCIO EN QUE TRABAJA
+   public function obtenerIdComercio($username){
+    $db=BaseDeDatos::conectarBD();
+    $sql = "select Comercio_idComercio from Usuario where nombreUsuario = '".$username."';";
+    $result = mysqli_query($db,$sql);
+    $row = mysqli_fetch_assoc($result);
+    return $row['Comercio_idComercio'];
+   }
 
 }
 ?>
