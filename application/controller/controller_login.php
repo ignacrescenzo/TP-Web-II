@@ -22,9 +22,7 @@ class Controller_Login extends Controller{
 			case "Cliente":
 				$_SESSION["login"]="sessionCliente";
 				$_SESSION['id'] = $usuario->obtenerIdCliente($nombreUsuario);
-				$comercio = new Model_Comercio();
-				$comercios = $comercio->listarComercios();
-				$this->view->generateSt('comercios.php',$comercios);
+				$this->iracomercios();
 				break;
 			case "Delivery":
 				$_SESSION["login"]="sessionDelivery";
@@ -45,7 +43,9 @@ class Controller_Login extends Controller{
     }
    
    function iracomercios(){
-   	$this->view->generateSt('comercios.php');
+	$comercio = new Model_Comercio();
+	$comercios = $comercio->listarComercios();
+	$this->view->generateSt('comercios.php',$comercios);
    }
 
 }
