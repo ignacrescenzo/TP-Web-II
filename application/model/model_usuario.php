@@ -53,5 +53,13 @@ class Model_Usuario extends Model{
     return $row['Comercio_idComercio'];
    }
 
+   public function obtenerIdCliente($username){
+    $db=BaseDeDatos::conectarBD();
+    $sql = "select idUsuario from Usuario where nombreUsuario = '".$username."';";
+    $result = mysqli_query($db,$sql);
+    $row = mysqli_fetch_assoc($result);
+    return $row['idUsuario'];
+   }
+
 }
 ?>

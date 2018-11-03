@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Comercio` (
   `idComercio` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NULL,
   `email` VARCHAR(45) NULL,
+  `direccion` VARCHAR(45) NULL,
   `banner` VARCHAR(200) NULL,
   PRIMARY KEY (`idComercio`),
   UNIQUE INDEX `nombre_UNIQUE` (`nombre` ASC))
@@ -49,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Usuario` (
   `nombre` VARCHAR(45) NULL,
   `apellido` VARCHAR(45) NULL,
   `Rol_idRol` INT NOT NULL,
-  `direccion` VARCHAR(45) NULL,
+  `domicilio` VARCHAR(100) NULL,
   `telefono` BIGINT(12) NULL,
   `estado` TINYINT(1) NULL,
   `Comercio_idComercio` INT NULL,
@@ -89,12 +90,11 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Pedido` (
   `idPedido` INT NOT NULL AUTO_INCREMENT,
-  `numero` INT NULL,
   `fechaHoraEntrega` DATETIME NULL,
   `fechaHoraRetiro` DATETIME NULL,
   `Usuario_idCliente` INT NOT NULL,
   `Usuario_idDelivery` INT NULL,
-  `PuntoDeVenta_idPuntoDeVenta` INT NOT NULL,
+  `Comercio_idComercio` INT NOT NULL,
   PRIMARY KEY (`idPedido`),
   CONSTRAINT `fk_Pedido_Usuario1`
     FOREIGN KEY (`Usuario_idCliente`)
@@ -106,9 +106,9 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Pedido` (
     REFERENCES `tpWeb2Db`.`Usuario` (`idUsuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Pedido_PuntoDeVenta1`
-    FOREIGN KEY (`PuntoDeVenta_idPuntoDeVenta`)
-    REFERENCES `tpWeb2Db`.`PuntoDeVenta` (`idPuntoDeVenta`)
+  CONSTRAINT `Comercio_idComercio`
+    FOREIGN KEY (`Comercio_idComercio`)
+    REFERENCES `tpWeb2Db`.`Comercio` (`idComercio`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -198,18 +198,22 @@ values
 
 insert into comercio
 values
-(1,'Comercio 1','a@a.com',null);
+(1,'Comercio 1','a@a.com','direccion falsa',null),
+(2,'Comercio 2','b@b.com','direccion falsa2',null);
+
+
+
 
 insert into puntodeventa
 values
-(1,'direccion 1',1);
+(1,'direccion 1',1),(2,'direccion 2',2);
 
-insert into Usuario(idUsuario, nombreUsuario, clave, Rol_idRol,Comercio_idComercio)
+insert into Usuario(idUsuario, nombreUsuario, clave, Rol_idRol,Comercio_idComercio,domicilio)
 values
-( 1,'admin1',md5('1111'),1,null),
-( 2,'cliente1',md5('2222'),2,null),
-( 3,'delivery1',md5('3333'),3,null),
-( 4,'opcomercio1',md5('4444'),4,1);
+( 1,'admin1',md5('1111'),1,null,null),
+( 2,'cliente1',md5('2222'),2,null,'otra direccion falsa'),
+( 3,'delivery1',md5('3333'),3,null,null),
+( 4,'opcomercio1',md5('4444'),4,1,null);
 
 insert into precio 
 values 

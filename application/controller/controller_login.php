@@ -21,6 +21,7 @@ class Controller_Login extends Controller{
 				break;
 			case "Cliente":
 				$_SESSION["login"]="sessionCliente";
+				$_SESSION['id'] = $usuario->obtenerIdCliente($nombreUsuario);
 				$comercio = new Model_Comercio();
 				$comercios = $comercio->listarComercios();
 				$this->view->generateSt('comercios.php',$comercios);
