@@ -64,7 +64,7 @@
 		echo "<br />";
 		echo "<br />";
 		echo "<a class='btn btn-primary' href='/puntoDeVenta/mostrarMenu?c=".$data2."'>Volver a Menu</a>"; 
-		echo "<a class='btn btn-danger' href='/cliente/eliminarCarrito'>Vaciar Carrito</a>";
+		echo "<a class='btn btn-danger' href='/cliente/eliminarCarrito?c=".$data2."'>Vaciar Carrito</a>";
 		echo "<br />";
 		echo "<br />"; 
 		echo "<a class='btn btn-danger' href='/pedido/nuevoPedido?c=".$data2."'>Confirmar pedido</a>"; 

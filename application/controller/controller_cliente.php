@@ -24,8 +24,11 @@ class Controller_Cliente extends Controller{
 
     public function eliminarCarrito(){
         $carrito = new Model_Carrito();
+        $menu = new Model_Menu();
         $carrito->destroy();
-        $this->view->generateSt('menu_view.php');
+        $idComercio = $_GET['c'];
+        $menus = $menu->listarMenus($idComercio);
+        $this->view->generateSt('menu_view.php',$menus);
     }
 	public function eliminarProducto(){
         $carrito = new Model_Carrito();
