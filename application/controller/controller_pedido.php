@@ -19,5 +19,8 @@ class Controller_Pedido extends Controller{
 		echo $pedido['domicilio']." - ".$pedido['direccion'];
 
 	 }
-
+	 public function pedidoRetirado(){
+		$retiro = $this->model->retirarPedido($_GET['id']);
+		header("location:/delivaryHome.php");
+	 }
 }

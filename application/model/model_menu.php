@@ -10,6 +10,7 @@ class Model_Menu extends Model
     private $foto;
     private $idPrecio;
     private $idPuntoDeVenta;
+	
     function obtenerIdSegunPrecio($precio){
         $conn =BaseDeDatos::conectarBD();
         $sql="select * from precio where monto='$precio';";

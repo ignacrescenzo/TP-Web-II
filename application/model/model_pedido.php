@@ -38,5 +38,11 @@ class Model_Pedido extends Model
         $pedido = mysqli_fetch_assoc($result);
         return $pedido;
     }
+	
+	public function retirarPedido($id){
+		$conn = BaseDeDatos::conectarBD();
+		$sql = "update Pedido set fechaHoraRetiro=(select now()) where idPedido=".$id.";";
+		$result = mysqli_query($conn,$sql);
+	}
 
  }
