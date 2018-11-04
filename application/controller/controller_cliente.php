@@ -3,7 +3,9 @@
 include 'application/model/model_menu.php';
 include 'application/model/model_carrito.php';
 include 'application/model/model_usuario.php';
+
 class Controller_Cliente extends Controller{
+	
     public function agregarAlCarrito(){
         $menu = new Model_Menu();
         $idComercio = $_GET['c'];
@@ -67,4 +69,10 @@ class Controller_Cliente extends Controller{
         $usuario->insertarCliente($username,$password,$email,$name,$surname,$direccion,$tel);
         header("location:/login");
     }
+	public function mostrarPedidos(){
+		$id = $_SESSION['id'];
+		$cliente = new Model_usuario();
+		$pedidos = $cliente->mostrarPedidosCliente($id);
+        $this->view->generateSt('pedidosCliente.php',$pedidos);
+	}
 }

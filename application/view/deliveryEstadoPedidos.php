@@ -24,8 +24,8 @@
 				<div class="logo"> ACA VA EL LOGO Y EL NOMBRE</div>
 					<div class="bar d-flex">
 						<div class="sesion">Bienvenido "Delivey"</div>
-						<div class="sesion"><a href="/delivery/pedidosEnCurso">Pedidos En Curso</a></div>
-						<div class="sesion"><a href="/delivery/pedidosRealizados">Pedidos Realizados</a></div>
+						<div class="sesion"><a href="deliveryHome.php">Pedidos Disponibles</a></div>
+						<div class="sesion"><a href="/pedido/pedidosRealizados">Pedidos Realizados</a></div>
 						<div class="sesion"><a href="">Estadisticas</a></div>
 						<div class="sesion"><a href="/login/cerrarsesion">Cerrar sesión</a></div>
 					</div>
@@ -34,30 +34,26 @@
 				<div><h3>Banner</h3></div>
 			</div>
             <div class="text-center">
-				<h1>Pedidos Disponibles</h1>
+				<h1>Pedidos En curso</h1>
             </div>
 				<div class="container">
 					<div class="row">
                         <?php
-                        $conn = mysqli_connect("localhost","root","","tpweb2db");
-						//$conn = mysqli_connect("localhost","root","0000","tpweb2db");
-						$sql = "select u.domicilio dom, c.direccion as dir, p.idPedido as id
-						from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
-						inner join Comercio as c on c.idComercio = p.Comercio_idComercio
-						where p.Usuario_idDelivery is null;";
-                        $result = mysqli_query($conn,$sql);
-                        while($pedido = mysqli_fetch_assoc($result)) {
-                            echo"<div class='col-md-4'>
-							<div class='card'>
-								<div class='card-body'>
-									<h4 class='card-title'>Pedido Nº "."<span id ='menuId'>".$pedido['id']."</span></h4>
-									<p class='card-text'>".$pedido['dom']."</p>
-									<p class='card-text'>".$pedido['dir']."</p>
-									<a href='/delivery/pedidoAceptado?id=".$pedido['id']."' class='btn btn-primary'>Aceptar Pedido</a>
-                                </div>
-                                </div> 
-                            </div>";
+								echo"<div class='col-md-4'>
+								<div class='card'>
+									<div class='card-body'>
+										<h4 class='card-title'>Pedido Nº "."<span id ='menuId'>".$pedido['id']."</span></h4>
+										<p class='card-text'>".$pedido['retiro']."</p>
+										<p class='card-text'>".$pedido['entrega']."</p>
+										<p class='card-text'>".$pedido['dom']."</p>
+										<p class='card-text'>".$pedido['dir']."</p>
+										<a href='/pedido/pedidoRetirado?id=".$pedido['id']."' class='btn btn-primary'>Retirar</a>
+										<a href='/pedido/pedidoEntregado?id=".$pedido['id']."' class='btn btn-danger text-white'>Entregar</a>
+									</div>
+									</div> 
+								</div>";
                             }
+						}
                         ?>
 					</div>
 				</div>
