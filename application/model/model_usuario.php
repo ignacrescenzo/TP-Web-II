@@ -60,6 +60,53 @@ class Model_Usuario extends Model{
     $row = mysqli_fetch_assoc($result);
     return $row['idUsuario'];
    }
-
+	
+	public function mostrarPedidosCliente($id){
+    $conn =BaseDeDatos::conectarBD();
+    $sql = "select c.direccion as dir, p.idPedido as id,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
+	from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
+	inner join Comercio as c on c.idComercio = p.Comercio_idComercio
+	where p.Usuario_idCliente = ".$id."";
+	$result = mysqli_query($conn,$sql);
+    return $result;
+	}
+	
+	public function retirarPedidoDelivery($id){
+		$conn = BaseDeDatos::conectarBD();
+		$sql = "update Pedido set fechaHoraRetiro=(select now()) where idPedido=".$id.";";
+		$result = mysqli_query($conn,$sql);
+	}
+	public function entregarPedidoDelivery($id){
+		$conn = BaseDeDatos::conectarBD();
+		$sql = "update Pedido set fechaHoraEntrega=(select now()) where idPedido=".$id.";";
+		$result = mysqli_query($conn,$sql);
+	}
+		public function aceptarPedidoDelivery($id,$idDelivery){
+		$conn = BaseDeDatos::conectarBD();
+		$sql = "update Pedido set Usuario_idDelivery=".$idDelivery." where idPedido=".$id.";";
+		$result = mysqli_query($conn,$sql);
+	}
+	
+	public function listarPedidosEnCursoDelivery($id){
+        $conn =BaseDeDatos::conectarBD();
+        $sql = "select p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
+		from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
+		inner join Comercio as c on c.idComercio = p.Comercio_idComercio
+		where p.Usuario_idDelivery = ".$id." and p.fechaHoraEntrega is null;";
+		$result = mysqli_query($conn,$sql);
+		echo $sql;
+        return $result;
+	}
+	
+	public function listarPedidosRealizadosDelivery($id){
+        $conn =BaseDeDatos::conectarBD();
+        $sql = "select p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
+		from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
+		inner join Comercio as c on c.idComercio = p.Comercio_idComercio
+		where p.Usuario_idDelivery = ".$id." and p.fechaHoraEntrega is not null;";
+		$result = mysqli_query($conn,$sql);
+		echo $sql;
+        return $result;
+	}
 }
 ?>

@@ -24,8 +24,8 @@
 				<div class="logo"> ACA VA EL LOGO Y EL NOMBRE</div>
 					<div class="bar d-flex">
 						<div class="sesion">Bienvenido "Delivey"</div>
-						<div class="sesion"><a href="/pedido/pedidosEnCurso">Pedidos En Curso</a></div>
-						<div class="sesion"><a href="/pedido/pedidosRealizados">Pedidos Realizados</a></div>
+						<div class="sesion"><a href="/delivery/pedidosEnCurso">Pedidos En Curso</a></div>
+						<div class="sesion"><a href="/delivery/pedidosRealizados">Pedidos Realizados</a></div>
 						<div class="sesion"><a href="">Estadisticas</a></div>
 						<div class="sesion"><a href="/login/cerrarsesion">Cerrar sesión</a></div>
 					</div>
@@ -53,7 +53,7 @@
 									<h4 class='card-title'>Pedido Nº "."<span id ='menuId'>".$pedido['id']."</span></h4>
 									<p class='card-text'>".$pedido['dom']."</p>
 									<p class='card-text'>".$pedido['dir']."</p>
-									<a href='/pedido/pedidoAceptado?id=".$pedido['id']."' class='btn btn-primary'>Aceptar Pedido</a>
+									<a href='/delivery/pedidoAceptado?id=".$pedido['id']."' class='btn btn-primary'>Aceptar Pedido</a>
                                 </div>
                                 </div> 
                             </div>";
