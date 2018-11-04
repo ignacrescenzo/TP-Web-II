@@ -233,14 +233,20 @@ select * from menu m
 						 inner join comercio com on com.idComercio = pdv.Comercio_idComercio  where com.idComercio = 1;*/
                          
                          
-/*select p.fechaHoraRetiro as retiro, p.idPedido, u.domicilio, c.direccion
+select p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
 from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
-inner join Comercio as c on c.idComercio = p.Comercio_idComercio;*/
+inner join Comercio as c on c.idComercio = p.Comercio_idComercio
+where p.Usuario_idDelivery = 3 and p.fechaHoraEntrega is null;
+
+select u.domicilio dom, c.direccion as dir, p.idPedido as id
+from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
+inner join Comercio as c on c.idComercio = p.Comercio_idComercio
+where p.Usuario_idDelivery is null;
 
 /*select * from pedido; verifica carga de fecha y hora
 
 select now(); insertar fehca y hora actual
 
-update Pedido verifico update de fecha y hora
-set fechaHoraRetiro=(select now())
+update Pedido
+set fechaHoraRetiro=(select now()), Usuario_idDelivery=3
 where idPedido=1;*/

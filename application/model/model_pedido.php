@@ -4,6 +4,7 @@ if (!isset($_SESSION)) { session_start(); }
 <?php
 require_once 'modelo_conexion_base_de_datos.php';
 
+
 class Model_Pedido extends Model
 {
 
@@ -24,7 +25,7 @@ class Model_Pedido extends Model
         $idPedido = $pedido['max(idPedido)'];
         $this->idPedido = $idPedido;
         return $idPedido;
-    } 
+    }
     
     function crearPedido(){
 
@@ -44,5 +45,30 @@ class Model_Pedido extends Model
 		$sql = "update Pedido set fechaHoraRetiro=(select now()) where idPedido=".$id.";";
 		$result = mysqli_query($conn,$sql);
 	}
-
- }
+	public function entregarPedido($id){
+		$conn = BaseDeDatos::conectarBD();
+		$sql = "update Pedido set fechaHoraEntrega=(select now()) where idPedido=".$id.";";
+		$result = mysqli_query($conn,$sql);
+	}
+		public function aceptarPedido($id,$idDelivery){
+		$conn = BaseDeDatos::conectarBD();
+		$sql = "update Pedido set Usuario_idDelivery=(".$idDelivery." where idPedido=".$id.";";
+		$result = mysqli_query($conn,$sql);
+	}
+	
+	public function listarPedidosEnCurso($id){
+        $conn =BaseDeDatos::conectarBD();
+        $sql = "select p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
+		from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
+		inner join Comercio as c on c.idComercio = p.Comercio_idComercio
+		where p.Usuario_idDelivery = ".$id." and p.fechaHoraEntrega is null;";
+	}
+	
+	public function listarPedidosRealizados($id){
+        $conn =BaseDeDatos::conectarBD();
+        $sql = "select p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
+		from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
+		inner join Comercio as c on c.idComercio = p.Comercio_idComercio
+		where p.Usuario_idDelivery = ".$id." and p.fechaHoraEntrega is not null;";
+	}
+}
