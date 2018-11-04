@@ -1,5 +1,6 @@
 <?php
 	include 'application/model/model_usuario.php';
+	include 'application/model/model_comercio.php';
 class Controller_Login extends Controller{
   
    //funcion que ejecuta por defecto 
@@ -11,9 +12,8 @@ class Controller_Login extends Controller{
 		
         $usuario = new Model_Usuario();
         $nombreUsuario = $_POST['nombreUsuario'];
-        $clave = $_POST['clave'];
-        $rol =  $usuario->validarlogin($nombreUsuario,$clave);
-		
+        $clave = md5($_POST['clave']);
+		$rol =  $usuario->validarlogin($nombreUsuario,$clave);
 		switch ($rol){
 			case "Administrador":
 				$_SESSION["login"]="sessionAdmin";
@@ -21,15 +21,17 @@ class Controller_Login extends Controller{
 				break;
 			case "Cliente":
 				$_SESSION["login"]="sessionCliente";
-				$this->view->generateSt('comercios.php');
+				$_SESSION['id'] = $usuario->obtenerIdCliente($nombreUsuario);
+				$this->iracomercios();
 				break;
 			case "Delivery":
 				$_SESSION["login"]="sessionDelivery";
-				//$this->view->generateSt('.php');
+				$this->view->generateSt('deliveryHome.php');
 				break;
 			case "OperadorComercio":
 				$_SESSION["login"]="sessionOpComercio";
-				$this->view->generateSt('comercioHome.php');
+				$idComercio = $usuario->obtenerIdComercio($nombreUsuario);
+				$this->view->generateSt('comercioHome.php',$idComercio);
 				break;
 		}
     }
@@ -41,7 +43,9 @@ class Controller_Login extends Controller{
     }
    
    function iracomercios(){
-   	$this->view->generateSt('comercios.php');
+	$comercio = new Model_Comercio();
+	$comercios = $comercio->listarComercios();
+	$this->view->generateSt('comercios.php',$comercios);
    }
 
 }

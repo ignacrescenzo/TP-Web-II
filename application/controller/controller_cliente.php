@@ -2,47 +2,69 @@
 
 include 'application/model/model_menu.php';
 include 'application/model/model_carrito.php';
+include 'application/model/model_usuario.php';
 class Controller_Cliente extends Controller{
     public function agregarAlCarrito(){
         $menu = new Model_Menu();
+        $idComercio = $_GET['c'];
+        $menus = $menu->listarMenus($idComercio);
         $descripcion = $_GET["d"];
-        $array = $menu->obtenerArrayProducto($descripcion);      	
+        $array = $menu->obtenerArrayProducto(urldecode($descripcion));      	
         $carrito = new Model_Carrito();
         $carrito->add($array);
-        $this->view->generateSt('menu_view.php');
-    }
+        $this->view->generateSt('menu_view.php',$menus); 
+       }
 
     public function verCarrito(){
         $carrito = new Model_Carrito();
         $carro = $carrito->get_content();
-        $this->view->generateSt('ver-carrito_view.php',$carro);
+        $idComercio = $_GET['c'];
+        $this->view->generateSt('ver-carrito_view.php',$carro,$idComercio);
     }
 
     public function eliminarCarrito(){
         $carrito = new Model_Carrito();
+        $menu = new Model_Menu();
         $carrito->destroy();
-        $this->view->generateSt('menu_view.php');
+        $idComercio = $_GET['c'];
+        $menus = $menu->listarMenus($idComercio);
+        $this->view->generateSt('menu_view.php',$menus);
     }
 	public function eliminarProducto(){
         $carrito = new Model_Carrito();
 		$id = md5($_GET["id"]);
-		$carrito->remove_producto($id);
-		$this->view->generateSt('ver-carrito_view.php',$carrito->get_content());
+        $carrito->remove_producto($id);
+        $this->verCarrito();
     }
 	public function sumarProducto(){
         $menu = new Model_Menu();
         $descripcion = $_GET["d"];
-        $array = $menu->obtenerArrayProducto($descripcion);      	
+        $array = $menu->obtenerArrayProducto(urldecode($descripcion));      	
         $carrito = new Model_Carrito();
         $carrito->add($array);
-        $this->view->generateSt('ver-carrito_view.php',$carrito->get_content());
+        $this->verCarrito();
 	}
 	public function restarProducto(){
         $menu = new Model_Menu();
         $descripcion = $_GET["d"];
-        $array = $menu->obtenerArrayProducto($descripcion);      	
+        $array = $menu->obtenerArrayProducto(urldecode($descripcion));      	
         $carrito = new Model_Carrito();
         $carrito->restar($array);
-        $this->view->generateSt('ver-carrito_view.php',$carrito->get_content());
-	}
+        $this->verCarrito();
+    }
+    public function registrar(){
+        $this->view->generateSt("registrar-cliente_view.php");
+    }
+    public function validarCliente(){
+        $usuario = new Model_Usuario();
+        $username = $_POST['nombreUsuario'];
+        $password = md5($_POST['clave']);
+        $email = $_POST['email'];
+        $name = $_POST['nombre'];
+        $surname = $_POST['apellido'];
+        $direccion = $_POST['direccion'];
+        $tel = $_POST['telefono'];
+        $usuario->insertarCliente($username,$password,$email,$name,$surname,$direccion,$tel);
+        header("location:/login");
+    }
 }

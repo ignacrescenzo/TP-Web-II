@@ -25,6 +25,9 @@ if (!isset($_SESSION)) { session_start(); }
             <div class="form-group mb-2">
                 <input type="file" name="file" placeholder="Cargue la imagen del menú" class="form-control">
             </div>
+            <div class="form-group mb-2">
+                <input type="hidden" name="idPuntoDeVenta" value=<?php echo "$data"; ?>  class="form-control">
+            </div>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">
                 Cargar
             </button>

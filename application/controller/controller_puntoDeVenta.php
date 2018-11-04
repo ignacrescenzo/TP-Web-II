@@ -8,7 +8,8 @@ class Controller_PuntoDeVenta extends Controller
         $this->view->generateSt('comercioHome.php');
     }
     function mostrarformulariomenu(){
-        $this->view->generateSt('cargarMenuComercios.php');
+        $idComercio = $_GET['c'];
+        $this->view->generateSt('cargarMenuComercios.php',$idComercio);
     }
 
     function eliminarmenu(){
@@ -22,6 +23,9 @@ class Controller_PuntoDeVenta extends Controller
     }
 
     function mostrarMenu(){
-        $this->view->generateSt('menu_view.php');
+        $idComercio = $_GET['c'];
+        $menu = new Model_Menu();
+        $menus = $menu->listarMenus($idComercio);
+        $this->view->generateSt('menu_view.php',$menus);
     }
 }
