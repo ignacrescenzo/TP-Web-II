@@ -85,7 +85,6 @@ class Model_Usuario extends Model{
 		$conn = BaseDeDatos::conectarBD();
 		$sql = "update Pedido set Usuario_idDelivery=".$idDelivery." where idPedido=".$id.";";
         $result = mysqli_query($conn,$sql);
-        echo $sql;
 	}
 	
 	public function listarPedidosEnCursoDelivery($id){
@@ -98,12 +97,12 @@ class Model_Usuario extends Model{
         return $result;
     }
     
-    public function listarPedidosDisponibles($id){
+    public function listarPedidosDisponibles(){
         $conn = BaseDeDatos::conectarBD();
         $sql = "select p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
 		from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
 		inner join Comercio as c on c.idComercio = p.Comercio_idComercio
-		where p.Usuario_idDelivery = ".$id." and p.fechaHoraEntrega is null;";
+		where p.Usuario_idDelivery is null;";
 		$result = mysqli_query($conn,$sql);
         return $result;
 	}
