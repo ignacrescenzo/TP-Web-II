@@ -50,15 +50,16 @@
 										<p class='card-text'>Direccion del comercio: ".$pedido['dir']."</p>";
 
 										if($pedido['retiro'] == null){
-										echo "<a href='/delivery/pedidoRetirado?id=".$pedido['id']."' class='btn btn-primary'>Retirar</a>";
+										echo "<a href='/delivery/pedidoRetirado?id=".$pedido['id']."' class='btn btn-primary'>Retirado</a>";
 										}
-										if($pedido['entrega'] == null){
-										echo "<a href='/delivery/pedidoEntregado?id=".$pedido['id']."' class='btn btn-danger text-white'>Entregar</a>";
+										if($pedido['entrega'] == null && $pedido['retiro'] != null){
+										echo "<a href='/delivery/pedidoEntregado?id=".$pedido['id']."' class='btn btn-danger text-white'>Entregado</a>";
 										}
 									echo"</div>
 									</div> 
 								</div>";
 								}
+							
                         ?>
 					</div>
 				</div>
