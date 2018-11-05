@@ -38,15 +38,8 @@
             </div>
 				<div class="container">
 					<div class="row">
-                        <?php
-                        $conn = mysqli_connect("localhost","root","","tpweb2db");
-						//$conn = mysqli_connect("localhost","root","0000","tpweb2db");
-						$sql = "select u.domicilio dom, c.direccion as dir, p.idPedido as id
-						from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
-						inner join Comercio as c on c.idComercio = p.Comercio_idComercio
-						where p.Usuario_idDelivery is null;";
-                        $result = mysqli_query($conn,$sql);
-                        while($pedido = mysqli_fetch_assoc($result)) {
+                        <?php                      
+                        while($pedido = mysqli_fetch_assoc($data)) {
                             echo"<div class='col-md-4'>
 							<div class='card'>
 								<div class='card-body'>

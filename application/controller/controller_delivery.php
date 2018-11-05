@@ -8,18 +8,24 @@ class Controller_Delivery extends Controller{
 	public function pedidoRetirado(){
 		$delivery = new Model_usuario();
 		$retira = $delivery->retirarPedidoDelivery($_GET['id']);
-		header("location:/deliveryEstadoPedidos.php");
+		header("location:/delivery/deliveryEstadoPedidos.php");
 	 }
 	 public function pedidoEntregado(){
 		$delivery = new Model_usuario();
-		$entrega = $delivery->entregarPedidDeliveryo($_GET['id']);
-		header("location:/deliveryEstadoPedidos.php");
-	 }
+		$entrega = $delivery->entregarPedidoDelivery($_GET['id']);
+		$this->pedidosEnCurso();
+	}
 	 public function pedidosEnCurso(){
 		$id = $_SESSION['id'];
-		$delivery = new Model_usuario();
+		$delivery = new Model_Usuario();
         $pedidos = $delivery->listarPedidosEnCursoDelivery($id);
         $this->view->generateSt('deliveryEstadoPedidos.php',$pedidos);
+	 }
+	 public function pedidosDisponibles(){
+		$id = $_SESSION['id'];
+		$delivery = new Model_Usuario();
+        $pedidos = $delivery->listarPedidosDisponibles($id);
+        $this->view->generateSt('deliveryHome.php',$pedidos);
 	 }
 	  public function pedidosRealizados(){
 		$id = $_SESSION['id'];
