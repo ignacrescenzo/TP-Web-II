@@ -38,10 +38,10 @@ $result= mysqli_query($conexion,$sql);
         <div id="navbar-collapse" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li class="active"><a href="#" data-nav-section="welcome">Inicio</a></li>
-            <li><a href="#" data-nav-section="specialties">Comercios</a></li>
-            <li><a href="#" data-nav-section="menu">Ofertas del día</a></li>
-            <li><a href="#" data-nav-section="events">Iniciar Sesión</a></li>
-            <li><a href="#" data-nav-section="contact">Contacto</a></li>
+            <li><a href="#" >Comercios</a></li>
+            <li><a href="#" >Ofertas del día</a></li>
+            <li><a href="form_iniciarsesion.php" >Iniciar Sesión</a></li>
+            <li><a href="form_registrarcliente.php" >Registrarme</a></li>
           </ul>
         </div>
       </div>
@@ -193,40 +193,24 @@ $result= mysqli_query($conexion,$sql);
             <div class="half">
 
             <?php
+            $contador=0;
             while ($rows = mysqli_fetch_assoc($result)){ 
             ?>
-              <div class="probootstrap-cell probootstrap-animate" data-animate-effect="fadeIn">
+              <div class="probootstrap-cell reverse probootstrap-animate" data-animate-effect="fadeIn">
                 <div class="image" style="background-image: url(<?php echo $rows["logo"]; ?>);"></div>
                 <div class="text text-center">
                   <h3><?php echo ($rows["nombre"]); ?> </h3>
                   <p><?php echo ($rows["descripcion"]); ?> </p>
                   <p class="price">$20.99</p>
                 </div>
-              </div>
+
             <?php 
-            } 
+                  
+            }
             ?>
 
-                         
-            </div>
-
-            <div class="half">
-             <?php
-            while ($rows = mysqli_fetch_assoc($result)){ 
-            ?>
-                <div class="probootstrap-cell reverse probootstrap-animate" data-animate-effect="fadeIn">
-               <div class="image" style="background-image: url(<?php echo $rows["logo"]; ?>);"></div>
-                <div class="text text-center">
-                  <h3><?php echo ($rows["nombre"]); ?> </h3>
-                  <p><?php echo ($rows["descripcion"]); ?> </p>
-                  <p class="price">$20.99</p>
-                </div>
-              </div>
-              <?php 
-            } 
-            ?>
-            </div>
-          
+               </div>          
+            </div>          
           </div>
         </div>
       </div>
