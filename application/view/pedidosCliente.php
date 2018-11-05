@@ -23,6 +23,7 @@
 			<div class="logo"> ACA VA EL LOGO Y EL NOMBRE</div>
 			<div class="bar d-flex">
 				<div class="sesion">Bienvenido "Usuario"</div>
+				<div class="sesion"><a href="/login/iracomercios">Volver a comercios</a></div>
 				<div class="sesion"><a href="/cliente/mostrarPedidos">Pedidos En Curso</a></div>
 				<div class="sesion"><a href="/login/cerrarsesion">Cerrar sesión</a></div>
 			</div>
