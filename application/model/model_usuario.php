@@ -84,7 +84,8 @@ class Model_Usuario extends Model{
 		public function aceptarPedidoDelivery($id,$idDelivery){
 		$conn = BaseDeDatos::conectarBD();
 		$sql = "update Pedido set Usuario_idDelivery=".$idDelivery." where idPedido=".$id.";";
-		$result = mysqli_query($conn,$sql);
+        $result = mysqli_query($conn,$sql);
+        echo $sql;
 	}
 	
 	public function listarPedidosEnCursoDelivery($id){
@@ -94,7 +95,16 @@ class Model_Usuario extends Model{
 		inner join Comercio as c on c.idComercio = p.Comercio_idComercio
 		where p.Usuario_idDelivery = ".$id." and p.fechaHoraEntrega is null;";
 		$result = mysqli_query($conn,$sql);
-		echo $sql;
+        return $result;
+    }
+    
+    public function listarPedidosDisponibles($id){
+        $conn = BaseDeDatos::conectarBD();
+        $sql = "select p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
+		from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
+		inner join Comercio as c on c.idComercio = p.Comercio_idComercio
+		where p.Usuario_idDelivery = ".$id." and p.fechaHoraEntrega is null;";
+		$result = mysqli_query($conn,$sql);
         return $result;
 	}
 	
@@ -105,7 +115,6 @@ class Model_Usuario extends Model{
 		inner join Comercio as c on c.idComercio = p.Comercio_idComercio
 		where p.Usuario_idDelivery = ".$id." and p.fechaHoraEntrega is not null;";
 		$result = mysqli_query($conn,$sql);
-		echo $sql;
         return $result;
 	}
 }
