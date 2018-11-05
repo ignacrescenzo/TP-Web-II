@@ -8,7 +8,8 @@ class Controller_Delivery extends Controller{
 	public function pedidoRetirado(){
 		$delivery = new Model_usuario();
 		$retira = $delivery->retirarPedidoDelivery($_GET['id']);
-		header("location:/delivery/deliveryEstadoPedidos.php");
+		$this->view->generateSt('deliveryEstadoPedidos.php');
+		
 	 }
 	 public function pedidoEntregado(){
 		$delivery = new Model_usuario();
@@ -37,7 +38,8 @@ class Controller_Delivery extends Controller{
 	 public function pedidoAceptado(){
 		$delivery = new Model_usuario();
 		$delivery->aceptarPedidoDelivery($_GET['id'],$_SESSION['id']);
-		//header("location:/deliveryEstadoPedidos.php"); falta recargar la pagina
+		$this->view->generateSt('deliveryEstadoPedidos.php');
+		//header("location:/deliveryEstadoPedidos.php"); 
 	 }
 	 
 }

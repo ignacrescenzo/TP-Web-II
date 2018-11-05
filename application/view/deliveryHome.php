@@ -1,4 +1,4 @@
-<?php
+	<?php
 		if(!isset($_SESSION["login"])){
 		echo "INICIA SESION WACHO";
         echo "<br>";
