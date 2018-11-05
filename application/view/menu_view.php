@@ -40,9 +40,9 @@
 			</div>
 					<div class="row">
                         <?php
-						if(mysqli_fetch_assoc($data) != null){
+						if(mysqli_num_rows($data) >= 1){
 							while($menues = mysqli_fetch_assoc($data)) {
-								$idComercio = $menues['Comercio_idComercio'];
+							
 								echo "<div class='col-md-4'>
 										<div class='card'>
 											<img class='card-img-top' src='/application/resources/upload/".$menues['foto']."' alt='Mi Imagen' width='120px' height='120px'>
@@ -56,7 +56,7 @@
 									</div>";
 							}
 							echo "<div class='container'>";
-							echo "<a class='btn btn-info verCarrito' href='/cliente/verCarrito?c=".$idComercio."'>Ir al carrito!</a>";
+							echo "<a class='btn btn-info verCarrito' href='/cliente/verCarrito?c=".$data2."'>Ir al carrito!</a>";
 							echo "</div>";
 						}
 						else{
