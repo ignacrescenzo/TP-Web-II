@@ -147,11 +147,6 @@
                   <p> <?php echo "$menues[descripcion]"; ?> </p>
                 <a href="#" class="probootstrap-custom-link">Modificar</a>
                 <a href="#" class="probootstrap-custom-link">Eliminar</a>
-                <?php 
-                echo"
-                <a href='/puntoDeVenta/mostrarformulariomodificarmenu?d=".$menues['descripcion']."' class='btn btn-primary'>Modificar</a>
-                  <a href='../core/helpers/eliminarMenu.php?variable=".$menues['descripcion']."' class='btn btn-danger text-white'>Eliminar</a>
-                  " ?>
                 </div> <br> <br>
              </li>
               <?php } ?>
