@@ -8,8 +8,7 @@ class Controller_Delivery extends Controller{
 	public function pedidoRetirado(){
 		$delivery = new Model_usuario();
 		$retira = $delivery->retirarPedidoDelivery($_GET['id']);
-		$this->view->generateSt('deliveryEstadoPedidos.php');
-		
+		$this->pedidosEnCurso();
 	 }
 	 public function pedidoEntregado(){
 		$delivery = new Model_usuario();
@@ -27,6 +26,7 @@ class Controller_Delivery extends Controller{
 		$delivery = new Model_Usuario();
         $pedidos = $delivery->listarPedidosDisponibles();
         $this->view->generateSt('deliveryHome.php',$pedidos);
+	 	
 	 }
 	  public function pedidosRealizados(){
 		$id = $_SESSION['id'];
