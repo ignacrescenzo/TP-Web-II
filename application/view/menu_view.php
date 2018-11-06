@@ -50,7 +50,7 @@
 												<h4 class='card-title'>Menu "."<span id ='menuId'>".$menues['idMenu']."</span></h4>
 												<p class='card-text'>".$menues['descripcion']."</p>
 												<p class='card-text'>".$menues['monto']."</p>
-												<a class='btn btn-primary agregarCarrito' href='/cliente/agregarAlCarrito?c=".$menues['Comercio_idComercio']."&d=".$menues['descripcion']."'>Comprar</a>
+												<a class='btn btn-primary agregarCarrito' href='/cliente/agregarAlCarrito?c=".$menues['idPuntoDeVenta']."&d=".$menues['descripcion']."'>Comprar</a>
 											</div>
 										</div> 
 									</div>";
