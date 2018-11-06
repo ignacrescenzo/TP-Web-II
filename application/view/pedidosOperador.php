@@ -33,8 +33,9 @@
         <div class="container">
             <div class="row">
             <?php
-				if(mysqli_fetch_assoc($data) != null){
-					while($pedido = mysqli_fetch_assoc($data)){
+
+				if(mysqli_num_rows($data) >= 1){
+						while($pedido = mysqli_fetch_assoc($data)){
 						echo"<div class='col-md-4'>
 								<div class='card'>
 									<div class='card-body'>
@@ -46,7 +47,10 @@
 								</div> 
 							</div>";
                     }
+				} else{
+					echo "No Hay pedidos";
 				}
+				
 			    ?>
             </div>
         </div>

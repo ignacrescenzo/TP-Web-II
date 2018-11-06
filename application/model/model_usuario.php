@@ -78,7 +78,7 @@ class Model_Usuario extends Model{
   inner join puntodeventa as c on c.idPuntoDeVenta = p.idPuntoDeVenta
   where p.idPuntoDeVenta = ".$id."";
   $result = mysqli_query($conn,$sql);
-    return $result;
+  return $result;
   }
 
 	public function retirarPedidoDelivery($id){
