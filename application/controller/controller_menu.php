@@ -30,7 +30,8 @@ class Controller_Menu extends Controller
 
     function eliminar()
     {
-        ///$_POST['id'];
-        //$this->model->eliminar();
+        $this->model->eliminarMenu($_GET['c'],urldecode($_GET['variable']));
+        header("location:/puntoDeVenta/index?c=".$_GET['c']); 
+
     }
 }
