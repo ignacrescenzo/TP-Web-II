@@ -91,7 +91,7 @@ class Model_Usuario extends Model{
         $conn =BaseDeDatos::conectarBD();
         $sql = "select p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
 		from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
-		inner join Comercio as c on c.idComercio = p.Comercio_idComercio
+		inner join puntodeventa as c on c.idPuntoDeVenta = p.idPuntoDeVenta
 		where p.Usuario_idDelivery = ".$id." and p.fechaHoraEntrega is null;";
 		$result = mysqli_query($conn,$sql);
         return $result;
@@ -101,7 +101,7 @@ class Model_Usuario extends Model{
         $conn = BaseDeDatos::conectarBD();
         $sql = "select p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
 		from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
-		inner join Comercio as c on c.idComercio = p.Comercio_idComercio
+		inner join puntodeventa as c on c.idPuntoDeVenta = p.idPuntoDeVenta
 		where p.Usuario_idDelivery is null;";
 		$result = mysqli_query($conn,$sql);
         return $result;
@@ -111,7 +111,7 @@ class Model_Usuario extends Model{
         $conn =BaseDeDatos::conectarBD();
         $sql = "select p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
 		from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
-		inner join Comercio as c on c.idComercio = p.Comercio_idComercio
+		inner join puntodeventa as c on c.idPuntoDeVenta = p.idPuntoDeVenta
 		where p.Usuario_idDelivery = ".$id." and p.fechaHoraEntrega is not null;";
 		$result = mysqli_query($conn,$sql);
         return $result;
