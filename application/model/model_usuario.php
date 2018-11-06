@@ -71,6 +71,16 @@ class Model_Usuario extends Model{
     return $result;
 	}
 	
+  public function mostrarPedidosOperador($id){
+    $conn =BaseDeDatos::conectarBD();
+    $sql = "select c.direccion as dir, p.idPedido as id,p.fechaHoraRetiro as retiro,p.idPuntoDeVenta, p.fechaHoraEntrega as entrega
+  from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
+  inner join puntodeventa as c on c.idPuntoDeVenta = p.idPuntoDeVenta
+  where p.idPuntoDeVenta = ".$id."";
+  $result = mysqli_query($conn,$sql);
+    return $result;
+  }
+
 	public function retirarPedidoDelivery($id){
 		$conn = BaseDeDatos::conectarBD();
 		$sql = "update Pedido set fechaHoraRetiro=(select now()) where idPedido=".$id.";";

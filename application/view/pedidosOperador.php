@@ -22,33 +22,31 @@
 		<div class="header d-flex justify-content-between align-items-center">
 			<div class="logo"> ACA VA EL LOGO Y EL NOMBRE</div>
 			<div class="bar d-flex">
+				<div class="sesion">Bienvenido "Operador"</div>
+				<div class="sesion"><a href="/puntoDeVenta/index?c=<?php echo $data2; ?>">Volver a menus</a></div>
 				<div class="sesion"><a href="/login/cerrarsesion">Cerrar sesión</a></div>
 			</div>
 		</div>
-        
         <div class="tituloComercio text-center mt-5">
-            Bienvenido "Operador" Selecciona un punto de venta para comenzar la gestión!
+            Pedidos Realizados
         </div>
-        <div class="row contenido border mt-4">
-            
-            <div class="col col-9">
+        <div class="container">
+            <div class="row">
             <?php
-				while($rows = mysqli_fetch_assoc($data)) { 
-                    echo "
-                    <div class='row comercio'>
-                        <div class='col col-8'>
-                            <div class='nombreComercio'>".$rows['direccion']."</div>
-                            <div class='descripcion'>
-                                Texto Punto de venta
-                            </div>
-                            <div class='d-flex justify-content-end'>
-                                <a href='/puntoDeVenta/index?c=".$rows['idPuntoDeVenta']."'>
-                                    <input type='button' value='Entrar'>
-                                </a>
-                            </div>
-                        </div>
-                    </div>";
-                }
+				if(mysqli_fetch_assoc($data) != null){
+					while($pedido = mysqli_fetch_assoc($data)){
+						echo"<div class='col-md-4'>
+								<div class='card'>
+									<div class='card-body'>
+										<h4 class='card-title'>Pedido Nº "."<span id ='menuId'>".$pedido['id']."</span></h4>
+										<p class='card-text'>Hora de retiro:".$pedido['retiro']."</p>
+										<p class='card-text'>Hora de Entrega:".$pedido['entrega']."</p>
+										<p class='card-text'>Direccion Comercio:".$pedido['dir']."</p>
+									</div>
+								</div> 
+							</div>";
+                    }
+				}
 			    ?>
             </div>
         </div>
