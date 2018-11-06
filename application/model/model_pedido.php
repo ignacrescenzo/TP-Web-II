@@ -13,11 +13,11 @@ class Model_Pedido extends Model
 	private $fechaHoraRetiro;
 	private $Usuario_idCliente;
 	private $Usuario_idDelivery;
-	private $idComercio; //EN Realidad tendria que ser usuario punto de venta pero buen
+	private $idPuntoDeVenta; 
         
-    public function cargarPedidoABd($idComercio,$idCliente){ ///RETORNA ID DEL PEDIDO QUE INGRESASTE
+    public function cargarPedidoABd($idPuntoDeVenta,$idCliente){ ///RETORNA ID DEL PEDIDO QUE INGRESASTE
         $conn =BaseDeDatos::conectarBD();
-        $sql = "insert into pedido (Usuario_idCliente,Comercio_idComercio) values (".$idCliente.",".$idComercio.")";
+        $sql = "insert into pedido (Usuario_idCliente,idPuntoDeVenta) values (".$idCliente.",".$idPuntoDeVenta.")";
         $result = mysqli_query($conn,$sql);
         $sql2 = "select max(idPedido) from pedido";
         $result2 = mysqli_query($conn,$sql2);
@@ -34,7 +34,7 @@ class Model_Pedido extends Model
     public function traerDatosParaDelivery($id){
         $conn =BaseDeDatos::conectarBD();
         $sql = "select * from pedido p inner join usuario c on p.Usuario_idCliente = c.idUsuario
-        inner join comercio com on com.idComercio = p.Comercio_idComercio";
+        inner join puntodeventa pdv on pdv.idPuntoDeVenta = pdv.idPuntoDeVenta";
         $result = mysqli_query($conn,$sql);
         $pedido = mysqli_fetch_assoc($result);
         return $pedido;
@@ -58,17 +58,17 @@ class Model_Pedido extends Model
 	
 	public function listarPedidosEnCurso($id){
         $conn =BaseDeDatos::conectarBD();
-        $sql = "select p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
+        $sql = "select p.idPedido as id, u.domicilio dom, pdv.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
 		from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
-		inner join Comercio as c on c.idComercio = p.Comercio_idComercio
+		inner join puntodeventa as pdv on pdv.idPuntoDeVenta = p.idPuntoDeVenta
 		where p.Usuario_idDelivery = ".$id." and p.fechaHoraEntrega is null;";
 	}
 	
 	public function listarPedidosRealizados($id){
         $conn =BaseDeDatos::conectarBD();
-        $sql = "select p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
+        $sql = "select p.idPedido as id, u.domicilio dom, pdv.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
 		from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
-		inner join Comercio as c on c.idComercio = p.Comercio_idComercio
+		inner join puntodeventa as pdv on pdv.idPuntoDeVenta = pdv.idPuntoDeVenta
 		where p.Usuario_idDelivery = ".$id." and p.fechaHoraEntrega is not null;";
 	}
 }

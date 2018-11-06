@@ -10,4 +10,11 @@ class Model_Comercio extends Model{
         $result = mysqli_query($conn,$sql);
         return $result;
     }
+
+    public function listarPuntosDeVenta($idComercio){
+        $conn =BaseDeDatos::conectarBD();
+        $sql = "select * from puntodeventa where Comercio_idComercio = ".$idComercio.";";
+        $result = mysqli_query($conn,$sql);
+        return $result;
+    }
 }

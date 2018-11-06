@@ -34,7 +34,7 @@
 				<div><h3>Banner</h3></div>
 			</div>
                 <div class="text-center mb-5">
-                    <a href="/puntoDeVenta/mostrarformulariomenu?c=<?php echo $data; ?>">
+                    <a href="/puntoDeVenta/mostrarformulariomenu?c=<?php echo $data2; ?>">
                         Agregar Menu
                     </a>
                 </div>
@@ -44,14 +44,8 @@
 				<div class="container">
 					<div class="row">
                         <?php
-                        $conn = mysqli_connect("localhost","root","","tpweb2db");
-						//$conn = mysqli_connect("localhost","root","0000","tpweb2db");
-						$sql = "select * from menu m 
-						 inner join precio p on p.idPrecio = m.Precio_idPrecio
-						 inner join puntodeventa pdv on pdv.idPuntoDeVenta = m.idPuntoDeVenta
-						 inner join comercio com on com.idComercio = pdv.Comercio_idComercio  where com.idComercio = ".$data.";";
-                        $result = mysqli_query($conn,$sql);
-                        while($menues = mysqli_fetch_assoc($result)) {
+                        
+                        while($menues = mysqli_fetch_assoc($data)) {
                             echo"<div class='col-md-4'>
 							<div class='card'>
 								<img class='card-img-top' src='/application/resources/upload/".$menues['foto']."' alt='Mi Imagen' width='120px' height='120px'>
@@ -59,8 +53,8 @@
 									<h4 class='card-title'>Menu "."<span id ='menuId'>".$menues['idMenu']."</span></h4>
 									<p class='card-text'>".$menues['descripcion']."</p>
 									<p class='card-text'>".$menues['monto']."</p>
-									<a href='/puntoDeVenta/mostrarformulariomodificarmenu?d=".$menues['descripcion']."' class='btn btn-primary'>Modificar</a>
-									<a href='../core/helpers/eliminarMenu.php?variable=".$menues['descripcion']."' class='btn btn-danger text-white'>Eliminar</a>
+									<a href='/puntoDeVenta/mostrarformulariomodificarmenu?c=".$data2."&d=".$menues['descripcion']."' class='btn btn-primary'>Modificar</a>
+									<a href='/menu/eliminar?c=".$data2."&variable=".$menues['descripcion']."' class='btn btn-danger text-white'>Eliminar</a>
                                 </div>
                                 </div> 
                             </div>";

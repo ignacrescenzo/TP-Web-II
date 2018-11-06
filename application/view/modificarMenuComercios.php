@@ -29,10 +29,12 @@ if (!isset($_SESSION)) { session_start(); }
                 </div>
                 <input type="hidden" name="idMenu"  class="form-control" value="<?php echo $data['idMenu']; ?>" >
                 </div>
+                <div>
+                <input type="hidden" name="idPuntoDeVenta"  class="form-control" value="<?php echo $data2; ?>" >
+                </div>
                     <button class="btn btn-lg btn-primary btn-block" type="submit" >
                     Modificar
-                </button>
-
+                    </button>
             </form>
         </div>
     </div>
