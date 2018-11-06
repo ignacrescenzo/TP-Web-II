@@ -22,27 +22,20 @@
 		<div class="header d-flex justify-content-between align-items-center">
 			<div class="logo"> ACA VA EL LOGO Y EL NOMBRE</div>
 			<div class="bar d-flex">
-				<div class="sesion">Bienvenido "Usuario"</div>
-				<div class="sesion"><a href="/login/iracomercios">Volver a comercios</a></div>
-				<div class="sesion"><a href="/cliente/mostrarPedidos">Pedidos En Curso</a></div>
+				<div class="sesion">Bienvenido "Operador"</div>
+				<div class="sesion"><a href="/puntoDeVenta/index?c=<?php echo $data2; ?>">Volver a menus</a></div>
 				<div class="sesion"><a href="/login/cerrarsesion">Cerrar sesión</a></div>
 			</div>
 		</div>
-        <div class="title mt-3">
-			<h5>¿Qué querés comer?</h5>
-		</div>
-		<div class="searchComercio d-flex justify-content-center mt-2">
-			<input type="text" class="mr-2">
-			<input type="button" value="Buscar">
-        </div>
         <div class="tituloComercio text-center mt-5">
             Pedidos Realizados
         </div>
         <div class="container">
             <div class="row">
             <?php
+
 				if(mysqli_num_rows($data) >= 1){
-					while($pedido = mysqli_fetch_assoc($data)){
+						while($pedido = mysqli_fetch_assoc($data)){
 						echo"<div class='col-md-4'>
 								<div class='card'>
 									<div class='card-body'>
@@ -55,8 +48,9 @@
 							</div>";
                     }
 				} else{
-					echo "No Hay Pedidos";
+					echo "No Hay pedidos";
 				}
+				
 			    ?>
             </div>
         </div>

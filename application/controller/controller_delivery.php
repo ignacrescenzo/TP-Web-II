@@ -38,8 +38,8 @@ class Controller_Delivery extends Controller{
 	 public function pedidoAceptado(){
 		$delivery = new Model_usuario();
 		$delivery->aceptarPedidoDelivery($_GET['id'],$_SESSION['id']);
-		$this->view->generateSt('deliveryEstadoPedidos.php');
-		//header("location:/deliveryEstadoPedidos.php"); 
+		//$this->view->generateSt('deliveryEstadoPedidos.php');
+		header("location:/delivery/pedidosEnCurso"); 
 	 }
 	 
 }

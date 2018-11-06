@@ -21,4 +21,18 @@ class Controller_OperadorComercio extends Controller
         header("location:/login");
     }
 
+    public function mostrarPedidos(){
+        $id = $_GET['c'];
+        $operador = new Model_usuario();
+        $pedidos = $operador->mostrarPedidosOperador($id);
+        $this->view->generateSt('pedidosOperador.php',$pedidos, $id);
+    }
+
+    public function index(){
+        $comercio = new Model_Comercio();
+        $idComercio = $_GET['v'];
+        $puntosDeVenta = $comercio->listarPuntosDeVenta($idComercio);
+        $this->view->generateSt('puntosDeVenta.php', $puntosDeVenta);
+    }
+
 }

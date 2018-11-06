@@ -22,17 +22,12 @@
 		<div class="header d-flex justify-content-between align-items-center">
 			<div class="logo"> ACA VA EL LOGO Y EL NOMBRE</div>
 			<div class="bar d-flex">
-				<div class="sesion">Bienvenido "Operador"</div>
 				<div class="sesion"><a href="/login/cerrarsesion">Cerrar sesión</a></div>
 			</div>
 		</div>
         
-		<div class="searchComercio d-flex justify-content-center mt-2">
-			<input type="text" class="mr-2">
-			<input type="button" value="Buscar">
-        </div>
         <div class="tituloComercio text-center mt-5">
-            Selecciona un punto de venta para comenzar la gestión!
+            Bienvenido "Operador" Selecciona un punto de venta para comenzar la gestión!
         </div>
         <div class="row contenido border mt-4">
             
@@ -44,11 +39,11 @@
                         <div class='col col-8'>
                             <div class='nombreComercio'>".$rows['direccion']."</div>
                             <div class='descripcion'>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo officiis commodi in, exercitationem hic repudiandae modi aut sit a, placeat, sunt tempore. Vel, possimus hic.
+                                Texto Punto de venta
                             </div>
                             <div class='d-flex justify-content-end'>
                                 <a href='/puntoDeVenta/index?c=".$rows['idPuntoDeVenta']."'>
-                                    <input type='button' value='Ver menú'>
+                                    <input type='button' value='Entrar'>
                                 </a>
                             </div>
                         </div>
