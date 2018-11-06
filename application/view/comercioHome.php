@@ -54,7 +54,7 @@
 									<p class='card-text'>".$menues['descripcion']."</p>
 									<p class='card-text'>".$menues['monto']."</p>
 									<a href='/puntoDeVenta/mostrarformulariomodificarmenu?c=".$data2."&d=".$menues['descripcion']."' class='btn btn-primary'>Modificar</a>
-									<a href='../core/helpers/eliminarMenu.php?c=".$data2."&variable=".$menues['descripcion']."' class='btn btn-danger text-white'>Eliminar</a>
+									<a href='/menu/eliminar?c=".$data2."&variable=".$menues['descripcion']."' class='btn btn-danger text-white'>Eliminar</a>
                                 </div>
                                 </div> 
                             </div>";
