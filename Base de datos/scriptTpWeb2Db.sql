@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Pedido` (
   `fechaHoraRetiro` DATETIME NULL,
   `Usuario_idCliente` INT NOT NULL,
   `Usuario_idDelivery` INT NULL,
-  `Comercio_idComercio` INT NOT NULL,
+  `idPuntoDeVenta` INT NOT NULL,
   PRIMARY KEY (`idPedido`),
   CONSTRAINT `fk_Pedido_Usuario1`
     FOREIGN KEY (`Usuario_idCliente`)
@@ -106,9 +106,9 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Pedido` (
     REFERENCES `tpWeb2Db`.`Usuario` (`idUsuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `Comercio_idComercio`
-    FOREIGN KEY (`Comercio_idComercio`)
-    REFERENCES `tpWeb2Db`.`Comercio` (`idComercio`)
+  CONSTRAINT `idPuntoDeVenta`
+    FOREIGN KEY (`idPuntoDeVenta`)
+    REFERENCES `tpWeb2Db`.`puntodeventa` (`idPuntoDeVenta`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -206,7 +206,7 @@ values
 
 insert into puntodeventa
 values
-(1,'direccion 1',1),(2,'direccion 2',2);
+(1,'direccion 1',1),(2,'direccion 2',1);
 
 insert into Usuario(idUsuario, nombreUsuario, clave, Rol_idRol,Comercio_idComercio,domicilio)
 values

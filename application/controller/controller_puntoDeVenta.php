@@ -4,12 +4,14 @@ class Controller_PuntoDeVenta extends Controller
 {
 
     function index(){
-        ///LOGICA PARA CARGAR LOS MENUES EN LA VISTA. DESPUES, DEVOLVER LA VISTA CON LOS DATOS
-        $this->view->generateSt('comercioHome.php');
+        $idPuntoDeVenta = $_GET['c'];
+        $menu = new Model_Menu();
+        $menus = $menu->listarMenus($idPuntoDeVenta);///LOGICA PARA CARGAR LOS MENUES EN LA VISTA. DESPUES, DEVOLVER LA VISTA CON LOS DATOS
+        $this->view->generateSt('comercioHome.php',$menus,$idPuntoDeVenta);
     }
     function mostrarformulariomenu(){
-        $idComercio = $_GET['c'];
-        $this->view->generateSt('cargarMenuComercios.php',$idComercio);
+        $idPuntoDeVenta = $_GET['c'];
+        $this->view->generateSt('cargarMenuComercios.php',$idPuntoDeVenta);
     }
 
     function eliminarmenu(){
@@ -18,14 +20,15 @@ class Controller_PuntoDeVenta extends Controller
 
     function mostrarformulariomodificarmenu(){
           $menu = new Model_Menu();
+          $idPuntoDeVenta = $_GET['c'];
           $rows = $menu->traerParaFormulario(urldecode($_GET["d"]));
-          $this->view->generateSt('modificarMenuComercios.php', $rows);
+          $this->view->generateSt('modificarMenuComercios.php', $rows,$idPuntoDeVenta);
     }
 
     function mostrarMenu(){
-        $idComercio = $_GET['c'];
+        $idPuntoDeVenta = $_GET['c'];
         $menu = new Model_Menu();
-        $menus = $menu->listarMenus($idComercio);
-        $this->view->generateSt('menu_view.php',$menus,$idComercio);
+        $menus = $menu->listarMenus($idPuntoDeVenta);
+        $this->view->generateSt('menu_view.php',$menus,$idPuntoDeVenta);
     }
 }
