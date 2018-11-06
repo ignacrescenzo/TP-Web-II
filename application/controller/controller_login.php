@@ -35,6 +35,7 @@ class Controller_Login extends Controller{
 				$comercio = new Model_Comercio();
 				$idComercio = $usuario->obtenerIdComercio($nombreUsuario);
 				$puntosDeVenta = $comercio->listarPuntosDeVenta($idComercio);
+				$_SESSION['idComercio'] = $idComercio;
 				$this->view->generateSt('puntosDeVenta.php',$puntosDeVenta);
 				//$this->view->generateSt('comercioHome.php',$idComercio);
 				break;

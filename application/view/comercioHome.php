@@ -24,7 +24,7 @@
 				<div class="logo"> ACA VA EL LOGO Y EL NOMBRE</div>
 					<div class="bar d-flex">
 						<div class="sesion">Bienvenido "Comercio"</div>
-						<div class="sesion"><a href="">Mis Menus</a></div>
+						<div class="sesion"><a href="/operadorComercio/index?v=<?php echo $_SESSION['idComercio']; ?>">Volver a Puntos de venta</a></div>
 						<div class="sesion"><a href="">Mis Ofertas</a></div>
 						<div class="sesion"><a href="">Estadisticas</a></div>
 						<div class="sesion"><a href="/operadorComercio/mostrarPedidos?c=<?php echo $data2; ?>">Pedidos</a></div>
