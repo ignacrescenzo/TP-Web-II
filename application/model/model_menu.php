@@ -52,8 +52,6 @@ class Model_Menu extends Model
         {
             $sql = "insert into menu (foto,descripcion,Precio_idPrecio,idPuntoDeVenta) values('$this->foto','$this->descripcion',$this->idPrecio,$this->idPuntoDeVenta);";
             mysqli_query($conn,$sql);
-            header("location:/puntoDeVenta");
-
         }
     }
     public function eliminar(){
@@ -62,7 +60,7 @@ class Model_Menu extends Model
     public function mostrarMenu(){
     }
 
-    public function grabarModificacionMenu($id,$foto,$descripcion,$idPrecio){
+    public function grabarModificacionMenu($id,$foto,$descripcion,$idPrecio,$idPuntoDeVenta){
         $conn =BaseDeDatos::conectarBD();
 
         if(file_exists("application/resources/upload/" . $foto["name"]))
@@ -78,10 +76,10 @@ class Model_Menu extends Model
         }
         $grabar = "update menu
                    set  foto ='".$foto["name"]."', descripcion ='$descripcion', Precio_idPrecio=$idPrecio 
-                   where idMenu =$id;";
+                   where idMenu =$id and idPuntoDeVenta =$idPuntoDeVenta;";
 
         mysqli_query($conn,$grabar);
-        header("location:/puntoDeVenta");
+        header("location:/puntoDeVenta/index?c=".$idPuntoDeVenta);
     }
 
     public function traerParaFormulario($desc){
@@ -112,7 +110,7 @@ class Model_Menu extends Model
         $sql = "select * from menu m 
         inner join precio p on p.idPrecio = m.Precio_idPrecio
         inner join puntodeventa pdv on pdv.idPuntoDeVenta = m.idPuntoDeVenta
-        inner join comercio com on com.idComercio = pdv.Comercio_idComercio  where com.idComercio = ".$id.";";
+        where pdv.idPuntoDeVenta = ".$id.";";
         $result = mysqli_query($conn,$sql);
         return $result;
     }
