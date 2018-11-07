@@ -39,6 +39,16 @@
 		<input type="number" required name="telefono">
 		<br>
 		<br>
+		<label>Veiculo que utilizo para movilizarme:</label>
+		<br>
+		<select>
+			<option></option>
+			<option value="1">Bicicleta</option>
+			<option value="2">Motocicleta</option>
+			<option value="3">Automovil</option>
+		</select>
+		<br>
+		<br>
 		
 		<input type="submit" name="enviar" value="enviar">
 
