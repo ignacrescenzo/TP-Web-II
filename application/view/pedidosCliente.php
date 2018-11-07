@@ -57,7 +57,7 @@
 										 } else{
 										 	echo "En espera";
 										 }
-									echo"</p>
+									echo"	</p>
 									</div>
 								</div> 
 							</div>";

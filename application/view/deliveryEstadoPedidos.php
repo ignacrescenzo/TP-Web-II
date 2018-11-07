@@ -55,8 +55,7 @@
 										}
 										if($pedido['entrega'] == null && $pedido['retiro'] != null){
 										echo "<a href='/delivery/pedidoEntregado?id=".$pedido['id']."' class='btn btn-danger text-white'>Entregado</a>";
-										}
-									echo"</div>
+										} echo"</div>
 									</div> 
 								</div>";
 								}
