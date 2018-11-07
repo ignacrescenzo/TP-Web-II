@@ -47,6 +47,7 @@
 								<div class='card'>
 									<div class='card-body'>
 										<h4 class='card-title'>Pedido Nº "."<span id ='menuId'>".$pedido['id']."</span></h4>
+										<p class='card-text'>HoraDeGeneracion: ".$pedido['horaG']."</p>
 										<p class='card-text'>Hora de retiro:".$pedido['retiro']."</p>
 										<p class='card-text'>Hora de Entrega:".$pedido['entrega']."</p>
 										<p class='card-text'>Direccion Comercio:".$pedido['dir']."</p>

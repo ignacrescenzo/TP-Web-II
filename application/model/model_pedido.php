@@ -27,6 +27,17 @@ class Model_Pedido extends Model
         return $idPedido;
     }
     
+	function cargarHoraDeGenerado($idPuntoDeVenta,$idCliente){
+		$conn =BaseDeDatos::conectarBD();
+        $sql2 = "select max(idPedido) from pedido";
+        $result2 = mysqli_query($conn,$sql2);
+        $pedido = mysqli_fetch_assoc($result2);
+        $idPedido = $pedido['max(idPedido)'];
+        $sql = "update Pedido set fechaHoraGenerado=(select now()) where idPedido=".$idPedido.";";
+ 		$result = mysqli_query($conn,$sql);
+        return $idPedido;
+	}
+
     function crearPedido(){
 
     }
