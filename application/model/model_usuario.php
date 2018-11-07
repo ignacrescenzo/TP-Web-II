@@ -36,7 +36,8 @@ class Model_Usuario extends Model{
 
    public function insertarCliente($username,$password,$email,$name,$surname,$direccion,$tel){
     $db=BaseDeDatos::conectarBD();
-    $sql = "insert into Usuario (nombreUsuario,clave,email,nombre,apellido,direccion,telefono,Rol_idRol) values ('".$username."','".$password."','".$email."','".$name."','".$surname."','".$direccion."','".$tel."',2);";
+    $sql = "insert into Usuario (nombreUsuario,clave,email,nombre,apellido,domicilio,telefono,Rol_idRol) values ('".$username."','".$password."','".$email."','".$name."','".$surname."','".$direccion."','".$tel."',2);";
+    echo $sql;
     $result = mysqli_query($db,$sql);
    }
 
