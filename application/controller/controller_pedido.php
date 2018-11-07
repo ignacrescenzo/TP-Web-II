@@ -9,9 +9,8 @@ class Controller_Pedido extends Controller{
 
 	public function nuevoPedido(){
 		$id = $this->model->cargarPedidoABd($_GET['c'],$_SESSION['id']);
-		//$this->mostrarDatos($id);
+		$horaPedido = $this->model->cargarHoraDeGenerado($_GET['c'],$_SESSION['id']);
 		header("location:/cliente/mostrarPedidos");
-		//$this->view->generateSt('comercios.php');
 	 }
 	 
 	 public function mostrarDatos($id){

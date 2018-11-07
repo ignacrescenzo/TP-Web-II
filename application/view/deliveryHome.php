@@ -45,6 +45,7 @@
 							<div class='card'>
 								<div class='card-body'>
 									<h4 class='card-title'>Pedido Nº "."<span id ='menuId'>".$pedido['id']."</span></h4>
+									<p class='card-text'>HoraDeGeneracion: ".$pedido['horaG']."</p>
 									<p class='card-text'>".$pedido['dom']."</p>
 									<p class='card-text'>".$pedido['dir']."</p>
 									<a href='/delivery/pedidoAceptado?id=".$pedido['id']."' class='btn btn-primary'>Aceptar Pedido</a>
