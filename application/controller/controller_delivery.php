@@ -42,4 +42,18 @@ class Controller_Delivery extends Controller{
 		header("location:/delivery/pedidosEnCurso"); 
 	 }
 	 
+	 public function registrar(){
+        $this->view->generateSt("registrar-delivery_view.php");
+    }
+    public function validarDelivery(){
+        $usuario = new Model_Usuario();
+        $username = $_POST['nombreUsuario'];
+        $password = md5($_POST['clave']);
+        $email = $_POST['email'];
+        $name = $_POST['nombre'];
+        $surname = $_POST['apellido'];
+        $tel = $_POST['telefono'];
+        $usuario->insertarDelivery($username,$password,$email,$name,$surname,$tel);
+        header("location:/login");
+    }
 }

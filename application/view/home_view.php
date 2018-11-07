@@ -21,6 +21,7 @@ if(!isset($_SESSION)){
 			<div class="bar d-flex">
 				<div class="sesion"><a href="/login">Iniciar sesión</a></div>
 				<div class="sesion"><a href="/cliente/registrar">Registrarse</a></div>
+				<div class="sesion"><a href="/delivery/registrar">RegistrarDelivery</a></div>
 				<div class="sesion"><a href="/main/listarcomercios">Restaurantes</a></div>
 			</div>
 		</div>
