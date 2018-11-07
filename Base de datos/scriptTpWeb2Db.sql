@@ -92,6 +92,7 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Pedido` (
   `idPedido` INT NOT NULL AUTO_INCREMENT,
   `fechaHoraEntrega` DATETIME NULL,
   `fechaHoraRetiro` DATETIME NULL,
+  `fechaHoraGenerado` DATETIME NULL,
   `Usuario_idCliente` INT NOT NULL,
   `Usuario_idDelivery` INT NULL,
   `idPuntoDeVenta` INT NOT NULL,

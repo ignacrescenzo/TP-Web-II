@@ -7,6 +7,7 @@ include 'application/model/model_usuario.php';
 class Controller_Cliente extends Controller{
 	
     public function agregarAlCarrito(){
+        
         $menu = new Model_Menu();
         $idComercio = $_GET['c'];
         $menus = $menu->listarMenus($idComercio);
