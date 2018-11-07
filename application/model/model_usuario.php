@@ -39,6 +39,14 @@ class Model_Usuario extends Model{
     $sql = "insert into Usuario (nombreUsuario,clave,email,nombre,apellido,direccion,telefono,Rol_idRol) values ('".$username."','".$password."','".$email."','".$name."','".$surname."','".$direccion."','".$tel."',2);";
     $result = mysqli_query($db,$sql);
    }
+
+   public function insertarDelivery($username,$password,$email,$name,$surname,$tel){
+    $db=BaseDeDatos::conectarBD();
+    $sql = "insert into Usuario (nombreUsuario,clave,email,nombre,apellido,telefono,Rol_idRol,estado) values ('".$username."','".$password."','".$email."','".$name."','".$surname."','".$tel."',3,0);";
+    echo $sql;
+    $result = mysqli_query($db,$sql);
+   }
+
    public function insertarOperadorComercio($username,$password,$comercioId){
     $db=BaseDeDatos::conectarBD();
     $sql = "insert into Usuario (nombreUsuario,clave,Comercio_idComercio,Rol_idRol) values ('".$username."','".$password."','".$comercioId."',4);";
