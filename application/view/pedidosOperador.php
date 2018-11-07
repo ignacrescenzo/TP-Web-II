@@ -43,7 +43,13 @@
 										<p class='card-text'>Hora de retiro:".$pedido['retiro']."</p>
 										<p class='card-text'>Hora de Entrega:".$pedido['entrega']."</p>
 										<p class='card-text'>Direccion Comercio:".$pedido['dir']."</p>
-									</div>
+										<p class='card-text'>Estado: ";
+										if ($pedido['idDelivery'] != null) {
+										 	echo "Pedido Tomado";
+										 } else{
+										 	echo "En espera";
+										 }
+									echo"</p></div>
 								</div> 
 							</div>";
                     }

@@ -71,7 +71,7 @@ class Model_Usuario extends Model{
 	
 	public function mostrarPedidosCliente($id){
     $conn =BaseDeDatos::conectarBD();
-    $sql = "select c.direccion as dir, p.idPedido as id,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
+    $sql = "select p.Usuario_idDelivery as idDelivery, c.direccion as dir, p.idPedido as id,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
 	from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
 	inner join puntodeventa as c on c.idPuntoDeVenta = p.idPuntoDeVenta
 	where p.Usuario_idCliente = ".$id."";
@@ -81,7 +81,7 @@ class Model_Usuario extends Model{
 	
   public function mostrarPedidosOperador($id){
     $conn =BaseDeDatos::conectarBD();
-    $sql = "select c.direccion as dir, p.idPedido as id,p.fechaHoraRetiro as retiro,p.idPuntoDeVenta, p.fechaHoraEntrega as entrega
+    $sql = "select p.Usuario_idDelivery as idDelivery, c.direccion as dir, p.idPedido as id,p.fechaHoraRetiro as retiro,p.idPuntoDeVenta, p.fechaHoraEntrega as entrega
   from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
   inner join puntodeventa as c on c.idPuntoDeVenta = p.idPuntoDeVenta
   where p.idPuntoDeVenta = ".$id."";
