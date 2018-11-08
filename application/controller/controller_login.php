@@ -1,6 +1,7 @@
 <?php
 	include 'application/model/model_usuario.php';
 	include 'application/model/model_comercio.php';
+	
 class Controller_Login extends Controller{
   
    //funcion que ejecuta por defecto 
@@ -27,12 +28,16 @@ class Controller_Login extends Controller{
 			case "Delivery":
 				$_SESSION["login"]="sessionDelivery";
 				$_SESSION['id'] = $usuario->obtenerIdCliente($nombreUsuario);
-				$this->view->generateSt('deliveryHome.php');
+				header("location:/delivery/pedidosDisponibles");
 				break;
 			case "OperadorComercio":
 				$_SESSION["login"]="sessionOpComercio";
+				$comercio = new Model_Comercio();
 				$idComercio = $usuario->obtenerIdComercio($nombreUsuario);
-				$this->view->generateSt('comercioHome.php',$idComercio);
+				$puntosDeVenta = $comercio->listarPuntosDeVenta($idComercio);
+				$_SESSION['idComercio'] = $idComercio;
+				$this->view->generateSt('puntosDeVenta.php',$puntosDeVenta);
+				//$this->view->generateSt('comercioHome.php',$idComercio);
 				break;
 		}
     }

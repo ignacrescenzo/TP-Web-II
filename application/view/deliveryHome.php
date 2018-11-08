@@ -1,4 +1,4 @@
-<?php
+	<?php
 		if(!isset($_SESSION["login"])){
 		echo "INICIA SESION WACHO";
         echo "<br>";
@@ -39,11 +39,13 @@
 				<div class="container">
 					<div class="row">
                         <?php                      
-                        while($pedido = mysqli_fetch_assoc($data)) {
+                       if(mysqli_num_rows($data) >= 1){ 
+                       	  while($pedido = mysqli_fetch_assoc($data)) {
                             echo"<div class='col-md-4'>
 							<div class='card'>
 								<div class='card-body'>
 									<h4 class='card-title'>Pedido Nº "."<span id ='menuId'>".$pedido['id']."</span></h4>
+									<p class='card-text'>HoraDeGeneracion: ".$pedido['horaG']."</p>
 									<p class='card-text'>".$pedido['dom']."</p>
 									<p class='card-text'>".$pedido['dir']."</p>
 									<a href='/delivery/pedidoAceptado?id=".$pedido['id']."' class='btn btn-primary'>Aceptar Pedido</a>
@@ -51,6 +53,7 @@
                                 </div> 
                             </div>";
                             }
+                           } 
                         ?>
 					</div>
 				</div>

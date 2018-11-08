@@ -7,6 +7,7 @@ include 'application/model/model_usuario.php';
 class Controller_Cliente extends Controller{
 	
     public function agregarAlCarrito(){
+        
         $menu = new Model_Menu();
         $idComercio = $_GET['c'];
         $menus = $menu->listarMenus($idComercio);
@@ -14,7 +15,7 @@ class Controller_Cliente extends Controller{
         $array = $menu->obtenerArrayProducto(urldecode($descripcion));      	
         $carrito = new Model_Carrito();
         $carrito->add($array);
-        $this->view->generateSt('menu_view.php',$menus); 
+        $this->view->generateSt('menu_view.php',$menus,$idComercio); 
        }
 
     public function verCarrito(){

@@ -36,9 +36,18 @@ class Model_Usuario extends Model{
 
    public function insertarCliente($username,$password,$email,$name,$surname,$direccion,$tel){
     $db=BaseDeDatos::conectarBD();
-    $sql = "insert into Usuario (nombreUsuario,clave,email,nombre,apellido,direccion,telefono,Rol_idRol) values ('".$username."','".$password."','".$email."','".$name."','".$surname."','".$direccion."','".$tel."',2);";
+    $sql = "insert into Usuario (nombreUsuario,clave,email,nombre,apellido,domicilio,telefono,Rol_idRol) values ('".$username."','".$password."','".$email."','".$name."','".$surname."','".$direccion."','".$tel."',2);";
+    echo $sql;
     $result = mysqli_query($db,$sql);
    }
+
+   public function insertarDelivery($username,$password,$email,$name,$surname,$tel){
+    $db=BaseDeDatos::conectarBD();
+    $sql = "insert into Usuario (nombreUsuario,clave,email,nombre,apellido,telefono,Rol_idRol,estado) values ('".$username."','".$password."','".$email."','".$name."','".$surname."','".$tel."',3,0);";
+    echo $sql;
+    $result = mysqli_query($db,$sql);
+   }
+
    public function insertarOperadorComercio($username,$password,$comercioId){
     $db=BaseDeDatos::conectarBD();
     $sql = "insert into Usuario (nombreUsuario,clave,Comercio_idComercio,Rol_idRol) values ('".$username."','".$password."','".$comercioId."',4);";
@@ -63,14 +72,24 @@ class Model_Usuario extends Model{
 	
 	public function mostrarPedidosCliente($id){
     $conn =BaseDeDatos::conectarBD();
-    $sql = "select c.direccion as dir, p.idPedido as id,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
+    $sql = "select p.fechaHoraGenerado as horaG, p.Usuario_idDelivery as idDelivery, c.direccion as dir, p.idPedido as id,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
 	from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
-	inner join Comercio as c on c.idComercio = p.Comercio_idComercio
+	inner join puntodeventa as c on c.idPuntoDeVenta = p.idPuntoDeVenta
 	where p.Usuario_idCliente = ".$id."";
 	$result = mysqli_query($conn,$sql);
     return $result;
 	}
 	
+  public function mostrarPedidosOperador($id){
+    $conn =BaseDeDatos::conectarBD();
+    $sql = "select p.fechaHoraGenerado as horaG, p.Usuario_idDelivery as idDelivery, c.direccion as dir, p.idPedido as id,p.fechaHoraRetiro as retiro,p.idPuntoDeVenta, p.fechaHoraEntrega as entrega
+  from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
+  inner join puntodeventa as c on c.idPuntoDeVenta = p.idPuntoDeVenta
+  where p.idPuntoDeVenta = ".$id."";
+  $result = mysqli_query($conn,$sql);
+  return $result;
+  }
+
 	public function retirarPedidoDelivery($id){
 		$conn = BaseDeDatos::conectarBD();
 		$sql = "update Pedido set fechaHoraRetiro=(select now()) where idPedido=".$id.";";
@@ -89,19 +108,19 @@ class Model_Usuario extends Model{
 	
 	public function listarPedidosEnCursoDelivery($id){
         $conn =BaseDeDatos::conectarBD();
-        $sql = "select p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
+        $sql = "select p.fechaHoraGenerado as horaG, p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
 		from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
-		inner join Comercio as c on c.idComercio = p.Comercio_idComercio
+		inner join puntodeventa as c on c.idPuntoDeVenta = p.idPuntoDeVenta
 		where p.Usuario_idDelivery = ".$id." and p.fechaHoraEntrega is null;";
-		$result = mysqli_query($conn,$sql);
+    		$result = mysqli_query($conn,$sql);
         return $result;
     }
     
     public function listarPedidosDisponibles(){
         $conn = BaseDeDatos::conectarBD();
-        $sql = "select p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
+        $sql = "select p.fechaHoraGenerado as horaG, p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
 		from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
-		inner join Comercio as c on c.idComercio = p.Comercio_idComercio
+		inner join puntodeventa as c on c.idPuntoDeVenta = p.idPuntoDeVenta
 		where p.Usuario_idDelivery is null;";
 		$result = mysqli_query($conn,$sql);
         return $result;
@@ -109,9 +128,9 @@ class Model_Usuario extends Model{
 	
 	public function listarPedidosRealizadosDelivery($id){
         $conn =BaseDeDatos::conectarBD();
-        $sql = "select p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
+        $sql = "select p.fechaHoraGenerado as horaG, p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
 		from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
-		inner join Comercio as c on c.idComercio = p.Comercio_idComercio
+		inner join puntodeventa as c on c.idPuntoDeVenta = p.idPuntoDeVenta
 		where p.Usuario_idDelivery = ".$id." and p.fechaHoraEntrega is not null;";
 		$result = mysqli_query($conn,$sql);
         return $result;

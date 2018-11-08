@@ -8,7 +8,7 @@ class Controller_Delivery extends Controller{
 	public function pedidoRetirado(){
 		$delivery = new Model_usuario();
 		$retira = $delivery->retirarPedidoDelivery($_GET['id']);
-		header("location:/delivery/deliveryEstadoPedidos.php");
+		$this->pedidosEnCurso();
 	 }
 	 public function pedidoEntregado(){
 		$delivery = new Model_usuario();
@@ -26,6 +26,7 @@ class Controller_Delivery extends Controller{
 		$delivery = new Model_Usuario();
         $pedidos = $delivery->listarPedidosDisponibles();
         $this->view->generateSt('deliveryHome.php',$pedidos);
+	 	
 	 }
 	  public function pedidosRealizados(){
 		$id = $_SESSION['id'];
@@ -37,7 +38,22 @@ class Controller_Delivery extends Controller{
 	 public function pedidoAceptado(){
 		$delivery = new Model_usuario();
 		$delivery->aceptarPedidoDelivery($_GET['id'],$_SESSION['id']);
-		//header("location:/deliveryEstadoPedidos.php"); falta recargar la pagina
+		//$this->view->generateSt('deliveryEstadoPedidos.php');
+		header("location:/delivery/pedidosEnCurso"); 
 	 }
 	 
+	 public function registrar(){
+        $this->view->generateSt("registrar-delivery_view.php");
+    }
+    public function validarDelivery(){
+        $usuario = new Model_Usuario();
+        $username = $_POST['nombreUsuario'];
+        $password = md5($_POST['clave']);
+        $email = $_POST['email'];
+        $name = $_POST['nombre'];
+        $surname = $_POST['apellido'];
+        $tel = $_POST['telefono'];
+        $usuario->insertarDelivery($username,$password,$email,$name,$surname,$tel);
+        header("location:/login");
+    }
 }

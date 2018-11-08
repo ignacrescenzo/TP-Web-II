@@ -46,33 +46,58 @@
         <div class="row">
           <div class="col-md-5 text-center probootstrap-animate">
             <div class="probootstrap-heading dark">
-              <h1 class="primary-heading">Contact</h1>
-              <h3 class="secondary-heading">Let's Chat</h3>
+              <h1 class="primary-heading">Registrate</h1>
+              <h3 class="secondary-heading">para ser parte de Restó </h3>
             </div>
-            <p>Voluptatibus quaerat laboriosam fugit non Ut consequatur animi est molestiae enim a voluptate totam natus modi debitis dicta impedit voluptatum quod sapiente illo saepe explicabo quisquam perferendis labore et illum suscipit</p>
+            <p>Amamos la comida tanto como vos y por eso queremos llevarte tu comida favorita directamente desde la cocina de los mejores restaurantes. ¿La mejor parte? ¡Te la llevamos dondE estés! <br> <br> *** <br><br>
+            Registrate, ingresá tu dirección, elegí el restaurante, seleccioná tu comida favorita y listo. ¡Pedir delivery de comida nunca había sido tan sencillo, con RESTÓ lo único difícil será decidir qué comer!</p>
           </div>
           <div class="col-md-6 col-md-push-1 probootstrap-animate">
-            <form method="post" class="probootstrap-form">
+            <form method="POST" action="/Cliente/validarCliente" enctype="application/x-www-form-urlencodes" class="probootstrap-form">
               <div class="form-group">
-                <label for="c_name">Your Name</label>
+                <label for="c_name">Nombre de Usuario</label>
                 <div class="form-field">
-                  <input type="text" id="c_name" class="form-control">
+                  <input type="text" class="form-control" name="nombreUsuario">
                 </div>
               </div>
+
               <div class="form-group">
-                <label for="c_email">Your Email</label>
+                <label for="c_email">Contraseña</label>
                 <div class="form-field">
-                  <input type="text" id="c_email" class="form-control">
+                  <input type="password" class="form-control" name="clave">
                 </div>
               </div>
+
               <div class="form-group">
-                <label for="c_message">Your Message</label>
+                <label for="c_name">Email</label>
                 <div class="form-field">
-                  <textarea name="c_message" id="c_message" cols="30" rows="10" class="form-control"></textarea>
+                  <input type="email" class="form-control" name="email">
                 </div>
               </div>
+
               <div class="form-group">
-                <input type="submit" name="c_submit" id="c_submit" value="Send Message" class="btn btn-primary btn-lg">
+                <label for="c_name">Nombre</label>
+                <div class="form-field">
+                  <input type="text" class="form-control" name="nombre">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="c_name">Apellido</label>
+                <div class="form-field">
+                  <input type="text" class="form-control" name="apellido">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="c_name">Teléfono</label>
+                <div class="form-field">
+                  <input type="number" class="form-control" name="telefono">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <input type="submit" value="Registrarme" class="btn btn-primary btn-lg btn-block">
               </div>
             </form>
           </div>
