@@ -22,9 +22,10 @@ class Controller_Delivery extends Controller{
         $this->view->generateSt('deliveryEstadoPedidos.php',$pedidos);
 	 }
 	 public function pedidosDisponibles(){
-		//$id = $_SESSION['id'];
+		$id = $_SESSION['id'];
 		$delivery = new Model_Usuario();
         $pedidos = $delivery->listarPedidosDisponibles();
+        $delivery->deliveryActivo($id);
         $this->view->generateSt('pedidosDisponibles.php',$pedidos);
 	 	
 	 }

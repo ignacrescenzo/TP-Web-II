@@ -69,6 +69,16 @@ class Model_Usuario extends Model{
     $row = mysqli_fetch_assoc($result);
     return $row['idUsuario'];
    }
+
+
+   public function obtenerIdDelivery($username){
+    $db=BaseDeDatos::conectarBD();
+    $sql = "select idUsuario from Usuario where nombreUsuario = '".$username."';";
+    $result = mysqli_query($db,$sql);
+    $row = mysqli_fetch_assoc($result);
+    return $row['idUsuario'];
+  }
+
 	
 	public function mostrarPedidosCliente($id){
     $conn =BaseDeDatos::conectarBD();
@@ -135,5 +145,13 @@ class Model_Usuario extends Model{
 		$result = mysqli_query($conn,$sql);
         return $result;
 	}
+
+  public function deliveryActivo($id){
+    $conn =BaseDeDatos::conectarBD();
+    $sql = "update Usuario set estado='1' where idUsuario=".$id.";";
+    $result = mysqli_query($conn,$sql);
+    return $result;
+  }
+
 }
 ?>

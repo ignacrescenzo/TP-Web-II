@@ -33,6 +33,7 @@
 			<div class="banner d-flex flex-column align-items-center">
 				<div><h3>Banner</h3></div>
 			</div>
+
             <div class="text-center">
 				<h1>Pedidos Disponibles</h1>
             </div>
