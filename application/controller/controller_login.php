@@ -27,7 +27,7 @@ class Controller_Login extends Controller{
 				break;
 			case "Delivery":
 				$_SESSION["login"]="sessionDelivery";
-				$_SESSION['id'] = $usuario->obtenerIdCliente($nombreUsuario);
+				$_SESSION['id'] = $usuario->obtenerIdDelivery($nombreUsuario);
 				$this->view->generateSt('deliveryHome.php');
 				break;
 			case "OperadorComercio":
