@@ -25,7 +25,7 @@ class Controller_Delivery extends Controller{
 		//$id = $_SESSION['id'];
 		$delivery = new Model_Usuario();
         $pedidos = $delivery->listarPedidosDisponibles();
-        $this->view->generateSt('deliveryHome.php',$pedidos);
+        $this->view->generateSt('pedidosDisponibles.php',$pedidos);
 	 	
 	 }
 	  public function pedidosRealizados(){

@@ -28,7 +28,7 @@ class Controller_Login extends Controller{
 			case "Delivery":
 				$_SESSION["login"]="sessionDelivery";
 				$_SESSION['id'] = $usuario->obtenerIdCliente($nombreUsuario);
-				header("location:/delivery/pedidosDisponibles");
+				$this->view->generateSt('deliveryHome.php');
 				break;
 			case "OperadorComercio":
 				$_SESSION["login"]="sessionOpComercio";

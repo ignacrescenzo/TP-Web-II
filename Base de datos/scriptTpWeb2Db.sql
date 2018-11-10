@@ -11,6 +11,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema tpWeb2Db
 -- -----------------------------------------------------
+DROP DATABASE IF EXISTS tpWeb2Db;
 CREATE SCHEMA IF NOT EXISTS `tpWeb2Db` DEFAULT CHARACTER SET utf8 ;
 USE `tpWeb2Db` ;
 

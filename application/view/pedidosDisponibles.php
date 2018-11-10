@@ -34,11 +34,30 @@
 				<div><h3>Banner</h3></div>
 			</div>
             <div class="text-center">
-				<h5>Para ver los pedidos disponibles entrá a trabajar! </h5>
-				<button><a href="/delivery/pedidosDisponibles"> Comenzar a trabajar </a></button>
+				<h1>Pedidos Disponibles</h1>
             </div>
 
-			
+				<div class="container">
+					<div class="row">
+                        <?php                      
+                       if(mysqli_num_rows($data) >= 1){ 
+                       	  while($pedido = mysqli_fetch_assoc($data)) {
+                            echo"<div class='col-md-4'>
+							<div class='card'>
+								<div class='card-body'>
+									<h4 class='card-title'>Pedido Nº "."<span id ='menuId'>".$pedido['id']."</span></h4>
+									<p class='card-text'>HoraDeGeneracion: ".$pedido['horaG']."</p>
+									<p class='card-text'>".$pedido['dom']."</p>
+									<p class='card-text'>".$pedido['dir']."</p>
+									<a href='/delivery/pedidoAceptado?id=".$pedido['id']."' class='btn btn-primary'>Aceptar Pedido</a>
+                                </div>
+                                </div> 
+                            </div>";
+                            }
+                           } 
+                        ?>
+					</div>
+				</div>
 				<!-- <a href="#" class="btn btn-primary mt-3">Ver Todos</a> -->
 
 				<!-- <div class="text-center mb-3">
