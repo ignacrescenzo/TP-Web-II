@@ -176,7 +176,6 @@ class Model_Usuario extends Model{
 
 
   public function listarDeliverys($estado){
-        var_dump($estado);
         $conn =BaseDeDatos::conectarBD();
         $sql= "select * from Usuario as u where u.habilitado=".$estado.";";
         $result = mysqli_query($conn,$sql); 
