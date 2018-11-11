@@ -8,50 +8,27 @@
   ?>
 
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-	<meta charset="UTF-8">
-	<title>Nombre Pagina</title>
-	<link rel="stylesheet" href="../resources/css/bootstrap.min.css">
-	<link rel="stylesheet" href="../resources/css/estilosIndex.css">
-	<script src="../resources/js/bootstrap.min.js"></script>
-	<script src="../resources/js/jquery-3.3.1.min.js"></script>
+	<title></title>
 </head>
 <body>
 	<div class="container-fluid px-0">
 		<div class="header d-flex justify-content-between align-items-center">
-			<div class="logo"> ACA VA EL LOGO Y EL NOMBRE</div>
+			<div class="logo"> Administrador</div>
 			<div class="bar d-flex">
-						<div class="sesion"><a href="adminHome.php">Bienvenido "Admin"</a></div>
-						<div class="sesion"><a href="adminHomeComercios.php">Comercios</a></div>
-						<div class="sesion"><a href="adminHomeDeliverys.php">Deliverys</a></div>
-						<div class="sesion"><a href="">Estadisticas</a></div>
-						<div class="sesion"><a href="">Cerrar sesión</a></div>
-			</div>
-		</div>
-	
-	
-		<div class="best mt-5 text-center">
-			<h4>Deliverys</h4>
-			<div class="d-flex mt-3 justify-content-center">
-				<div class="itemComercio">
-					DELIVERY 1
-				</div>
-				<div class="itemComercio">
-					DELIVERY 2
-				</div>
-				<div class="itemComercio">
-					DELIVERY 3
-				</div>
-				<div class="itemComercio">
-					DELIVERY 4
-				</div>
-				<div class="itemComercio">
-					DELIVERY 5
-				</div>
-			</div>
-		</div>
 
+				<br><br>
+				<form method="POST" action="/AdministradorDeSistema/listarDeliverys" enctype="application/x-www-form-urlencodes"">
+					<select name="estado">
+					<option value=0 selected>No Habilitados
+					<option value=1>Habilitados
+					</select>
+					<br><br>
+					<input type="submit" value="ver lista">
+				</form>						
+			</div>
+		</div>
 	</div>
 </body>
 </html>

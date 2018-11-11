@@ -56,6 +56,7 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Usuario` (
   `estado` TINYINT(1) NULL,
   `horaActivo` DATETIME NULL,
   `horaDesconectado` DATETIME NULL,
+  `habilitado` TINYINT(1) NULL,
   `Comercio_idComercio` INT NULL,
   PRIMARY KEY (`idUsuario`),
   UNIQUE INDEX `nombreUsuario_UNIQUE` (`nombreUsuario` ASC),
