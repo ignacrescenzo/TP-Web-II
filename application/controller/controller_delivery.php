@@ -26,6 +26,7 @@ class Controller_Delivery extends Controller{
 		$delivery = new Model_Usuario();
         $pedidos = $delivery->listarPedidosDisponibles();
         $delivery->deliveryActivo($id);
+        $delivery->deliveryHoraActivo($id);
         $this->view->generateSt('pedidosDisponibles.php',$pedidos);
 	 	
 	 }

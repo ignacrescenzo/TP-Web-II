@@ -153,5 +153,26 @@ class Model_Usuario extends Model{
     return $result;
   }
 
+  public function deliveryHoraActivo($id){
+    $conn =BaseDeDatos::conectarBD();
+    $sql = "update Usuario set horaActivo=(select now()) where idUsuario=".$id.";";
+    $result = mysqli_query($conn,$sql);
+    return $result;
+  }
+
+   public function deliveryInactivo($id){
+    $conn =BaseDeDatos::conectarBD();
+    $sql = "update Usuario set estado='0' where idUsuario=".$id.";";
+    $result = mysqli_query($conn,$sql);
+    return $result;
+  }
+
+  public function deliveryDesconectado($id){
+    $conn =BaseDeDatos::conectarBD();
+    $sql = "update Usuario set horaDesconectado=(select now()) where idUsuario=".$id.";";
+    $result = mysqli_query($conn,$sql);
+    return $result;
+  }
+
 }
 ?>
