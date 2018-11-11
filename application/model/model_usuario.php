@@ -43,7 +43,7 @@ class Model_Usuario extends Model{
 
    public function insertarDelivery($username,$password,$email,$name,$surname,$tel){
     $db=BaseDeDatos::conectarBD();
-    $sql = "insert into Usuario (nombreUsuario,clave,email,nombre,apellido,telefono,Rol_idRol,estado) values ('".$username."','".$password."','".$email."','".$name."','".$surname."','".$tel."',3,0);";
+    $sql = "insert into Usuario (nombreUsuario,clave,email,nombre,apellido,telefono,Rol_idRol,estado,habilitado) values ('".$username."','".$password."','".$email."','".$name."','".$surname."','".$tel."',3,0,0);";
     echo $sql;
     $result = mysqli_query($db,$sql);
    }
@@ -173,6 +173,37 @@ class Model_Usuario extends Model{
     $result = mysqli_query($conn,$sql);
     return $result;
   }
+
+
+  public function listarDeliverys($estado){
+        var_dump($estado);
+        $conn =BaseDeDatos::conectarBD();
+        $sql= "select * from Usuario as u where u.habilitado=".$estado.";";
+        $result = mysqli_query($conn,$sql); 
+        return $result;
+  }  
+
+  public function habilitarDelivery($idUsuario){
+        $conn =BaseDeDatos::conectarBD();
+        $sql="update Usuario set habilitado=1 where idUsuario=".$idUsuario.";";
+        $result = mysqli_query($conn,$sql);
+        if ($result){
+            echo "Se habilito correctamente el delivery...";
+            }else{
+              echo "No se pudo habilitar el delivery correctamente";
+            }       
+  }
+
+   public function deshabilitarDelivery($idUsuario){
+        $conn =BaseDeDatos::conectarBD();
+        $sql="update Usuario set habilitado=0 where idUsuario=".$idUsuario.";";
+        $result = mysqli_query($conn,$sql);
+        if ($result){
+            echo "Se deshabilito correctamente el delivery...";
+            }else{
+              echo "No se pudo deshabilitar el delivery correctamente";
+            }       
+    }
 
 }
 ?>
