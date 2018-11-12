@@ -105,17 +105,27 @@ class Model_Usuario extends Model{
 		$sql = "update Pedido set fechaHoraRetiro=(select now()) where idPedido=".$id.";";
 		$result = mysqli_query($conn,$sql);
 	}
-	public function entregarPedidoDelivery($id){
+	public function entregarPedidoDelivery($id,$idDelivery){
 		$conn = BaseDeDatos::conectarBD();
 		$sql = "update Pedido set fechaHoraEntrega=(select now()) where idPedido=".$id.";";
+		$sql2 = "update usuario set estado = 1, horaActivo=(now())where idUsuario=".$idDelivery.";";
+		$result2 =mysqli_query($conn,$sql2);
 		$result = mysqli_query($conn,$sql);
 	}
 		public function aceptarPedidoDelivery($id,$idDelivery){
 		$conn = BaseDeDatos::conectarBD();
 		$sql = "update Pedido set Usuario_idDelivery=".$idDelivery." where idPedido=".$id.";";
+		$sql2 = "update usuario set estado = 0, horaActivo=null where idUsuario=".$idDelivery.";";
+		$result2 =mysqli_query($conn,$sql2);
         $result = mysqli_query($conn,$sql);
 	}
-	
+	public function cancelarPedidoDelivery($id,$idDelivery){
+		$conn = BaseDeDatos::conectarBD();
+		$sql = "update Pedido set Usuario_idDelivery=null where idPedido=".$id.";";
+		$sql2 = "update usuario set estado = 1, horaActivo=(now())where idUsuario=".$idDelivery.";";
+		$result2 =mysqli_query($conn,$sql2);
+		$result = mysqli_query($conn,$sql);
+	}
 	public function listarPedidosEnCursoDelivery($id){
         $conn =BaseDeDatos::conectarBD();
         $sql = "select p.fechaHoraGenerado as horaG, p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
