@@ -55,7 +55,10 @@
 										if ($pedido['idDelivery'] != null) {
 										 	echo "Pedido Tomado";
 										 } else{
-										 	echo "En espera";
+										 	echo "En espera <br>";
+
+										 	echo "<a href='/cliente/pedidoCancelado?id=".$pedido['id']."' class='btn btn-danger'>Cancelar</a>";
+
 										 }
 									echo"	</p>
 									</div>

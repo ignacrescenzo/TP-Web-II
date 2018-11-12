@@ -81,4 +81,10 @@ class Model_Pedido extends Model
 		inner join puntodeventa as pdv on pdv.idPuntoDeVenta = pdv.idPuntoDeVenta
 		where p.Usuario_idDelivery = ".$id." and p.fechaHoraEntrega is not null;";
 	}
+
+	public function borrarPedido($id){
+		$conn =BaseDeDatos::conectarBD();
+        $sql = "delete from pedido where idPedido=".$id.";";
+        $result = mysqli_query($conn,$sql);
+	}
 }
