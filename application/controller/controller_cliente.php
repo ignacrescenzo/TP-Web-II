@@ -3,6 +3,8 @@
 include 'application/model/model_menu.php';
 include 'application/model/model_carrito.php';
 include 'application/model/model_usuario.php';
+include 'application/model/model_pedido.php';
+include 'application/model/model_comercio.php';
 
 class Controller_Cliente extends Controller{
 	
@@ -76,4 +78,15 @@ class Controller_Cliente extends Controller{
 		$pedidos = $cliente->mostrarPedidosCliente($id);
         $this->view->generateSt('pedidosCliente.php',$pedidos);
 	}
+
+    public function pedidoCancelado(){
+        $id = $_GET["id"];
+        $pedido = new Model_pedido();
+        $cancela = $pedido->borrarPedido($id);
+
+        $comercio = new Model_comercio();
+        $comercios = $comercio->listarComercios();
+        $this->view->generateSt('comercios.php',$comercios);
+
+    }
 }
