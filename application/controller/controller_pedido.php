@@ -8,6 +8,8 @@ include 'application/model/model_usuario.php';
 class Controller_Pedido extends Controller{
 
 	public function nuevoPedido(){
+		$carrito = new Model_Carrito();
+		$carrito->destroy();
 		$id = $this->model->cargarPedidoABd($_GET['c'],$_SESSION['id']);
 		$horaPedido = $this->model->cargarHoraDeGenerado($_GET['c'],$_SESSION['id']);
 		header("location:/cliente/mostrarPedidos");

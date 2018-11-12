@@ -10,9 +10,15 @@ class Controller_Delivery extends Controller{
 		$retira = $delivery->retirarPedidoDelivery($_GET['id']);
 		$this->pedidosEnCurso();
 	 }
+	 
+	 public function pedidoCancelado(){
+		$delivery = new Model_usuario();
+		$cancela = $delivery->cancelarPedidoDelivery($_GET['id'],$_SESSION['id']);
+		$this->pedidosEnCurso();
+	 }
 	 public function pedidoEntregado(){
 		$delivery = new Model_usuario();
-		$entrega = $delivery->entregarPedidoDelivery($_GET['id']);
+		$entrega = $delivery->entregarPedidoDelivery($_GET['id'],$_SESSION['id']);
 		$this->pedidosEnCurso();
 	}
 	 public function pedidosEnCurso(){
@@ -40,7 +46,6 @@ class Controller_Delivery extends Controller{
 	 public function pedidoAceptado(){
 		$delivery = new Model_usuario();
 		$delivery->aceptarPedidoDelivery($_GET['id'],$_SESSION['id']);
-		//$this->view->generateSt('deliveryEstadoPedidos.php');
 		header("location:/delivery/pedidosEnCurso"); 
 	 }
 	 

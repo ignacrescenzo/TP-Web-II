@@ -61,12 +61,11 @@ class Model_Pedido extends Model
 		$sql = "update Pedido set fechaHoraEntrega=(select now()) where idPedido=".$id.";";
 		$result = mysqli_query($conn,$sql);
 	}
-		public function aceptarPedido($id,$idDelivery){
+	public function aceptarPedido($id,$idDelivery){
 		$conn = BaseDeDatos::conectarBD();
 		$sql = "update Pedido set Usuario_idDelivery=(".$idDelivery." where idPedido=".$id.";";
 		$result = mysqli_query($conn,$sql);
 	}
-	
 	public function listarPedidosEnCurso($id){
         $conn =BaseDeDatos::conectarBD();
         $sql = "select p.idPedido as id, u.domicilio dom, pdv.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
