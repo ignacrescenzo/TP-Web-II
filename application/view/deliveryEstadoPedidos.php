@@ -25,6 +25,7 @@
 					<div class="bar d-flex">
 						<div class="sesion">Bienvenido "Delivey"</div>
 						<div class="sesion"><a href="/delivery/pedidosDisponibles">Pedidos Disponibles</a></div>
+						<div class="sesion"><a href="/delivery/pedidosEnCurso">Pedidos en curso</a></div>
 						<div class="sesion"><a href="/delivery/pedidosRealizados">Pedidos Realizados</a></div>
 						<div class="sesion"><a href="">Estadisticas</a></div>
 						<div class="sesion"><a href="/login/cerrarsesion">Cerrar sesión</a></div>
@@ -52,6 +53,7 @@
 
 										if($pedido['retiro'] == null){
 										echo "<a href='/delivery/pedidoRetirado?id=".$pedido['id']."' class='btn btn-primary'>Retirado</a>";
+										echo "<a href='/delivery/pedidoCancelado?id=".$pedido['id']."' class='btn btn-danger'>Cancelar</a>";
 										}
 										if($pedido['entrega'] == null && $pedido['retiro'] != null){
 										echo "<a href='/delivery/pedidoEntregado?id=".$pedido['id']."' class='btn btn-danger text-white'>Entregado</a>";

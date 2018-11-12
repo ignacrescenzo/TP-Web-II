@@ -43,7 +43,7 @@ class Model_Usuario extends Model{
 
    public function insertarDelivery($username,$password,$email,$name,$surname,$tel){
     $db=BaseDeDatos::conectarBD();
-    $sql = "insert into Usuario (nombreUsuario,clave,email,nombre,apellido,telefono,Rol_idRol,estado) values ('".$username."','".$password."','".$email."','".$name."','".$surname."','".$tel."',3,0);";
+    $sql = "insert into Usuario (nombreUsuario,clave,email,nombre,apellido,telefono,Rol_idRol,estado,habilitado) values ('".$username."','".$password."','".$email."','".$name."','".$surname."','".$tel."',3,0,0);";
     echo $sql;
     $result = mysqli_query($db,$sql);
    }
@@ -69,6 +69,16 @@ class Model_Usuario extends Model{
     $row = mysqli_fetch_assoc($result);
     return $row['idUsuario'];
    }
+
+
+   public function obtenerIdDelivery($username){
+    $db=BaseDeDatos::conectarBD();
+    $sql = "select idUsuario from Usuario where nombreUsuario = '".$username."';";
+    $result = mysqli_query($db,$sql);
+    $row = mysqli_fetch_assoc($result);
+    return $row['idUsuario'];
+  }
+
 	
 	public function mostrarPedidosCliente($id){
     $conn =BaseDeDatos::conectarBD();
@@ -95,17 +105,27 @@ class Model_Usuario extends Model{
 		$sql = "update Pedido set fechaHoraRetiro=(select now()) where idPedido=".$id.";";
 		$result = mysqli_query($conn,$sql);
 	}
-	public function entregarPedidoDelivery($id){
+	public function entregarPedidoDelivery($id,$idDelivery){
 		$conn = BaseDeDatos::conectarBD();
 		$sql = "update Pedido set fechaHoraEntrega=(select now()) where idPedido=".$id.";";
+		$sql2 = "update usuario set estado = 1, horaActivo=(now())where idUsuario=".$idDelivery.";";
+		$result2 =mysqli_query($conn,$sql2);
 		$result = mysqli_query($conn,$sql);
 	}
 		public function aceptarPedidoDelivery($id,$idDelivery){
 		$conn = BaseDeDatos::conectarBD();
 		$sql = "update Pedido set Usuario_idDelivery=".$idDelivery." where idPedido=".$id.";";
+		$sql2 = "update usuario set estado = 0, horaActivo=null where idUsuario=".$idDelivery.";";
+		$result2 =mysqli_query($conn,$sql2);
         $result = mysqli_query($conn,$sql);
 	}
-	
+	public function cancelarPedidoDelivery($id,$idDelivery){
+		$conn = BaseDeDatos::conectarBD();
+		$sql = "update Pedido set Usuario_idDelivery=null where idPedido=".$id.";";
+		$sql2 = "update usuario set estado = 1, horaActivo=(now())where idUsuario=".$idDelivery.";";
+		$result2 =mysqli_query($conn,$sql2);
+		$result = mysqli_query($conn,$sql);
+	}
 	public function listarPedidosEnCursoDelivery($id){
         $conn =BaseDeDatos::conectarBD();
         $sql = "select p.fechaHoraGenerado as horaG, p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
@@ -135,5 +155,64 @@ class Model_Usuario extends Model{
 		$result = mysqli_query($conn,$sql);
         return $result;
 	}
+
+  public function deliveryActivo($id){
+    $conn =BaseDeDatos::conectarBD();
+    $sql = "update Usuario set estado='1' where idUsuario=".$id.";";
+    $result = mysqli_query($conn,$sql);
+    return $result;
+  }
+
+  public function deliveryHoraActivo($id){
+    $conn =BaseDeDatos::conectarBD();
+    $sql = "update Usuario set horaActivo=(select now()) where idUsuario=".$id.";";
+    $result = mysqli_query($conn,$sql);
+    return $result;
+  }
+
+   public function deliveryInactivo($id){
+    $conn =BaseDeDatos::conectarBD();
+    $sql = "update Usuario set estado='0' where idUsuario=".$id.";";
+    $result = mysqli_query($conn,$sql);
+    return $result;
+  }
+
+  public function deliveryDesconectado($id){
+    $conn =BaseDeDatos::conectarBD();
+    $sql = "update Usuario set horaDesconectado=(select now()) where idUsuario=".$id.";";
+    $result = mysqli_query($conn,$sql);
+    return $result;
+  }
+
+
+  public function listarDeliverys($estado){
+        $conn =BaseDeDatos::conectarBD();
+        $sql= "select * from Usuario as u where u.habilitado=".$estado.";";
+        $result = mysqli_query($conn,$sql); 
+        return $result;
+  }  
+
+  public function habilitarDelivery($idUsuario){
+        $conn =BaseDeDatos::conectarBD();
+        $sql="update Usuario set habilitado=1 where idUsuario=".$idUsuario.";";
+        $result = mysqli_query($conn,$sql);
+        if ($result){
+            echo "Se habilito correctamente el delivery...";
+            }else{
+              echo "No se pudo habilitar el delivery correctamente";
+            }       
+  }
+
+   public function deshabilitarDelivery($idUsuario){
+        $conn =BaseDeDatos::conectarBD();
+        $sql="update Usuario set habilitado=0 where idUsuario=".$idUsuario.";";
+        $result = mysqli_query($conn,$sql);
+        if ($result){
+            echo "Se deshabilito correctamente el delivery...";
+            }else{
+              echo "No se pudo deshabilitar el delivery correctamente";
+            }       
+    }
+
 }
 ?>

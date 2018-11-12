@@ -15,6 +15,7 @@ class Controller_Login extends Controller{
         $nombreUsuario = $_POST['nombreUsuario'];
         $clave = md5($_POST['clave']);
 		$rol =  $usuario->validarlogin($nombreUsuario,$clave);
+		$_SESSION['rol'] = $rol;
 		switch ($rol){
 			case "Administrador":
 				$_SESSION["login"]="sessionAdmin";
@@ -27,8 +28,8 @@ class Controller_Login extends Controller{
 				break;
 			case "Delivery":
 				$_SESSION["login"]="sessionDelivery";
-				$_SESSION['id'] = $usuario->obtenerIdCliente($nombreUsuario);
-				header("location:/delivery/pedidosDisponibles");
+				$_SESSION['id'] = $usuario->obtenerIdDelivery($nombreUsuario);
+				$this->view->generateSt('deliveryHome.php');
 				break;
 			case "OperadorComercio":
 				$_SESSION["login"]="sessionOpComercio";
@@ -44,6 +45,13 @@ class Controller_Login extends Controller{
 
     function cerrarsesion(){
 		//$this->model->cerrarsesion();
+		$rol = $_SESSION['rol'];
+		if ($rol=='Delivery') {
+			$id = $_SESSION['id'];
+			$delivery = new Model_Usuario();
+			$delivery->deliveryInactivo($id);
+			$delivery->deliveryDesconectado($id);			
+		}
 		include 'core/helpers/cerrarSesion.php';
     	$this->view->generateSt('home_view.php');
     }

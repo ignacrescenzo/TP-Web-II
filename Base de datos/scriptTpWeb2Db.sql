@@ -11,6 +11,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema tpWeb2Db
 -- -----------------------------------------------------
+DROP DATABASE IF EXISTS tpWeb2Db;
 CREATE SCHEMA IF NOT EXISTS `tpWeb2Db` DEFAULT CHARACTER SET utf8 ;
 USE `tpWeb2Db` ;
 
@@ -53,6 +54,9 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Usuario` (
   `domicilio` VARCHAR(100) NULL,
   `telefono` BIGINT(12) NULL,
   `estado` TINYINT(1) NULL,
+  `horaActivo` DATETIME NULL,
+  `horaDesconectado` DATETIME NULL,
+  `habilitado` TINYINT(1) NULL,
   `Comercio_idComercio` INT NULL,
   PRIMARY KEY (`idUsuario`),
   UNIQUE INDEX `nombreUsuario_UNIQUE` (`nombreUsuario` ASC),
