@@ -214,5 +214,10 @@ class Model_Usuario extends Model{
             }       
     }
 
+    public function verificarPenalizaciones(){
+      $conn =BaseDeDatos::conectarBD();
+            
+    }
+
 }
 ?>

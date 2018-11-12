@@ -4,9 +4,18 @@ include 'application/model/model_usuario.php';
 
 class Controller_AdministradorDeSistema extends Controller{
 
+    public function index(){
+        $admin = new Model_Usuario();       
+        $admin->verificarPenalizaciones();
+        $this->view->generateSt('adminHome.php');
+
+    }
+
     function peticionDeDeliverys(){
         $this->view->generateSt('adminHomeDeliverys.php');
     }
+
+    
 
 	public function listarDeliverys(){
         $delivery = new Model_Usuario();       
