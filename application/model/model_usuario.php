@@ -14,20 +14,36 @@ class Model_Usuario extends Model{
    public function validarlogin($u,$c){
    $db=BaseDeDatos::conectarBD();
  
-    $sql= 'select Rol.tipo as rol from Usuario inner join Rol on Usuario.Rol_idRol = Rol.idRol where Usuario.nombreUsuario="'.$u.'" and Usuario.clave="'.$c.'"; ';
+    $sql= 'select Rol.tipo as rol, idUsuario as id from Usuario inner join Rol on Usuario.Rol_idRol = Rol.idRol where Usuario.nombreUsuario="'.$u.'" and Usuario.clave="'.$c.'"; ';
     
     $result=mysqli_query($db,$sql);
-	$rows=mysqli_fetch_assoc($result);
+	  $rows=mysqli_fetch_assoc($result);
     if (mysqli_num_rows($result)==1){
 		$rol=($rows['rol']);
-		return $rol;
+    $id=($rows['id']);
+    if ($rol=='Delivery'){
+      $db=BaseDeDatos::conectarBD();
+      $sql2='select habilitado as h from Usuario where Rol_idRol=3 and idUsuario="'.$id.'";';
+      $result2=mysqli_query($db,$sql2);
+      $rows2=mysqli_fetch_assoc($result2);
+      $habilitado=$rows2['h'];
+      if ($habilitado==1) {
+        return $rol;
+      }else{
+        echo "No se encuentra habilitado por un administrador";
+      }
+    }else{
+      return $rol;
+    }
+		/*
       }else{
         echo "Error al buscar el usuario";
         echo "<br>";
         echo "<a href='/main/index'>Volver</a>";
       }
-
+      */
    }
+ }
 
    public function cerrarsesion(){
     session_destroy();
