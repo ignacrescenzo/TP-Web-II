@@ -227,7 +227,16 @@ class Model_Usuario extends Model{
 
     public function verificarPenalizaciones(){
       $conn =BaseDeDatos::conectarBD();
-            
+      $sql = "select * from usuario where Rol_idRol = 3 and timestampdiff (minute,horaActivo,now()) >= 10;";
+      $result = mysqli_query($conn,$sql);
+      return $result;     
+    }
+    public function penalizarDeliverys($result){
+      $conn =BaseDeDatos::conectarBD();
+      while($rows = mysqli_fetch_assoc($result)){
+        $sql = "update usuario set habilitado = 0 where idUsuario =".$rows['idUsuario'].";";
+        mysqli_query($conn,$sql);
+      }
     }
 
 }
