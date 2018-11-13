@@ -12,6 +12,7 @@
 		echo $rows['nombreUsuario'] . "-" . $rows['email']. "-" . $rows['nombre']. "-" . $rows['apellido']. "-" . $rows['telefono'];
 		$idUsuario=$rows['idUsuario'];	
 		echo "<a href='/AdministradorDeSistema/deshabilitarDelivery?idUsuario=".$idUsuario."'>Deshabilitar</a>";
+
 		echo "<br><br>";
     }
 }

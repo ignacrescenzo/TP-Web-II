@@ -82,7 +82,6 @@ class Controller_Delivery extends Controller{
 
     public function peticionNewDelivery(){
     	$delivery = new Model_usuario();
-
         $username = $_POST['nombreUsuario'];
         $password = md5($_POST['clave']);
         $email = $_POST['email'];
