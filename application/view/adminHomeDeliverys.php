@@ -23,6 +23,7 @@
 					<select name="estado">
 					<option value=0 selected>No Habilitados
 					<option value=1>Habilitados
+					<option value=2>Esperando Aprobacion
 					</select>
 					<br><br>
 					<input type="submit" value="ver lista">

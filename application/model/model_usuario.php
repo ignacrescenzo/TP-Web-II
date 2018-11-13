@@ -208,6 +208,14 @@ class Model_Usuario extends Model{
         return $result;
   }  
 
+
+public function listarDeliverysEnEsperaDeAprobacion(){
+        $conn =BaseDeDatos::conectarBD();
+        $sql= "select * from Usuario as u where u.habilitado=0 and u.horaActivo is null and Rol_idRol=3;";
+        $result = mysqli_query($conn,$sql); 
+        return $result;
+  }
+
   public function habilitarDelivery($idUsuario){
         $conn =BaseDeDatos::conectarBD();
         $sql="update Usuario set habilitado=1 where idUsuario=".$idUsuario.";";

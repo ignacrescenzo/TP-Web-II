@@ -37,7 +37,11 @@ class Controller_AdministradorDeSistema extends Controller{
         }else if ($estado==1) {
             $listar=$delivery->listarDeliverys($estado);      
             $this->view->generateSt('listarDeliverysHabilitados.php',$listar); 
-        }        
+        }else if ($estado==2) {
+            $listar=$delivery->listarDeliverysEnEsperaDeAprobacion();      
+            $this->view->generateSt('listarDeliverysHabilitados.php',$listar); 
+        }  
+    
     } 
 
     public function habilitarDelivery(){
