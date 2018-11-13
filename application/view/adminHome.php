@@ -72,8 +72,10 @@
 			</div>
 		</div>
 		<div class="w-50 mx-auto">
+		
 		<?php if(isset($data)){
 			while($rows = mysqli_fetch_assoc($data)){
+				
 				echo "<div> Id: ".$rows['idUsuario']." </div>";
 				echo "<div> Nombre de usuario: ".$rows['nombreUsuario']." </div>";
 				echo "<div> Email: ".$rows['email']." </div>";
