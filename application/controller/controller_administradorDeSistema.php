@@ -1,13 +1,25 @@
 <?php
 
 include 'application/model/model_usuario.php';
+include 'application/model/model_pedido.php';
 
 class Controller_AdministradorDeSistema extends Controller{
 
     public function index(){
         $admin = new Model_Usuario();       
-        $admin->verificarPenalizaciones();
-        $this->view->generateSt('adminHome.php');
+        $delivery = new Model_Usuario();
+        $pedido = new Model_Pedido();
+        $result;
+        
+        if(mysqli_num_rows($pedido->buscarPedidosDemorados()) >= 1){
+            if(mysqli_num_rows($admin->verificarPenalizaciones()) >= 1){
+                $result = $admin->verificarPenalizaciones();
+                $admin->penalizarDeliverys($result);
+
+            }
+        }
+        $this->view->generateSt('adminHome.php',$result);
+
 
     }
 

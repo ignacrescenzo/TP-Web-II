@@ -259,4 +259,6 @@ select now(); insertar fehca y hora actual
 
 update Pedido
 set Usuario_idDelivery=null
-where idPedido=5;*/
+where idPedido=5;
+
+*/

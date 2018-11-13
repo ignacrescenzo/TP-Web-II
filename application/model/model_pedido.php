@@ -87,4 +87,28 @@ class Model_Pedido extends Model
         $sql = "delete from pedido where idPedido=".$id.";";
         $result = mysqli_query($conn,$sql);
 	}
+	public function buscarPedidosDemorados(){
+		$conn =BaseDeDatos::conectarBD();
+		// $pedidosSinDelivery = listarPedidosSinDelivery();
+		// listarPedidosDemorados($pedidosSinDelivery);
+		$sql = "select * from pedido where timestampdiff (minute,fechaHoraGenerado,now()) >= 10 and Usuario_idDelivery IS NULL;";
+		$result = mysqli_query($conn,$sql);
+		return $result;
+	}
+
+	// private function listarPedidosSinDelivery(){
+	// 	$conn =BaseDeDatos::conectarBD();
+	// 	$sql = "select * from pedido where Usuario_idDelivery = null;";
+	// 	$result = mysqli_query($conn,$sql);
+	// }
+	// private function listarPedidosDemorados($lista){
+	// 	$resultArray = [];
+	// 	if(mysqli_num_rows($lista) >= 1){
+	// 		while($rows = mysqli_fetch_assoc($lista)){
+	// 			if( ... ){
+	// 				$resultArray[] = "pepe";
+	// 			}
+	// 		}
+	// 	}
+	// }
 }
