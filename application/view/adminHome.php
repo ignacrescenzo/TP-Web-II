@@ -71,17 +71,20 @@
 				</div>
 			</div>
 		</div>
-		<div class="w-50 mx-auto">
-		<?php if(isset($data)){
+		<div class="w-25 mx-auto mt-5">
+		<?php
+			if(mysqli_num_rows($data) >= 1){
+				echo "<h4> Deliverys Penalizados </h4>";
 			while($rows = mysqli_fetch_assoc($data)){
+				echo "<div class= 'mt-4'> "; 
 				echo "<div> Id: ".$rows['idUsuario']." </div>";
 				echo "<div> Nombre de usuario: ".$rows['nombreUsuario']." </div>";
 				echo "<div> Email: ".$rows['email']." </div>";
 				echo "<div> Telefono: ".$rows['telefono']." </div>";
-
-				}	
+				echo"</div>";	
 			}
-			else{
+			}
+			else{	
 				echo "No hay deliverys penalizados";
 			}
 		?>

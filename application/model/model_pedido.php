@@ -91,7 +91,7 @@ class Model_Pedido extends Model
 		$conn =BaseDeDatos::conectarBD();
 		// $pedidosSinDelivery = listarPedidosSinDelivery();
 		// listarPedidosDemorados($pedidosSinDelivery);
-		$sql = "select * from pedido where timestampdiff (minute,fechaHoraGenerado,now()) >= 10 and Usuario_idDelivery IS NULL;";
+		$sql = "select * from pedido where timestampdiff (minute,fechaHoraGenerado,now()) >= 1 and Usuario_idDelivery IS NULL;";
 		$result = mysqli_query($conn,$sql);
 		return $result;
 	}
