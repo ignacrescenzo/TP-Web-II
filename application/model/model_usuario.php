@@ -227,7 +227,7 @@ class Model_Usuario extends Model{
 
     public function verificarPenalizaciones(){
       $conn =BaseDeDatos::conectarBD();
-      $sql = "select * from usuario where Rol_idRol = 3 and timestampdiff (minute,horaActivo,now()) >= 10;";
+      $sql = "select * from usuario where Rol_idRol = 3 and timestampdiff (minute,horaActivo,now()) >= 1;";
       $result = mysqli_query($conn,$sql);
       return $result;     
     }
