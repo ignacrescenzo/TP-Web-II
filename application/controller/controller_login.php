@@ -19,7 +19,7 @@ class Controller_Login extends Controller{
 		switch ($rol){
 			case "Administrador":
 				$_SESSION["login"]="sessionAdmin";
-    			$this->view->generateSt('adminHome.php');
+				header("location: /administradorDeSistema/index");
 				break;
 			case "Cliente":
 				$_SESSION["login"]="sessionCliente";
