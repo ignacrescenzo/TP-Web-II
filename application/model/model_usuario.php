@@ -129,11 +129,11 @@ class Model_Usuario extends Model{
 		$result = mysqli_query($conn,$sql);
 	}
 		public function aceptarPedidoDelivery($id,$idDelivery){
-		$conn = BaseDeDatos::conectarBD();
+    $conn = BaseDeDatos::conectarBD();
+    $sql2 = "update usuario set estado = 0, horaActivo=null where idUsuario=".$idDelivery.";";
 		$sql = "update Pedido set Usuario_idDelivery=".$idDelivery." where idPedido=".$id.";";
-		$sql2 = "update usuario set estado = 0, horaActivo=null where idUsuario=".$idDelivery.";";
 		$result2 =mysqli_query($conn,$sql2);
-        $result = mysqli_query($conn,$sql);
+    $result = mysqli_query($conn,$sql);
 	}
 	public function cancelarPedidoDelivery($id,$idDelivery){
 		$conn = BaseDeDatos::conectarBD();
@@ -163,13 +163,13 @@ class Model_Usuario extends Model{
 	}
 	
 	public function listarPedidosRealizadosDelivery($id){
-        $conn =BaseDeDatos::conectarBD();
-        $sql = "select p.fechaHoraGenerado as horaG, p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
+    $conn =BaseDeDatos::conectarBD();
+    $sql = "select p.fechaHoraGenerado as horaG, p.idPedido as id, u.domicilio as dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
 		from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
 		inner join puntodeventa as c on c.idPuntoDeVenta = p.idPuntoDeVenta
 		where p.Usuario_idDelivery = ".$id." and p.fechaHoraEntrega is not null;";
 		$result = mysqli_query($conn,$sql);
-        return $result;
+    return $result;
 	}
 
   public function deliveryActivo($id){
@@ -250,10 +250,37 @@ class Model_Usuario extends Model{
     public function penalizarDeliverys($result){
       $conn =BaseDeDatos::conectarBD();
       while($rows = mysqli_fetch_assoc($result)){
-        $sql = "update usuario set habilitado = 0 where idUsuario =".$rows['idUsuario'].";";
+        $sql = "update usuario set habilitado = 2, horaPenalizado = (now()) where idUsuario =".$rows['idUsuario'].";";
         mysqli_query($conn,$sql);
       }
     }
+    public function getHabilitado($id){
+      $conn =BaseDeDatos::conectarBD();
+      $sql = "select habilitado from usuario where idUsuario=".$id.";";
+      $result = mysqli_query($conn,$sql);
+      $row = mysqli_fetch_assoc($result);
+      return $row['habilitado'];
 
+      // if($result == 2){
+      //   $sql2 = "select idUsuario from usuario where idUsuario=".$id." and timestampdiff (minute,horaPenalizado,now()) >= 1;";
+      //   $id2 = mysqli_query($conn,$sql2);
+      // }
+      // if($id2 != null){
+        
+      // }
+
+    }
+    public function chequearTiempoPenalizacion($id){
+      $conn =BaseDeDatos::conectarBD();
+      $sql = "select idUsuario from usuario where idUsuario=".$id." and timestampdiff (minute,horaPenalizado,now()) >= 1;";
+      $id = mysqli_query($conn,$sql);
+      $row = mysqli_fetch_assoc($id);
+      return $row['idUsuario'];
+    }
+    public function despenalizar($id){
+      $conn =BaseDeDatos::conectarBD();
+      $sql = "update usuario set habilitado = 1 where idUsuario=".$id.";";
+      mysqli_query($conn,$sql); 
+    }
 }
 ?>

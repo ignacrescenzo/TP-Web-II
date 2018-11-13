@@ -56,7 +56,8 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Usuario` (
   `estado` TINYINT(1) NULL,
   `horaActivo` DATETIME NULL,
   `horaDesconectado` DATETIME NULL,
-  `habilitado` TINYINT(1) NULL,
+  `habilitado` TINYINT(2) NULL,
+  `horaPenalizado` DATETIME NULL,
   `Comercio_idComercio` INT NULL,
   PRIMARY KEY (`idUsuario`),
   UNIQUE INDEX `nombreUsuario_UNIQUE` (`nombreUsuario` ASC),
@@ -213,12 +214,12 @@ insert into puntodeventa
 values
 (1,'direccion 1',1),(2,'direccion 2',1);
 
-insert into Usuario(idUsuario, nombreUsuario, clave, Rol_idRol,Comercio_idComercio,domicilio)
+insert into Usuario(idUsuario, nombreUsuario, clave, Rol_idRol,Comercio_idComercio,domicilio,estado,habilitado)
 values
-( 1,'admin1',md5('1111'),1,null,null),
-( 2,'cliente1',md5('2222'),2,null,'otra direccion falsa'),
-( 3,'delivery1',md5('3333'),3,null,null),
-( 4,'opcomercio1',md5('4444'),4,1,null);
+( 1,'admin1',md5('1111'),1,null,null,null,null),
+( 2,'cliente1',md5('2222'),2,null,'otra direccion falsa',null,null),
+( 3,'delivery1',md5('3333'),3,null,null,0,1),
+( 4,'opcomercio1',md5('4444'),4,1,null,null,null);
 
 insert into precio 
 values 

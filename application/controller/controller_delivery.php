@@ -45,8 +45,24 @@ class Controller_Delivery extends Controller{
 	 
 	 public function pedidoAceptado(){
 		$delivery = new Model_usuario();
-		$delivery->aceptarPedidoDelivery($_GET['id'],$_SESSION['id']);
-		header("location:/delivery/pedidosEnCurso"); 
+		$habilitado = $delivery->getHabilitado($_SESSION['id']);
+		if($habilitado == 2){
+			$verificar = $delivery->chequearTiempoPenalizacion($_SESSION['id']);
+			if($verificar == $_SESSION['id']){
+				$delivery->despenalizar($_SESSION['id']);
+				$delivery->aceptarPedidoDelivery($_GET['id'],$_SESSION['id']);
+				header("location:/delivery/pedidosEnCurso"); 
+			}else{
+				echo "SE ENCUENTRA DESHABILITADO";
+			}
+			
+
+		}
+		if($habilitado == 1){
+			$delivery->aceptarPedidoDelivery($_GET['id'],$_SESSION['id']);
+			header("location:/delivery/pedidosEnCurso"); 
+		}
+		
 	 }
 	 
 	 public function registrar(){
