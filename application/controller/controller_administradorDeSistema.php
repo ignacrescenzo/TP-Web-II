@@ -9,7 +9,7 @@ class Controller_AdministradorDeSistema extends Controller{
         $admin = new Model_Usuario();       
         $delivery = new Model_Usuario();
         $pedido = new Model_Pedido();
-        $result;
+        $result = null;
         if(mysqli_num_rows($pedido->buscarPedidosDemorados()) >= 1){
             if(mysqli_num_rows($admin->verificarPenalizaciones()) >= 1){
                 $result = $admin->verificarPenalizaciones();

@@ -73,7 +73,7 @@
 		</div>
 		<div class="w-25 mx-auto mt-5">
 		<?php
-			if(mysqli_num_rows($data) >= 1){
+			if(isset($data)){
 				echo "<h4> Deliverys Penalizados </h4>";
 			while($rows = mysqli_fetch_assoc($data)){
 				echo "<div class= 'mt-4'> "; 
