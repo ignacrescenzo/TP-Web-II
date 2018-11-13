@@ -57,6 +57,13 @@ class Controller_AdministradorDeSistema extends Controller{
         }
     }
 
+    public function eliminarDelivery(){
+        $delivery = new Model_Usuario();
+         if (isset($_GET['idUsuario'])) {
+            $idUsuario=$_GET['idUsuario'];
+            $habilitar=$delivery->eliminarDelivery($idUsuario);
+        }
+    }
 }
 
 ?>

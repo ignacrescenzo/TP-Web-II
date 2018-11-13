@@ -214,6 +214,17 @@ class Model_Usuario extends Model{
             }       
     }
 
+    public function eliminarDelivery($idUsuario){
+        $conn =BaseDeDatos::conectarBD();
+        $sql="delete from Usuario where idUsuario=".$idUsuario.";";
+        $result = mysqli_query($conn,$sql);
+        if ($result){
+            echo "Se ha eliminado correctamente el delivery...";
+            }else{
+              echo "No se pudo eliminar el delivery correctamente";
+            } 
+    }
+
     public function verificarPenalizaciones(){
       $conn =BaseDeDatos::conectarBD();
       $sql = "select * from usuario where Rol_idRol = 3 and timestampdiff (minute,horaActivo,now()) >= 10;";
