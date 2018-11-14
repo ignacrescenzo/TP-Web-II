@@ -44,4 +44,13 @@ class Model_Precio extends Model
           (select Precio_idPrecio from menu);";
         $result = mysqli_query($conn,$query);
     }
+
+    public function consultarIdPrecioAnterior($idPuntoDeVenta,$idMenu){
+        $conn =BaseDeDatos::conectarBD();
+        $sql = "select Precio_idPrecio from menu where idPuntoDeVenta = ".$idPuntoDeVenta." and idMenu = ".$idMenu.";";
+        $result = mysqli_query($conn,$sql);
+        $row = mysqli_fetch_assoc($result);
+        $idPrecioAnterior = $row['Precio_idPrecio'];
+        return $idPrecioAnterior;
+    }
 }

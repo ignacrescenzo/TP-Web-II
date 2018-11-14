@@ -82,8 +82,7 @@
 									<h4 class='card-title'>Menu "."<span id ='menuId'>".$ofertas['idMenu']."</span></h4>
 									<p class='card-text'>".$ofertas['descripcion']."</p>
 									<p class='card-text'>".$ofertas['monto']."</p>
-									<a href='/puntoDeVenta/mostrarformulariomodificarmenu?c=".$data2."&d=".$ofertas['descripcion']."' class='btn btn-primary'>Modificar</a>
-									<a href='/menu/eliminar?c=".$data2."&variable=".$ofertas['descripcion']."' class='btn btn-danger text-white'>Eliminar</a>
+									<a href='/menu/eliminarOferta?c=".$data2."&variable=".$ofertas['descripcion']."' class='btn btn-danger text-white'>Eliminar</a>
                                 </div>
                                 </div> 
                             </div>";

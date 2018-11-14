@@ -134,10 +134,10 @@ class Model_Menu extends Model
         }
     }
 
-    public function grabarOferta($idMenu,$idPrecio,$idPuntoDeVenta){
+    public function grabarOferta($idMenu,$idPrecio,$idPuntoDeVenta,$idPrecioAnterior){
         $conn =BaseDeDatos::conectarBD();
         $grabar = "update menu
-        set  Precio_idPrecio=$idPrecio, ofertado = 1
+        set  Precio_idPrecio=$idPrecio, ofertado = 1,Precio_idPrecioAnterior = $idPrecioAnterior
         where idMenu =$idMenu and idPuntoDeVenta = $idPuntoDeVenta;";
         mysqli_query($conn,$grabar);
         header("location:/puntoDeVenta/index?c=".$idPuntoDeVenta);
@@ -148,6 +148,20 @@ class Model_Menu extends Model
         $sql = "select * from menu m inner join precio p on p.idPrecio = m.Precio_idPrecio where ofertado = 1 and idPuntoDeVenta = ".$idPuntoDeVenta.";";
         $resultado = mysqli_query($conn, $sql);
         return $resultado;
+    }
+
+    public function eliminarOferta($idPuntoDeVenta,$descripcion){
+        $conn = BaseDeDatos::conectarBD();
+        //busco id precio anterior
+        $sql = "select Precio_idPrecioAnterior from menu where idPuntoDeVenta = 1
+        and descripcion = '$descripcion'";
+        $resultado = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($resultado);
+        $idPrecioAnterior = $row['Precio_idPrecioAnterior'];
+        $grabar = "update menu
+        set  Precio_idPrecio= $idPrecioAnterior, ofertado = 0
+        where descripcion ='$descripcion' and idPuntoDeVenta = $idPuntoDeVenta;";
+        $result = mysqli_query($conn, $grabar);
     }
 
 }
