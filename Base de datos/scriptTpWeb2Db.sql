@@ -140,10 +140,16 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Menu` (
   `ofertado` tinyint(1) NULL,
   `descripcion` VARCHAR(45) NULL,
   `Precio_idPrecio` INT NOT NULL,
+  `Precio_idPrecioAnterior` INT NULL,
   `idPuntoDeVenta` INT NOT NULL,
   PRIMARY KEY (`idMenu`),
   CONSTRAINT `fk_Menu_Precio1`
     FOREIGN KEY (`Precio_idPrecio`)
+    REFERENCES `tpWeb2Db`.`Precio` (`idPrecio`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+    CONSTRAINT `fk_Menu_Precio2`
+    FOREIGN KEY (`Precio_idPrecioAnterior`)
     REFERENCES `tpWeb2Db`.`Precio` (`idPrecio`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
@@ -229,8 +235,8 @@ values
 
 insert into menu
 values
-(1,null,0,'Carne con papas',1,1),
-(2,null,0,'Hamburguesa',2,1);
+(1,null,0,'Carne con papas',1,null,1),
+(2,null,0,'Hamburguesa',2,null,1);
 
 /*
 OBTENER MENUS DE UN COMERCIO

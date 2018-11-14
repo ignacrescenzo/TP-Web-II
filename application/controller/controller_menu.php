@@ -44,8 +44,15 @@ class Controller_Menu extends Controller
         $precio = new Model_Precio();
         $idPuntoDeVenta = $_POST['idPuntoDeVenta'];
         $idMenu = $_POST['idMenu'];
+        $idPrecioAnterior = $precio->consultarIdPrecioAnterior($idPuntoDeVenta,$idMenu);
         $precio->crearPrecio($_POST['precio']);
         $precio->cargarABd($idPuntoDeVenta);
-        $this->model->grabarOferta($idMenu,$precio->consultarId(),$idPuntoDeVenta);
+        $this->model->grabarOferta($idMenu,$precio->consultarId(),$idPuntoDeVenta,$idPrecioAnterior);
+    }
+    function eliminarOferta(){
+        $idPuntoDeVenta = $_GET['c'];
+        $descripcion = urldecode($_GET['variable']);
+        $this->model->eliminarOferta($idPuntoDeVenta,$descripcion);
+        header("location:/puntoDeVenta/index?c=".$idPuntoDeVenta); 
     }
 }
