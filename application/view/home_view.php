@@ -63,6 +63,12 @@ if(!isset($_SESSION)){
 			<h3>Unite</h3>
 			<div class="sesion"><a href="/delivery/registrar">RegistrarDelivery</a></div>
 		</div>
+
+		<div class="title mt-5 pt-2">
+			<h2>¿Tenes un comercio? Registrate</h2>
+			<h3>Unite</h3>
+			<div class="sesion"><a href="/operadorComercio/registrarComercio">RegistrarComercio</a></div>
+		</div>
 		<div class="footer d-flex justify-content-center mt-4 pt-1">
 			INFORMACION SOBRE LA EMPRESA, FOOTER LINKS ETC...
 		</div>

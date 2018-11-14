@@ -35,4 +35,27 @@ class Controller_OperadorComercio extends Controller
         $this->view->generateSt('puntosDeVenta.php', $puntosDeVenta);
     }
 
+    public function registrarComercio(){
+        $this->view->generateSt('registrarComercio_view.php');
+    }
+
+    public function peticionNuevoComercio(){
+        $comercio = new Model_Comercio();
+        $nombreComercio = $_POST['nombre'];
+        $email = $_POST['email'];
+        $direccion = $_POST['direccion'];
+        $ciudad = $_POST['ciudad'];
+        $telefono = $_POST['telefono'];
+
+        $NombreUsuario1 = $_POST['NombreUsuario1'];
+        $clave1 = md5($_POST['clave1']);
+        
+        $comercio->insertarComercio($nombreComercio,$email,$direccion,$ciudad,$telefono,$NombreUsuario1,$clave1);
+        $this->view->generateSt('home_view.php');
+            
+
+       // $this->view->generateSt('home_view.php');
+    }
+
+
 }

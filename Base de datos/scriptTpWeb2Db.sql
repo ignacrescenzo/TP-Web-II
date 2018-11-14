@@ -34,7 +34,10 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Comercio` (
   `nombre` VARCHAR(45) NULL,
   `email` VARCHAR(45) NULL,
   `direccion` VARCHAR(45) NULL,
+  `ciudad` VARCHAR(200) NULL,
   `banner` VARCHAR(200) NULL,
+  `telefono` VARCHAR(200) NULL,
+  `habilitado` VARCHAR(200) NULL,
   PRIMARY KEY (`idComercio`),
   UNIQUE INDEX `nombre_UNIQUE` (`nombre` ASC))
 ENGINE = InnoDB;
@@ -204,8 +207,8 @@ values
 
 insert into comercio
 values
-(1,'Comercio 1','a@a.com','direccion falsa',null),
-(2,'Comercio 2','b@b.com','direccion falsa2',null);
+(1,'Comercio 1','a@a.com','direccion falsa','Buenos Aires', null, '11535433',1),
+(2,'Comercio 2','b@b.com','direccion falsa2','Mendoza',null,'1246215133',1);
 
 
 

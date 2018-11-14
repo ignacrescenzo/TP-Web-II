@@ -68,6 +68,8 @@ class Controller_Delivery extends Controller{
 	 public function registrar(){
         $this->view->generateSt("registrar-delivery_view.php");
     }
+    
+    
     public function validarDelivery(){
         $usuario = new Model_Usuario();
         $username = $_POST['nombreUsuario'];
@@ -79,7 +81,7 @@ class Controller_Delivery extends Controller{
         $usuario->insertarDelivery($username,$password,$email,$name,$surname,$tel);
         header("location:/login");
     }
-
+    
     public function peticionNewDelivery(){
     	$delivery = new Model_usuario();
         $username = $_POST['nombreUsuario'];
