@@ -50,7 +50,7 @@ class Model_Menu extends Model
         $numeroFilas=mysqli_num_rows($result);
         if($numeroFilas==0)
         {
-            $sql = "insert into menu (foto,descripcion,Precio_idPrecio,idPuntoDeVenta) values('$this->foto','$this->descripcion',$this->idPrecio,$this->idPuntoDeVenta);";
+            $sql = "insert into menu (foto,descripcion,Precio_idPrecio,idPuntoDeVenta,ofertado) values('$this->foto','$this->descripcion',$this->idPrecio,$this->idPuntoDeVenta,0);";
             mysqli_query($conn,$sql);
         }
     }
@@ -74,8 +74,8 @@ class Model_Menu extends Model
         $grabar = "update menu
                    set  foto ='".$foto["name"]."', descripcion ='$descripcion', Precio_idPrecio=$idPrecio 
                    where idMenu =$id and idPuntoDeVenta =$idPuntoDeVenta;";
-
         mysqli_query($conn,$grabar);
+        
         header("location:/puntoDeVenta/index?c=".$idPuntoDeVenta);
     }
 
@@ -132,6 +132,22 @@ class Model_Menu extends Model
             $queryBorrarPrecio = "delete from precio where idPrecio = $idPrecio; and idPuntoDeVenta = '$idPuntoDeVenta'";
             $result = mysqli_query($conn, $queryBorrarPrecio);
         }
+    }
+
+    public function grabarOferta($idMenu,$idPrecio,$idPuntoDeVenta){
+        $conn =BaseDeDatos::conectarBD();
+        $grabar = "update menu
+        set  Precio_idPrecio=$idPrecio, ofertado = 1
+        where idMenu =$idMenu and idPuntoDeVenta = $idPuntoDeVenta;";
+        mysqli_query($conn,$grabar);
+        header("location:/puntoDeVenta/index?c=".$idPuntoDeVenta);
+    }
+
+    public function listarOfertas($idPuntoDeVenta){
+        $conn =BaseDeDatos::conectarBD();
+        $sql = "select * from menu m inner join precio p on p.idPrecio = m.Precio_idPrecio where ofertado = 1 and idPuntoDeVenta = ".$idPuntoDeVenta.";";
+        $resultado = mysqli_query($conn, $sql);
+        return $resultado;
     }
 
 }

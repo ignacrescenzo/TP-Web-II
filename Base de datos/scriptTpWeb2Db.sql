@@ -137,6 +137,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Menu` (
   `idMenu` INT NOT NULL AUTO_INCREMENT,
   `foto` VARCHAR(45) NULL,
+  `ofertado` tinyint(1) NULL,
   `descripcion` VARCHAR(45) NULL,
   `Precio_idPrecio` INT NOT NULL,
   `idPuntoDeVenta` INT NOT NULL,
@@ -228,8 +229,8 @@ values
 
 insert into menu
 values
-(1,null,'Carne con papas',1,1),
-(2,null,'Hamburguesa',2,1);
+(1,null,0,'Carne con papas',1,1),
+(2,null,0,'Hamburguesa',2,1);
 
 /*
 OBTENER MENUS DE UN COMERCIO

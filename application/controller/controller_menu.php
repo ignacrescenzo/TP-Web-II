@@ -8,7 +8,7 @@ class Controller_Menu extends Controller
     function nuevo(){
         $precio = new Model_Precio();
         $precio->crearPrecio($_POST['precio']);
-        $precio->cargarABd();
+        $precio->cargarABd($_POST['idPuntoDeVenta']);
         //$precio->cargarId();
         if(isset($_POST['descripcion'])&&isset($_POST['precio'])&&isset($_FILES["file"]["name"])) {
             $this->model->crearMenu($_POST['descripcion'], $_FILES["file"], $_POST['precio'],$_POST['idPuntoDeVenta']);
@@ -22,7 +22,7 @@ class Controller_Menu extends Controller
         $precio = new Model_Precio();
         $idPuntoDeVenta = $_POST['idPuntoDeVenta'];
         $precio->crearPrecio($_POST['precio']);
-        $precio->cargarABd();
+        $precio->cargarABd($idPuntoDeVenta);
         $this->model->grabarModificacionMenu($_POST['idMenu'],$_FILES["file"],$_POST['descripcion'],$precio->consultarId(),$idPuntoDeVenta);
         $precio->eliminarSiEsNecesario();
     
@@ -32,6 +32,20 @@ class Controller_Menu extends Controller
     {
         $this->model->eliminarMenu($_GET['c'],urldecode($_GET['variable']));
         header("location:/puntoDeVenta/index?c=".$_GET['c']); 
+    }
+    function mostrarParaOfertar(){
+        $idPuntoDeVenta = $_GET['c'];
+        $descripcion = urldecode($_GET['variable']);
+        $menu = $this->model->traerParaFormulario($descripcion);
+        $this->view->generateSt("mostrarPeticionOferta.php",$menu,$idPuntoDeVenta);
+    }
 
+    public function ofertar(){
+        $precio = new Model_Precio();
+        $idPuntoDeVenta = $_POST['idPuntoDeVenta'];
+        $idMenu = $_POST['idMenu'];
+        $precio->crearPrecio($_POST['precio']);
+        $precio->cargarABd($idPuntoDeVenta);
+        $this->model->grabarOferta($idMenu,$precio->consultarId(),$idPuntoDeVenta);
     }
 }
