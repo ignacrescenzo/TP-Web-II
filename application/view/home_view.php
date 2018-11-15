@@ -170,9 +170,10 @@
     </section>
 
 
+
 <!-- COMERCIOS -->
     
-    <section class="probootstrap-section-bg overlay" style="background-image: url(../application/resources/img/hero_bg_2.jpg);" data-stellar-background-ratio="0.5" data-section="specialties">
+    <section class="probootstrap-section-bg overlay" style="background-image: url(img/hero_bg_2.jpg);" data-stellar-background-ratio="0.5" data-section="specialties">
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center probootstrap-animate">
@@ -191,23 +192,6 @@
           <div class="probootstrap-cell-retro">
             <div class="half">
 
-            <!-- <?php /*
-            $contador=0;
-            while ($rows = mysqli_fetch_assoc($result)){ 
-            ?>
-              <div class="probootstrap-cell reverse probootstrap-animate" data-animate-effect="fadeIn">
-                <div class="image" style="background-image: url(<?php echo $rows["logo"]; ?>);"></div>
-                <div class="text text-center">
-                  <h3><?php echo ($rows["nombre"]); ?> </h3>
-                  <p><?php echo ($rows["descripcion"]); ?> </p>
-                  <p class="price">$20.99</p>
-                </div>
-
-            <?php 
-                  
-            }*/
-            ?> -->
-
                </div>          
             </div>          
           </div>
@@ -215,12 +199,7 @@
       </div>
     </section>
 
-
-
-
-
-
-<!-- FOOTER -->
+  <!-- FOOTER -->
 
         <section class="probootstrap-footer">
       <div class="container">
@@ -230,7 +209,7 @@
               <h3><a href="#">Acerca de Restó® </a></h3>
               <div class="row">
                 <div class="col-md-6">
-                  <a href="/delivery/registrar"> Quiero ser Delivery</a>
+                  <a href="#"> Quiero ser Delivery</a>
                 </div>
                 <div class="col-md-6">
                   <a href="#"> Quiero registrar mi Comercio</a>
@@ -274,6 +253,7 @@
         </div>
       </div>
     </section>
- 
+    <script src="js/scripts.min.js"></script>
+    <script src="js/custom.min.js"></script>
   </body>
 </html>
