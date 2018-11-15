@@ -23,7 +23,7 @@
 			<div class="logo"> ACA VA EL LOGO Y EL NOMBRE</div>
 			<div class="bar d-flex">
 						<div class="sesion"><a href="adminHome.php">Bienvenido "Admin"</a></div>
-						<div class="sesion"><a href="adminHomeComercios.php">Comercios</a></div>
+						<div class="sesion"><a href="/administradorDeSistema/peticionDeComercios">Comercios</a></div>
 						<div class="sesion"><a href="/administradorDeSistema/peticionDeDeliverys">Deliverys</a></div>
 						<div class="sesion"><a href="">Estadisticas</a></div>
 						<div class="sesion"><a href="/login/cerrarsesion">Cerrar sesión</a></div>

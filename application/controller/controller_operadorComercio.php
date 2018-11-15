@@ -41,20 +41,22 @@ class Controller_OperadorComercio extends Controller
 
     public function peticionNuevoComercio(){
         $comercio = new Model_Comercio();
+
         $nombreComercio = $_POST['nombre'];
         $email = $_POST['email'];
         $direccion = $_POST['direccion'];
         $ciudad = $_POST['ciudad'];
         $telefono = $_POST['telefono'];
-
         $NombreUsuario1 = $_POST['NombreUsuario1'];
-        $clave1 = md5($_POST['clave1']);
+        $clave1 = substr( md5(microtime()), 1, 8);
         
-        $comercio->insertarComercio($nombreComercio,$email,$direccion,$ciudad,$telefono,$NombreUsuario1,$clave1);
-        $this->view->generateSt('home_view.php');
+        
+        $comercio->insertarComercio($nombreComercio,$email,$direccion,$ciudad,$telefono);
+        $idComercio = $comercio->traerComercioPorNombre($nombreComercio);
+        $comercio->insertarUsuarioDeComercio($NombreUsuario1,$clave1,$idComercio);
+        echo "<script>alert('Recibira un correo si su Comercio es aceptado');</script>";
+       $this->view->generateSt('home_view.php');
             
-
-       // $this->view->generateSt('home_view.php');
     }
 
 

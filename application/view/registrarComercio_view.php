@@ -29,7 +29,6 @@
 		<input type="text" required name="ciudad" required="">
 		<br>
 		<br>
-	
 		<label>Introduzca Telefono del Comercio:</label>
 		<br>
 		<input type="number" required name="telefono">
@@ -41,9 +40,6 @@
 		<br>
 		<input type="text" required name="NombreUsuario1">
 		<br>
-		<label>ContraseñaUsuario 1:</label>
-		<br>
-		<input type="password" required name="clave1">
 				
 
 		<br>
