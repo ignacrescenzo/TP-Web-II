@@ -61,8 +61,10 @@
 	if(mysqli_num_rows($data)>0){
     while($rows=mysqli_fetch_assoc($data)) { 		
 		echo "<h4>Comercio:</h4> ";
-		echo $rows['nombre'] . "<br>" . $rows['email']. "<br>" . $rows['direccion']. "<br>" . $rows['ciudad']. "<br>" . $rows['telefono'];
+		echo $rows['nombreComercio'] . "<br>" . $rows['emailComercio']. "<br>" . $rows['direccionComercio']. "<br>" . $rows['ciudadComercio']. "<br>" . $rows['telefonoComercio'];
+
 		$idComercio=$rows['idComercio'];	
+		$idUsuario=$rows['idUsuario'];
 		echo "<a href='/AdministradorDeSistema/habilitarComercio?idComercio=".$idComercio."'>    Habilitar   </a>";
 		echo "<a href='/AdministradorDeSistema/eliminarComercio?idComercio=".$idComercio."'>Eliminar</a>";
 

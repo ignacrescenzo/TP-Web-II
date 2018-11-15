@@ -62,7 +62,10 @@ class Model_Comercio extends Model{
 
     public function listarComerciosEnEspera(){
         $conn =BaseDeDatos::conectarBD();
-        $sql = "select * from comercio as c inner join usuario as u on c.idComercio = u.Comercio_idComercio where c.habilitado = 0;";
+        $sql = "select c.idComercio as idComercio, c.nombre as nombreComercio, c.email as emailComercio, c.direccion as direccionComercio, c.ciudad as ciudadComercio, c.telefono as telefonoComercio, c.habilitado as habilitadoComercio, u.idUsuario as idUsuario
+from comercio as c
+inner join usuario as u on c.idComercio = u.Comercio_idComercio
+where c.habilitado = 0;";
         $result = mysqli_query($conn,$sql);
         return $result;
     }
