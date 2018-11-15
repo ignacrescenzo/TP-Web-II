@@ -76,10 +76,11 @@ where c.habilitado = 0;";
       $idComercio = $usuarioParaEmail['idComercio'];
       $email = $usuarioParaEmail['email'];
 
-      echo $idUsuario;
-      echo $nombreUsuario;
-      echo $idComercio;
-      echo $email;
+      $titulo = "Email Confirmacion Resto";
+      $mensaje = "prueba";
+
+      $bool =  mail($email, $titulo, $mensaje);
+      return $bool;
     }
     
 }
