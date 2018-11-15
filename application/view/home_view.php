@@ -31,22 +31,16 @@
     <nav class="navbar navbar-default navbar-fixed-top probootstrap-navbar">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="" title="uiCookies:FineOak">FineOak</a>
+            <a class="navbar-brand" href="" title="uiCookies:FineOak">FineOak</a>
         </div>
 
         <div id="navbar-collapse" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li class=""><a href="#" data-nav-section="welcome">Inicio</a></li>
-            <li><a href="/main/listarcomercios" >Comercios</a></li>
+            <li><a href="#" data-nav-section="welcome">Inicio</a></li>
+            <li><a onclick="location.href='/main/listarcomercios'" >Comercios</a></li>
             <li><a href="#" >Ofertas del día</a></li>
-            <li><a href="/login" >Iniciar Sesión</a></li>
-            <li><a href="/cliente/registrar" >Registrarme</a></li>
+            <li><a onclick="location.href='/login'"> Iniciar Sesión </a></li>
+            <li><a onclick="location.href='/cliente/registrar'" >Registrarme</a></li>
           </ul>
         </div>
       </div>
@@ -67,7 +61,7 @@
             </div>
           </div>
         </li>
-        <li style="background-image: url(img/hero_bg_2.jpg)" class="overlay">
+        <li style="background-image: url(../application/resources/img/hero_bg_2.jpg)" class="overlay">
           <div class="container">
             <div class="row">
               <div class="col-md-8 col-md-offset-2">
