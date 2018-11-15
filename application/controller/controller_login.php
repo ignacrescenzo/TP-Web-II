@@ -62,5 +62,11 @@ class Controller_Login extends Controller{
 	$this->view->generateSt('comercios.php',$comercios);
    }
 
+   function cambiarContrasena(){
+   	$idUsuario = $_GET['u'];
+   	$idComercio = $_GET['c'];
+   	$this->view->generateSt('formulario_Cambio_Contraseña_view.php',$idComercio,$idUsuario);
+   }
+
 }
 ?>

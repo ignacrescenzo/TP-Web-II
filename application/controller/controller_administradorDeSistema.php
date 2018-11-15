@@ -83,7 +83,11 @@ class Controller_AdministradorDeSistema extends Controller{
       $usuarioParaEmail =  $usuario->obtenerUsuario($idUsuario);
       
       $comercio->enviarEmailDeConfirmacion($usuarioParaEmail);
-     // $comercio->agregarIdComercioAOperador($idUsuario);
+      $comercio->activarComercio($usuarioParaEmail);
+
+      $listaComerciosEnEspera = $comercio->listarComerciosEnEspera();
+      $this->view->generateSt('adminHomeComercios.php',$listaComerciosEnEspera);
+    
 
     }
 }
