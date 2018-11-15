@@ -14,8 +14,8 @@
 		<link rel="stylesheet" href="../application/resources/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../application/resources/css/estilosIndex.css">
 		<link rel="stylesheet" href="../application/resources/css/comercioHome.css">
-		<script src="../application/resources/js/bootstrap.min.js"></script>
 		<script src="../application/resources/js/jquery-3.3.1.min.js"></script>
+		<script src="../application/resources/js/bootstrap.min.js"></script>
         <script src="../application/resources/js/comercioHome.js"></script>
 	</head>
 	<body>
@@ -56,6 +56,7 @@
 									<p class='card-text'>".$menues['monto']."</p>
 									<a href='/puntoDeVenta/mostrarformulariomodificarmenu?c=".$data2."&d=".$menues['descripcion']."' class='btn btn-primary'>Modificar</a>
 									<a href='/menu/eliminar?c=".$data2."&variable=".$menues['descripcion']."' class='btn btn-danger text-white'>Eliminar</a>
+									<a href='/menu/mostrarParaOfertar?c=".$data2."&variable=".$menues['descripcion']."' class='btn btn-warning text-white'>Ofertar</a>
                                 </div>
                                 </div> 
                             </div>";
@@ -71,39 +72,28 @@
 					<h1>Mis Ofertas</h1>
 					<div class="container">
 						<div class="row">	 
-							<div class="col-md-4">
-								<div class="card">
-									<img class="card-img-top" src=".jpg" alt="Mi Imagen">
-									<div class="card-body">
-										<h4 class="card-title">Oferta 1</h4>
-										<p class="card-text">Descripcion</p>
-										<a href="#" class="btn btn-primary">Modificar</a>
-										<a href="#" class="btn btn-primary">Ver</a>
-									</div>
-								</div> 
-							</div>
-							<div class="col-md-4">
-								<div class="card">
-									<img class="card-img-top" src=".jpg" alt="Mi Imagen">
-									<div class="card-body">
-										<h4 class="card-title">Oferta 2</h4>
-										<p class="card-text">Descripcion</p>
-										<a href="#" class="btn btn-primary">Modificar</a>
-										<a href="#" class="btn btn-primary">Ver</a>
-									</div>
-								</div> 
-							</div>
-							<div class="col-md-4">
-								<div class="card">
-									<img class="card-img-top" src=".jpg" alt="Mi Imagen">
-									<div class="card-body">
-										<h4 class="card-title">Oferta 3</h4>
-										<p class="card-text">Descripcion</p>
-										<a href="#" class="btn btn-primary">Modificar</a>
-										<a href="#" class="btn btn-primary">Ver</a>
-									</div>
-								</div> 
-							</div>
+						<?php
+                       if(mysqli_num_rows($data3) >= 1){ 
+                        while($ofertas = mysqli_fetch_assoc($data3)) {
+                            echo"<div class='col-md-4'>
+							<div class='card'>
+								<img class='card-img-top' src='/application/resources/upload/".$ofertas['foto']."' alt='Mi Imagen' width='120px' height='120px'>
+								<div class='card-body'>
+									<h4 class='card-title'>Menu "."<span id ='menuId'>".$ofertas['idMenu']."</span></h4>
+									<p class='card-text'>".$ofertas['descripcion']."</p>
+									<p class='card-text'>".$ofertas['monto']."</p>
+									<a href='/menu/eliminarOferta?c=".$data2."&variable=".$ofertas['descripcion']."' class='btn btn-danger text-white'>Eliminar</a>
+                                </div>
+                                </div> 
+                            </div>";
+                            }
+						  }
+						  else{
+							  echo "<div class='text-center w-50  mt-2 mx-auto'><h3> No hay ofertas disponibles </h3> </div>";
+						  }
+
+                        ?>
+						
 						</div>
 					</div>
 				<!-- <a href="#" class="btn btn-primary mt-3">Ver Todos</a> -->

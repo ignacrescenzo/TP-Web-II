@@ -8,7 +8,7 @@
 . boton de inactivo -> gabriel falon
 
 -- igna -- 
-. ofertas
+. ofertas LISTO
 . ganancias y descuentos correspondientes
 
 -- el resto de jalan -- 

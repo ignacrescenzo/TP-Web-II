@@ -31,11 +31,11 @@ class Path
         return self::$instance;
     }
 
-    public function getPath($path, $file = '',$file2 = ''){
+    public function getPath($path, $file = '',$file2 = '',$file3 = ''){
 
         if (array_key_exists($path, $this->paths )) {
 
-            $fullPath =  $this->paths['root'] .  $this->paths[$path] . $file . $file2;
+            $fullPath =  $this->paths['root'] .  $this->paths[$path] . $file . $file2 . $file3;
 
             if (file_exists( $fullPath )) {
                 return $fullPath;
