@@ -4,17 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Restó | Inicio</title>
-    <meta name="description" content="Free Bootstrap Theme by uicookies.com">
-    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
     
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Pinyon+Script" rel="stylesheet">
 
-    <link rel="stylesheet" href="../application/resources/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="../application/resources/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="../application/resources/css/styles-merged.css">
     <link rel="stylesheet" href="../application/resources/css/style.min.css">
     
-    <script src="../application/resources/js/jquery-3.3.1.min.js"></script>
-    <script src="../application/resources/js/bootstrap.min.js"></script>
+    <!-- <script src="../application/resources/js/jquery-3.3.1.min.js"></script>
+    <script src="../application/resources/js/bootstrap.min.js"></script> -->
     <script src="../application/resources/js/scripts.min.js"></script>
     <script src="../application/resources/js/custom.min.js"></script>
     
@@ -39,12 +37,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.html" title="uiCookies:FineOak">FineOak</a>
+          <a class="navbar-brand" href="" title="uiCookies:FineOak">FineOak</a>
         </div>
 
         <div id="navbar-collapse" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="#" data-nav-section="welcome">Inicio</a></li>
+            <li class=""><a href="#" data-nav-section="welcome">Inicio</a></li>
             <li><a href="/main/listarcomercios" >Comercios</a></li>
             <li><a href="#" >Ofertas del día</a></li>
             <li><a href="/login" >Iniciar Sesión</a></li>
