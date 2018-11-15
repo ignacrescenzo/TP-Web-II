@@ -65,7 +65,7 @@
 
 		$idComercio=$rows['idComercio'];	
 		$idUsuario=$rows['idUsuario'];
-		echo "<a href='/AdministradorDeSistema/habilitarComercio?idComercio=".$idComercio."'>    Habilitar   </a>";
+		echo "<a href='/AdministradorDeSistema/habilitarComercio?idUsuario=".$idUsuario."'>    Habilitar   </a>";
 		echo "<a href='/AdministradorDeSistema/eliminarComercio?idComercio=".$idComercio."'>Eliminar</a>";
 
 		echo "<br><br>";

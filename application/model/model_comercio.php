@@ -58,7 +58,7 @@ class Model_Comercio extends Model{
     }
 
 
-        
+
 
     public function listarComerciosEnEspera(){
         $conn =BaseDeDatos::conectarBD();
@@ -68,6 +68,18 @@ inner join usuario as u on c.idComercio = u.Comercio_idComercio
 where c.habilitado = 0;";
         $result = mysqli_query($conn,$sql);
         return $result;
+    }
+
+    public function enviarEmailDeConfirmacion($usuarioParaEmail){
+      $idUsuario = $usuarioParaEmail['idUsuario'];
+      $nombreUsuario = $usuarioParaEmail['nombreUsuario'];
+      $idComercio = $usuarioParaEmail['idComercio'];
+      $email = $usuarioParaEmail['email'];
+
+      echo $idUsuario;
+      echo $nombreUsuario;
+      echo $idComercio;
+      echo $email;
     }
     
 }

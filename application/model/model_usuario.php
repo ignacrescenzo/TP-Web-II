@@ -94,6 +94,15 @@ class Model_Usuario extends Model{
     $row = mysqli_fetch_assoc($result);
     return $row['idUsuario'];
   }
+    public function obtenerUsuario($idUsuario){
+    $db=BaseDeDatos::conectarBD();
+    $sql = "select u.idUsuario as idUsuario, u.nombreUsuario as nombreUsuario, c.email as email, c.idComercio as idComercio from Usuario as u
+       inner join comercio as c on u.Comercio_idComercio = c.idComercio
+      where idUsuario = '".$idUsuario."';";
+    $result = mysqli_query($db,$sql);
+    $row = mysqli_fetch_assoc($result);
+    return $row;
+  }
 
 	
 	public function mostrarPedidosCliente($id){

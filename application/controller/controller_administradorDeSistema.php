@@ -77,9 +77,12 @@ class Controller_AdministradorDeSistema extends Controller{
     }
 
     public function habilitarComercio(){
+      $usuario = new Model_Usuario();
       $comercio = new Model_Comercio();
       $idUsuario =  $_GET['idUsuario'];
-      echo $idUsuario;
+      $usuarioParaEmail =  $usuario->obtenerUsuario($idUsuario);
+      
+      $comercio->enviarEmailDeConfirmacion($usuarioParaEmail);
      // $comercio->agregarIdComercioAOperador($idUsuario);
 
     }
