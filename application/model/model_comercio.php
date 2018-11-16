@@ -130,5 +130,14 @@ class Model_Comercio extends Model{
   
    
 }
+
+
+    public function insertarComercio($nombreComercio,$email,$direccion,$ciudad,$telefono){
+        $conn =BaseDeDatos::conectarBD();
+        $sql = "insert into comercio (nombre,email,direccion,ciudad,banner,telefono, habilitado) values ('".$nombreComercio."','".$email."','".$direccion."','".$ciudad."', null, '".$telefono."',0 );";
+
+        $result = mysqli_query($conn,$sql);   
+    }
+    
     
 }
