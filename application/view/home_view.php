@@ -212,7 +212,7 @@
                   <a href="#"> Quiero ser Delivery</a>
                 </div>
                 <div class="col-md-6">
-                  <a href="#"> Quiero registrar mi Comercio</a>
+                  <a href="/operadorComercio/registrarComercio"> Quiero registrar mi Comercio</a>
                 </div>
               </div>
             </div>
@@ -255,5 +255,5 @@
     </section>
 
   </body>
->>>>>>> 9b1b2d651fa14f49c0f2d137afd867fd5bb52d6b
+
 </html>
