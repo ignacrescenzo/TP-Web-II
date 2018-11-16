@@ -62,5 +62,49 @@ class Controller_Login extends Controller{
 	$this->view->generateSt('comercios.php',$comercios);
    }
 
+   function cambiarContrasena(){
+   	$idUsuario = $_GET['u'];
+   	$idComercio = $_GET['c'];
+   	$this->view->generateSt('formulario_Cambio_Contraseña_view.php',$idComercio,$idUsuario);
+   }
+
+	function validarContrasena(){
+
+ 		$claveNueva = md5($_POST['claveNueva']);
+ 		$idComercio = $_POST['idComercio'];
+ 		$idUsuario = $_POST['idUsuario'];
+ 		
+ 		$usuario = new Model_Usuario();
+ 		
+ 		$usuario->cambiarContrasenaUsuarioDeComercio($claveNueva,$idComercio,$idUsuario);
+
+ 		$this->view->generateSt('agregarUsuariosDelComercio_view.php',$idComercio,$idUsuario);
+
+ 		
+	}
+
+	function cargarUsuariosDeComercio(){
+		$usuario2 = $_POST['NombreUsuario2'];
+		$usuario3 = $_POST['NombreUsuario3'];
+		$usuario4 = $_POST['NombreUsuario4'];
+		$usuario5 = $_POST['NombreUsuario5'];
+
+		$clave2 = md5($_POST['clave2']);
+		$clave3 = md5($_POST['clave3']);
+		$clave4 = md5($_POST['clave4']);
+		$clave5 = md5($_POST['clave5']);
+
+		$idComercio = $_POST['idComercio'];
+ 		$idUsuario = $_POST['idUsuario'];
+
+ 		$usuario = new Model_Usuario();
+ 		$usuario->cargarUsuariosDeComercio($usuario2,$usuario3,$usuario4,$usuario5,$clave2,$clave3,$clave4,$clave5,$idComercio,$idUsuario);
+ 		echo "<script>alert('Usuarios agregados correctamente');</script>";
+ 		
+ 		$this->index();
+
+
+	}
+
 }
 ?>

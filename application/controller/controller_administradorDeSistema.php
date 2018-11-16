@@ -2,6 +2,7 @@
 
 include 'application/model/model_usuario.php';
 include 'application/model/model_pedido.php';
+include 'application/model/model_comercio.php';
 
 class Controller_AdministradorDeSistema extends Controller{
 
@@ -24,6 +25,13 @@ class Controller_AdministradorDeSistema extends Controller{
 
     function peticionDeDeliverys(){
         $this->view->generateSt('adminHomeDeliverys.php');
+    }
+
+
+    function peticionDeComercios(){
+        $comercio = new Model_Comercio();
+        $listaComerciosEnEspera = $comercio->listarComerciosEnEspera();
+        $this->view->generateSt('adminHomeComercios.php',$listaComerciosEnEspera);
     }
 
     
@@ -66,6 +74,21 @@ class Controller_AdministradorDeSistema extends Controller{
             $idUsuario=$_GET['idUsuario'];
             $habilitar=$delivery->eliminarDelivery($idUsuario);
         }
+    }
+
+    public function habilitarComercio(){
+      $usuario = new Model_Usuario();
+      $comercio = new Model_Comercio();
+      $idUsuario =  $_GET['idUsuario'];
+      $usuarioParaEmail =  $usuario->obtenerUsuario($idUsuario);
+      
+      $comercio->enviarEmailDeConfirmacion($usuarioParaEmail);
+      $comercio->activarComercio($usuarioParaEmail);
+
+      $listaComerciosEnEspera = $comercio->listarComerciosEnEspera();
+      $this->view->generateSt('adminHomeComercios.php',$listaComerciosEnEspera);
+    
+
     }
 }
 
