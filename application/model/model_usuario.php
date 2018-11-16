@@ -299,5 +299,19 @@ public function listarDeliverysEnEsperaDeAprobacion(){
       $sql = "update usuario set habilitado = 1 where idUsuario=".$id.";";
       mysqli_query($conn,$sql); 
     }
+
+   public function cambiarContrasenaUsuarioDeComercio($claveNueva,$idUsuario){
+     $conn =BaseDeDatos::conectarBD();
+     $sql= "update usuario set clave = '".$claveNueva."' where idUsuario=".$idUsuario.";";
+      $result = mysqli_query($conn,$sql);
+      return $result;  
+   }
+
+   public function cargarUsuariosDeComercio($usuario2,$usuario3,$usuario4,$usuario5,$clave2,$clave3,$clave4,$clave5,$idComercio){
+    $conn =BaseDeDatos::conectarBD();
+    $sql = "insert usuario (nombreUsuario, clave, Rol_idRol,Comercio_idComercio) values ('".$usuario2."','".$clave2."',4,".$idComercio."), ('".$usuario3."','".$clave3."',4,".$idComercio."),('".$usuario4."','".$clave4."',4,".$idComercio."),('".$usuario5."','".$clave5."',4,".$idComercio.");";
+     $result = mysqli_query($conn,$sql);
+      return $result; 
+   }
 }
 ?>
