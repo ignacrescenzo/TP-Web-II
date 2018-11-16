@@ -35,6 +35,19 @@ class Controller_OperadorComercio extends Controller
         $this->view->generateSt('puntosDeVenta.php', $puntosDeVenta);
     }
 
+    public function crearPuntoDeVenta(){
+        $idComercio=$_GET['idComercio'];
+        $this->view->generateSt('registrar-puntoDeVenta_view.php',$idComercio);
+    }
+
+    public function registrarPuntoDeVenta(){
+        $comercio= new Model_comercio();
+        $idComercio=$_POST['idComercio'];
+        $direccion=$_POST['direccion'];
+        $telefono=$_POST['telefono'];
+        $comercio->insertarPuntoDeVenta($direccion,$telefono,$idComercio);
+        //header("location:/OperadorComercio"); 
+    }
     public function registrarComercio(){
         $this->view->generateSt('registrarComercio_view.php');
     }

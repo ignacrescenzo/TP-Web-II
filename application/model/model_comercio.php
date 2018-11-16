@@ -30,8 +30,7 @@ class Model_Comercio extends Model{
 
     public function agregarIdComercioAOperador($idComercio){
         $conn =BaseDeDatos::conectarBD();
-        $sql = "upgrade usuario set Comercio_idComercio =".$idComercio." WHERE idUsuario=9;
-";
+        $sql = "upgrade usuario set Comercio_idComercio =".$idComercio." WHERE idUsuario=9;";
         $result = mysqli_query($conn,$sql);
         return $result;
     }
@@ -44,12 +43,15 @@ class Model_Comercio extends Model{
         return $result;
     }
 
-
-    public function insertarComercio($nombreComercio,$email,$direccion,$ciudad,$telefono){
+    public function insertarPuntoDeVenta($direccion,$telefono,$idComercio){
         $conn =BaseDeDatos::conectarBD();
-        $sql = "insert into comercio (nombre,email,direccion,ciudad,banner,telefono, habilitado) values ('".$nombreComercio."','".$email."','".$direccion."','".$ciudad."', null, '".$telefono."',0 );";
-
-        $result = mysqli_query($conn,$sql);   
+        $sql="insert into PuntoDeVenta (direccion, telefono, Comercio_idComercio) values ('".$direccion."','".$telefono."',".$idComercio.")";
+        $result = mysqli_query($conn,$sql);
+        if ($result) {
+            echo "Se inserto correctamente el punto de venta...";
+        }else{
+            echo "no se pudo registrra el punto de ventas...";
+        }
     }
 
     public function insertarUsuarioDeComercio($NombreUsuario1,$clave1,$idComercio){
@@ -57,9 +59,6 @@ class Model_Comercio extends Model{
         $sql = "insert into usuario (nombreUsuario, clave, Rol_idRol, habilitado, Comercio_idComercio) values ('".$NombreUsuario1."', '".$clave1."', 4, 0,".$idComercio.")";
         $result = mysqli_query($conn,$sql);   
     }
-
-
-
 
     public function listarComerciosEnEspera(){
         $conn =BaseDeDatos::conectarBD();

@@ -84,6 +84,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`PuntoDeVenta` (
   `idPuntoDeVenta` INT NOT NULL AUTO_INCREMENT,
   `direccion` VARCHAR(45) NULL,
+  `telefono` VARCHAR(20) NULL,
   `Comercio_idComercio` INT NOT NULL,
   PRIMARY KEY (`idPuntoDeVenta`),
   CONSTRAINT `fk_PuntoDeVenta_Comercio1`
@@ -223,7 +224,7 @@ values
 
 insert into puntodeventa
 values
-(1,'direccion 1',1),(2,'direccion 2',1);
+(1,'direccion 1','333-444',1),(2,'direccion 2','666-999',1);
 
 insert into Usuario(idUsuario, nombreUsuario, clave, Rol_idRol,Comercio_idComercio,domicilio,estado,habilitado)
 values
@@ -242,7 +243,12 @@ values
 (1,null,0,'Carne con papas',1,null,1),
 (2,null,0,'Hamburguesa',2,null,1);
 
+
+
 /*
+insert into PuntoDeVenta (direccion, telefono, Comercio_idComercio)
+			values ('springfield','333-789',2);
+
 OBTENER MENUS DE UN COMERCIO
 select * from menu m 
 						 inner join precio p on p.idPrecio = m.Precio_idPrecio

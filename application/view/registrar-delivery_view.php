@@ -6,7 +6,7 @@
 <body>
 
 
-	<form method="POST" action="/delivery/peticionNewDelivery" enctype="application/x-www-form-urlencodes"">
+	<form method="POST" action="/delivery/peticionNewDelivery" enctype="application/x-www-form-urlencodes">
 	
 		<label>Ingrese Nombre De Usuario:</label>
 		<br>
