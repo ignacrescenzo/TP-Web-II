@@ -130,5 +130,27 @@ class Model_Comercio extends Model{
   
    
 }
+
+
+    public function insertarComercio($nombreComercio,$email,$direccion,$ciudad,$telefono){
+        $conn =BaseDeDatos::conectarBD();
+        $sql = "insert into comercio (nombre,email,direccion,ciudad,banner,telefono, habilitado) values ('".$nombreComercio."','".$email."','".$direccion."','".$ciudad."', null, '".$telefono."',0 );";
+
+        $result = mysqli_query($conn,$sql);   
+    }
     
+    public function eliminarComercioPorId($idComercio){
+        $conn =BaseDeDatos::conectarBD();
+        $sql= "delete from comercio where idComercio=".$idComercio.";";
+        $result = mysqli_query($conn,$sql);   
+        return $result;
+    }
+
+   public function eliminarUsuarioDeComercio($idComercio){
+        $conn =BaseDeDatos::conectarBD();
+        $sql= "delete from usuario where Comercio_idComercio=".$idComercio.";";
+        $result = mysqli_query($conn,$sql);   
+        return $result;
+
+   }
 }

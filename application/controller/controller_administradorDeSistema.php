@@ -90,6 +90,20 @@ class Controller_AdministradorDeSistema extends Controller{
     
 
     }
+
+    public function eliminarComercio(){
+
+        $comercio = new Model_Comercio();
+        $idComercio = $_GET['idComercio'];
+
+        $comercio->eliminarUsuarioDeComercio($idComercio);
+        $comercio->eliminarComercioPorId($idComercio);
+        
+        $listaComerciosEnEspera = $comercio->listarComerciosEnEspera();
+        $this->view->generateSt('adminHomeComercios.php',$listaComerciosEnEspera);
+
+    }
+
 }
 
 ?>
