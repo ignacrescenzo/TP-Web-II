@@ -69,60 +69,35 @@
           <div class="col-md-12 text-center probootstrap-animate">
             <div class="probootstrap-heading">
               <h5 class="secondary-heading">¿Qué querés comer?</h5>
-              <h3>Seleccioná un comercio para comenzar tu pedido!</h3>
+              <h3>SELECCIONÁ UN COMERCIO PARA COMENZAR TU PEDIDO!</h3>
             </div>
           </div>
         </div>
       </div>
       <div class="container">
         <div class="row">
-          <div class="col-md-4 col-sm-4 probootstrap-animate">
-            <div class="probootstrap-block-image">
-              <figure><img src="img/hamb7.jpg" alt="Free Bootstrap Template by uicookies.com"></figure>
-              <div class="text">
-                <span class="date">June 29, 2017</span>
-                <h3><a href="#">Laboriosam Quod Dignissimos</a></h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
-                <p class=""><a href="#" class="probootstrap-custom-link link-sm">Read More</a></p>
+        <?php
+                while($rows = mysqli_fetch_assoc($data)) { 
+                    
+        echo "        
+          <div class='col-md-4 col-sm-4 probootstrap-animate'>
+            <div class='probootstrap-block-image'>
+
+              <figure> <img src='..application/resources/upload/".$rows['imagen'].".jpg'></figure>
+              <div class='text'>
+                <h3>".$rows['nombre']."</a></h3>
+                <p>".$rows['nombre']."</p>
+               <p> <a href='/puntoDeVenta/mostrarMenu?c=".$rows['idComercio']."' class='probootstrap-custom-link link-sm'> Ver menú</a></p>
               </div>
             </div>
-          </div>
-          <div class="col-md-4 col-sm-4 probootstrap-animate">
-            <div class="probootstrap-block-image">
-              <figure><img src="img/hamb5.jpg" alt="Free Bootstrap Template by uicookies.com"></figure>
-              <div class="text">
-                <span class="date">June 29, 2017</span>
-                <h3><a href="#">Laboriosam Quod Dignissimos</a></h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
-                <p class=""><a href="#" class="probootstrap-custom-link link-sm">Read More</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-4 probootstrap-animate">
-            <div class="probootstrap-block-image">
-              <figure><img src="img/hamb4.jpg" alt="Free Bootstrap Template by uicookies.com"></figure>
-              <div class="text">
-                <span class="date">June 29, 2017</span>
-                <h3><a href="#">Laboriosam Quod Dignissimos</a></h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
-                <p class=""><a href="#" class="probootstrap-custom-link link-sm">Read More</a></p>
-              </div>
-            </div>
-          </div>
+          </div> 
+          </div>";
+          } ?>
         </div>
       </div>
     </section>
 
-        <div class="title mt-3">
-			<h5>¿Qué querés comer?</h5>
-		</div>
-		<div class="searchComercio d-flex justify-content-center mt-2">
-			<input type="text" class="mr-2">
-			<input type="button" value="Buscar">
-        </div>
-        <div class="tituloComercio text-center mt-5">
-            Selecciona un comercio para comenzar con tu pedido!
-        </div>
+       <!--
         <div class="row contenido border mt-4">
             <div class="col col-3 filtro">
                 Filtrar por: <br> <br>
@@ -151,10 +126,10 @@
                         <input type="checkbox" name="" id="">Categoria 3
                     </div>
                 </div>
-            </div>
-            <div class="col col-9">
+            </div> -->
+            <!-- <div class="col col-9">
             <?php
-				while($rows = mysqli_fetch_assoc($data)) { 
+				/*while($rows = mysqli_fetch_assoc($data)) { 
                     echo "
                     <div class='row comercio'>
                         <div class='col col-4 img'>
@@ -172,13 +147,66 @@
                             </div>
                         </div>
                     </div>";
-                }
+                }*/
 			    ?>
+                </div> -->
+
+
+  <!-- FOOTER -->
+
+        <section class="probootstrap-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 probootstrap-animate">
+            <div class="probootstrap-footer-widget">
+              <h3><a href="#">Acerca de Restó® </a></h3>
+              <div class="row">
+                <div class="col-md-6">
+                  <a href="#"> Quiero ser Delivery</a>
+                </div>
+                <div class="col-md-6">
+                  <a href="/operadorComercio/registrarComercio"> Quiero registrar mi Comercio</a>
+                </div>
+              </div>
             </div>
+          </div>
+          <div class="col-md-6 probootstrap-animate">
+            <div class="probootstrap-footer-widget">
+              <h3>Horarios</h3>
+              <div class="row">
+                <div class="col-md-4">
+                  <p>Todos los días <br> ¡las 24hs!</p>
+                </div>
+                <div class="col-md-4">
+                  <a href="#">Ayuda</a>
+                </div>
+                <div class="col-md-4">
+                  <a href="#">Medios de pago</a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="footer d-flex justify-content-center mt-4 pt-1">
-			INFORMACION SOBRE LA EMPRESA, FOOTER LINKS ETC...
-		</div>
-	</div>
-</body>
+      </div>
+    </section>
+
+    <section class="probootstrap-copyright">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <p class="copyright-text">&copy; 2018 <a href="#">Restó</a>. Todos los derechos reservados.
+          </div>
+          <div class="col-md-4">
+            <ul class="probootstrap-footer-social right">
+              <li><a href="#"><i class="icon-twitter"></i></a></li>
+              <li><a href="#"><i class="icon-facebook"></i></a></li>
+              <li><a href="#"><i class="icon-instagram"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </body>
+
 </html>
