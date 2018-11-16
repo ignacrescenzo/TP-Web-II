@@ -17,4 +17,17 @@ class Model_Comercio extends Model{
         $result = mysqli_query($conn,$sql);
         return $result;
     }
+
+    public function insertarPuntoDeVenta($direccion,$telefono,$idComercio){
+        $conn =BaseDeDatos::conectarBD();
+        $sql="insert into PuntoDeVenta (direccion, telefono, Comercio_idComercio) values ('".$direccion."','".$telefono."',".$idComercio.")";
+        $result = mysqli_query($conn,$sql);
+        if ($result) {
+            echo "Se inserto correctamente el punto de venta...";
+        }else{
+            echo "no se pudo registrra el punto de ventas...";
+        }
+
+
+    }
 }
