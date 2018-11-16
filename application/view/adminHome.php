@@ -25,7 +25,7 @@
 						<div class="sesion"><a href="adminHome.php">Bienvenido "Admin"</a></div>
 						<div class="sesion"><a href="/administradorDeSistema/peticionDeComercios">Comercios</a></div>
 						<div class="sesion"><a href="/administradorDeSistema/peticionDeDeliverys">Deliverys</a></div>
-						<div class="sesion"><a href="">Estadisticas</a></div>
+						<div class="sesion"><a href="/administradorDeSistema/estadisticas">Estadisticas</a></div>
 						<div class="sesion"><a href="/login/cerrarsesion">Cerrar sesión</a></div>
 			</div>
 		</div>
