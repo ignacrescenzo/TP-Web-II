@@ -3,6 +3,7 @@
 include 'application/model/model_usuario.php';
 include 'application/model/model_pedido.php';
 include 'application/model/model_comercio.php';
+include 'application/model/model_estadisticas.php';
 
 class Controller_AdministradorDeSistema extends Controller{
 
@@ -102,6 +103,14 @@ class Controller_AdministradorDeSistema extends Controller{
         $listaComerciosEnEspera = $comercio->listarComerciosEnEspera();
         $this->view->generateSt('adminHomeComercios.php',$listaComerciosEnEspera);
 
+    }
+
+    public function estadisticas(){
+        
+        $estadisticas = new Model_Estadisticas();
+
+
+        $this->view->generateSt('adminEstadisticas_view.php');        
     }
 
 }
