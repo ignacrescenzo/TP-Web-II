@@ -100,7 +100,8 @@ class Controller_Login extends Controller{
  		$usuario = new Model_Usuario();
  		$usuario->cargarUsuariosDeComercio($usuario2,$usuario3,$usuario4,$usuario5,$clave2,$clave3,$clave4,$clave5,$idComercio,$idUsuario);
  		echo "<script>alert('Usuarios agregados correctamente');</script>";
- 		$this->view->generateSt('login_view.php');
+ 		
+ 		$this->index();
 
 
 	}
