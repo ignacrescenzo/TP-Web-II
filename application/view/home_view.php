@@ -253,8 +253,7 @@
         </div>
       </div>
     </section>
-    <script src="js/scripts.min.js"></script>
-    <script src="js/custom.min.js"></script>
+
   </body>
 >>>>>>> 9b1b2d651fa14f49c0f2d137afd867fd5bb52d6b
 </html>
