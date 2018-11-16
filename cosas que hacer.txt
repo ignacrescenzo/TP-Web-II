@@ -1,0 +1,21 @@
+. vistas -> cami
+
+
+. formulario registro comercio -> alan
+. enviar mail de confirmacion cuando se registra comercio -> alan
+
+. abm puntos de venta -> gabriel falon
+. boton de inactivo -> gabriel falon
+
+-- igna -- 
+. ofertas LISTO
+. ganancias y descuentos correspondientes
+
+-- el resto de jalan -- 
+. estadisticas
+
+
+-- gabriel cascallares -- 
+. modificacion direccion tabla direccion
+. mapa de las dos direcciones para el delivery
+. filtros por zona

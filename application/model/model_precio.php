@@ -11,9 +11,9 @@ class Model_Precio extends Model
  public function crearPrecio($cantidad){
      $this->monto = $cantidad;
  }
- public function cargarABd(){
+ public function cargarABd($idPuntoDeVenta){
     $conn = BaseDeDatos::conectarBD();
-     $sql="select * from precio where monto='$this->monto';";
+     $sql="select * from precio p inner join menu m on m.Precio_idPrecio = m.idPuntoDeVenta inner join puntodeventa pdv on pdv.idPuntoDeVenta = m.idPuntoDeVenta where monto='$this->monto';";
      $result = mysqli_query($conn,$sql);
      $numeroFilas=mysqli_num_rows($result);
      if($numeroFilas==0)
@@ -35,7 +35,7 @@ class Model_Precio extends Model
         $sql = "SELECT MAX(idPrecio) FROM precio";
         $res = mysqli_query($conn,$sql);
         $id = mysqli_fetch_assoc($res);
-        $this->idPrecio =  current($id);
+        $this->idPrecio =  $id['MAX(idPrecio)'];
     }
 
     public function eliminarSiEsNecesario(){
@@ -43,5 +43,14 @@ class Model_Precio extends Model
         $query = "delete from precio where idPrecio not in 
           (select Precio_idPrecio from menu);";
         $result = mysqli_query($conn,$query);
+    }
+
+    public function consultarIdPrecioAnterior($idPuntoDeVenta,$idMenu){
+        $conn =BaseDeDatos::conectarBD();
+        $sql = "select Precio_idPrecio from menu where idPuntoDeVenta = ".$idPuntoDeVenta." and idMenu = ".$idMenu.";";
+        $result = mysqli_query($conn,$sql);
+        $row = mysqli_fetch_assoc($result);
+        $idPrecioAnterior = $row['Precio_idPrecio'];
+        return $idPrecioAnterior;
     }
 }

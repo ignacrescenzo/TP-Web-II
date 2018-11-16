@@ -23,9 +23,9 @@
 			<div class="logo"> ACA VA EL LOGO Y EL NOMBRE</div>
 			<div class="bar d-flex">
 						<div class="sesion"><a href="adminHome.php">Bienvenido "Admin"</a></div>
-						<div class="sesion"><a href="adminHomeComercios.php">Comercios</a></div>
+						<div class="sesion"><a href="/administradorDeSistema/peticionDeComercios">Comercios</a></div>
 						<div class="sesion"><a href="/administradorDeSistema/peticionDeDeliverys">Deliverys</a></div>
-						<div class="sesion"><a href="">Estadisticas</a></div>
+						<div class="sesion"><a href="/administradorDeSistema/estadisticas">Estadisticas</a></div>
 						<div class="sesion"><a href="/login/cerrarsesion">Cerrar sesión</a></div>
 			</div>
 		</div>
@@ -70,6 +70,24 @@
 					DELIVERY 5
 				</div>
 			</div>
+		</div>
+		<div class="w-25 mx-auto mt-5">
+		<?php
+			if(isset($data)){
+				echo "<h4> Deliverys Penalizados </h4>";
+			while($rows = mysqli_fetch_assoc($data)){
+				echo "<div class= 'mt-4'> "; 
+				echo "<div> Id: ".$rows['idUsuario']." </div>";
+				echo "<div> Nombre de usuario: ".$rows['nombreUsuario']." </div>";
+				echo "<div> Email: ".$rows['email']." </div>";
+				echo "<div> Telefono: ".$rows['telefono']." </div>";
+				echo"</div>";	
+			}
+			}
+			else{	
+				echo "No hay deliverys penalizados";
+			}
+		?>
 		</div>
 	</div>
 </body>

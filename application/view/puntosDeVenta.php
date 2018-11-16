@@ -18,11 +18,23 @@
 	<script src="../application/resources/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
+
 	<div class="container-fluid px-0">
 		<div class="header d-flex justify-content-between align-items-center">
 			<div class="logo"> ACA VA EL LOGO Y EL NOMBRE</div>
 			<div class="bar d-flex">
 				<div class="sesion"><a href="/login/cerrarsesion">Cerrar sesión</a></div>
+                <div>
+                   <?php 
+                    if (isset($data2)) {
+                        $idComercio=$data2;
+
+                        echo "<a href='/OperadorComercio/crearPuntoDeVenta?idComercio=".$idComercio."'>Crear Punto De Venta</a>";
+
+                    }
+                    
+                    ?>
+                </div>
 			</div>
 		</div>
         
@@ -33,11 +45,14 @@
             
             <div class="col col-9">
             <?php
-				while($rows = mysqli_fetch_assoc($data)) { 
+            if(mysqli_num_rows($data)>0){
+            while($rows=mysqli_fetch_assoc($data)){ 
+                    
                     echo "
                     <div class='row comercio'>
                         <div class='col col-8'>
                             <div class='nombreComercio'>".$rows['direccion']."</div>
+                            <div class='nombreComercio'>".$rows['telefono']."</div>                         
                             <div class='descripcion'>
                                 Texto Punto de venta
                             </div>
@@ -49,6 +64,7 @@
                         </div>
                     </div>";
                 }
+            }
 			    ?>
             </div>
         </div>

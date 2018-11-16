@@ -34,7 +34,11 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Comercio` (
   `nombre` VARCHAR(45) NULL,
   `email` VARCHAR(45) NULL,
   `direccion` VARCHAR(45) NULL,
+  `ciudad` VARCHAR(200) NULL,
   `banner` VARCHAR(200) NULL,
+  `telefono` VARCHAR(200) NULL,
+  `habilitado` VARCHAR(200) NULL,
+  `imagen` VARCHAR (45) NULL,
   PRIMARY KEY (`idComercio`),
   UNIQUE INDEX `nombre_UNIQUE` (`nombre` ASC))
 ENGINE = InnoDB;
@@ -56,7 +60,8 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Usuario` (
   `estado` TINYINT(1) NULL,
   `horaActivo` DATETIME NULL,
   `horaDesconectado` DATETIME NULL,
-  `habilitado` TINYINT(1) NULL,
+  `habilitado` TINYINT(2) NULL,
+  `horaPenalizado` DATETIME NULL,
   `Comercio_idComercio` INT NULL,
   PRIMARY KEY (`idUsuario`),
   UNIQUE INDEX `nombreUsuario_UNIQUE` (`nombreUsuario` ASC),
@@ -79,6 +84,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`PuntoDeVenta` (
   `idPuntoDeVenta` INT NOT NULL AUTO_INCREMENT,
   `direccion` VARCHAR(45) NULL,
+  `telefono` VARCHAR(20) NULL,
   `Comercio_idComercio` INT NOT NULL,
   PRIMARY KEY (`idPuntoDeVenta`),
   CONSTRAINT `fk_PuntoDeVenta_Comercio1`
@@ -136,12 +142,19 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Menu` (
   `idMenu` INT NOT NULL AUTO_INCREMENT,
   `foto` VARCHAR(45) NULL,
+  `ofertado` tinyint(1) NULL,
   `descripcion` VARCHAR(45) NULL,
   `Precio_idPrecio` INT NOT NULL,
+  `Precio_idPrecioAnterior` INT NULL,
   `idPuntoDeVenta` INT NOT NULL,
   PRIMARY KEY (`idMenu`),
   CONSTRAINT `fk_Menu_Precio1`
     FOREIGN KEY (`Precio_idPrecio`)
+    REFERENCES `tpWeb2Db`.`Precio` (`idPrecio`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+    CONSTRAINT `fk_Menu_Precio2`
+    FOREIGN KEY (`Precio_idPrecioAnterior`)
     REFERENCES `tpWeb2Db`.`Precio` (`idPrecio`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
@@ -203,22 +216,22 @@ values
 
 insert into comercio
 values
-(1,'Comercio 1','a@a.com','direccion falsa',null),
-(2,'Comercio 2','b@b.com','direccion falsa2',null);
+(1,'Comercio 1','a@a.com','direccion falsa','Buenos Aires', null, '11535433',1,'logo1'),
+(2,'Comercio 2','b@b.com','direccion falsa2','Mendoza',null,'1246215133',1,'logo2');
 
 
 
 
 insert into puntodeventa
 values
-(1,'direccion 1',1),(2,'direccion 2',1);
+(1,'direccion 1','333-444',1),(2,'direccion 2','666-999',1);
 
-insert into Usuario(idUsuario, nombreUsuario, clave, Rol_idRol,Comercio_idComercio,domicilio)
+insert into Usuario(idUsuario, nombreUsuario, clave, Rol_idRol,Comercio_idComercio,domicilio,estado,habilitado)
 values
-( 1,'admin1',md5('1111'),1,null,null),
-( 2,'cliente1',md5('2222'),2,null,'otra direccion falsa'),
-( 3,'delivery1',md5('3333'),3,null,null),
-( 4,'opcomercio1',md5('4444'),4,1,null);
+( 1,'admin1',md5('1111'),1,null,null,null,null),
+( 2,'cliente1',md5('2222'),2,null,'otra direccion falsa',null,null),
+( 3,'delivery1',md5('3333'),3,null,null,0,1),
+( 4,'opcomercio1',md5('4444'),4,1,null,null,null);
 
 insert into precio 
 values 
@@ -227,10 +240,15 @@ values
 
 insert into menu
 values
-(1,null,'Carne con papas',1,1),
-(2,null,'Hamburguesa',2,1);
+(1,null,0,'Carne con papas',1,null,1),
+(2,null,0,'Hamburguesa',2,null,1);
+
+
 
 /*
+insert into PuntoDeVenta (direccion, telefono, Comercio_idComercio)
+			values ('springfield','333-789',2);
+
 OBTENER MENUS DE UN COMERCIO
 select * from menu m 
 						 inner join precio p on p.idPrecio = m.Precio_idPrecio
@@ -259,4 +277,6 @@ select now(); insertar fehca y hora actual
 
 update Pedido
 set Usuario_idDelivery=null
-where idPedido=5;*/
+where idPedido=5;
+
+*/

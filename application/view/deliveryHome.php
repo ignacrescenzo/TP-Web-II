@@ -24,9 +24,6 @@
 				<div class="logo"> ACA VA EL LOGO Y EL NOMBRE</div>
 					<div class="bar d-flex">
 						<div class="sesion">Bienvenido "Delivey"</div>
-						<div class="sesion"><a href="/delivery/pedidosEnCurso">Pedidos En Curso</a></div>
-						<div class="sesion"><a href="/delivery/pedidosRealizados">Pedidos Realizados</a></div>
-						<div class="sesion"><a href="">Estadisticas</a></div>
 						<div class="sesion"><a href="/login/cerrarsesion">Cerrar sesión</a></div>
 					</div>
 			</div>

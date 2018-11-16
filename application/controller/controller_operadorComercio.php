@@ -35,4 +35,42 @@ class Controller_OperadorComercio extends Controller
         $this->view->generateSt('puntosDeVenta.php', $puntosDeVenta);
     }
 
+    public function crearPuntoDeVenta(){
+        $idComercio=$_GET['idComercio'];
+        $this->view->generateSt('registrar-puntoDeVenta_view.php',$idComercio);
+    }
+
+    public function registrarPuntoDeVenta(){
+        $comercio= new Model_comercio();
+        $idComercio=$_POST['idComercio'];
+        $direccion=$_POST['direccion'];
+        $telefono=$_POST['telefono'];
+        $comercio->insertarPuntoDeVenta($direccion,$telefono,$idComercio);
+        //header("location:/OperadorComercio"); 
+    }
+    public function registrarComercio(){
+        $this->view->generateSt('registrarComercio_view.php');
+    }
+
+    public function peticionNuevoComercio(){
+        $comercio = new Model_Comercio();
+
+        $nombreComercio = $_POST['nombre'];
+        $email = $_POST['email'];
+        $direccion = $_POST['direccion'];
+        $ciudad = $_POST['ciudad'];
+        $telefono = $_POST['telefono'];
+        $NombreUsuario1 = $_POST['NombreUsuario1'];
+        $clave1 = substr( md5(microtime()), 1, 8);
+        
+        
+        $comercio->insertarComercio($nombreComercio,$email,$direccion,$ciudad,$telefono);
+        $idComercio = $comercio->traerComercioPorNombre($nombreComercio);
+        $comercio->insertarUsuarioDeComercio($NombreUsuario1,$clave1,$idComercio);
+        echo "<script>alert('Recibira un correo si su Comercio es aceptado');</script>";
+       $this->view->generateSt('home_view.php');
+            
+    }
+
+
 }
