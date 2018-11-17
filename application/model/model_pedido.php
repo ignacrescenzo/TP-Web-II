@@ -15,9 +15,9 @@ class Model_Pedido extends Model
 	private $Usuario_idDelivery;
 	private $idPuntoDeVenta; 
         
-    public function cargarPedidoABd($idPuntoDeVenta,$idCliente){ ///RETORNA ID DEL PEDIDO QUE INGRESASTE
+    public function cargarPedidoABd($idPuntoDeVenta,$idCliente,$total){ ///RETORNA ID DEL PEDIDO QUE INGRESASTE
         $conn =BaseDeDatos::conectarBD();
-        $sql = "insert into pedido (Usuario_idCliente,idPuntoDeVenta) values (".$idCliente.",".$idPuntoDeVenta.")";
+        $sql = "insert into pedido (Usuario_idCliente,idPuntoDeVenta,montoTotal) values (".$idCliente.",".$idPuntoDeVenta.",".$total.")";
         $result = mysqli_query($conn,$sql);
         $sql2 = "select max(idPedido) from pedido";
         $result2 = mysqli_query($conn,$sql2);

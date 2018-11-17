@@ -107,7 +107,7 @@ class Model_Usuario extends Model{
 	
 	public function mostrarPedidosCliente($id){
     $conn =BaseDeDatos::conectarBD();
-    $sql = "select p.fechaHoraGenerado as horaG, p.Usuario_idDelivery as idDelivery, c.direccion as dir, p.idPedido as id,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
+    $sql = "select p.montoTotal as total, p.fechaHoraGenerado as horaG, p.Usuario_idDelivery as idDelivery, c.direccion as dir, p.idPedido as id,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
 	from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
 	inner join puntodeventa as c on c.idPuntoDeVenta = p.idPuntoDeVenta
 	where p.Usuario_idCliente = ".$id."";
@@ -117,7 +117,7 @@ class Model_Usuario extends Model{
 	
   public function mostrarPedidosOperador($id){
     $conn =BaseDeDatos::conectarBD();
-    $sql = "select p.fechaHoraGenerado as horaG, p.Usuario_idDelivery as idDelivery, c.direccion as dir, p.idPedido as id,p.fechaHoraRetiro as retiro,p.idPuntoDeVenta, p.fechaHoraEntrega as entrega
+    $sql = "select p.montoTotal as total, p.fechaHoraGenerado as horaG, p.Usuario_idDelivery as idDelivery, c.direccion as dir, p.idPedido as id,p.fechaHoraRetiro as retiro,p.idPuntoDeVenta, p.fechaHoraEntrega as entrega
   from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
   inner join puntodeventa as c on c.idPuntoDeVenta = p.idPuntoDeVenta
   where p.idPuntoDeVenta = ".$id."";
@@ -153,7 +153,7 @@ class Model_Usuario extends Model{
 	}
 	public function listarPedidosEnCursoDelivery($id){
         $conn =BaseDeDatos::conectarBD();
-        $sql = "select p.fechaHoraGenerado as horaG, p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
+        $sql = "select p.montoTotal as total, p.fechaHoraGenerado as horaG, p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
 		from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
 		inner join puntodeventa as c on c.idPuntoDeVenta = p.idPuntoDeVenta
 		where p.Usuario_idDelivery = ".$id." and p.fechaHoraEntrega is null;";
@@ -163,7 +163,7 @@ class Model_Usuario extends Model{
     
     public function listarPedidosDisponibles(){
         $conn = BaseDeDatos::conectarBD();
-        $sql = "select p.fechaHoraGenerado as horaG, p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
+        $sql = "select p.montoTotal as total, p.fechaHoraGenerado as horaG, p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
 		from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
 		inner join puntodeventa as c on c.idPuntoDeVenta = p.idPuntoDeVenta
 		where p.Usuario_idDelivery is null;";
@@ -173,7 +173,7 @@ class Model_Usuario extends Model{
 	
 	public function listarPedidosRealizadosDelivery($id){
     $conn =BaseDeDatos::conectarBD();
-    $sql = "select p.fechaHoraGenerado as horaG, p.idPedido as id, u.domicilio as dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
+    $sql = "select p.montoTotal as total, p.fechaHoraGenerado as horaG, p.idPedido as id, u.domicilio as dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
 		from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
 		inner join puntodeventa as c on c.idPuntoDeVenta = p.idPuntoDeVenta
 		where p.Usuario_idDelivery = ".$id." and p.fechaHoraEntrega is not null;";
