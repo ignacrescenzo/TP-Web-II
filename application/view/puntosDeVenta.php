@@ -23,18 +23,15 @@
 		<div class="header d-flex justify-content-between align-items-center">
 			<div class="logo"> ACA VA EL LOGO Y EL NOMBRE</div>
 			<div class="bar d-flex">
-				<div class="sesion"><a href="/login/cerrarsesion">Cerrar sesión</a></div>
-                <div>
+				<div>
                    <?php 
                     if (isset($data2)) {
                         $idComercio=$data2;
-
                         echo "<a href='/OperadorComercio/crearPuntoDeVenta?idComercio=".$idComercio."'>Crear Punto De Venta</a>";
-
-                    }
-                    
+                    }                
                     ?>
                 </div>
+                <div class="sesion"><a href="/login/cerrarsesion">Cerrar sesión</a></div>           
 			</div>
 		</div>
         
@@ -59,6 +56,12 @@
                             <div class='d-flex justify-content-end'>
                                 <a href='/puntoDeVenta/index?c=".$rows['idPuntoDeVenta']."'>
                                     <input type='button' value='Entrar'>
+                                </a>
+                                <a href='/OperadorComercio/eliminarPuntoDeVenta?c=".$rows['idPuntoDeVenta']."'>
+                                    <input type='button' value='Eliminar'>
+                                </a>
+                                <a href='/OperadorComercio/modificarPuntoDeVenta?c=".$rows['idPuntoDeVenta']."'>
+                                    <input type='button' value='Modificar'>
                                 </a>
                             </div>
                         </div>

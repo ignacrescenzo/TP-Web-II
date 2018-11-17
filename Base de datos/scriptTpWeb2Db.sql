@@ -243,11 +243,11 @@ values
 (1,null,0,'Carne con papas',1,null,1),
 (2,null,0,'Hamburguesa',2,null,1);
 
-
-
 /*
 insert into PuntoDeVenta (direccion, telefono, Comercio_idComercio)
 			values ('springfield','333-789',2);
+            
+update PuntoDeVenta set direccion="miau", telefono="111" where idPuntoDeVenta=3;
 
 OBTENER MENUS DE UN COMERCIO
 select * from menu m 
