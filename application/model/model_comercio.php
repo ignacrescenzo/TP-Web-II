@@ -126,7 +126,7 @@ class Model_Comercio extends Model{
     
     $mail->Subject = $mail_subject;
     $mail->msgHTML($message);
-    $mail->send();  
+    $mail->send();
 }
 
     public function eliminarPuntoDeVenta($idPuntodeventa){
@@ -151,4 +151,18 @@ class Model_Comercio extends Model{
         }*/
     }
     
+    public function eliminarComercioPorId($idComercio){
+        $conn =BaseDeDatos::conectarBD();
+        $sql= "delete from comercio where idComercio=".$idComercio.";";
+        $result = mysqli_query($conn,$sql);   
+        return $result;
+    }
+
+   public function eliminarUsuarioDeComercio($idComercio){
+        $conn =BaseDeDatos::conectarBD();
+        $sql= "delete from usuario where Comercio_idComercio=".$idComercio.";";
+        $result = mysqli_query($conn,$sql);   
+        return $result;
+
+   }
 }
