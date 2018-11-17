@@ -25,10 +25,10 @@
 			<div class="bar d-flex">
 				<div>
                    <?php 
-                    if (isset($data2)) {
+                    
                         $idComercio=$data2;
                         echo "<a href='/OperadorComercio/crearPuntoDeVenta?idComercio=".$idComercio."'>Crear Punto De Venta</a>";
-                    }                
+                                  
                     ?>
                 </div>
                 <div class="sesion"><a href="/login/cerrarsesion">Cerrar sesión</a></div>           
