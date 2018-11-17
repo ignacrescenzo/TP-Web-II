@@ -151,6 +151,7 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Pedido` (
   `fechaHoraEntrega` DATETIME NULL,
   `fechaHoraRetiro` DATETIME NULL,
   `fechaHoraGenerado` DATETIME NULL,
+  `montoTotal` FLOAT NULL,
   `Usuario_idCliente` INT NOT NULL,
   `Usuario_idDelivery` INT NULL,
   `idPuntoDeVenta` INT NOT NULL,
