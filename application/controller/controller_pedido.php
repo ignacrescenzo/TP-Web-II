@@ -10,7 +10,7 @@ class Controller_Pedido extends Controller{
 	public function nuevoPedido(){
 		$carrito = new Model_Carrito();
 		$carrito->destroy();
-		$id = $this->model->cargarPedidoABd($_GET['c'],$_SESSION['id']);
+		$id = $this->model->cargarPedidoABd($_GET['c'],$_SESSION['id'],$_GET['t']);
 		$horaPedido = $this->model->cargarHoraDeGenerado($_GET['c'],$_SESSION['id']);
 		header("location:/cliente/mostrarPedidos");
 	 }
