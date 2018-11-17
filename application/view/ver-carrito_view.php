@@ -88,7 +88,7 @@
           <div class="col-md-4 col-sm-4 probootstrap-animate">
               	<div class="text">
              		<?php echo "<h3>El precio total es $".$total."</h3>" ?> <br>
-             		<?php echo "<a class='btn' href='/pedido/nuevoPedido?c=".$data2."'>Confirmar pedido</a>"; ?> 
+             		<?php echo "<a class='btn' href='/pedido/nuevoPedido?c=".$data2."&t=".$total."'>Confirmar pedido</a>"; ?> 
              		<br><br>
              		<?php echo "<a class='btn' href='/cliente/eliminarCarrito?c=".$data2."'>Vaciar Carrito</a>"; ?>
              		<br><br>
