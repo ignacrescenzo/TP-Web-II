@@ -47,11 +47,11 @@ class Model_Comercio extends Model{
         $conn =BaseDeDatos::conectarBD();
         $sql="insert into PuntoDeVenta (direccion, telefono, Comercio_idComercio) values ('".$direccion."','".$telefono."',".$idComercio.")";
         $result = mysqli_query($conn,$sql);
-        if ($result) {
+        /*if ($result) {
             echo "Se inserto correctamente el punto de venta...";
         }else{
             echo "no se pudo registrra el punto de ventas...";
-        }
+        }*/
     }
 
     public function insertarUsuarioDeComercio($NombreUsuario1,$clave1,$idComercio){
@@ -126,9 +126,29 @@ class Model_Comercio extends Model{
     
     $mail->Subject = $mail_subject;
     $mail->msgHTML($message);
-    $mail->send();
-  
-   
+    $mail->send();  
 }
+
+    public function eliminarPuntoDeVenta($idPuntodeventa){
+        $conn =BaseDeDatos::conectarBD();
+        $sql="delete from PuntoDeVenta where idPuntoDeVenta=".$idPuntodeventa.";";
+        $result = mysqli_query($conn,$sql);
+        /*if ($result) {
+            echo "Se elimino correctamente el punto de venta";
+        }else{
+            echo "error al eliminar el punto de venta";
+        }*/
+    }
+
+    public function updatePuntoDeVenta($idPuntoDeVenta,$telefono,$direccion){
+        $conn =BaseDeDatos::conectarBD();
+        $sql="update PuntoDeVenta set direccion='".$direccion."',telefono='".$telefono."' where idPuntoDeVenta=".$idPuntoDeVenta.";";
+        $result = mysqli_query($conn,$sql);
+        /*if($result){
+            echo "Se actualizo correctamente el punto de venta";
+        }else{
+            echo "error al actualizar el punto de venta";
+        }*/
+    }
     
 }

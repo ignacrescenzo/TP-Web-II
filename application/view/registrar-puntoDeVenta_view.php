@@ -15,7 +15,7 @@
 <h3>Formulario de registro de Punto De Venta</h3>
 
 	<form method="POST" action="/OperadorComercio/registrarPuntoDeVenta" enctype="application/x-www-form-urlencodes">
-		<input type="number" name="idComercio" value="<?php echo $data; ?>">
+		<input type="hidden" name="idComercio" value="<?php echo $data; ?>" readonly="">
 		<br><br>
 		<label>Direccion</label>
 		<input type="text" name="direccion">
