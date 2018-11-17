@@ -243,7 +243,10 @@ values
 (1,null,0,'Carne con papas',1,null,1),
 (2,null,0,'Hamburguesa',2,null,1);
 
+
 /*
+select Comercio_idComercio from PuntoDeVenta where idPuntodeventa = (select max(idPuntodeventa) from PuntoDeVenta);
+
 insert into PuntoDeVenta (direccion, telefono, Comercio_idComercio)
 			values ('springfield','333-789',2);
             
