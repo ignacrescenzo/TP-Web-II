@@ -105,7 +105,7 @@
 		echo "<a class='btn btn-primary' href='/puntoDeVenta/mostrarMenu?c=".$data2."'>Volver a Menu</a>";
 	}
 ?>
-			</div>
+			     </div>
        	</div>
     </section>
 
