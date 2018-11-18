@@ -26,7 +26,7 @@
 				<div>
                    <?php 
                     
-                        $idComercio=$data2;
+                        $idComercio=$_SESSION['idComercio'];
                         echo "<a href='/OperadorComercio/crearPuntoDeVenta?idComercio=".$idComercio."'>Crear Punto De Venta</a>";
                                   
                     ?>
@@ -42,6 +42,7 @@
             
             <div class="col col-9">
 
+            <?php
             while($rows=mysqli_fetch_assoc($data)){ 
                     
                     echo "

@@ -74,10 +74,11 @@ class Controller_OperadorComercio extends Controller
     }
 
     public function eliminarPuntoDeVenta(){
+        $idComercio=$_SESSION['idComercio'];
         $idPuntoDeVenta = $_GET['c'];
         $comercio = new Model_Comercio();
         $comercio->eliminarPuntoDeVenta($idPuntoDeVenta);  
-        header('location:/OperadorComercio');
+        header("location:/OperadorComercio/index?v=".$idComercio);
     }
 
      public function modificarPuntoDeVenta(){
@@ -86,11 +87,12 @@ class Controller_OperadorComercio extends Controller
     }
 
     public function updatePuntoDeVenta(){
+        $idComercio=$_SESSION['idComercio'];
         $comercio = new Model_Comercio();
         $idPuntoDeVenta=$_POST['idPuntoDeVenta'];
         $telefono=$_POST['telefono'];
         $direccion=$_POST['direccion'];
         $comercio->updatePuntoDeVenta($idPuntoDeVenta,$telefono,$direccion);
-        header('location:/OperadorComercio');
+        header("location:/OperadorComercio/index?v=".$idComercio);
     }
 }
