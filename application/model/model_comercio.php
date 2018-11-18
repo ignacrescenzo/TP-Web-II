@@ -47,11 +47,6 @@ class Model_Comercio extends Model{
         $conn =BaseDeDatos::conectarBD();
         $sql="insert into PuntoDeVenta (direccion, telefono, Comercio_idComercio) values ('".$direccion."','".$telefono."',".$idComercio.")";
         $result = mysqli_query($conn,$sql);
-        if ($result) {
-            echo "Se inserto correctamente el punto de venta...";
-        }else{
-            echo "no se pudo registrra el punto de ventas...";
-        }
     }
 
     public function insertarUsuarioDeComercio($NombreUsuario1,$clave1,$idComercio){
@@ -127,30 +122,38 @@ class Model_Comercio extends Model{
     $mail->Subject = $mail_subject;
     $mail->msgHTML($message);
     $mail->send();
-  
-   
 }
 
-
-    public function insertarComercio($nombreComercio,$email,$direccion,$ciudad,$telefono){
+    public function eliminarPuntoDeVenta($idPuntodeventa){
         $conn =BaseDeDatos::conectarBD();
-        $sql = "insert into comercio (nombre,email,direccion,ciudad,banner,telefono, habilitado) values ('".$nombreComercio."','".$email."','".$direccion."','".$ciudad."', null, '".$telefono."',0 );";
+        $sql="delete from PuntoDeVenta where idPuntoDeVenta=".$idPuntodeventa.";";
+        $result = mysqli_query($conn,$sql);
+    }
 
-        $result = mysqli_query($conn,$sql);   
+    public function updatePuntoDeVenta($idPuntoDeVenta,$telefono,$direccion){
+        $conn =BaseDeDatos::conectarBD();
+        $sql="update PuntoDeVenta set direccion='".$direccion."',telefono='".$telefono."' where idPuntoDeVenta=".$idPuntoDeVenta.";";
+        $result = mysqli_query($conn,$sql);
     }
     
     public function eliminarComercioPorId($idComercio){
         $conn =BaseDeDatos::conectarBD();
         $sql= "delete from comercio where idComercio=".$idComercio.";";
         $result = mysqli_query($conn,$sql);   
-        return $result;
     }
 
    public function eliminarUsuarioDeComercio($idComercio){
         $conn =BaseDeDatos::conectarBD();
         $sql= "delete from usuario where Comercio_idComercio=".$idComercio.";";
         $result = mysqli_query($conn,$sql);   
-        return $result;
+   }
 
+   public function obtenerIdComercio($idPuntoDeVenta){
+    $conn =BaseDeDatos::conectarBD();
+    $sql= "select Comercio_idComercio from puntodeventa where idPuntoDeVenta=".$idPuntoDeVenta.";";
+    $result = mysqli_query($conn,$sql);
+    $row = mysqli_fetch_assoc($result);
+    $id = $row['Comercio_idComercio'];
+    return $id;
    }
 }

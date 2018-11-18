@@ -46,8 +46,9 @@ class Controller_OperadorComercio extends Controller
         $direccion=$_POST['direccion'];
         $telefono=$_POST['telefono'];
         $comercio->insertarPuntoDeVenta($direccion,$telefono,$idComercio);
-        //header("location:/OperadorComercio"); 
+        header("location:/OperadorComercio/index?v=".$idComercio);
     }
+
     public function registrarComercio(){
         $this->view->generateSt('registrarComercio_view.php');
     }
@@ -72,5 +73,24 @@ class Controller_OperadorComercio extends Controller
             
     }
 
+    public function eliminarPuntoDeVenta(){
+        $idPuntoDeVenta = $_GET['c'];
+        $comercio = new Model_Comercio();
+        $comercio->eliminarPuntoDeVenta($idPuntoDeVenta);  
+        header('location:/OperadorComercio');
+    }
 
+     public function modificarPuntoDeVenta(){
+        $idPuntoDeVenta = $_GET['c'];
+        $this->view->generateSt('modificarPuntoDeVenta.php',$idPuntoDeVenta);
+    }
+
+    public function updatePuntoDeVenta(){
+        $comercio = new Model_Comercio();
+        $idPuntoDeVenta=$_POST['idPuntoDeVenta'];
+        $telefono=$_POST['telefono'];
+        $direccion=$_POST['direccion'];
+        $comercio->updatePuntoDeVenta($idPuntoDeVenta,$telefono,$direccion);
+        header('location:/OperadorComercio');
+    }
 }

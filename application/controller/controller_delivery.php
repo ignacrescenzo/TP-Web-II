@@ -2,6 +2,7 @@
 include 'application/model/model_menu.php';
 include 'application/model/model_carrito.php';
 include 'application/model/model_usuario.php';
+include 'application/model/model_comercio.php';
 
 class Controller_Delivery extends Controller{
 	
@@ -18,7 +19,19 @@ class Controller_Delivery extends Controller{
 	 }
 	 public function pedidoEntregado(){
 		$delivery = new Model_usuario();
+		$admin = new Model_usuario();
+		$pdv = new Model_comercio();
+		$total = $_GET['t'];
 		$entrega = $delivery->entregarPedidoDelivery($_GET['id'],$_SESSION['id']);
+		$idComercio = $pdv -> obtenerIdComercio($_GET['p']);
+		$admin->cobrarAlCliente($_GET['id'],$total);
+		$admin->pagarAlComercio($idComercio,$total);
+		$admin->cobrarComisiones($idComercio,$_SESSION['id'],$total);
+		$tardoMucho = $admin->verificarTardanza($_GET['id']);
+		if($tardoMucho){
+			$admin->bonificarAlCliente($_GET['id'],$total);
+			$admin->cobrarAlDelivery($_SESSION['id'],$_GET['id'],$total);
+		}
 		$this->pedidosEnCurso();
 	}
 	 public function pedidosEnCurso(){

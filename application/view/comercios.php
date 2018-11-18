@@ -1,10 +1,10 @@
 <?php
-	if(!isset($_SESSION["login"])){
-		echo "INISIA SESION WACHO";
+  if(!isset($_SESSION["login"])){
+    echo "INISIA SESION WACHO";
         echo "<br>";
         echo "<a href='/login'>Iniciar sesion</a>";
         exit;
-	}
+  }
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +36,8 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#" data-nav-section="welcome">Inicio</a></li>
             <li><a onclick="location.href='/main/listarcomercios'" >Comercios</a></li>
-            <li><a onclick="location.href='/cliente/mostrarPedidos">Pedidos</a></li>
+            <li><a onclick="location.href= <?php echo "'/cliente/verCarrito?c=$data2'" ?>" >Carrito</a></li>
+            <li><a onclick="location.href='/cliente/mostrarPedidos'">Pedidos</a></li>
             <li><a onclick="location.href='/login/cerrarsesion'" >Cerrar sesión</a></li>
           </ul>
         </div>

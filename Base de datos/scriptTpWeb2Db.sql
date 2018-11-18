@@ -39,6 +39,7 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Comercio` (
   `telefono` VARCHAR(200) NULL,
   `habilitado` VARCHAR(200) NULL,
   `imagen` VARCHAR (45) NULL,
+  `tiempoEntrega` INT NULL,
   PRIMARY KEY (`idComercio`),
   UNIQUE INDEX `nombre_UNIQUE` (`nombre` ASC))
 ENGINE = InnoDB;
@@ -77,7 +78,56 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Usuario` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `mydb`.`cuenta`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`cuenta` (
+  `idCuenta` INT NOT NULL AUTO_INCREMENT,
+  `monto` FLOAT NULL,
+  `comercio_idComercio` INT(11) NULL,
+  `usuario_idUsuario` INT(11) NULL,
+  PRIMARY KEY (`idCuenta`),
+  INDEX `fk_cuenta_comercio_idx` (`comercio_idComercio` ASC),
+  INDEX `fk_cuenta_usuario1_idx` (`usuario_idUsuario` ASC),
+  CONSTRAINT `fk_cuenta_comercio`
+    FOREIGN KEY (`comercio_idComercio`)
+    REFERENCES `tpweb2db`.`comercio` (`idComercio`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cuenta_usuario1`
+    FOREIGN KEY (`usuario_idUsuario`)
+    REFERENCES `tpweb2db`.`usuario` (`idUsuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `mydb`.`movimiento`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`movimiento` (
+  `idMovimiento` INT NOT NULL AUTO_INCREMENT,
+  `monto` FLOAT NULL,
+  `fecha` DATE NULL,
+  `tipo` VARCHAR (30) NULL,
+  `usuario_idUsuario` INT(11) NULL,
+  `comercio_idComercio` INT(11) NULL,
+  PRIMARY KEY (`idMovimiento`),
+  INDEX `fk_movimiento_usuario1_idx` (`usuario_idUsuario` ASC),
+  INDEX `fk_movimiento_comercio1_idx` (`comercio_idComercio` ASC),
+  CONSTRAINT `fk_movimiento_usuario1`
+    FOREIGN KEY (`usuario_idUsuario`)
+    REFERENCES `tpweb2db`.`usuario` (`idUsuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_movimiento_comercio1`
+    FOREIGN KEY (`comercio_idComercio`)
+    REFERENCES `tpweb2db`.`comercio` (`idComercio`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+USE `tpweb2db` ;
 -- -----------------------------------------------------
 -- Table `tpWeb2Db`.`PuntoDeVenta`
 -- -----------------------------------------------------
@@ -103,6 +153,7 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Pedido` (
   `fechaHoraEntrega` DATETIME NULL,
   `fechaHoraRetiro` DATETIME NULL,
   `fechaHoraGenerado` DATETIME NULL,
+  `montoTotal` FLOAT NULL,
   `Usuario_idCliente` INT NOT NULL,
   `Usuario_idDelivery` INT NULL,
   `idPuntoDeVenta` INT NOT NULL,
@@ -216,8 +267,8 @@ values
 
 insert into comercio
 values
-(1,'Comercio 1','a@a.com','direccion falsa','Buenos Aires', null, '11535433',1,'logo1'),
-(2,'Comercio 2','b@b.com','direccion falsa2','Mendoza',null,'1246215133',1,'logo2');
+(1,'Comercio 1','a@a.com','direccion falsa','Buenos Aires', null, '11535433',1,'logo1',30),
+(2,'Comercio 2','b@b.com','direccion falsa2','Mendoza',null,'1246215133',1,'logo2',45);
 
 
 
@@ -243,11 +294,22 @@ values
 (1,null,0,'Carne con papas',1,null,1),
 (2,null,0,'Hamburguesa',2,null,1);
 
-
+insert into cuenta (monto,comercio_idComercio,usuario_idUsuario)
+values
+(0,1,null),
+(0,2,null),
+(0,null,1),
+(0,null,2),
+(0,null,3),
+(0,null,4);
 
 /*
+select Comercio_idComercio from PuntoDeVenta where idPuntodeventa = (select max(idPuntodeventa) from PuntoDeVenta);
+
 insert into PuntoDeVenta (direccion, telefono, Comercio_idComercio)
 			values ('springfield','333-789',2);
+            
+update PuntoDeVenta set direccion="miau", telefono="111" where idPuntoDeVenta=3;
 
 OBTENER MENUS DE UN COMERCIO
 select * from menu m 

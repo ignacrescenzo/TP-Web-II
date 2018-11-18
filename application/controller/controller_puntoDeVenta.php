@@ -3,33 +3,35 @@ include 'application/model/model_menu.php';
 class Controller_PuntoDeVenta extends Controller
 {
 
-    function index(){
+    public function index(){
         $idPuntoDeVenta = $_GET['c'];
         $menu = new Model_Menu();
         $ofertas = $menu->listarOfertas($idPuntoDeVenta);
         $menus = $menu->listarMenus($idPuntoDeVenta);///LOGICA PARA CARGAR LOS MENUES EN LA VISTA. DESPUES, DEVOLVER LA VISTA CON LOS DATOS
         $this->view->generateSt('comercioHome.php',$menus,$idPuntoDeVenta,$ofertas);
     }
-    function mostrarformulariomenu(){
+
+    public function mostrarformulariomenu(){
         $idPuntoDeVenta = $_GET['c'];
         $this->view->generateSt('cargarMenuComercios.php',$idPuntoDeVenta);
     }
 
-    function eliminarmenu(){
+    public  function eliminarmenu(){
         $this->view->generateSt('cargarMenuComercios.php');
     }
 
-    function mostrarformulariomodificarmenu(){
+    public function mostrarformulariomodificarmenu(){
           $menu = new Model_Menu();
           $idPuntoDeVenta = $_GET['c'];
           $rows = $menu->traerParaFormulario(urldecode($_GET["d"]));
           $this->view->generateSt('modificarMenuComercios.php', $rows,$idPuntoDeVenta);
     }
 
-    function mostrarMenu(){
+    public function mostrarMenu(){
         $idPuntoDeVenta = $_GET['c'];
         $menu = new Model_Menu();
         $menus = $menu->listarMenus($idPuntoDeVenta);
         $this->view->generateSt('menu_view.php',$menus,$idPuntoDeVenta);
     }
+
 }
