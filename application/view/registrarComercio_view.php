@@ -34,6 +34,16 @@
 		<input type="number" required name="telefono">
 		<br>
 		<br>
+		<label>Tiempo de entrega establecido para las entregas:</label>
+		<br>
+		<select name="tiempoDeEntrega">
+			<option value="15">15m</option>
+			<option value="20">20m</option>
+			<option value="30" selected>30m</option>
+		</select>
+		
+		<br>
+		<br>
 		<h2>Datos de su Usuario</h2>
 		<h4>Usuario 1</h4>
 		<label>NombreUsuario 1:</label>
