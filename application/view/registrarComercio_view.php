@@ -24,11 +24,6 @@
 		<input type="text" required name="direccion" required="">
 		<br>
 		<br>
-		<label>Introduzca Ciudad del Comercio:</label>
-		<br>
-		<input type="text" required name="ciudad" required="">
-		<br>
-		<br>
 		<label>Introduzca Telefono del Comercio:</label>
 		<br>
 		<input type="number" required name="telefono">
