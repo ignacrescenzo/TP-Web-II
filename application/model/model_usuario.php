@@ -153,7 +153,7 @@ class Model_Usuario extends Model{
 	}
 	public function listarPedidosEnCursoDelivery($id){
         $conn =BaseDeDatos::conectarBD();
-        $sql = "select p.montoTotal as total, p.fechaHoraGenerado as horaG, p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
+        $sql = "select p.idPuntoDeVenta,p.montoTotal as total, p.fechaHoraGenerado as horaG, p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
 		from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
 		inner join puntodeventa as c on c.idPuntoDeVenta = p.idPuntoDeVenta
 		where p.Usuario_idDelivery = ".$id." and p.fechaHoraEntrega is null;";
@@ -163,7 +163,7 @@ class Model_Usuario extends Model{
     
     public function listarPedidosDisponibles(){
         $conn = BaseDeDatos::conectarBD();
-        $sql = "select p.montoTotal as total, p.fechaHoraGenerado as horaG, p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
+        $sql = "select p.montoTotal as total,p.idPuntoDeVenta, p.fechaHoraGenerado as horaG, p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
 		from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
 		inner join puntodeventa as c on c.idPuntoDeVenta = p.idPuntoDeVenta
 		where p.Usuario_idDelivery is null;";
@@ -309,9 +309,37 @@ public function listarDeliverysEnEsperaDeAprobacion(){
 
    public function cargarUsuariosDeComercio($usuario2,$usuario3,$usuario4,$usuario5,$clave2,$clave3,$clave4,$clave5,$idComercio){
     $conn =BaseDeDatos::conectarBD();
-    $sql = "insert usuario (nombreUsuario, clave, Rol_idRol,Comercio_idComercio) values ('".$usuario2."','".$clave2."',4,".$idComercio."), ('".$usuario3."','".$clave3."',4,".$idComercio."),('".$usuario4."','".$clave4."',4,".$idComercio."),('".$usuario5."','".$clave5."',4,".$idComercio.");";
+    $sql = "insert into usuario (nombreUsuario, clave, Rol_idRol,Comercio_idComercio) values ('".$usuario2."','".$clave2."',4,".$idComercio."), ('".$usuario3."','".$clave3."',4,".$idComercio."),('".$usuario4."','".$clave4."',4,".$idComercio."),('".$usuario5."','".$clave5."',4,".$idComercio.");";
      $result = mysqli_query($conn,$sql);
       return $result; 
+   }
+   public function cobrarComisiones($idComercio,$idDelivery,$total){
+    $porcentajeComercio = $total * 8 / 100;
+    $porcentajeAdmin = $porcentajeComercio * 5 / 100;
+    $porcentajeDelivery = $porcentajeComercio * 3 / 100;
+    $conn =BaseDeDatos::conectarBD();
+
+    $sqlMontoComercio = "(select monto from cuenta where comercio_idComercio = ".$idComercio.")";
+    $result = mysqli_query($conn,$sqlMontoComercio);
+    $row = mysqli_fetch_assoc($result);
+
+    $sql = "update cuenta set monto = ".$row['monto']."-".$porcentajeComercio." where comercio_idComercio = ".$idComercio.";";
+    $result = mysqli_query($conn,$sql);
+
+    $sqlMontoAdmin = "(select monto from cuenta where usuario_idUsuario = 1)";
+    $result = mysqli_query($conn,$sqlMontoAdmin);
+    $row = mysqli_fetch_assoc($result);
+
+    
+    $sql2 = "update cuenta set monto = ".$row['monto']."+".$porcentajeAdmin." where usuario_idUsuario = 1;";
+    $result = mysqli_query($conn,$sql2);
+
+    $sqlMontoDelivery = "(select monto from cuenta where usuario_idUsuario = ".$idDelivery.")";
+    $result = mysqli_query($conn,$sqlMontoDelivery);
+    $row = mysqli_fetch_assoc($result);
+
+    $sql3 = "update cuenta set monto = ".$row['monto']."+".$porcentajeDelivery." where usuario_idUsuario = ".$idDelivery.";";
+    $result = mysqli_query($conn,$sql3);
    }
 }
 ?>

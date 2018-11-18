@@ -80,7 +80,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`cuenta`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`cuenta` (
+CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`cuenta` (
   `idCuenta` INT NOT NULL AUTO_INCREMENT,
   `monto` FLOAT NULL,
   `comercio_idComercio` INT(11) NULL,
@@ -104,7 +104,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`deuda`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`deuda` (
+CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`deuda` (
   `idDeuda` INT NOT NULL AUTO_INCREMENT,
   `monto` FLOAT NULL,
   `fecha` DATETIME NULL,
@@ -292,6 +292,23 @@ values
 (1,null,0,'Carne con papas',1,null,1),
 (2,null,0,'Hamburguesa',2,null,1);
 
+insert into cuenta (monto,comercio_idComercio,usuario_idUsuario)
+values
+(0,1,null),
+(0,2,null),
+(0,null,1),
+(0,null,2),
+(0,null,3),
+(0,null,4);
+
+insert into deuda (monto,fecha,usuario_idUsuario,comercio_idComercio)
+values
+(0,null,1,null),
+(0,null,2,null),
+(0,null,3,null),
+(0,null,4,null),
+(0,null,null,1),
+(0,null,null,2);
 
 /*
 select Comercio_idComercio from PuntoDeVenta where idPuntodeventa = (select max(idPuntodeventa) from PuntoDeVenta);
