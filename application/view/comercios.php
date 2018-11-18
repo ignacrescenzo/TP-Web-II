@@ -84,7 +84,7 @@
           <div class='col-md-4 col-sm-4 probootstrap-animate'>
             <div class='probootstrap-block-image'>
 
-              <figure> <img src='..application/resources/upload/".$rows['imagen'].".jpg'></figure>
+              <figure> <img src='/application/resources/upload/".$rows['imagen']."' width='360px' height='200px'></figure>
               <div class='text'>
                 <h3>".$rows['nombre']."</a></h3>
                 <p>".$rows['nombre']."</p>
