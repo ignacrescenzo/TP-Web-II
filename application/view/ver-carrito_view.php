@@ -46,12 +46,12 @@
   </head>
   <body>
 
-<section class="probootstrap-section-bg overlay" style="background-image: url(../application/resources/img/aaa1.jpg); height: 250px;">
+<section class="probootstrap-section-bg overlay" style="background-image: url(../application/resources/img/hero_bg_1.jpg); height: 250px;">
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center probootstrap-animate">
             <div class="probootstrap-heading">
-              <h3 class="secondary-heading">Carrito</h3>
+              <h3 class="secondary-heading" style="color: black;">Carrito</h3>
             </div>
           </div>
         </div>

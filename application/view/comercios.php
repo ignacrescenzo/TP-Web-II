@@ -69,7 +69,7 @@
         <div class="row">
           <div class="col-md-12 text-center probootstrap-animate">
             <div class="probootstrap-heading">
-              <h5 class="secondary-heading">¿Qué querés comer?</h5>
+              <h5 class="secondary-heading" style="color: black;">¿Qué querés comer?</h5>
               <h3>SELECCIONÁ UN COMERCIO PARA COMENZAR TU PEDIDO!</h3>
             </div>
           </div>
@@ -92,7 +92,7 @@
               </div>
             </div>
           </div> 
-          </div>";
+          ";
           } ?>
         </div>
       </div>
