@@ -5062,12 +5062,12 @@ values
 
 insert into puntodeventa
 values
-(1,'direccion 1','333-444',1,10194),(2,'direccion 2','666-999',1,1195);
+(1,'14340 Av. Rivadavia','333-444',1,14319),(2,'14532 Av. Rivadavia','666-999',1,14319);
 
 insert into Usuario(idUsuario, nombreUsuario, clave, Rol_idRol,Comercio_idComercio,domicilio,estado,habilitado,provincialocalidad_idLocalidad)
 values
 ( 1,'admin1',md5('1111'),1,null,null,null,null,null),
-( 2,'cliente1',md5('2222'),2,null,'otra direccion falsa',null,null,630),
+( 2,'cliente1',md5('2222'),2,null,'24 Av. de Mayo',null,null,14319),
 ( 3,'delivery1',md5('3333'),3,null,null,0,1,null),
 ( 4,'opcomercio1',md5('4444'),4,1,null,null,null,null);
 
