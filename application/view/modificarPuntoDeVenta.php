@@ -10,7 +10,7 @@ if (isset($data)) {
  } 
  ?>
  <h3>Ingrese los datos que desee modificar Punto De Venta</h3>
- <form method="POST" action="/OperadorComercio/updatePuntoDeVenta" enctype="application/x-www-form-urlencodes">
+ <form method="POST" action="/OperadorComercio/updatePuntoDeVenta?v=<?php echo $data2; ?>" enctype="application/x-www-form-urlencodes">
  	
  	<input type="hidden" name="idPuntoDeVenta" value="<?php echo $data; ?>" readonly>
  	<br><br>

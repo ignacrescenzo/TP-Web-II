@@ -5,7 +5,9 @@ include 'application/model/model_usuario.php';
 include 'application/model/model_comercio.php';
 
 class Controller_Delivery extends Controller{
-	
+	public function index(){
+		$this->view->generateSt('deliveryHome.php');
+	}
 	public function pedidoRetirado(){
 		$delivery = new Model_usuario();
 		$retira = $delivery->retirarPedidoDelivery($_GET['id']);
@@ -24,7 +26,14 @@ class Controller_Delivery extends Controller{
 		$total = $_GET['t'];
 		$entrega = $delivery->entregarPedidoDelivery($_GET['id'],$_SESSION['id']);
 		$idComercio = $pdv -> obtenerIdComercio($_GET['p']);
+		$admin->cobrarAlCliente($_GET['id'],$total);
+		$admin->pagarAlComercio($idComercio,$total);
 		$admin->cobrarComisiones($idComercio,$_SESSION['id'],$total);
+		$tardoMucho = $admin->verificarTardanza($_GET['id']);
+		if($tardoMucho){
+			$admin->bonificarAlCliente($_GET['id'],$total);
+			$admin->cobrarAlDelivery($_SESSION['id'],$_GET['id'],$total);
+		}
 		$this->pedidosEnCurso();
 	}
 	 public function pedidosEnCurso(){
@@ -39,8 +48,7 @@ class Controller_Delivery extends Controller{
         $pedidos = $delivery->listarPedidosDisponibles();
         $delivery->deliveryActivo($id);
         $delivery->deliveryHoraActivo($id);
-        $this->view->generateSt('pedidosDisponibles.php',$pedidos);
-	 	
+        $this->view->generateSt('pedidosDisponibles.php',$pedidos);	
 	 }
 	  public function pedidosRealizados(){
 		$id = $_SESSION['id'];
@@ -99,4 +107,11 @@ class Controller_Delivery extends Controller{
         $delivery->insertarDelivery($username,$password,$email,$name,$surname,$tel);
         header("location:/login");	
     }
+
+	 public function deliveryInactivo(){
+	 	$id = $_SESSION['id'];
+		$delivery = new Model_Usuario();
+		$delivery->deliverySePoneInactivo($id);
+		header("location:/login");
+	 }
 }
