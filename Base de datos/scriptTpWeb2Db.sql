@@ -303,7 +303,13 @@ values
 (0,null,3),
 (0,null,4);
 
+
+
+
+
 /*
+update Usuario set estado=0,horaActivo=null where idUsuario=3;
+
 select Comercio_idComercio from PuntoDeVenta where idPuntodeventa = (select max(idPuntodeventa) from PuntoDeVenta);
 
 insert into PuntoDeVenta (direccion, telefono, Comercio_idComercio)

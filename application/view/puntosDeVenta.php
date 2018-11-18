@@ -42,8 +42,6 @@
             
             <div class="col col-9">
 
-                
-            <?php
             while($rows=mysqli_fetch_assoc($data)){ 
                     
                     echo "
