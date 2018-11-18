@@ -49,7 +49,11 @@
 										<p class='card-text'>Horario de retiro: ".$pedido['retiro']."</p>
 										<p class='card-text'>Horario de entrega: ".$pedido['entrega']."</p>
 										<p class='card-text'>Domicilio del cliente: ".$pedido['dom']."</p>
+										<p class='card-text'>Localidad: ".$pedido['ulocalidad']."</p>
+										<p class='card-text'>Provincia: ".$pedido['uprovincia']."</p>
 										<p class='card-text'>Direccion del comercio: ".$pedido['dir']."</p>
+										<p class='card-text'>Localidad: ".$pedido['clocalidad']."</p>
+										<p class='card-text'>Provincia: ".$pedido['cprovincia']."</p>
 										<p class='card-text'>Total:".$pedido['total']."</p>";
 										
 										if($pedido['retiro'] == null){
