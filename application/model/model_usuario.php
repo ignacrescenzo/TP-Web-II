@@ -314,9 +314,9 @@ public function listarDeliverysEnEsperaDeAprobacion(){
       return $result; 
    }
    public function cobrarComisiones($idComercio,$idDelivery,$total){
-    $porcentajeComercio = $total * 8 / 100;
-    $porcentajeAdmin = $porcentajeComercio * 5 / 100;
-    $porcentajeDelivery = $porcentajeComercio * 3 / 100;
+    $porcentajeAdmin = $total * 5 / 100;
+    $porcentajeDelivery = $total * 3 / 100;
+    $porcentajeComercio = $porcentajeAdmin + $porcentajeDelivery;
     $conn =BaseDeDatos::conectarBD();
 
     $sqlMontoComercio = "(select monto from cuenta where comercio_idComercio = ".$idComercio.")";
@@ -325,6 +325,13 @@ public function listarDeliverysEnEsperaDeAprobacion(){
 
     $sql = "update cuenta set monto = ".$row['monto']."-".$porcentajeComercio." where comercio_idComercio = ".$idComercio.";";
     $result = mysqli_query($conn,$sql);
+
+    //movimiento monetario
+    $sql4 = "insert into movimiento (monto,fecha,comercio_idComercio,tipo) values (-".$porcentajeAdmin.",CURDATE(),".$idComercio.",'Pago a Administrador');";
+    mysqli_query($conn,$sql4);
+
+    $sql5 = "insert into movimiento (monto,fecha,comercio_idComercio,tipo) values (-".$porcentajeDelivery.",CURDATE(),".$idComercio.",'Pago a Delivery');";
+    mysqli_query($conn,$sql5);
 
     $sqlMontoAdmin = "(select monto from cuenta where usuario_idUsuario = 1)";
     $result = mysqli_query($conn,$sqlMontoAdmin);
@@ -414,6 +421,9 @@ public function listarDeliverysEnEsperaDeAprobacion(){
 
     $sql4 = "update cuenta set monto = ".$totalParaComercio." where comercio_idComercio = ".$idComercio."";
     $result4 = mysqli_query($conn,$sql4);
+
+    $sql5 = "insert into movimiento (monto,fecha,comercio_idComercio,tipo) values (".$total.",CURDATE(),".$idComercio.",'Venta');";
+    mysqli_query($conn,$sql5);
   }
 }
 ?>

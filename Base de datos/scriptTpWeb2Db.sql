@@ -108,7 +108,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`movimiento` (
   `idMovimiento` INT NOT NULL AUTO_INCREMENT,
   `monto` FLOAT NULL,
-  `fecha` DATETIME NULL,
+  `fecha` DATE NULL,
+  `tipo` VARCHAR (30) NULL,
   `usuario_idUsuario` INT(11) NULL,
   `comercio_idComercio` INT(11) NULL,
   PRIMARY KEY (`idMovimiento`),
@@ -301,15 +302,6 @@ values
 (0,null,2),
 (0,null,3),
 (0,null,4);
-
-insert into movimiento (monto,fecha,usuario_idUsuario,comercio_idComercio)
-values
-(0,null,1,null),
-(0,null,2,null),
-(0,null,3,null),
-(0,null,4,null),
-(0,null,null,1),
-(0,null,null,2);
 
 /*
 select Comercio_idComercio from PuntoDeVenta where idPuntodeventa = (select max(idPuntodeventa) from PuntoDeVenta);
