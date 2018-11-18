@@ -65,8 +65,44 @@
 										} echo"</div>
 									</div> 
 								</div>";
-								}
+								function getGeocodeData($address) { 
+									$address = urlencode($address);     
+									$googleMapUrl = "https://maps.googleapis.com/maps/api/geocode/json?address={$address}&&sensor=false";
+									$geocodeResponseData = file_get_contents($googleMapUrl);
+									$responseData = json_decode($geocodeResponseData, true);
+									if($responseData['status']=='OK') {
+										$latitude = isset($responseData['results'][0]['geometry']['location']['lat']) ? $responseData['results'][0]['geometry']['location']['lat'] : "";
+										$longitude = isset($responseData['results'][0]['geometry']['location']['lng']) ? $responseData['results'][0]['geometry']['location']['lng'] : "";
+										$formattedAddress = isset($responseData['results'][0]['formatted_address']) ? $responseData['results'][0]['formatted_address'] : "";         
+										if($latitude && $longitude && $formattedAddress) {         
+											$geocodeData = array();                         
+											array_push(
+												$geocodeData, 
+												$latitude, 
+												$longitude, 
+												$formattedAddress
+											);             
+											return $geocodeData;             
+										} else {
+											return false;
+										}         
+									} else {
+										echo "ERROR: {$responseData['status']}";
+										return false;
+									}
+}									$address =$pedido['dom'].$pedido['ulocalidad'].$pedido['uprovincia'];
+									$geocodeData = getGeocodeData($address); 
+									      
+									$latitude = $geocodeData[0];
+									$longitude = $geocodeData[1];
+									$address = $geocodeData[2];     
+								
+									echo $latitude;
+									echo $longitude;
+									echo $address;
 							}
+							
+						}
                         ?>
 					</div>
 				</div>
