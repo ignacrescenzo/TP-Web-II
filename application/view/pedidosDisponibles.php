@@ -39,6 +39,11 @@
 				<h1>Pedidos Disponibles</h1>
             </div>
 
+             <div class="text-center">
+				<h5>Si querés tomarte un descanso pulsa en el botón "Inactivo"</h5>
+				<button><a href="/delivery/deliveryInactivo"> Inactivo </a></button>
+            </div>
+
 				<div class="container">
 					<div class="row">
                         <?php                      
