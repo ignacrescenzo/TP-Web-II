@@ -41,8 +41,9 @@
         <div class="row contenido border mt-4">
             
             <div class="col col-9">
+
+                
             <?php
-            if(mysqli_num_rows($data)>0){
             while($rows=mysqli_fetch_assoc($data)){ 
                     
                     echo "
@@ -67,7 +68,6 @@
                         </div>
                     </div>";
                 }
-            }
 			    ?>
             </div>
         </div>
