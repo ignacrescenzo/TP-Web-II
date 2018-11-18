@@ -223,7 +223,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Menu` (
   `idMenu` INT NOT NULL AUTO_INCREMENT,
-  `foto` VARCHAR(45) NULL,
+  `foto` VARCHAR(200) NULL,
   `ofertado` tinyint(1) NULL,
   `descripcion` VARCHAR(45) NULL,
   `Precio_idPrecio` INT NOT NULL,
@@ -5054,8 +5054,8 @@ values
 
 insert into comercio
 values
-(1,'Comercio 1','a@a.com','direccion falsa', null, '11535433',1,'logo1',30),
-(2,'Comercio 2','b@b.com','direccion falsa2',null,'1246215133',1,'logo2',45);
+(1,'Comercio 1','a@a.com','direccion falsa', null, '11535433',1,'l1.png',30),
+(2,'Comercio 2','b@b.com','direccion falsa2',null,'1246215133',1,'l2.jpg',45);
 
 
 
@@ -5078,8 +5078,8 @@ values
 
 insert into menu
 values
-(1,null,0,'Carne con papas',1,null,1),
-(2,null,0,'Hamburguesa',2,null,1);
+(1,'CARNE-CON-PAPAS.jpg',0,'Carne con papas',1,null,1),
+(2,'logo2.jpg',0,'Hamburguesa',2,null,1);
 
 insert into cuenta (monto,comercio_idComercio,usuario_idUsuario)
 values
