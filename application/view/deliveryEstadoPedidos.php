@@ -49,14 +49,15 @@
 										<p class='card-text'>Horario de retiro: ".$pedido['retiro']."</p>
 										<p class='card-text'>Horario de entrega: ".$pedido['entrega']."</p>
 										<p class='card-text'>Domicilio del cliente: ".$pedido['dom']."</p>
-										<p class='card-text'>Direccion del comercio: ".$pedido['dir']."</p>";
-
+										<p class='card-text'>Direccion del comercio: ".$pedido['dir']."</p>
+										<p class='card-text'>Total:".$pedido['total']."</p>";
+										
 										if($pedido['retiro'] == null){
 										echo "<a href='/delivery/pedidoRetirado?id=".$pedido['id']."' class='btn btn-primary'>Retirado</a>";
 										echo "<a href='/delivery/pedidoCancelado?id=".$pedido['id']."' class='btn btn-danger'>Cancelar</a>";
 										}
 										if($pedido['entrega'] == null && $pedido['retiro'] != null){
-										echo "<a href='/delivery/pedidoEntregado?id=".$pedido['id']."' class='btn btn-danger text-white'>Entregado</a>";
+										echo "<a href='/delivery/pedidoEntregado?id=".$pedido['id']."&p=".$pedido['idPuntoDeVenta']."&t=".$pedido['total']."' class='btn btn-danger text-white'>Entregado</a>";
 										} echo"</div>
 									</div> 
 								</div>";

@@ -77,7 +77,55 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Usuario` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `mydb`.`cuenta`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`cuenta` (
+  `idCuenta` INT NOT NULL AUTO_INCREMENT,
+  `monto` FLOAT NULL,
+  `comercio_idComercio` INT(11) NULL,
+  `usuario_idUsuario` INT(11) NULL,
+  PRIMARY KEY (`idCuenta`),
+  INDEX `fk_cuenta_comercio_idx` (`comercio_idComercio` ASC),
+  INDEX `fk_cuenta_usuario1_idx` (`usuario_idUsuario` ASC),
+  CONSTRAINT `fk_cuenta_comercio`
+    FOREIGN KEY (`comercio_idComercio`)
+    REFERENCES `tpweb2db`.`comercio` (`idComercio`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cuenta_usuario1`
+    FOREIGN KEY (`usuario_idUsuario`)
+    REFERENCES `tpweb2db`.`usuario` (`idUsuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `mydb`.`deuda`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`deuda` (
+  `idDeuda` INT NOT NULL AUTO_INCREMENT,
+  `monto` FLOAT NULL,
+  `fecha` DATETIME NULL,
+  `usuario_idUsuario` INT(11) NULL,
+  `comercio_idComercio` INT(11) NULL,
+  PRIMARY KEY (`idDeuda`),
+  INDEX `fk_deuda_usuario1_idx` (`usuario_idUsuario` ASC),
+  INDEX `fk_deuda_comercio1_idx` (`comercio_idComercio` ASC),
+  CONSTRAINT `fk_deuda_usuario1`
+    FOREIGN KEY (`usuario_idUsuario`)
+    REFERENCES `tpweb2db`.`usuario` (`idUsuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_deuda_comercio1`
+    FOREIGN KEY (`comercio_idComercio`)
+    REFERENCES `tpweb2db`.`comercio` (`idComercio`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+USE `tpweb2db` ;
 -- -----------------------------------------------------
 -- Table `tpWeb2Db`.`PuntoDeVenta`
 -- -----------------------------------------------------
@@ -103,6 +151,7 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Pedido` (
   `fechaHoraEntrega` DATETIME NULL,
   `fechaHoraRetiro` DATETIME NULL,
   `fechaHoraGenerado` DATETIME NULL,
+  `montoTotal` FLOAT NULL,
   `Usuario_idCliente` INT NOT NULL,
   `Usuario_idDelivery` INT NULL,
   `idPuntoDeVenta` INT NOT NULL,
@@ -243,6 +292,23 @@ values
 (1,null,0,'Carne con papas',1,null,1),
 (2,null,0,'Hamburguesa',2,null,1);
 
+insert into cuenta (monto,comercio_idComercio,usuario_idUsuario)
+values
+(0,1,null),
+(0,2,null),
+(0,null,1),
+(0,null,2),
+(0,null,3),
+(0,null,4);
+
+insert into deuda (monto,fecha,usuario_idUsuario,comercio_idComercio)
+values
+(0,null,1,null),
+(0,null,2,null),
+(0,null,3,null),
+(0,null,4,null),
+(0,null,null,1),
+(0,null,null,2);
 
 /*
 select Comercio_idComercio from PuntoDeVenta where idPuntodeventa = (select max(idPuntodeventa) from PuntoDeVenta);
