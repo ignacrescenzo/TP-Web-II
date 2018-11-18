@@ -188,16 +188,16 @@ class Model_Usuario extends Model{
     return $result;
   }
 
-  public function deliveryHoraActivo($id){
+  public function deliveryInactivo($id){
     $conn =BaseDeDatos::conectarBD();
-    $sql = "update Usuario set horaActivo=(select now()) where idUsuario=".$id.";";
+    $sql = "update Usuario set estado='0' where idUsuario=".$id.";";
     $result = mysqli_query($conn,$sql);
     return $result;
   }
 
-   public function deliveryInactivo($id){
+  public function deliveryHoraActivo($id){
     $conn =BaseDeDatos::conectarBD();
-    $sql = "update Usuario set estado='0' where idUsuario=".$id.";";
+    $sql = "update Usuario set horaActivo=(select now()) where idUsuario=".$id.";";
     $result = mysqli_query($conn,$sql);
     return $result;
   }
@@ -208,7 +208,6 @@ class Model_Usuario extends Model{
     $result = mysqli_query($conn,$sql);
     return $result;
   }
-
 
   public function listarDeliverys($estado){
         $conn =BaseDeDatos::conectarBD();
@@ -424,6 +423,13 @@ public function listarDeliverysEnEsperaDeAprobacion(){
 
     $sql5 = "insert into movimiento (monto,fecha,comercio_idComercio,tipo) values (".$total.",CURDATE(),".$idComercio.",'Venta');";
     mysqli_query($conn,$sql5);
+  }
+
+  public function deliverySePoneInactivo($id){
+    $conn =BaseDeDatos::conectarBD();
+    $sql = "update Usuario set estado=0, horaActivo=null where idUsuario=".$id.";";
+    $result = mysqli_query($conn,$sql);
+    return $result;
   }
 }
 ?>
