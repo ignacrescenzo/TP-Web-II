@@ -28,10 +28,10 @@ class Controller_PuntoDeVenta extends Controller
     }
 
     public function mostrarMenu(){
-        $idPuntoDeVenta = $_GET['c'];
+        $idComercio = $_GET['c'];
         $menu = new Model_Menu();
-        $menus = $menu->listarMenus($idPuntoDeVenta);
-        $this->view->generateSt('menu_view.php',$menus,$idPuntoDeVenta);
+        $menus = $menu->listarMenus($idComercio);
+        $this->view->generateSt('menu_view.php',$menus,$idComercio);
     }
 
 }
