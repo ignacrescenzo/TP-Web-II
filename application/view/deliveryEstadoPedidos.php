@@ -57,7 +57,7 @@
 										echo "<a href='/delivery/pedidoCancelado?id=".$pedido['id']."' class='btn btn-danger'>Cancelar</a>";
 										}
 										if($pedido['entrega'] == null && $pedido['retiro'] != null){
-										echo "<a href='/delivery/pedidoEntregado?id=".$pedido['id']."' class='btn btn-danger text-white'>Entregado</a>";
+										echo "<a href='/delivery/pedidoEntregado?id=".$pedido['id']."&p=".$pedido['idPuntoDeVenta']."&t=".$pedido['total']."' class='btn btn-danger text-white'>Entregado</a>";
 										} echo"</div>
 									</div> 
 								</div>";
