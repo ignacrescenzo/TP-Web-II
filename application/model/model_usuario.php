@@ -341,5 +341,79 @@ public function listarDeliverysEnEsperaDeAprobacion(){
     $sql3 = "update cuenta set monto = ".$row['monto']."+".$porcentajeDelivery." where usuario_idUsuario = ".$idDelivery.";";
     $result = mysqli_query($conn,$sql3);
    }
+
+   public function verificarTardanza($idPedido){
+    $conn = BaseDeDatos::conectarBD();
+    $sqlTiempoEntrega = "select c.tiempoEntrega from pedido p inner join puntodeventa pdv on pdv.idPuntoDeVenta=p.idPuntoDeVenta inner join comercio c on c.idComercio = pdv.Comercio_idComercio where p.idPedido = ".$idPedido.";";
+    $result = mysqli_query($conn,$sqlTiempoEntrega);
+    $row = mysqli_fetch_assoc($result);
+    $tiempoLimite = $row['tiempoEntrega'] + ($row['tiempoEntrega'] * 15 / 100);
+    $sql = "select * from pedido where idPedido=".$idPedido." and timestampdiff (minute,fechaHoraRetiro,fechaHoraEntrega) > ".$tiempoLimite.";";
+    $result2 = mysqli_query($conn,$sql);
+    if (mysqli_num_rows($result2) >= 1){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
+  public function bonificarAlCliente($idPedido,$montoTotal){
+    $conn = BaseDeDatos::conectarBD();
+    $sql = "select Usuario_idCliente from pedido where idPedido = ".$idPedido.";";
+    $result = mysqli_query($conn,$sql);
+    $row = mysqli_fetch_assoc($result);
+    $idCliente = $row['Usuario_idCliente'];
+    
+    $porcentaje = ($montoTotal * 10 / 100);
+
+    $sqlMontoCliente = "(select monto from cuenta where usuario_idUsuario = ".$idCliente.")";
+    $result3 = mysqli_query($conn,$sqlMontoCliente);
+    $row3 = mysqli_fetch_assoc($result3);
+    $totalParaCliente = $row3['monto'] + $porcentaje;
+
+    $sql4 = "update cuenta set monto = ".$totalParaCliente." where usuario_idUsuario = ".$idCliente."";
+    $result4 = mysqli_query($conn,$sql4);
+  }
+
+  public function cobrarAlDelivery($idDelivery,$idPedido,$montoTotal){
+    $conn = BaseDeDatos::conectarBD();
+    $porcentaje = ($montoTotal * 0.5 / 100);
+
+    $sqlMontoDelivery = "(select monto from cuenta where usuario_idUsuario = ".$idDelivery.")";
+    $result3 = mysqli_query($conn,$sqlMontoDelivery);
+    $row3 = mysqli_fetch_assoc($result3);
+    $totalParaDelivery = $row3['monto'] - $porcentaje;
+
+    $sql4 = "update cuenta set monto = ".$totalParaDelivery." where usuario_idUsuario = ".$idDelivery."";
+    $result4 = mysqli_query($conn,$sql4);
+  }
+
+  public function cobrarAlCliente($idPedido,$total){
+    $conn = BaseDeDatos::conectarBD();
+    $sql = "select Usuario_idCliente from pedido where idPedido = ".$idPedido.";";
+    $result = mysqli_query($conn,$sql);
+    $row = mysqli_fetch_assoc($result);
+    $idCliente = $row['Usuario_idCliente'];
+
+    $sqlMontoCliente = "(select monto from cuenta where usuario_idUsuario = ".$idCliente.")";
+    $result3 = mysqli_query($conn,$sqlMontoCliente);
+    $row3 = mysqli_fetch_assoc($result3);
+    $totalParaCliente = $row3['monto'] - $total;
+
+    $sql4 = "update cuenta set monto = ".$totalParaCliente." where usuario_idUsuario = ".$idCliente."";
+    $result4 = mysqli_query($conn,$sql4);
+  }
+
+  public function pagarAlComercio($idComercio,$total){
+    $conn = BaseDeDatos::conectarBD();
+    $sqlMontoComercio = "(select monto from cuenta where comercio_idComercio = ".$idComercio.")";
+    $result3 = mysqli_query($conn,$sqlMontoComercio);
+    $row3 = mysqli_fetch_assoc($result3);
+    $totalParaComercio = $row3['monto'] + $total;
+
+    $sql4 = "update cuenta set monto = ".$totalParaComercio." where comercio_idComercio = ".$idComercio."";
+    $result4 = mysqli_query($conn,$sql4);
+  }
 }
 ?>
