@@ -38,8 +38,9 @@
 		<br>
 		<select name="tiempoDeEntrega">
 			<option value="15">15m</option>
-			<option value="20">20m</option>
-			<option value="30" selected>30m</option>
+			<option value="30">30m</option>
+			<option value="45" selected>45m</option>
+			<option value="60" selected>60m</option>
 		</select>
 		
 		<br>

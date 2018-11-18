@@ -106,11 +106,21 @@ class Controller_AdministradorDeSistema extends Controller{
     }
 
     public function estadisticas(){
+        $this->view->generateSt('adminEstadisticas_view.php');  
+    } 
+
+    public function estadisticasDatos(){
         
         $estadisticas = new Model_Estadisticas();
+        $desde = $_POST['desde'];
+        $hasta = $_POST['hasta'];
 
+        $estadisticas->totalGanancias($desde, $hasta);
+        $estadisticas->entregasMensuales($desde, $hasta);
+        $estadisticas->topRankingComercios($desde, $hasta);
+        $estadisticas->topRankingDeliverys($desde, $hasta);
 
-        $this->view->generateSt('adminEstadisticas_view.php');        
+        $this->view->generateSt('adminEstadisticas_view.php',$topRankingDeliverys);        
     }
 
 }
