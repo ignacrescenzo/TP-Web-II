@@ -26,7 +26,7 @@
 				<div>
                    <?php 
                     
-                        $idComercio=$_SESSION['idComercio'];
+                        $idComercio=$data2;
                         echo "<a href='/OperadorComercio/crearPuntoDeVenta?idComercio=".$idComercio."'>Crear Punto De Venta</a>";
                                   
                     ?>
@@ -41,8 +41,7 @@
         <div class="row contenido border mt-4">
             
             <div class="col col-9">
-
-            <?php
+            <?php 
             while($rows=mysqli_fetch_assoc($data)){ 
                     
                     echo "
@@ -57,10 +56,10 @@
                                 <a href='/puntoDeVenta/index?c=".$rows['idPuntoDeVenta']."'>
                                     <input type='button' value='Entrar'>
                                 </a>
-                                <a href='/OperadorComercio/eliminarPuntoDeVenta?c=".$rows['idPuntoDeVenta']."'>
+                                <a href='/OperadorComercio/eliminarPuntoDeVenta?c=".$rows['idPuntoDeVenta']."&v=".$data2."'>
                                     <input type='button' value='Eliminar'>
                                 </a>
-                                <a href='/OperadorComercio/modificarPuntoDeVenta?c=".$rows['idPuntoDeVenta']."'>
+                                <a href='/OperadorComercio/modificarPuntoDeVenta?c=".$rows['idPuntoDeVenta']."&v=".$data2."'>
                                     <input type='button' value='Modificar'>
                                 </a>
                             </div>

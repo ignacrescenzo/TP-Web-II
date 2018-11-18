@@ -24,12 +24,12 @@ class Controller_Login extends Controller{
 			case "Cliente":
 				$_SESSION["login"]="sessionCliente";
 				$_SESSION['id'] = $usuario->obtenerIdCliente($nombreUsuario);
-				$this->iracomercios();
+				header("location: /cliente/verComercios");
 				break;
 			case "Delivery":
 				$_SESSION["login"]="sessionDelivery";
 				$_SESSION['id'] = $usuario->obtenerIdDelivery($nombreUsuario);
-				$this->view->generateSt('deliveryHome.php');
+				header("location: /delivery/index");
 				break;
 			case "OperadorComercio":
 				$_SESSION["login"]="sessionOpComercio";
@@ -37,8 +37,7 @@ class Controller_Login extends Controller{
 				$idComercio = $usuario->obtenerIdComercio($nombreUsuario);
 				$puntosDeVenta = $comercio->listarPuntosDeVenta($idComercio);
 				$_SESSION['idComercio'] = $idComercio;
-				$this->view->generateSt('puntosDeVenta.php',$puntosDeVenta);
-				//$this->view->generateSt('comercioHome.php',$idComercio);
+				header("location: /operadorComercio/index?v=".$idComercio);
 				break;
 		}
     }
@@ -55,12 +54,6 @@ class Controller_Login extends Controller{
 		include 'core/helpers/cerrarSesion.php';
     	$this->view->generateSt('home_view.php');
     }
-   
-   function iracomercios(){
-	$comercio = new Model_Comercio();
-	$comercios = $comercio->listarComercios();
-	$this->view->generateSt('comercios.php',$comercios);
-   }
 
    function cambiarContrasena(){
    	$idUsuario = $_GET['u'];

@@ -140,7 +140,6 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`PuntoDeVenta` (
   CONSTRAINT `fk_PuntoDeVenta_Comercio1`
     FOREIGN KEY (`Comercio_idComercio`)
     REFERENCES `tpWeb2Db`.`Comercio` (`idComercio`)
-    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
