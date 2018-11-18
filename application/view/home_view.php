@@ -37,7 +37,7 @@
         <div id="navbar-collapse" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#" data-nav-section="welcome">Inicio</a></li>
-            <li><a onclick="location.href='/main/listarcomercios'" >Comercios</a></li>
+            <li><a style="cursor:pointer" onclick="location.href='/cliente/verComercios'" >Comercios</a></li>
             <li><a href="#" >Ofertas del día</a></li>
             <li><a style="cursor:pointer" onclick="location.href='/login'"> Iniciar Sesión </a></li>
             <li><a style="cursor:pointer" onclick="location.href='/cliente/registrar'" >Registrarme</a></li>
