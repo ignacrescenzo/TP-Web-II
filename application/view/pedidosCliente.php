@@ -73,6 +73,8 @@
 										Hora de retiro:".$pedido['retiro']."<br>
 										Hora de entrega:".$pedido['entrega']."<br>
 										Dirección comercio: ".$pedido['dir']."<br>
+										Localidad: ".$pedido['localidad']."<br>
+										Provincia: ".$pedido['provincia']."<br>
 										Total: $".$pedido['total']."<br>
 										Estado: ";
 										if ($pedido['idDelivery'] != null) {
