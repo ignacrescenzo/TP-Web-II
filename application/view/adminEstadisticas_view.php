@@ -31,8 +31,19 @@
 	
 		<br>
 		<h1>Estadisticas generales:</h1>
+<form method="POST" action="/administradorDeSistema/estadisticasDatos" enctype="application/x-www-form-urlencodes">
+		<label>Desde</label>
+		<input type="date" name="desde">
 
+		<label>Hasta</label>
+		<input type="date" name="hasta">
+		<input type="submit" name="buscar" value="buscar">
+</form>
 
+<br>
+		<h3>Total ganancias:</h3>
+<br>
+		<h3>Total ganancias:</h3>
 	
 	</div>
 </body>

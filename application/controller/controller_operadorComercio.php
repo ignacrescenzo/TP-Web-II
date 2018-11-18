@@ -59,13 +59,12 @@ class Controller_OperadorComercio extends Controller
         $nombreComercio = $_POST['nombre'];
         $email = $_POST['email'];
         $direccion = $_POST['direccion'];
-        $ciudad = $_POST['ciudad'];
         $telefono = $_POST['telefono'];
         $NombreUsuario1 = $_POST['NombreUsuario1'];
         $clave1 = substr( md5(microtime()), 1, 8);
         
         
-        $comercio->insertarComercio($nombreComercio,$email,$direccion,$ciudad,$telefono);
+        $comercio->insertarComercio($nombreComercio,$email,$direccion,$telefono);
         $idComercio = $comercio->traerComercioPorNombre($nombreComercio);
         $comercio->insertarUsuarioDeComercio($NombreUsuario1,$clave1,$idComercio);
         echo "<script>alert('Recibira un correo si su Comercio es aceptado');</script>";

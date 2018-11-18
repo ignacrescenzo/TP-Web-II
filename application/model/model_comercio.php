@@ -57,7 +57,7 @@ class Model_Comercio extends Model{
 
     public function listarComerciosEnEspera(){
         $conn =BaseDeDatos::conectarBD();
-        $sql = "select c.idComercio as idComercio, c.nombre as nombreComercio, c.email as emailComercio, c.direccion as direccionComercio, c.ciudad as ciudadComercio, c.telefono as telefonoComercio, c.habilitado as habilitadoComercio, u.idUsuario as idUsuario
+        $sql = "select c.idComercio as idComercio, c.nombre as nombreComercio, c.email as emailComercio, c.direccion as direccionComercio, c.telefono as telefonoComercio, c.habilitado as habilitadoComercio, u.idUsuario as idUsuario
             from comercio as c
             inner join usuario as u on c.idComercio = u.Comercio_idComercio
             where c.habilitado = 0;";
@@ -158,4 +158,13 @@ class Model_Comercio extends Model{
     $id = $row['Comercio_idComercio'];
     return $id;
    }
+
+   
+    public function insertarComercio($nombreComercio,$email,$direccion,$telefono){
+        $conn =BaseDeDatos::conectarBD();
+        $sql = "insert into comercio (nombre,email,direccion,banner,telefono, habilitado) values ('".$nombreComercio."','".$email."','".$direccion."', null, '".$telefono."',0 );";
+
+        $result = mysqli_query($conn,$sql);   
+        return $result;
+    }
 }

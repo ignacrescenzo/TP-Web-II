@@ -24,14 +24,20 @@
 		<input type="text" required name="direccion" required="">
 		<br>
 		<br>
-		<label>Introduzca Ciudad del Comercio:</label>
-		<br>
-		<input type="text" required name="ciudad" required="">
-		<br>
-		<br>
 		<label>Introduzca Telefono del Comercio:</label>
 		<br>
 		<input type="number" required name="telefono">
+		<br>
+		<br>
+		<label>Tiempo de entrega establecido para las entregas:</label>
+		<br>
+		<select name="tiempoDeEntrega">
+			<option value="15">15m</option>
+			<option value="30">30m</option>
+			<option value="45" selected>45m</option>
+			<option value="60" selected>60m</option>
+		</select>
+		
 		<br>
 		<br>
 		<h2>Datos de su Usuario</h2>
