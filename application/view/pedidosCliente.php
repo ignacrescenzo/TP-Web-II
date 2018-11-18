@@ -29,7 +29,7 @@
     <nav class="navbar navbar-default navbar-fixed-top probootstrap-navbar">
       <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="" title="uiCookies:FineOak">FineOak</a>
+            <a class="navbar-brand" href="/" title="uiCookies:FineOak">FineOak</a>
         </div>
 
         <div id="navbar-collapse" class="navbar-collapse collapse">
