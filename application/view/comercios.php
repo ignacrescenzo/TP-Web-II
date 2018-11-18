@@ -35,7 +35,7 @@
         <div id="navbar-collapse" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#" data-nav-section="welcome">Inicio</a></li>
-            <li><a onclick="location.href='/main/listarcomercios'" >Comercios</a></li>
+            <li><a style="cursor:pointer" onclick="location.href='/cliente/verComercios'" >Comercios</a></li>
             <li><a onclick="location.href= <?php echo "'/cliente/verCarrito?c=$data2'" ?>" >Carrito</a></li>
             <li><a onclick="location.href='/cliente/mostrarPedidos'">Pedidos</a></li>
             <li><a onclick="location.href='/login/cerrarsesion'" >Cerrar sesión</a></li>
