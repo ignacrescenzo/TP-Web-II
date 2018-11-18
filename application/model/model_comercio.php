@@ -124,9 +124,11 @@ class Model_Comercio extends Model{
     $mail->send();
 }
 
-    public function eliminarPuntoDeVenta($idPuntodeventa){
+    public function eliminarPuntoDeVenta($idPuntodeventa,$idComercio){
         $conn =BaseDeDatos::conectarBD();
-        $sql="delete from PuntoDeVenta where idPuntoDeVenta=".$idPuntodeventa.";";
+        $sql = "delete from menu where idPuntoDeVenta=".$idPuntodeventa.";";
+        $result = mysqli_query($conn,$sql);
+        $sql="delete from PuntoDeVenta where idPuntoDeVenta=".$idPuntodeventa." and Comercio_idComercio = ".$idComercio.";";
         $result = mysqli_query($conn,$sql);
     }
 

@@ -107,10 +107,11 @@ class Model_Usuario extends Model{
 	
 	public function mostrarPedidosCliente($id){
     $conn =BaseDeDatos::conectarBD();
-    $sql = "select p.montoTotal as total, p.fechaHoraGenerado as horaG, p.Usuario_idDelivery as idDelivery, c.direccion as dir, p.idPedido as id,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
+    $sql = "select loc.descripcionLocalidad as localidad, loc.descripcionProvincia as provincia, p.montoTotal as total, p.fechaHoraGenerado as horaG, p.Usuario_idDelivery as idDelivery, c.direccion as dir, p.idPedido as id,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
 	from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
 	inner join puntodeventa as c on c.idPuntoDeVenta = p.idPuntoDeVenta
-	where p.Usuario_idCliente = ".$id."";
+    inner join provincialocalidad as loc on u.provincialocalidad_idLocalidad = loc.idLocalidad
+	where p.Usuario_idCliente = ".$id.";";
 	$result = mysqli_query($conn,$sql);
     return $result;
 	}
@@ -153,9 +154,11 @@ class Model_Usuario extends Model{
 	}
 	public function listarPedidosEnCursoDelivery($id){
         $conn =BaseDeDatos::conectarBD();
-        $sql = "select p.idPuntoDeVenta,p.montoTotal as total, p.fechaHoraGenerado as horaG, p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
+        $sql = "select loc.descripcionLocalidad as ulocalidad, loc.descripcionProvincia as uprovincia,loccom.descripcionLocalidad as clocalidad, loccom.descripcionProvincia as cprovincia, p.idPuntoDeVenta,p.montoTotal as total, p.fechaHoraGenerado as horaG, p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
 		from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
 		inner join puntodeventa as c on c.idPuntoDeVenta = p.idPuntoDeVenta
+        inner join provincialocalidad as loc on u.provincialocalidad_idLocalidad = loc.idLocalidad
+        inner join provincialocalidad as loccom on c.provincialocalidad_idLocalidad = loccom.idLocalidad
 		where p.Usuario_idDelivery = ".$id." and p.fechaHoraEntrega is null;";
     		$result = mysqli_query($conn,$sql);
         return $result;
@@ -163,9 +166,11 @@ class Model_Usuario extends Model{
     
     public function listarPedidosDisponibles(){
         $conn = BaseDeDatos::conectarBD();
-        $sql = "select p.montoTotal as total,p.idPuntoDeVenta, p.fechaHoraGenerado as horaG, p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
+        $sql = "select loc.descripcionLocalidad as ulocalidad, loc.descripcionProvincia as uprovincia,loccom.descripcionLocalidad as clocalidad, loccom.descripcionProvincia as cprovincia, p.montoTotal as total,p.idPuntoDeVenta, p.fechaHoraGenerado as horaG, p.idPedido as id, u.domicilio dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
 		from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
 		inner join puntodeventa as c on c.idPuntoDeVenta = p.idPuntoDeVenta
+        inner join provincialocalidad as loc on u.provincialocalidad_idLocalidad = loc.idLocalidad
+        inner join provincialocalidad as loccom on c.provincialocalidad_idLocalidad = loccom.idLocalidad
 		where p.Usuario_idDelivery is null;";
 		$result = mysqli_query($conn,$sql);
         return $result;
@@ -188,16 +193,16 @@ class Model_Usuario extends Model{
     return $result;
   }
 
-  public function deliveryHoraActivo($id){
+  public function deliveryInactivo($id){
     $conn =BaseDeDatos::conectarBD();
-    $sql = "update Usuario set horaActivo=(select now()) where idUsuario=".$id.";";
+    $sql = "update Usuario set estado='0' where idUsuario=".$id.";";
     $result = mysqli_query($conn,$sql);
     return $result;
   }
 
-   public function deliveryInactivo($id){
+  public function deliveryHoraActivo($id){
     $conn =BaseDeDatos::conectarBD();
-    $sql = "update Usuario set estado='0' where idUsuario=".$id.";";
+    $sql = "update Usuario set horaActivo=(select now()) where idUsuario=".$id.";";
     $result = mysqli_query($conn,$sql);
     return $result;
   }
@@ -208,7 +213,6 @@ class Model_Usuario extends Model{
     $result = mysqli_query($conn,$sql);
     return $result;
   }
-
 
   public function listarDeliverys($estado){
         $conn =BaseDeDatos::conectarBD();
@@ -424,6 +428,13 @@ public function listarDeliverysEnEsperaDeAprobacion(){
 
     $sql5 = "insert into movimiento (monto,fecha,comercio_idComercio,tipo) values (".$total.",CURDATE(),".$idComercio.",'Venta');";
     mysqli_query($conn,$sql5);
+  }
+
+  public function deliverySePoneInactivo($id){
+    $conn =BaseDeDatos::conectarBD();
+    $sql = "update Usuario set estado=0, horaActivo=null where idUsuario=".$id.";";
+    $result = mysqli_query($conn,$sql);
+    return $result;
   }
 }
 ?>

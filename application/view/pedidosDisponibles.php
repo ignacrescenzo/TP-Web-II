@@ -39,6 +39,11 @@
 				<h1>Pedidos Disponibles</h1>
             </div>
 
+             <div class="text-center">
+				<h5>Si querés tomarte un descanso pulsa en el botón "Inactivo"</h5>
+				<button><a href="/delivery/deliveryInactivo"> Inactivo </a></button>
+            </div>
+
 				<div class="container">
 					<div class="row">
                         <?php                      
@@ -49,8 +54,12 @@
 								<div class='card-body'>
 									<h4 class='card-title'>Pedido Nº "."<span id ='menuId'>".$pedido['id']."</span></h4>
 									<p class='card-text'>HoraDeGeneracion: ".$pedido['horaG']."</p>
-									<p class='card-text'>".$pedido['dom']."</p>
-									<p class='card-text'>".$pedido['dir']."</p>
+									<p class='card-text'>Domicilio del Cliente:".$pedido['dom']."</p>
+									<p class='card-text'>Localidad: ".$pedido['ulocalidad']."</p>
+									<p class='card-text'>Provincia: ".$pedido['uprovincia']."</p>
+									<p class='card-text'>Direccion del comercio: ".$pedido['dir']."</p>
+									<p class='card-text'>Localidad: ".$pedido['clocalidad']."</p>
+									<p class='card-text'>Provincia: ".$pedido['cprovincia']."</p>
 									<p class='card-text'>Total:".$pedido['total']."</p>
 									<a href='/delivery/pedidoAceptado?id=".$pedido['id']."' class='btn btn-primary'>Aceptar Pedido</a>
                                 </div>

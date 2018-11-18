@@ -35,7 +35,7 @@
         <div id="navbar-collapse" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#" data-nav-section="welcome">Inicio</a></li>
-            <li><a onclick="location.href='/main/listarcomercios'" >Comercios</a></li>
+            <li><a style="cursor:pointer" onclick="location.href='/cliente/verComercios'" >Comercios</a></li>
             <li><a onclick="location.href= <?php echo "'/cliente/verCarrito?c=$data2'" ?>" >Carrito</a></li>
             <li><a onclick="location.href='/cliente/mostrarPedidos'">Pedidos</a></li>
             <li><a onclick="location.href='/login/cerrarsesion'" >Cerrar sesión</a></li>
@@ -69,7 +69,7 @@
         <div class="row">
           <div class="col-md-12 text-center probootstrap-animate">
             <div class="probootstrap-heading">
-              <h5 class="secondary-heading">¿Qué querés comer?</h5>
+              <h5 class="secondary-heading" style="color: black;">¿Qué querés comer?</h5>
               <h3>SELECCIONÁ UN COMERCIO PARA COMENZAR TU PEDIDO!</h3>
             </div>
           </div>
@@ -84,7 +84,7 @@
           <div class='col-md-4 col-sm-4 probootstrap-animate'>
             <div class='probootstrap-block-image'>
 
-              <figure> <img src='..application/resources/upload/".$rows['imagen'].".jpg'></figure>
+              <figure> <img src='/application/resources/upload/".$rows['imagen']."' width='360px' height='200px'></figure>
               <div class='text'>
                 <h3>".$rows['nombre']."</a></h3>
                 <p>".$rows['nombre']."</p>
@@ -92,7 +92,7 @@
               </div>
             </div>
           </div> 
-          </div>";
+          ";
           } ?>
         </div>
       </div>
