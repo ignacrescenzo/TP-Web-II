@@ -147,4 +147,13 @@ class Model_Comercio extends Model{
         $sql= "delete from usuario where Comercio_idComercio=".$idComercio.";";
         $result = mysqli_query($conn,$sql);   
    }
+
+   public function obtenerIdComercio($idPuntoDeVenta){
+    $conn =BaseDeDatos::conectarBD();
+    $sql= "select Comercio_idComercio from puntodeventa where idPuntoDeVenta=".$idPuntoDeVenta.";";
+    $result = mysqli_query($conn,$sql);
+    $row = mysqli_fetch_assoc($result);
+    $id = $row['Comercio_idComercio'];
+    return $id;
+   }
 }

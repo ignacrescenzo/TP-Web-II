@@ -39,8 +39,8 @@
             <li><a href="#" data-nav-section="welcome">Inicio</a></li>
             <li><a onclick="location.href='/main/listarcomercios'" >Comercios</a></li>
             <li><a href="#" >Ofertas del día</a></li>
-            <li><a onclick="location.href='/login'"> Iniciar Sesión </a></li>
-            <li><a onclick="location.href='/cliente/registrar'" >Registrarme</a></li>
+            <li><a style="cursor:pointer" onclick="location.href='/login'"> Iniciar Sesión </a></li>
+            <li><a style="cursor:pointer" onclick="location.href='/cliente/registrar'" >Registrarme</a></li>
           </ul>
         </div>
       </div>

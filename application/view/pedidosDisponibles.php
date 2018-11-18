@@ -51,6 +51,7 @@
 									<p class='card-text'>HoraDeGeneracion: ".$pedido['horaG']."</p>
 									<p class='card-text'>".$pedido['dom']."</p>
 									<p class='card-text'>".$pedido['dir']."</p>
+									<p class='card-text'>Total:".$pedido['total']."</p>
 									<a href='/delivery/pedidoAceptado?id=".$pedido['id']."' class='btn btn-primary'>Aceptar Pedido</a>
                                 </div>
                                 </div> 
