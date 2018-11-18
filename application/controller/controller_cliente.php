@@ -19,7 +19,11 @@ class Controller_Cliente extends Controller{
         $carrito->add($array);
         $this->view->generateSt('menu_view.php',$menus,$idComercio); 
        }
-
+    public function verComercios(){
+        $comercio = new Model_Comercio();
+        $comercios = $comercio->listarComercios();
+        $this->view->generateSt('comercios.php',$comercios);
+    }
     public function verCarrito(){
         $carrito = new Model_Carrito();
         $carro = $carrito->get_content();
