@@ -11,6 +11,24 @@ class Model_Comercio extends Model{
         $result = mysqli_query($conn,$sql);
         return $result;
     }
+	public function listarPorZona(){
+		$conn =BaseDeDatos::conectarBD();
+        $sql = "select distinct pl.descripcionLocalidad as localidad, pl.idLocalidad as idLocalidad
+		from comercio as c inner join puntodeventa as p on c.idComercio = p.Comercio_idComercio
+		inner join provincialocalidad as pl on p.provincialocalidad_idLocalidad = pl.idLocalidad;";
+        $result = mysqli_query($conn,$sql);
+        return $result;
+	}
+	
+	public function listarComerciosfiltrados($idLocalidad){
+		$conn =BaseDeDatos::conectarBD();
+		$sql ="select *
+		from comercio as c inner join puntodeventa as p on c.idComercio = p.Comercio_idComercio
+		inner join provincialocalidad as pl on p.provincialocalidad_idLocalidad = pl.idLocalidad
+        where pl.idLocalidad =".$idLocalidad.";";
+		$result = mysqli_query($conn,$sql);
+        return $result;
+	}
 
     public function listarComercioEspecifico($idComercio){
         $conn =BaseDeDatos::conectarBD();

@@ -22,8 +22,17 @@ class Controller_Cliente extends Controller{
     public function verComercios(){
         $comercio = new Model_Comercio();
         $comercios = $comercio->listarComercios();
-        $this->view->generateSt('comercios.php',$comercios);
+		$filtroZona = $comercio->listarPorZona();
+        $this->view->generateSt('comercios.php',$comercios,$filtroZona);
     }
+	
+	public function listarComerciosPorZona(){
+		$idLocalidad = $_GET['idLocalidad'];
+		$comercio = new Model_Comercio();
+		$comercios =$comercio->listarComerciosfiltrados($idLocalidad);
+		$filtroZona = $comercio->listarPorZona();
+        $this->view->generateSt('comercios.php',$comercios,$filtroZona);
+	}
     public function verCarrito(){
         $carrito = new Model_Carrito();
         $carro = $carrito->get_content();
