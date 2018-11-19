@@ -74,7 +74,7 @@
                                 <p>
                                     ***descripción del punto de venta***
                                 </p>
-                                <a href='/puntoDeVenta/index?c=".$rows['idPuntoDeVenta']."' class='probootstrap-custom-link link-sm'> Entrar </a>
+                                <a href='/puntoDeVenta/index?c=".$rows['idPuntoDeVenta']."&v=".$data2."' class='probootstrap-custom-link link-sm'> Entrar </a>
 
                                 <a href='/OperadorComercio/eliminarPuntoDeVenta?c=".$rows['idPuntoDeVenta']."&v=".$data2."' class='probootstrap-custom-link link-sm'> Eliminar </a>
                                
