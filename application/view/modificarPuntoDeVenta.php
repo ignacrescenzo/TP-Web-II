@@ -65,6 +65,21 @@
                       <input type="text" class="form-control" name="direccion">
                     </div>
                   </div>
+				  
+				  <div class="form-group">
+					  <label for="c_name">Localidad</label>
+					 <div class="form-field">
+						<select name="idLocalidad">
+							<option value="0">Seleccione:</option>
+								<?php
+								  while ($rows = mysqli_fetch_assoc($data3)) {
+								  echo "<option name=".$rows['idLocalidad']." value=".$rows['idLocalidad'].">".$rows['descripcionLocalidad'].", ".$rows['descripcionProvincia']."</option>";
+								  }
+								?>
+						</select>
+					</div>
+				</div>
+				  
                   <div class="form-group">
                     <label> Teléfono</label>
                     <div class="form-field">
