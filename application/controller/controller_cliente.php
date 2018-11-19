@@ -62,7 +62,9 @@ class Controller_Cliente extends Controller{
         $this->verCarrito();
     }
     public function registrar(){
-        $this->view->generateSt("registrar-cliente_view.php");
+		$cliente = new Model_Usuario();
+		$listaLocalidades=$cliente->listarLocalidadesCliente();
+        $this->view->generateSt("registrar-cliente_view.php",$listaLocalidades);
     }
     public function validarCliente(){
         $usuario = new Model_Usuario();
@@ -72,8 +74,9 @@ class Controller_Cliente extends Controller{
         $name = $_POST['nombre'];
         $surname = $_POST['apellido'];
         $direccion = $_POST['direccion'];
+		$idLocalidad=$_POST['idLocalidad'];
         $tel = $_POST['telefono'];
-        $usuario->insertarCliente($username,$password,$email,$name,$surname,$direccion,$tel);
+        $usuario->insertarCliente($username,$password,$email,$name,$surname,$direccion,$tel,$idLocalidad);
         header("location:/login");
     }
 	public function mostrarPedidos(){
