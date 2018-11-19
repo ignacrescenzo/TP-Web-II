@@ -36,7 +36,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#" data-nav-section="welcome">Inicio</a></li>
             <li><a style="cursor:pointer" onclick="location.href='/cliente/verComercios'" >Comercios</a></li>
-            <li><a onclick="location.href=<?php echo "'/cliente/verCarrito?c='" ?>" >Carrito</a></li>
+            <li><a onclick="location.href=<?php echo "'/cliente/verCarrito?c=".$data3."'" ?>" >Carrito</a></li>
             <li><a onclick="location.href='/cliente/mostrarPedidos'">Pedidos</a></li>
             <li><a onclick="location.href='/login/cerrarsesion'" >Cerrar sesión</a></li>
           </ul>
@@ -96,20 +96,14 @@
           } ?>
         </div>
       </div>
-	  <?php
-		while($row = mysqli_fetch_assoc($data2)){
-			echo"
-
-			 <div class='f-flex flex-column zona checkboxes'>
-			<label class='radio-inline'>
-					<input type='checkbox' name=".$row['idLocalidad']." value=".$row['idLocalidad']." />".$row['localidad']."
-				</label>
-				</br>
-				</div>";
-				echo "<p> <a href='/cliente/listarComerciosPorZona?idLocalidad=".$row['idLocalidad']."' class='probootstrap-custom-link link-sm'> Buscar por zona</a></p>";
-		}
-		//echo "<p> <a href='/cliente/listarComerciosPorZona?idLocalidad=".$row['idLocalidad']."' class='probootstrap-custom-link link-sm'> Buscar por zona</a></p>";
-	?>
+		<div>
+		<h3>Filtro por zona:</h3>
+			<?php
+				while($row = mysqli_fetch_assoc($data2)){
+				echo "<p> <a href='/cliente/listarComerciosPorZona?idLocalidad=".$row['idLocalidad']."' class='probootstrap-custom-link link-sm'>".$row['localidad']."</a></p>";
+				}
+			?> 
+		</div>
     </section>
 	 
        <!--<div class="row contenido border mt-4">
