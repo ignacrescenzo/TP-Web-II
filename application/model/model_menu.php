@@ -76,7 +76,7 @@ class Model_Menu extends Model
                    where idMenu =$id and idPuntoDeVenta =$idPuntoDeVenta;";
         mysqli_query($conn,$grabar);
         
-        header("location:/puntoDeVenta/index?c=".$idPuntoDeVenta);
+        
     }
 
     public function traerParaFormulario($desc){
@@ -141,7 +141,7 @@ class Model_Menu extends Model
         set  Precio_idPrecio=$idPrecio, ofertado = 1,Precio_idPrecioAnterior = $idPrecioAnterior
         where idMenu =$idMenu and idPuntoDeVenta = $idPuntoDeVenta;";
         mysqli_query($conn,$grabar);
-        header("location:/puntoDeVenta/index?c=".$idPuntoDeVenta);
+        
     }
 
     public function listarOfertas($idPuntoDeVenta,$idComercio){
