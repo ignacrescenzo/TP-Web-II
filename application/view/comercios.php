@@ -36,7 +36,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#" data-nav-section="welcome">Inicio</a></li>
             <li><a style="cursor:pointer" onclick="location.href='/cliente/verComercios'" >Comercios</a></li>
-            <li><a onclick="location.href= <?php echo "'/cliente/verCarrito?c=$data2'" ?>" >Carrito</a></li>
+            <li><a onclick="location.href=<?php echo "'/cliente/verCarrito?c='" ?>" >Carrito</a></li>
             <li><a onclick="location.href='/cliente/mostrarPedidos'">Pedidos</a></li>
             <li><a onclick="location.href='/login/cerrarsesion'" >Cerrar sesión</a></li>
           </ul>
@@ -96,10 +96,23 @@
           } ?>
         </div>
       </div>
-    </section>
+	  <?php
+		while($row = mysqli_fetch_assoc($data2)){
+			echo"
 
-       <!--
-        <div class="row contenido border mt-4">
+			 <div class='f-flex flex-column zona checkboxes'>
+			<label class='radio-inline'>
+					<input type='checkbox' name=".$row['idLocalidad']." value=".$row['idLocalidad']." />".$row['localidad']."
+				</label>
+				</br>
+				</div>";
+				echo "<p> <a href='/cliente/listarComerciosPorZona?idLocalidad=".$row['idLocalidad']."' class='probootstrap-custom-link link-sm'> Buscar por zona</a></p>";
+		}
+		//echo "<p> <a href='/cliente/listarComerciosPorZona?idLocalidad=".$row['idLocalidad']."' class='probootstrap-custom-link link-sm'> Buscar por zona</a></p>";
+	?>
+    </section>
+	 
+       <!--<div class="row contenido border mt-4">
             <div class="col col-3 filtro">
                 Filtrar por: <br> <br>
                 <div class="f-flex flex-column zona checkboxes">
@@ -129,8 +142,8 @@
                 </div>
             </div> -->
             <!-- <div class="col col-9">
-            <?php
-				/*while($rows = mysqli_fetch_assoc($data)) { 
+           
+				while($rows = mysqli_fetch_assoc($data)) { 
                     echo "
                     <div class='row comercio'>
                         <div class='col col-4 img'>
@@ -148,8 +161,7 @@
                             </div>
                         </div>
                     </div>";
-                }*/
-			    ?>
+                }
                 </div> -->
 
 
@@ -207,7 +219,5 @@
         </div>
       </div>
     </section>
-
   </body>
-
 </html>

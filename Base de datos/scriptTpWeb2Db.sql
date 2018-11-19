@@ -5135,3 +5135,6 @@ set Usuario_idDelivery=null
 where idPedido=5;
 
 */
+select distinct pl.descripcionLocalidad as localidad, pl.idLocalidad as idlocalidad
+from comercio as c inner join puntodeventa as p on c.idComercio = p.Comercio_idComercio
+inner join provincialocalidad as pl on p.provincialocalidad_idLocalidad = pl.idLocalidad;
