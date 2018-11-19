@@ -106,7 +106,7 @@ class Controller_AdministradorDeSistema extends Controller{
     }
 
     public function estadisticas(){
-        $this->view->generateSt('adminEstadisticas_view.php');  
+        $this->view->generateSt('adminEstadisticasHome_view.php');  
     } 
 
     public function estadisticasDatos(){
@@ -120,7 +120,7 @@ class Controller_AdministradorDeSistema extends Controller{
         $topRankingComercios = $estadisticas->topRankingComercios($desde, $hasta);
         $topRankingDeliverys = $estadisticas->topRankingDeliverys($desde, $hasta);
 
-        $this->view->generateSt('adminEstadisticas_view.php',$totalGanancias,$entregasMensuales,$topRankingComercios);        
+        $this->view->generateSt('adminEstadisticas_view.php',$totalGanancias,$entregasMensuales,$topRankingComercios,$topRankingDeliverys);        
     }
 
 }
