@@ -23,7 +23,7 @@
 			<div class="logo"> ACA VA EL LOGO Y EL NOMBRE</div>
 			<div class="bar d-flex">
 				<div class="sesion">Bienvenido "Operador"</div>
-				<div class="sesion"><a href="/puntoDeVenta/index?c=<?php echo $data2; ?>">Volver a menus</a></div>
+				<div class="sesion"><a href="/puntoDeVenta/index?c=<?php echo $data2."&v=".$_SESSION['idComercio']; ?>">Volver a menus</a></div>
 				<div class="sesion"><a href="/login/cerrarsesion">Cerrar sesión</a></div>
 			</div>
 		</div>
