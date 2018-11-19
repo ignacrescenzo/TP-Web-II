@@ -102,13 +102,13 @@ class Model_Menu extends Model
         return $array;
     }
 
-    public function listarMenus($idComercio){
+    public function listarMenus($idPuntoDeVenta,$idComercio){
         $conn =BaseDeDatos::conectarBD();
         $sql = "select * from menu m 
         inner join precio p on p.idPrecio = m.Precio_idPrecio
         inner join puntodeventa pdv on pdv.idPuntoDeVenta = m.idPuntoDeVenta
         inner join comercio c on c.idComercio = pdv.Comercio_idComercio
-        where c.idComercio = ".$idComercio.";";
+        where c.idComercio = ".$idComercio." and pdv.idPuntoDeVenta = $idPuntoDeVenta;";
         $result = mysqli_query($conn,$sql);
         return $result;
     }
@@ -144,9 +144,9 @@ class Model_Menu extends Model
         header("location:/puntoDeVenta/index?c=".$idPuntoDeVenta);
     }
 
-    public function listarOfertas($idPuntoDeVenta){
+    public function listarOfertas($idPuntoDeVenta,$idComercio){
         $conn =BaseDeDatos::conectarBD();
-        $sql = "select * from menu m inner join precio p on p.idPrecio = m.Precio_idPrecio where ofertado = 1 and idPuntoDeVenta = ".$idPuntoDeVenta.";";
+        $sql = "select * from menu m inner join precio p on p.idPrecio = m.Precio_idPrecio inner join puntodeventa pdv on pdv.idPuntoDeVenta=m.idPuntoDeVenta inner join comercio c on c.idComercio = pdv.Comercio_idComercio where ofertado = 1 and pdv.idPuntoDeVenta = ".$idPuntoDeVenta." and c.idComercio =".$idComercio.";";
         $resultado = mysqli_query($conn, $sql);
         return $resultado;
     }
