@@ -51,8 +51,8 @@ class Controller_Login extends Controller{
 			$delivery->deliveryInactivo($id);
 			$delivery->deliveryDesconectado($id);			
 		}
-		include 'core/helpers/cerrarSesion.php';
-    	$this->view->generateSt('home_view.php');
+		session_destroy();
+    	header("location:/");
     }
 
    function cambiarContrasena(){

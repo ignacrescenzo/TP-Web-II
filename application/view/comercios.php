@@ -29,16 +29,16 @@
     <nav class="navbar navbar-default navbar-fixed-top probootstrap-navbar">
       <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="" title="uiCookies:FineOak">FineOak</a>
+            <a class="navbar-brand" href="/" title="uiCookies:FineOak">FineOak</a>
         </div>
 
         <div id="navbar-collapse" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#" data-nav-section="welcome">Inicio</a></li>
             <li><a style="cursor:pointer" onclick="location.href='/cliente/verComercios'" >Comercios</a></li>
-            <li><a onclick="location.href=<?php echo "'/cliente/verCarrito?c=".$data3."'" ?>" >Carrito</a></li>
-            <li><a onclick="location.href='/cliente/mostrarPedidos'">Pedidos</a></li>
-            <li><a onclick="location.href='/login/cerrarsesion'" >Cerrar sesión</a></li>
+            <li><a style="cursor:pointer" onclick="location.href=<?php echo "'/cliente/verCarrito?c=".$data3."'" ?>" >Carrito</a></li>
+            <li><a style="cursor:pointer" onclick="location.href='/cliente/mostrarPedidos'">Pedidos</a></li>
+            <li><a style="cursor:pointer" onclick="location.href='/login/cerrarsesion'" >Cerrar sesión</a></li>
           </ul>
         </div>
       </div>
@@ -87,8 +87,11 @@
               <figure> <img src='/application/resources/upload/".$rows['imagen']."' width='360px' height='200px'></figure>
               <div class='text'>
                 <h3>".$rows['nombre']."</a></h3>
-                <p>".$rows['nombre']."</p>
-               <p> <a href='/puntoDeVenta/mostrarMenu?c=".$rows['idComercio']."' class='probootstrap-custom-link link-sm'> Ver menú</a></p>
+                <p>".$rows['nombre']."</p>";
+              if(isset($rows['direccion']) && isset($rows['descripcionLocalidad'])){
+                echo "<p>".$rows['direccion']." - ".$rows['descripcionLocalidad']."</p>";
+              }
+               echo "<p> <a href='/puntoDeVenta/mostrarMenu?c=".$rows['idComercio']."' class='probootstrap-custom-link link-sm'> Ver menú</a></p>
               </div>
             </div>
           </div> 
