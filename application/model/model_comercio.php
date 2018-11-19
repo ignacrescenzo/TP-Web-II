@@ -193,4 +193,25 @@ class Model_Comercio extends Model{
         $result = mysqli_query($conn,$sql);   
         return $result;
     }
+
+    public function ganancias($idComercio, $desde, $hasta){
+    $conn =BaseDeDatos::conectarBD();
+    $sql= "select sum(monto) as total from movimiento where     fecha between '".$desde."' and '".$hasta."' and tipo = 'Venta' and Comercio_idComercio = ".$idComercio." ;";
+    $result = mysqli_query($conn,$sql);
+    return $result;
+   }
+
+ public function cobradoPorSistema($idComercio, $desde, $hasta){
+    $conn =BaseDeDatos::conectarBD();
+    $sql= "select sum(monto) as total from movimiento where     fecha between '".$desde."' and '".$hasta."' and tipo = 'Pago a Administrador' and Comercio_idComercio = ".$idComercio." ;";
+    $result = mysqli_query($conn,$sql);
+    return $result;
+   }
+
+ public function cobradoADelivery($idComercio, $desde, $hasta){
+    $conn =BaseDeDatos::conectarBD();
+    $sql= "select sum(monto) as total from movimiento where     fecha between '".$desde."' and '".$hasta."' and tipo = 'Pago a Delivery' and Comercio_idComercio = ".$idComercio." ;";
+    $result = mysqli_query($conn,$sql);
+    return $result;
+   }
 }
