@@ -68,7 +68,7 @@
                     <div class='col-md-4 col-sm-4 probootstrap-animate'>
                         <div class='probootstrap-block-image'>
                             <div class='text'>
-                                <h3>Sucursal: ".$rows['direccion']."</h3>
+                                <h3>Sucursal: ".$rows['direccion'].",".$rows['descripcionLocalidad']."</h3>
                                 <p>Teléfono: ".$rows['telefono']."</p>                         
                                 <p>
                                     ***descripción del punto de venta***
