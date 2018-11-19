@@ -1,67 +1,96 @@
-	<?php
-		if(!isset($_SESSION["login"])){
-		echo "INICIA SESION WACHO";
+<?php
+  if(!isset($_SESSION["login"])){
+    echo "INISIA SESION WACHO";
         echo "<br>";
         echo "<a href='/login'>Iniciar sesion</a>";
         exit;
-	}
+  }
 ?>
+
 <!DOCTYPE html>
-<html lang="es">
-	<head>
-		<meta charset="UTF-8">
-		<title>Home Delivery</title>
-		<link rel="stylesheet" href="../application/resources/css/bootstrap.min.css">
-		<link rel="stylesheet" href="../application/resources/css/estilosIndex.css">
-		<link rel="stylesheet" href="../application/resources/css/comercioHome.css">
-		<script src="../application/resources/js/bootstrap.min.js"></script>
-		<script src="../application/resources/js/jquery-3.3.1.min.js"></script>
-        <script src="../application/resources/js/comercioHome.js"></script>
-	</head>
-	<body>
-		<div class="container-fluid px-0">
-			<div class="header d-flex justify-content-between align-items-center">
-				<div class="logo"> ACA VA EL LOGO Y EL NOMBRE</div>
-					<div class="bar d-flex">
-						<div class="sesion">Bienvenido "Delivey"</div>
-						<div class="sesion"><a href="/delivery/pedidosDisponibles">Pedidos Disponibles</a></div>
-						<div class="sesion"><a href="/delivery/pedidosEnCurso">Pedidos en curso</a></div>
-						<div class="sesion"><a href="/delivery/pedidosRealizados">Pedidos Realizados</a></div>
-						<div class="sesion"><a href="">Estadisticas</a></div>
-						<div class="sesion"><a href="/login/cerrarsesion">Cerrar sesión</a></div>
-					</div>
-			</div>
-			<div class="banner d-flex flex-column align-items-center">
-				<div><h3>Banner</h3></div>
-			</div>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Restó | Inicio</title>
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Pinyon+Script" rel="stylesheet">
 
-            <div class="text-center">
-				<h1>Pedidos Disponibles</h1>
+    <!-- <link rel="stylesheet" href="../application/resources/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="../application/resources/css/styles-merged.css">
+    <link rel="stylesheet" href="../application/resources/css/style.min.css">
+    
+    <!-- <script src="../application/resources/js/jquery-3.3.1.min.js"></script>
+    <script src="../application/resources/js/bootstrap.min.js"></script> -->
+    <script src="../application/resources/js/scripts.min.js"></script>
+    <script src="../application/resources/js/custom.min.js"></script>
+    
+
+    <nav class="navbar navbar-default navbar-fixed-top probootstrap-navbar">
+      <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/" title="uiCookies:FineOak">FineOak</a>
+        </div>
+        <div id="navbar-collapse" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" data-nav-section="welcome">Inicio</a></li>
+            <li><a onclick="location.href='/delivery/pedidosDisponibles'">Pedidos disponibles</a></li>
+            <li><a onclick="location.href='/delivery/pedidosEnCurso'">Pedidos en curso</a></li>
+            <li><a onclick="location.href='/delivery/pedidosRealizados'">Pedidos realizados</a></li>
+            <li><a onclick="location.href='#'">Estadísticas</a></li>
+            <li><a onclick="location.href='/login/cerrarsesion'" >Cerrar sesión</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </head>
+  <body>
+
+<section class="probootstrap-section-bg overlay" style="background-image: url(../application/resources/img/hero_bg_1.jpg); height: 250px;">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center probootstrap-animate">
+            <div class="probootstrap-heading">
+              <h4>Si queres tomarte un descanso pulsá en el botón! </h4>
+              <a href="/delivery/deliveryInactivo" class='btn btn-primary'> Tomar descanso </a> <br><br><br>
             </div>
+          </div>
+        </div>
+      </div>
+</section>
 
-             <div class="text-center">
-				<h5>Si querés tomarte un descanso pulsa en el botón "Inactivo"</h5>
-				<button><a href="/delivery/deliveryInactivo"> Inactivo </a></button>
+<section class="probootstrap-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center probootstrap-animate">
+            <div class="probootstrap-heading"><br><br><br><br>
+              <h3 class="secondary-heading" style="color: black;">Pedidos disponibles</h3>
             </div>
+          </div>
+        
 
-				<div class="container">
-					<div class="row">
+
                         <?php                      
                        if(mysqli_num_rows($data) >= 1){ 
                        	  while($pedido = mysqli_fetch_assoc($data)) {
-                            echo"<div class='col-md-4'>
-							<div class='card'>
-								<div class='card-body'>
-									<h4 class='card-title'>Pedido Nº "."<span id ='menuId'>".$pedido['id']."</span></h4>
-									<p class='card-text'>HoraDeGeneracion: ".$pedido['horaG']."</p>
-									<p class='card-text'>Domicilio del Cliente:".$pedido['dom']."</p>
-									<p class='card-text'>Localidad: ".$pedido['ulocalidad']."</p>
-									<p class='card-text'>Provincia: ".$pedido['uprovincia']."</p>
-									<p class='card-text'>Direccion del comercio: ".$pedido['dir']."</p>
-									<p class='card-text'>Localidad: ".$pedido['clocalidad']."</p>
-									<p class='card-text'>Provincia: ".$pedido['cprovincia']."</p>
-									<p class='card-text'>Total:".$pedido['total']."</p>
-									<a href='/delivery/pedidoAceptado?id=".$pedido['id']."' class='btn btn-primary'>Aceptar Pedido</a>
+                            echo"<div class='col-md-4 col-sm-4 probootstrap-animate'>
+          						<div class='probootstrap-block-image'>
+            						  <div class='text'>
+										
+				<h4 class='card-title'>Pedido Nº "."<span id ='menuId'>".$pedido['id']."</span></h4>
+				<p class='card-text'>Hora de generacion: ".$pedido['horaG']."<br>
+				Domicilio del Cliente: ".$pedido['dom']."<br>
+				Localidad: ".$pedido['ulocalidad']."<br>
+				Provincia: ".$pedido['uprovincia']."<br>
+				***
+				Dirección del Comercio: ".$pedido['dir']."<br>
+				Domicilio del Cliente: ".$pedido['dom']."<br>
+				Localidad: ".$pedido['clocalidad']."<br>
+				Provincia: ".$pedido['cprovincia']."<br>
+				Total: $".$pedido['total']."<br><br>";
+
+				echo "<a href=/delivery/pedidoAceptado?id=".$pedido['id']."' class='btn btn-danger'>Aceptar pedido</a>
+
                                 </div>
                                 </div> 
                             </div>";
@@ -70,11 +99,65 @@
                         ?>
 					</div>
 				</div>
-				<!-- <a href="#" class="btn btn-primary mt-3">Ver Todos</a> -->
+				
+				</section>
 
-				<!-- <div class="text-center mb-3">
-				<a href="#" class="btn btn-primary mt-3">Ver Todos</a>
-				</div> -->
-		</div>
-	</body>
+  </body>
+<!-- FOOTER -->
+
+        <section class="probootstrap-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 probootstrap-animate">
+            <div class="probootstrap-footer-widget">
+              <h3><a href="#">Acerca de Restó® </a></h3>
+              <div class="row">
+                <div class="col-md-6">
+                  <a href="#"> Quiero ser Delivery</a>
+                </div>
+                <div class="col-md-6">
+                  <a href="/operadorComercio/registrarComercio"> Quiero registrar mi Comercio</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 probootstrap-animate">
+            <div class="probootstrap-footer-widget">
+              <h3>Horarios</h3>
+              <div class="row">
+                <div class="col-md-4">
+                  <p>Todos los días <br> ¡las 24hs!</p>
+                </div>
+                <div class="col-md-4">
+                  <a href="#">Ayuda</a>
+                </div>
+                <div class="col-md-4">
+                  <a href="#">Medios de pago</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="probootstrap-copyright">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <p class="copyright-text">&copy; 2018 <a href="#">Restó</a>. Todos los derechos reservados.
+          </div>
+          <div class="col-md-4">
+            <ul class="probootstrap-footer-social right">
+              <li><a href="#"><i class="icon-twitter"></i></a></li>
+              <li><a href="#"><i class="icon-facebook"></i></a></li>
+              <li><a href="#"><i class="icon-instagram"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
 </html>
