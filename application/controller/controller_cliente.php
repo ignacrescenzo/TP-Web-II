@@ -45,8 +45,9 @@ class Controller_Cliente extends Controller{
         $menu = new Model_Menu();
         $carrito->destroy();
         $idComercio = $_GET['c'];
-        $menus = $menu->listarMenus($idComercio);
-        $this->view->generateSt('menu_view.php',$menus);
+        // $menus = $menu->listarMenus($idComercio);
+        // $this->view->generateSt('menu_view.php',$menus);
+        header("location:/puntoDeVenta/mostrarMenu?c=".$idComercio."");
     }
 	public function eliminarProducto(){
         $carrito = new Model_Carrito();

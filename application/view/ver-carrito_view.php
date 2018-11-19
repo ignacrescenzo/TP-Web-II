@@ -100,9 +100,8 @@
     
     <?php } else{
 		
-		echo "<script>alert('El carro esta vacio');</script>";
 		echo "<h3>Carro vacio</h3>";
-		echo "<a class='btn btn-primary' href='/puntoDeVenta/mostrarMenu?c=".$data2."'>Volver a Menu</a>";
+		echo "<a class='btn btn-primary' href='/puntoDeVenta/mostrarMenu?c=".$data2."'>Volver al menú</a>";
 	}
 ?>
 			     </div>
