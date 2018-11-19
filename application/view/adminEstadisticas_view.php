@@ -42,9 +42,41 @@
 
 <br>
 		<h3>Total ganancias:</h3>
+		<?php
+	if(mysqli_num_rows($data)>0){
+    while($rows=mysqli_fetch_assoc($data)) { 		
+		echo "<h4>$".$rows['total']."</h4>";
+    }
+}
+?>
+
 <br>
-		<h3>Total ganancias:</h3>
-	
+		<h3>Entregas mensuales:</h3>
+			<?php
+	if(mysqli_num_rows($data2)>0){
+    while($rows=mysqli_fetch_assoc($data2)) { 		
+		echo "<h4>".$rows['entregas']."</h4>";
+    }
+}
+?>	
+<br>
+		<h3>Top rankin comercios que mas vendieron:</h3>
+					<?php
+	if(mysqli_num_rows($data3)>0){
+    while($rows=mysqli_fetch_assoc($data3)) { 		
+		echo "<h4>".$rows['nombre']."</h4>";
+    }
+}
+?>
+<br>
+		<h3>Top rankin deliverys que mas entregaron:</h3>
+				<?php
+	if(mysqli_num_rows($data4)>0){
+    while($rows=mysqli_fetch_assoc($data4)) { 		
+		echo "<h4>".$rows['delivery']."</h4>";
+    }
+}
+?>
 	</div>
 </body>
 </html>
