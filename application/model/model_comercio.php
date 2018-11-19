@@ -11,6 +11,24 @@ class Model_Comercio extends Model{
         $result = mysqli_query($conn,$sql);
         return $result;
     }
+	public function listarPorZona(){
+		$conn =BaseDeDatos::conectarBD();
+        $sql = "select distinct pl.descripcionLocalidad as localidad, pl.idLocalidad as idLocalidad
+		from comercio as c inner join puntodeventa as p on c.idComercio = p.Comercio_idComercio
+		inner join provincialocalidad as pl on p.provincialocalidad_idLocalidad = pl.idLocalidad;";
+        $result = mysqli_query($conn,$sql);
+        return $result;
+	}
+	
+	public function listarComerciosfiltrados($idLocalidad){
+		$conn =BaseDeDatos::conectarBD();
+		$sql ="select *
+		from comercio as c inner join puntodeventa as p on c.idComercio = p.Comercio_idComercio
+		inner join provincialocalidad as pl on p.provincialocalidad_idLocalidad = pl.idLocalidad
+        where pl.idLocalidad =".$idLocalidad.";";
+		$result = mysqli_query($conn,$sql);
+        return $result;
+	}
 
     public function listarComercioEspecifico($idComercio){
         $conn =BaseDeDatos::conectarBD();
@@ -27,25 +45,33 @@ class Model_Comercio extends Model{
         $id = $row['idComercio'];
         return $id;
     }
-
+	
     public function agregarIdComercioAOperador($idComercio){
         $conn =BaseDeDatos::conectarBD();
         $sql = "upgrade usuario set Comercio_idComercio =".$idComercio." WHERE idUsuario=9;";
         $result = mysqli_query($conn,$sql);
         return $result;
     }
-
+	
+	public function listarLocalidades(){
+		$conn =BaseDeDatos::conectarBD();
+		$sql="select * from provincialocalidad;";
+		$result = mysqli_query($conn,$sql);
+        return $result;
+	}
     
     public function listarPuntosDeVenta($idComercio){
         $conn =BaseDeDatos::conectarBD();
-        $sql = "select * from puntodeventa where Comercio_idComercio = ".$idComercio.";";
+        $sql = "select * from puntodeventa as p 
+		inner join provincialocalidad as pl on pl.idLocalidad = p.provincialocalidad_idLocalidad 
+		where Comercio_idComercio = ".$idComercio.";";
         $result = mysqli_query($conn,$sql);
         return $result;
     }
 
-    public function insertarPuntoDeVenta($direccion,$telefono,$idComercio){
+    public function insertarPuntoDeVenta($direccion,$telefono,$idComercio,$idLocalidad){
         $conn =BaseDeDatos::conectarBD();
-        $sql="insert into PuntoDeVenta (direccion, telefono, Comercio_idComercio) values ('".$direccion."','".$telefono."',".$idComercio.")";
+        $sql="insert into PuntoDeVenta (direccion, telefono, Comercio_idComercio, provincialocalidad_idLocalidad) values ('".$direccion."','".$telefono."',".$idComercio.",".$idLocalidad.")";
         $result = mysqli_query($conn,$sql);
     }
 
@@ -132,9 +158,9 @@ class Model_Comercio extends Model{
         $result = mysqli_query($conn,$sql);
     }
 
-    public function updatePuntoDeVenta($idPuntoDeVenta,$telefono,$direccion){
+    public function updatePuntoDeVenta($idPuntoDeVenta,$telefono,$direccion,$idLocalidad){
         $conn =BaseDeDatos::conectarBD();
-        $sql="update PuntoDeVenta set direccion='".$direccion."',telefono='".$telefono."' where idPuntoDeVenta=".$idPuntoDeVenta.";";
+        $sql="update PuntoDeVenta set direccion='".$direccion."',telefono='".$telefono."',provincialocalidad_idLocalidad='".$idLocalidad."' where idPuntoDeVenta=".$idPuntoDeVenta.";";
         $result = mysqli_query($conn,$sql);
     }
     

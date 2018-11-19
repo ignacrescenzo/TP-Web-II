@@ -22,8 +22,17 @@ class Controller_Cliente extends Controller{
     public function verComercios(){
         $comercio = new Model_Comercio();
         $comercios = $comercio->listarComercios();
-        $this->view->generateSt('comercios.php',$comercios);
+		$filtroZona = $comercio->listarPorZona();
+        $this->view->generateSt('comercios.php',$comercios,$filtroZona);
     }
+	
+	public function listarComerciosPorZona(){
+		$idLocalidad = $_GET['idLocalidad'];
+		$comercio = new Model_Comercio();
+		$comercios =$comercio->listarComerciosfiltrados($idLocalidad);
+		$filtroZona = $comercio->listarPorZona();
+        $this->view->generateSt('comercios.php',$comercios,$filtroZona);
+	}
     public function verCarrito(){
         $carrito = new Model_Carrito();
         $carro = $carrito->get_content();
@@ -36,8 +45,9 @@ class Controller_Cliente extends Controller{
         $menu = new Model_Menu();
         $carrito->destroy();
         $idComercio = $_GET['c'];
-        $menus = $menu->listarMenus($idComercio);
-        $this->view->generateSt('menu_view.php',$menus);
+        // $menus = $menu->listarMenus($idComercio);
+        // $this->view->generateSt('menu_view.php',$menus);
+        header("location:/puntoDeVenta/mostrarMenu?c=".$idComercio."");
     }
 	public function eliminarProducto(){
         $carrito = new Model_Carrito();
@@ -62,7 +72,9 @@ class Controller_Cliente extends Controller{
         $this->verCarrito();
     }
     public function registrar(){
-        $this->view->generateSt("registrar-cliente_view.php");
+		$cliente = new Model_Usuario();
+		$listaLocalidades=$cliente->listarLocalidadesCliente();
+        $this->view->generateSt("registrar-cliente_view.php",$listaLocalidades);
     }
     public function validarCliente(){
         $usuario = new Model_Usuario();
@@ -72,8 +84,9 @@ class Controller_Cliente extends Controller{
         $name = $_POST['nombre'];
         $surname = $_POST['apellido'];
         $direccion = $_POST['direccion'];
+		$idLocalidad=$_POST['idLocalidad'];
         $tel = $_POST['telefono'];
-        $usuario->insertarCliente($username,$password,$email,$name,$surname,$direccion,$tel);
+        $usuario->insertarCliente($username,$password,$email,$name,$surname,$direccion,$tel,$idLocalidad);
         header("location:/login");
     }
 	public function mostrarPedidos(){

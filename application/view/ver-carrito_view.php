@@ -35,7 +35,7 @@
         <div id="navbar-collapse" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#" data-nav-section="welcome">Inicio</a></li>
-            <li><a onclick="location.href='/login/iracomercios'" >Comercios</a></li>
+            <li><a onclick="location.href='/cliente/verComercios'" >Comercios</a></li>
             <li><a onclick="location.href= <?php echo "'/cliente/verCarrito?c=$data2'" ?>" >Carrito</a></li>
             <li><a onclick="location.href='/cliente/mostrarPedidos'">Pedidos</a></li>
             <li><a onclick="location.href='/login/cerrarsesion'" >Cerrar sesión</a></li>
@@ -100,12 +100,11 @@
     
     <?php } else{
 		
-		echo "<script>alert('El carro esta vacio');</script>";
 		echo "<h3>Carro vacio</h3>";
-		echo "<a class='btn btn-primary' href='/puntoDeVenta/mostrarMenu?c=".$data2."'>Volver a Menu</a>";
+		echo "<a class='btn btn-primary' href='/puntoDeVenta/mostrarMenu?c=".$data2."'>Volver al menú</a>";
 	}
 ?>
-			</div>
+			     </div>
        	</div>
     </section>
 

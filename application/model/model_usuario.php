@@ -50,9 +50,9 @@ class Model_Usuario extends Model{
     header("location:/main");
    }
 
-   public function insertarCliente($username,$password,$email,$name,$surname,$direccion,$tel){
+   public function insertarCliente($username,$password,$email,$name,$surname,$direccion,$tel,$idLocalidad){
     $db=BaseDeDatos::conectarBD();
-    $sql = "insert into Usuario (nombreUsuario,clave,email,nombre,apellido,domicilio,telefono,Rol_idRol) values ('".$username."','".$password."','".$email."','".$name."','".$surname."','".$direccion."','".$tel."',2);";
+    $sql = "insert into Usuario (nombreUsuario,clave,email,nombre,apellido,domicilio,telefono,Rol_idRol,provincialocalidad_idLocalidad) values ('".$username."','".$password."','".$email."','".$name."','".$surname."','".$direccion."','".$tel."',2,'".$idLocalidad."');";
     echo $sql;
     $result = mysqli_query($db,$sql);
    }
@@ -110,7 +110,7 @@ class Model_Usuario extends Model{
     $sql = "select loc.descripcionLocalidad as localidad, loc.descripcionProvincia as provincia, p.montoTotal as total, p.fechaHoraGenerado as horaG, p.Usuario_idDelivery as idDelivery, c.direccion as dir, p.idPedido as id,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
 	from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
 	inner join puntodeventa as c on c.idPuntoDeVenta = p.idPuntoDeVenta
-    inner join provincialocalidad as loc on u.provincialocalidad_idLocalidad = loc.idLocalidad
+    inner join provincialocalidad as loc on c.provincialocalidad_idLocalidad = loc.idLocalidad
 	where p.Usuario_idCliente = ".$id.";";
 	$result = mysqli_query($conn,$sql);
     return $result;
@@ -178,9 +178,11 @@ class Model_Usuario extends Model{
 	
 	public function listarPedidosRealizadosDelivery($id){
     $conn =BaseDeDatos::conectarBD();
-    $sql = "select p.montoTotal as total, p.fechaHoraGenerado as horaG, p.idPedido as id, u.domicilio as dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
+    $sql = "select loc.descripcionLocalidad as ulocalidad, loc.descripcionProvincia as uprovincia,loccom.descripcionLocalidad as clocalidad, loccom.descripcionProvincia as cprovincia, p.montoTotal as total, p.fechaHoraGenerado as horaG, p.idPedido as id, u.domicilio as dom, c.direccion as dir,p.fechaHoraRetiro as retiro, p.fechaHoraEntrega as entrega
 		from Pedido as p inner join Usuario as u on u.idUsuario = p.Usuario_idCliente
 		inner join puntodeventa as c on c.idPuntoDeVenta = p.idPuntoDeVenta
+        inner join provincialocalidad as loc on u.provincialocalidad_idLocalidad = loc.idLocalidad
+        inner join provincialocalidad as loccom on c.provincialocalidad_idLocalidad = loccom.idLocalidad
 		where p.Usuario_idDelivery = ".$id." and p.fechaHoraEntrega is not null;";
 		$result = mysqli_query($conn,$sql);
     return $result;
@@ -436,5 +438,12 @@ public function listarDeliverysEnEsperaDeAprobacion(){
     $result = mysqli_query($conn,$sql);
     return $result;
   }
+  
+  public function listarLocalidadesCliente(){
+		$conn =BaseDeDatos::conectarBD();
+		$sql="select * from provincialocalidad;";
+		$result = mysqli_query($conn,$sql);
+        return $result;
+	}
 }
 ?>
