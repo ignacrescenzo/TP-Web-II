@@ -38,6 +38,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#" data-nav-section="welcome">Inicio</a></li>
             <li><a onclick="location.href=<?php echo "'/OperadorComercio/crearPuntoDeVenta?idComercio=".$idComercio."'" ?>" >Crear punto de venta</a></li>
+            <li><a  onclick="location.href=<?php echo "'/OperadorComercio/estadisticas?idComercio=".$idComercio."'" ?>" >Estadisticas</a></li>
             <li><a onclick="location.href='/login/cerrarsesion'" >Cerrar sesión</a></li>
           </ul>
         </div>
