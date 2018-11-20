@@ -27,7 +27,7 @@
 //$result= mysqli_query($conexion,$sql);
   ?>
     <!-- Fixed navbar -->
-    
+
     <nav class="navbar navbar-default navbar-fixed-top probootstrap-navbar">
       <div class="container">
         <div class="navbar-header">
