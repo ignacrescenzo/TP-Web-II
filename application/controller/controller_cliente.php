@@ -17,7 +17,8 @@ class Controller_Cliente extends Controller{
         $array = $menu->obtenerArrayProducto(urldecode($descripcion));      	
         $carrito = new Model_Carrito();
         $carrito->add($array);
-        $this->view->generateSt('menu_view.php',$menus,$idComercio); 
+        header("location:/puntoDeVenta/mostrarMenu?c=".$idComercio);
+        //$this->view->generateSt('menu_view.php',$menus,$idComercio); 
        }
     public function verComercios(){
         $comercio = new Model_Comercio();
