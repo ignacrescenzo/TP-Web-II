@@ -109,7 +109,7 @@
 		}
 		?>	</p>
 
-		<p>Top rankin comercios que mas vendieron:
+		<p>Top ranking comercios que mas vendieron:
 		<?php
 			if(mysqli_num_rows($data3)>0){
 		    while($rows=mysqli_fetch_assoc($data3)) { 		
@@ -118,11 +118,11 @@
 		}
 		?></p>
 		
-		<p>Top rankin deliverys que mas entregaron:
+		<p>Top ranking deliverys que mas entregaron:
 		<?php
 			if(mysqli_num_rows($data4)>0){
 		    while($rows=mysqli_fetch_assoc($data4)) { 		
-				echo "".$rows['delivery']."";
+				echo "".$rows['nombreUsuario']."";
 		    }
 		}
 		?></p>
