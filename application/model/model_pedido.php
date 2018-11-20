@@ -4,7 +4,6 @@ if (!isset($_SESSION)) { session_start(); }
 <?php
 require_once 'modelo_conexion_base_de_datos.php';
 
-
 class Model_Pedido extends Model
 {
 
@@ -95,7 +94,7 @@ class Model_Pedido extends Model
 		$result = mysqli_query($conn,$sql);
 		return $result;
 	}
-
+	
 	// private function listarPedidosSinDelivery(){
 	// 	$conn =BaseDeDatos::conectarBD();
 	// 	$sql = "select * from pedido where Usuario_idDelivery = null;";

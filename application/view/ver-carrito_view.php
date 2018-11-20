@@ -63,7 +63,8 @@
  	
  	<?php if($data)
 	{
-		$total=0;
+    $total=0;
+    $nombrePalCarrito = "";
 		foreach($data as $producto)
 		{
 			$cantidad=$producto["cantidad"];
@@ -82,13 +83,15 @@
             </div>
           </div>
           <?php 
-      		$total+=($producto["cantidad"]*$producto["precio"]);
+          $total+=($producto["cantidad"]*$producto["precio"]);
+          $nombrePalCarrito = $nombrePalCarrito . " - ".$producto['descripcion'];
       			} 
           ?>
           <div class="col-md-4 col-sm-4 probootstrap-animate">
               	<div class="text">
              		<?php echo "<h3>El precio total es $".$total."</h3>" ?> <br>
              		<?php echo "<a class='btn' href='/pedido/nuevoPedido?c=".$data2."&t=".$total."'>Confirmar pedido</a>"; ?> 
+                 <?php echo "<a class='btn' href='/pedido/pagar?d=".$nombrePalCarrito."'>Pagar pedido</a>"; ?> 
              		<br><br>
              		<?php echo "<a class='btn' href='/cliente/eliminarCarrito?c=".$data2."'>Vaciar Carrito</a>"; ?>
              		<br><br>

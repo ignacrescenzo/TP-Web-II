@@ -5,9 +5,10 @@ class Controller_PuntoDeVenta extends Controller
 
     public function index(){
         $idPuntoDeVenta = $_GET['c'];
+        $idComercio = $_GET['v'];
         $menu = new Model_Menu();
-        $ofertas = $menu->listarOfertas($idPuntoDeVenta);
-        $menus = $menu->listarMenus($idPuntoDeVenta);///LOGICA PARA CARGAR LOS MENUES EN LA VISTA. DESPUES, DEVOLVER LA VISTA CON LOS DATOS
+        $ofertas = $menu->listarOfertas($idPuntoDeVenta,$idComercio);
+        $menus = $menu->listarMenus($idPuntoDeVenta,$idComercio);///LOGICA PARA CARGAR LOS MENUES EN LA VISTA. DESPUES, DEVOLVER LA VISTA CON LOS DATOS
         $this->view->generateSt('comercioHome.php',$menus,$idPuntoDeVenta,$ofertas);
     }
 
@@ -30,8 +31,9 @@ class Controller_PuntoDeVenta extends Controller
     public function mostrarMenu(){
         $idComercio = $_GET['c'];
         $menu = new Model_Menu();
-        $menus = $menu->listarMenus($idComercio);
-        $this->view->generateSt('menu_view.php',$menus,$idComercio);
+        $menus = $menu->listarMenusCliente($idComercio);
+        $ofertas = $menu->listarOfertasCliente($idComercio);
+        $this->view->generateSt('menu_view.php',$menus,$idComercio,$ofertas);
     }
 
 }

@@ -3,11 +3,8 @@
     echo "INISIA SESION WACHO";
         echo "<br>";
         echo "<a href='/login'>Iniciar sesion</a>";
-        
         exit;
   }
-  $ruta = "/operadorComercio/index?v=".$_SESSION['idComercio']."&c=".$data2;
-  $rutaPedidos = "/operadorComercio/mostrarPedidos?c=".$data2;
 ?>
 
 <!DOCTYPE html>
@@ -36,11 +33,10 @@
         </div>
         <div id="navbar-collapse" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a style="cursor:pointer" href="#" data-nav-section="welcome">Inicio</a></li>
-            <li><a style="cursor:pointer" onclick="location.href='<?php echo $ruta;  ?>'">Volver a Puntos de venta</a></li>
-            <li><a style="cursor:pointer" href="#" data-nav-section="welcome">Mis ofertas</a></li>
-             <li><a style="cursor:pointer" href="#" data-nav-section="welcome">Estadísticas</a></li>
-             <li><a style="cursor:pointer" onclick="location.href='<?php echo $rutaPedidos; ?>'">Pedidos</a></li>
+            <li><a style="cursor:pointer" onclick="location.href='/administradorDeSistema/index'" data-nav-section="welcome">Inicio</a></li>
+            <li><a style="cursor:pointer" onclick="location.href='/administradorDeSistema/peticionDeComercios'" >Comercios</a></li>
+            <li><a style="cursor:pointer" onclick="location.href='/administradorDeSistema/peticionDeDeliverys'" >Deliverys</a></li>
+            <li><a style="cursor:pointer" onclick="location.href='/administradorDeSistema/estadisticas'" >Estadísticas</a></li>
             <li><a style="cursor:pointer" onclick="location.href='/login/cerrarsesion'" >Cerrar sesión</a></li>
           </ul>
         </div>
@@ -54,90 +50,60 @@
         <div class="row">
           <div class="col-md-12 text-center probootstrap-animate">
             <div class="probootstrap-heading">
-              <h3 class="secondary-heading" style="color: black;">Mis Menús</h3>
+              <h3 class="secondary-heading" style="color: black; font-size: 30px;">Estadísticas generales:</h3>
             </div>
           </div>
         </div>
       </div>
+     
 
-
-				<div class="text-center mb-5">
-                    <a href="/puntoDeVenta/mostrarformulariomenu?c=<?php echo $data2; ?>">
-                        <button class="btn btn-primary">Agregar Menu</button> 
-                    </a>
-                </div> <br>
-
-      <div class="container">
+     <div class="container">
         <div class="row">
-        <?php
-        if(mysqli_num_rows($data) >= 1){ 
-                while($menues = mysqli_fetch_assoc($data)) {      
-        echo "        
-          	<div class='col-md-4 col-sm-4 probootstrap-animate'>
-            	<div class='probootstrap-block-image'>
-
-              <figure> <img src='/application/resources/upload/".$menues['foto']."' width='360px' height='200px'></figure>
-              		<div class='text'>
-              Menu: <span id ='menuId'>".$menues['idMenu']."</span>
-                <p> Descripción: ".$menues['descripcion']." <br>
-                Precio: $".$menues['monto']."</p>
-
-               	<a href='/puntoDeVenta/mostrarformulariomodificarmenu?c=".$data2."&d=".$menues['descripcion']."' class='probootstrap-custom-link link-sm'>Modificar</a>
-			
-				<a href='/menu/eliminar?c=".$data2."&variable=".$menues['descripcion']."' class='probootstrap-custom-link link-sm'>Eliminar</a>
-
-				<a href='/menu/mostrarParaOfertar?c=".$data2."&variable=".$menues['descripcion']."' class='probootstrap-custom-link link-sm'>Ofertar</a>
-					</div>
-            	</div> 
-            </div>";
-                            }
-                          }
-
-                        ?>
-					</div>
-				</div>
-
-		   <div class="col-md-12 text-center probootstrap-animate">
-            <div class="probootstrap-heading">
-              <h3 class="secondary-heading" style="color: black;">Mis ofertas</h3>
-            </div>
-          </div>
-        
-				<div class="container">
-					<div class="row">	 
-					<?php
-                      if(mysqli_num_rows($data3) >= 1){ 
-                       while($ofertas = mysqli_fetch_assoc($data3)) {
-                           echo"
-
-                        <div class='col-md-4 col-sm-4 probootstrap-animate'>
-            			<div class='probootstrap-block-image'>
-			              <figure> <img src='/application/resources/upload/".$ofertas['foto']."' width='360px' height='200px'></figure>
-			              		<div class='text'>
-			              Menu: <span id ='menuId'>".$ofertas['idMenu']."</span>
-			                <p> Descripción: ".$ofertas['descripcion']." <br>
-			                Precio: $".$ofertas['monto']."</p>
-
-			               	<a href='/menu/eliminarOferta?c=".$data2."&variable=".$ofertas['descripcion']."' class='probootstrap-custom-link link-sm'>Eliminar</a>
-								</div>
-			            	</div> 
-			            </div>";
-                            }
-                          }
-
-                        else{
-							  echo "<div class='text-center w-50  mt-2 mx-auto'><h3> No hay ofertas disponibles </h3> </div>";
-						  }
-
-                        ?>
-						
-						</div>
-					</div>
-			</div>
-			
+       		 <div class='probootstrap-animate'>
+				<div class='probootstrap-block-image'>
+            		<div class='text'>
+		
+	<form method="POST" action="/administradorDeSistema/estadisticasDatos" enctype="application/x-www-form-urlencodes">
 	
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="date">Desde <i class="icon icon-calendar"></i></label>
+                    <div class="form-field">
+                    <input type="date" name="desde" id="date" class="form-control">
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="form-group">
+        	    <label for="date">Hasta</label> <i class="icon icon-calendar"></i>
+                    <div class="form-field">
+                    <input type="date" name="hasta" id="date" class="form-control">
+                </div>
+            </div>
+        </div>
+      
+        	    <label for="date"> </label>
+                    <div class="form-field">
+                    <input type="submit" class='btn btn-primary' name="buscar" value="buscar">
+                </div>
+            
+	</form>
+<br>
+		<p>Total ganancias:</p>
 
-</body>
+		<p>Entregas mensuales:</p>
+
+		<p>Top rankin comercios que mas vendieron:</p>
+		
+		<p>Top rankin deliverys que mas entregaron:</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
 <!-- FOOTER -->
 
         <section class="probootstrap-footer">

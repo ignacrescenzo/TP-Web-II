@@ -101,4 +101,20 @@ class Controller_OperadorComercio extends Controller
         $comercio->updatePuntoDeVenta($idPuntoDeVenta,$telefono,$direccion,$idLocalidad);
         header('location:/OperadorComercio?v='.$idComercio);
     }
+
+     public function estadisticas(){
+        $idComercio=$_GET['idComercio'];
+        $this->view->generateSt('estadisticasComercio.php',$idComercio);
+    }
+
+     public function mostrarEstadisticas(){
+        $idComercio=$_GET['idComercio'];
+        $desde = $_POST['desde'];
+        $hasta = $_POST['hasta'];
+        $comercio = new Model_Comercio();
+        $ganancias=$comercio->ganancias($idComercio,$desde,$hasta);
+        $cobradoPorSistema=$comercio->cobradoPorSistema($idComercio,$desde,$hasta);
+        $cobradoADelivery=$comercio->cobradoADelivery($idComercio,$desde,$hasta);
+        $this->view->generateSt('mostrarEstadisticasComercio_view.php',$idComercio,$ganancias,$cobradoPorSistema, $cobradoADelivery);
+    }
 }
