@@ -162,6 +162,13 @@ class Model_Menu extends Model
         return $resultado;
     }
 
+    public function listarOfertasCliente($idComercio){
+        $conn =BaseDeDatos::conectarBD();
+        $sql = "select * from menu m inner join precio p on p.idPrecio = m.Precio_idPrecio inner join puntodeventa pdv on pdv.idPuntoDeVenta=m.idPuntoDeVenta inner join comercio c on c.idComercio = pdv.Comercio_idComercio where ofertado = 1 and c.idComercio =".$idComercio.";";
+        $resultado = mysqli_query($conn, $sql);
+        return $resultado;
+    }
+
     public function eliminarOferta($idPuntoDeVenta,$descripcion){
         $conn = BaseDeDatos::conectarBD();
         //busco id precio anterior

@@ -79,39 +79,35 @@
       </div>
       <div class="container">
         <div class="row">
-          <div class="col-md-4 col-sm-4 probootstrap-animate">
-            <div class="probootstrap-block-image">
-              <figure><img src="img/hamb7.jpg" alt="Free Bootstrap Template by uicookies.com"></figure>
-              <div class="text">
-                <span class="date">June 29, 2017</span>
-                <h3><a href="#">Laboriosam Quod Dignissimos</a></h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
-                <p class=""><a href="#" class="probootstrap-custom-link link-sm">Read More</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-4 probootstrap-animate">
-            <div class="probootstrap-block-image">
-              <figure><img src="img/hamb5.jpg" alt="Free Bootstrap Template by uicookies.com"></figure>
-              <div class="text">
-                <span class="date">June 29, 2017</span>
-                <h3><a href="#">Laboriosam Quod Dignissimos</a></h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
-                <p class=""><a href="#" class="probootstrap-custom-link link-sm">Read More</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-4 probootstrap-animate">
-            <div class="probootstrap-block-image">
-              <figure><img src="img/hamb4.jpg" alt="Free Bootstrap Template by uicookies.com"></figure>
-              <div class="text">
-                <span class="date">June 29, 2017</span>
-                <h3><a href="#">Laboriosam Quod Dignissimos</a></h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
-                <p class=""><a href="#" class="probootstrap-custom-link link-sm">Read More</a></p>
-              </div>
-            </div>
-          </div>
+          
+          <div class="row">	 
+					<?php
+                      if(mysqli_num_rows($data3) >= 1){ 
+                       while($ofertas = mysqli_fetch_assoc($data3)) {
+                           echo"
+
+                        <div class='col-md-4 col-sm-4 probootstrap-animate'>
+            			<div class='probootstrap-block-image'>
+			              <figure> <img src='/application/resources/upload/".$ofertas['foto']."' width='360px' height='200px'></figure>
+			              		<div class='text'>
+			              Menu: <span id ='menuId'>".$ofertas['idMenu']."</span>
+			                <p> Descripción: ".$ofertas['descripcion']." <br>
+			                Precio: $".$ofertas['monto']."</p>
+
+			               	<a href='/menu/eliminarOferta?c=".$data2."&variable=".$ofertas['descripcion']."' class='probootstrap-custom-link link-sm'>Eliminar</a>
+								</div>
+			            	</div> 
+			            </div>";
+                            }
+                          }
+
+                        else{
+							  echo "<div class='text-center w-50  mt-2 mx-auto'><h3> No hay ofertas disponibles </h3> </div>";
+						  }
+
+                        ?>
+						
+						</div>
         </div>
       </div>
     </section>
