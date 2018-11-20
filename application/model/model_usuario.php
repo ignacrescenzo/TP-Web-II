@@ -218,7 +218,7 @@ class Model_Usuario extends Model{
 
   public function listarDeliverys($estado){
         $conn =BaseDeDatos::conectarBD();
-        $sql= "select * from Usuario as u where u.habilitado=".$estado.";";
+        $sql= "select * from Usuario as u where u.habilitado=".$estado." and u.Rol_idRol = 3;";
         $result = mysqli_query($conn,$sql); 
         return $result;
   }  
