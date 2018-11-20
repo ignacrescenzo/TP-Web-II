@@ -1,35 +1,146 @@
 <?php
-	if(!isset($_SESSION["login"])){
-		echo "INISIA SESION WACHO";
+  if(!isset($_SESSION["login"])){
+    echo "INISIA SESION WACHO";
         echo "<br>";
         echo "<a href='/login'>Iniciar sesion</a>";
         exit;
-	}
-  ?>
+  }
+?>
 
 <!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-	<div class="container-fluid px-0">
-		<div class="header d-flex justify-content-between align-items-center">
-			<div class="logo"> Administrador</div>
-			<div class="bar d-flex">
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Restó | Inicio</title>
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Pinyon+Script" rel="stylesheet">
 
-				<br><br>
-				<form method="POST" action="/AdministradorDeSistema/listarDeliverys" enctype="application/x-www-form-urlencodes"">
+    <!-- <link rel="stylesheet" href="../application/resources/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="../application/resources/css/styles-merged.css">
+    <link rel="stylesheet" href="../application/resources/css/style.min.css">
+    
+    <!-- <script src="../application/resources/js/jquery-3.3.1.min.js"></script>
+    <script src="../application/resources/js/bootstrap.min.js"></script> -->
+    <script src="../application/resources/js/scripts.min.js"></script>
+    <script src="../application/resources/js/custom.min.js"></script>
+    
+
+    <nav class="navbar navbar-default navbar-fixed-top probootstrap-navbar">
+      <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/" title="uiCookies:FineOak">FineOak</a>
+        </div>
+        <div id="navbar-collapse" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a style="cursor:pointer" href="/administradorDeSistema/index" data-nav-section="welcome">Inicio</a></li>
+            <li><a style="cursor:pointer" onclick="location.href='/administradorDeSistema/peticionDeComercios'" >Comercios</a></li>
+            <li><a style="cursor:pointer" onclick="location.href='/administradorDeSistema/peticionDeDeliverys'" >Deliverys</a></li>
+            <li><a style="cursor:pointer" onclick="location.href='/administradorDeSistema/estadisticas'" >Estadísticas</a></li>
+            <li><a style="cursor:pointer" onclick="location.href='/login/cerrarsesion'" >Cerrar sesión</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </head>
+  <body>
+<section class="probootstrap-section-bg overlay" style="background-image: url(../application/resources/img/hero_bg_1.jpg); height: 250px;">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center probootstrap-animate">
+            <div class="probootstrap-heading">
+              <h3 class="secondary-heading" style="color: black; font-size: 30px;">Estado de Deliverys</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+     
+
+     <div class="container">
+        <div class="row">
+       		 <div class='probootstrap-animate'>
+				<div class='probootstrap-block-image'>
+            		<div class='text'>
+		
+	<form method="POST" action="/administradorDeSistema/listarDeliverys" enctype="application/x-www-form-urlencodes">
+
+
 					<select name="estado">
-					<option value=0 selected>No Habilitados
-					<option value=1>Habilitados
-					<option value=2>Esperando Aprobacion
+					<option value=0 selected>No Habilitados</option>
+					<option value=1>Habilitados</option>
+					<option value=2>Esperando Aprobacion</option>
 					</select>
-					<br><br>
-					<input type="submit" value="ver lista">
+					
+					<div class="form-field"> <br>
+                    <input type="submit" class='btn btn-primary' name="buscar" value="Ver lista">
+                </div>
+					
+				
 				</form>						
 			</div>
 		</div>
 	</div>
-</body>
+</div>
+</div>
+
+
+
+
+<!-- FOOTER -->
+
+        <section class="probootstrap-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 probootstrap-animate">
+            <div class="probootstrap-footer-widget">
+              <h3><a href="#">Acerca de Restó® </a></h3>
+              <div class="row">
+                <div class="col-md-6">
+                  <a href="/delivery/registrar"> Quiero ser Delivery</a>
+                </div>
+                <div class="col-md-6">
+                  <a href="/operadorComercio/registrarComercio"> Quiero registrar mi Comercio</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 probootstrap-animate">
+            <div class="probootstrap-footer-widget">
+              <h3>Horarios</h3>
+              <div class="row">
+                <div class="col-md-4">
+                  <p>Todos los días <br> ¡las 24hs!</p>
+                </div>
+                <div class="col-md-4">
+                  <a href="#">Ayuda</a>
+                </div>
+                <div class="col-md-4">
+                  <a href="#">Medios de pago</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="probootstrap-copyright">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <p class="copyright-text">&copy; 2018 <a href="#">Restó</a>. Todos los derechos reservados.
+          </div>
+          <div class="col-md-4">
+            <ul class="probootstrap-footer-social right">
+              <li><a href="#"><i class="icon-twitter"></i></a></li>
+              <li><a href="#"><i class="icon-facebook"></i></a></li>
+              <li><a href="#"><i class="icon-instagram"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </body>
+
 </html>
