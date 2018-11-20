@@ -214,4 +214,32 @@ class Model_Comercio extends Model{
     $result = mysqli_query($conn,$sql);
     return $result;
    }
+
+   public function cambiarBanner($foto,$idComercio){
+    $conn =BaseDeDatos::conectarBD();
+
+    if(file_exists("application/resources/upload/" . $foto["name"]))
+        {
+        echo $foto["name"] . " ya existe. ";
+        }
+        else
+        {
+        move_uploaded_file($foto["tmp_name"],
+        "application/resources/upload/" . $foto["name"]);
+        $this->foto=$foto["name"];
+        echo "Almacenado en: " . "application/resources/upload/" . $foto["name"];
+    }
+    $grabar = "update comercio
+               set  banner ='".$foto["name"]."' where idComercio = $idComercio;";
+    mysqli_query($conn,$grabar);
+    return $foto["name"];
+   }
+
+   public function obtenerBanner($idComercio){
+    $conn =BaseDeDatos::conectarBD();
+    $sql = "select banner from comercio where idComercio=".$idComercio.";";
+    $result = mysqli_query($conn,$sql);
+    $row = mysqli_fetch_assoc($result);
+    return $row['banner'];
+   }
 }

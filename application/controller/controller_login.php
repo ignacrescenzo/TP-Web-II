@@ -35,6 +35,8 @@ class Controller_Login extends Controller{
 				$_SESSION["login"]="sessionOpComercio";
 				$comercio = new Model_Comercio();
 				$idComercio = $usuario->obtenerIdComercio($nombreUsuario);
+				$_SESSION['banner'] = $comercio->obtenerBanner($idComercio);
+				$banner = $_SESSION['banner'];
 				$puntosDeVenta = $comercio->listarPuntosDeVenta($idComercio);
 				$_SESSION['idComercio'] = $idComercio;
 				header("location: /operadorComercio/index?v=".$idComercio);
