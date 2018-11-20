@@ -41,7 +41,7 @@ order by m.monto desc limit 5;";
 	public function topRankingDeliverys($desde, $hasta){
 
 		$conn = BaseDeDatos::conectarBD();
-		$sql="select count(Usuario_idDelivery) as delivery, Usuario_idDelivery from pedido
+		$sql="select count(Usuario_idDelivery) as delivery, Usuario_idDelivery,u.nombreUsuario from pedido inner join usuario u on u.idUsuario = pedido.Usuario_idDelivery
 where  fechaHoraGenerado between '".$desde."' and '".$hasta."' and fechaHoraEntrega is not null 
 group by Usuario_idDelivery;";
 
