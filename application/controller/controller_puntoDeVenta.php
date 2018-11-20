@@ -32,7 +32,8 @@ class Controller_PuntoDeVenta extends Controller
         $idComercio = $_GET['c'];
         $menu = new Model_Menu();
         $menus = $menu->listarMenusCliente($idComercio);
-        $this->view->generateSt('menu_view.php',$menus,$idComercio);
+        $ofertas = $menu->listarOfertasCliente($idComercio);
+        $this->view->generateSt('menu_view.php',$menus,$idComercio,$ofertas);
     }
 
 }
