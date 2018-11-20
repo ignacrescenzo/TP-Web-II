@@ -38,6 +38,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#" data-nav-section="welcome">Inicio</a></li>
             <li><a onclick="location.href=<?php echo "'/OperadorComercio/crearPuntoDeVenta?idComercio=".$idComercio."'" ?>" >Crear punto de venta</a></li>
+            <li><a  onclick="location.href=<?php echo "'/OperadorComercio/estadisticas?idComercio=".$idComercio."'" ?>" >Estadisticas</a></li>
             <li><a onclick="location.href='/login/cerrarsesion'" >Cerrar sesión</a></li>
           </ul>
         </div>
@@ -73,7 +74,7 @@
                                 <p>
                                     ***descripción del punto de venta***
                                 </p>
-                                <a href='/puntoDeVenta/index?c=".$rows['idPuntoDeVenta']."' class='probootstrap-custom-link link-sm'> Entrar </a>
+                                <a href='/puntoDeVenta/index?c=".$rows['idPuntoDeVenta']."&v=".$data2."' class='probootstrap-custom-link link-sm'> Entrar </a>
 
                                 <a href='/OperadorComercio/eliminarPuntoDeVenta?c=".$rows['idPuntoDeVenta']."&v=".$data2."' class='probootstrap-custom-link link-sm'> Eliminar </a>
                                

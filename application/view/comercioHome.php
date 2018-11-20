@@ -3,8 +3,11 @@
     echo "INISIA SESION WACHO";
         echo "<br>";
         echo "<a href='/login'>Iniciar sesion</a>";
+        
         exit;
   }
+  $ruta = "/operadorComercio/index?v=".$_SESSION['idComercio']."&c=".$data2;
+  $rutaPedidos = "/operadorComercio/mostrarPedidos?c=".$data2;
 ?>
 
 <!DOCTYPE html>
@@ -33,12 +36,12 @@
         </div>
         <div id="navbar-collapse" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" data-nav-section="welcome">Inicio</a></li>
-            <li><a onclick="location.href=<"/operadorComercio/index?v=<?php echo $_SESSION['idComercio']; ?>">Volver a Puntos de venta</a></li>
-            <li><a href="#" data-nav-section="welcome">Mis ofertas</a></li>
-             <li><a href="#" data-nav-section="welcome">Estadísticas</a></li>
-             <li><a onclick="location.href="/operadorComercio/mostrarPedidos?c=<?php echo $data2; ?>">Pedidos</a></li>
-            <li><a onclick="location.href='/login/cerrarsesion'" >Cerrar sesión</a></li>
+            <li><a style="cursor:pointer" href="#" data-nav-section="welcome">Inicio</a></li>
+            <li><a style="cursor:pointer" onclick="location.href='<?php echo $ruta;  ?>'">Volver a Puntos de venta</a></li>
+            <li><a style="cursor:pointer" href="#" data-nav-section="welcome">Mis ofertas</a></li>
+             <li><a style="cursor:pointer" href="#" data-nav-section="welcome">Estadísticas</a></li>
+             <li><a style="cursor:pointer" onclick="location.href='<?php echo $rutaPedidos; ?>'">Pedidos</a></li>
+            <li><a style="cursor:pointer" onclick="location.href='/login/cerrarsesion'" >Cerrar sesión</a></li>
           </ul>
         </div>
       </div>
@@ -145,7 +148,7 @@
               <h3><a href="#">Acerca de Restó® </a></h3>
               <div class="row">
                 <div class="col-md-6">
-                  <a href="#"> Quiero ser Delivery</a>
+                  <a href="/delivery/registrar"> Quiero ser Delivery</a>
                 </div>
                 <div class="col-md-6">
                   <a href="/operadorComercio/registrarComercio"> Quiero registrar mi Comercio</a>

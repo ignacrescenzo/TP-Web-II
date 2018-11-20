@@ -112,6 +112,6 @@ class Controller_Delivery extends Controller{
 	 	$id = $_SESSION['id'];
 		$delivery = new Model_Usuario();
 		$delivery->deliverySePoneInactivo($id);
-		header("location:/login");
+		header("location: /delivery/index");
 	 }
 }

@@ -218,7 +218,7 @@ class Model_Usuario extends Model{
 
   public function listarDeliverys($estado){
         $conn =BaseDeDatos::conectarBD();
-        $sql= "select * from Usuario as u where u.habilitado=".$estado.";";
+        $sql= "select * from Usuario as u where u.habilitado=".$estado." and u.Rol_idRol = 3;";
         $result = mysqli_query($conn,$sql); 
         return $result;
   }  
@@ -333,10 +333,10 @@ public function listarDeliverysEnEsperaDeAprobacion(){
     $result = mysqli_query($conn,$sql);
 
     //movimiento monetario
-    $sql4 = "insert into movimiento (monto,fecha,comercio_idComercio,tipo) values (-".$porcentajeAdmin.",CURDATE(),".$idComercio.",'Pago a Administrador');";
+    $sql4 = "insert into movimiento (monto,fecha,comercio_idComercio,tipo) values (".$porcentajeAdmin.",CURDATE(),".$idComercio.",'Pago a Administrador');";
     mysqli_query($conn,$sql4);
 
-    $sql5 = "insert into movimiento (monto,fecha,comercio_idComercio,tipo) values (-".$porcentajeDelivery.",CURDATE(),".$idComercio.",'Pago a Delivery');";
+    $sql5 = "insert into movimiento (monto,fecha,comercio_idComercio,tipo) values (".$porcentajeDelivery.",CURDATE(),".$idComercio.",'Pago a Delivery');";
     mysqli_query($conn,$sql5);
 
     $sqlMontoAdmin = "(select monto from cuenta where usuario_idUsuario = 1)";

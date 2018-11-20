@@ -12,12 +12,13 @@ class Controller_Cliente extends Controller{
         
         $menu = new Model_Menu();
         $idComercio = $_GET['c'];
-        $menus = $menu->listarMenus($idComercio);
+        $menus = $menu->listarMenusCliente($idComercio);
         $descripcion = $_GET["d"];
         $array = $menu->obtenerArrayProducto(urldecode($descripcion));      	
         $carrito = new Model_Carrito();
         $carrito->add($array);
-        $this->view->generateSt('menu_view.php',$menus,$idComercio); 
+        header("location:/puntoDeVenta/mostrarMenu?c=".$idComercio);
+        //$this->view->generateSt('menu_view.php',$menus,$idComercio); 
        }
     public function verComercios(){
         $comercio = new Model_Comercio();
@@ -45,8 +46,9 @@ class Controller_Cliente extends Controller{
         $menu = new Model_Menu();
         $carrito->destroy();
         $idComercio = $_GET['c'];
-        $menus = $menu->listarMenus($idComercio);
-        $this->view->generateSt('menu_view.php',$menus);
+        // $menus = $menu->listarMenusCliente($idComercio);
+        // $this->view->generateSt('menu_view.php',$menus);
+        header("location:/puntoDeVenta/mostrarMenu?c=".$idComercio."");
     }
 	public function eliminarProducto(){
         $carrito = new Model_Carrito();
