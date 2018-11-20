@@ -59,6 +59,7 @@
     </section>
    <section class="probootstrap-section">
       <div class="container">
+      <div style="width: 100%">
         <div class="row">
 
 
@@ -77,27 +78,35 @@
 				Provincia: ".$pedido['uprovincia']."<br>
 				*** <br>
 				Dirección del Comercio: ".$pedido['dir']."<br>
-				Domicilio del Cliente: ".$pedido['dom']."<br>
 				Localidad: ".$pedido['clocalidad']."<br>
 				Provincia: ".$pedido['cprovincia']."<br>
-				Total: $".$pedido['total']."<br><br>";
-
+        Total: $".$pedido['total']."<br><br>";
+        
+          $direccionCliente =  $pedido['dom']." ".$pedido['ulocalidad'];
+          $direccionComercio =  $pedido['dir']." ".$pedido['clocalidad'];
+        
 				if($pedido['retiro'] == null){
 										echo "<a href='/delivery/pedidoRetirado?id=".$pedido['id']."' class='btn btn-primary'>Retirado</a>";
 										echo "<a href='/delivery/pedidoCancelado?id=".$pedido['id']."' class='btn btn-danger'>Cancelar</a>";
 										}
-										if($pedido['entrega'] == null && $pedido['retiro'] != null){
+				if($pedido['entrega'] == null && $pedido['retiro'] != null){
 										echo "<a href='/delivery/pedidoEntregado?id=".$pedido['id']."&p=".$pedido['idPuntoDeVenta']."&t=".$pedido['total']."' class='btn btn-danger text-white'>Entregado</a>";
 										} echo"</div>
 									</div> 
 								</div>";
 							}
-							
+              if($pedido['entrega'] == null){
+                echo "<iframe width='30%' height='200' src='https://maps.google.com/maps?width=100%&height=600&hl=es&q=".urlencode($direccionCliente)."&ie=UTF8&t=&z=14&iwloc=B&output=embed' frameborder='0' scrolling='no' marginheight='0' marginwidth='0'><a href='https://www.mapsdirections.info/calcular-ruta.html'>Mapa de Ruta</a></iframe><br>";
+                echo "<iframe width='30%' height='200' src='https://maps.google.com/maps?width=100%&height=600&hl=es&q=".urlencode($direccionComercio)."&ie=UTF8&t=&z=14&iwloc=B&output=embed' frameborder='0' scrolling='no' marginheight='0' marginwidth='0'><a href='https://www.mapsdirections.info/calcular-ruta.html'>Mapa de Ruta</a></iframe>";
+               }
 						}
                         ?>
-					</div>
-				</div>
-				
+          
+          </div>
+         
+          
+        </div>
+
 				</section>
 
 
