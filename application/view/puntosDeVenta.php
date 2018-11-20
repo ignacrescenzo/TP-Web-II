@@ -52,7 +52,7 @@
 
 <body>
 
-    <section class="probootstrap-section-bg overlay" style="background-image: url(../application/resources/img/hero_bg_1.jpg); height: 300px;">
+    <section class="probootstrap-section-bg overlay" style="background-image: url(/application/resources/upload/<?php echo $data3; ?>); height: 300px;">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center probootstrap-animate">
@@ -64,7 +64,16 @@
             </div>
         </div>
     </section>
-
+    <form class="form-signin  w-25" enctype="multipart/form-data" method="POST" action="/operadorComercio/cambiarBanner?v=<?php echo $data2; ?>">
+        <div class="form-group mb-2 text-center">
+            <div class="form-group mb-2">
+                <input type="file" name="file" placeholder="Cargue la imagen" class="form-control" value="">
+            </div>
+            <button class="btn btn btn-primary mx-auto" type="submit">
+                Cargar banner
+            </button>
+        </div>
+    </form>
     <section class="probootstrap-section">
         <div class="container">
             <div class="row">

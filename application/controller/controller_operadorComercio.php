@@ -31,8 +31,10 @@ class Controller_OperadorComercio extends Controller
     public function index(){
         $comercio = new Model_Comercio();
         $idComercio = $_GET['v'];
+        $banner = $comercio->obtenerBanner($idComercio);
         $puntosDeVenta = $comercio->listarPuntosDeVenta($idComercio);
-        $this->view->generateSt('puntosDeVenta.php', $puntosDeVenta,$idComercio);
+
+        $this->view->generateSt('puntosDeVenta.php', $puntosDeVenta,$idComercio,$banner);
     }
 
     public function crearPuntoDeVenta(){
@@ -116,5 +118,12 @@ class Controller_OperadorComercio extends Controller
         $cobradoPorSistema=$comercio->cobradoPorSistema($idComercio,$desde,$hasta);
         $cobradoADelivery=$comercio->cobradoADelivery($idComercio,$desde,$hasta);
         $this->view->generateSt('mostrarEstadisticasComercio_view.php',$idComercio,$ganancias,$cobradoPorSistema, $cobradoADelivery);
+    }
+
+    public function cambiarBanner(){
+        $comercio = new Model_Comercio();
+        $idComercio = $_GET['v'];
+        $banner = $comercio->cambiarBanner($_FILES["file"],$idComercio);
+        header("location:/operadorComercio/index?v=".$idComercio."&b=".$banner);
     }
 }
