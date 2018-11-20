@@ -333,10 +333,10 @@ public function listarDeliverysEnEsperaDeAprobacion(){
     $result = mysqli_query($conn,$sql);
 
     //movimiento monetario
-    $sql4 = "insert into movimiento (monto,fecha,comercio_idComercio,tipo) values (-".$porcentajeAdmin.",CURDATE(),".$idComercio.",'Pago a Administrador');";
+    $sql4 = "insert into movimiento (monto,fecha,comercio_idComercio,tipo) values (".$porcentajeAdmin.",CURDATE(),".$idComercio.",'Pago a Administrador');";
     mysqli_query($conn,$sql4);
 
-    $sql5 = "insert into movimiento (monto,fecha,comercio_idComercio,tipo) values (-".$porcentajeDelivery.",CURDATE(),".$idComercio.",'Pago a Delivery');";
+    $sql5 = "insert into movimiento (monto,fecha,comercio_idComercio,tipo) values (".$porcentajeDelivery.",CURDATE(),".$idComercio.",'Pago a Delivery');";
     mysqli_query($conn,$sql5);
 
     $sqlMontoAdmin = "(select monto from cuenta where usuario_idUsuario = 1)";
