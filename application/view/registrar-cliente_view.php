@@ -96,7 +96,7 @@
               </div>
 			  
 			  <div class="form-group">
-                <label for="c_name">Direcciòn</label>
+                <label for="c_name">Dirección</label>
                 <div class="form-field">
                   <input required="" type="text" class="form-control" name="direccion">
                 </div>
@@ -105,7 +105,7 @@
 			 <div class="form-group">
 			  <label for="c_name">Localidad</label>
 			  <div class="form-field">
-				<select name="idLocalidad">
+				<select  name="idLocalidad">
 					<option value="0">Seleccione:</option>
 						<?php
 						  while ($rows = mysqli_fetch_assoc($data)) {
