@@ -148,7 +148,7 @@
               <h3><a href="#">Acerca de Restó® </a></h3>
               <div class="row">
                 <div class="col-md-6">
-                  <a href="#"> Quiero ser Delivery</a>
+                  <a href="/delivery/registrar"> Quiero ser Delivery</a>
                 </div>
                 <div class="col-md-6">
                   <a href="/operadorComercio/registrarComercio"> Quiero registrar mi Comercio</a>
