@@ -5054,8 +5054,8 @@ values
 
 insert into comercio
 values
-(1,'Comercio 1','a@a.com','direccion falsa', null, '11535433',1,'l1.png',30),
-(2,'Comercio 2','b@b.com','direccion falsa2',null,'1246215133',1,'l2.jpg',45);
+(1,'Bajon Express','a@a.com','direccion falsa', 'b.jpg', '11535433',1,'l1.png',30),
+(2,'Don Chuy','b@b.com','direccion falsa2',null,'1246215133',1,'l2.jpg',45);
 
 
 
