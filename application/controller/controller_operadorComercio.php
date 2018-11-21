@@ -126,4 +126,38 @@ class Controller_OperadorComercio extends Controller
         $banner = $comercio->cambiarBanner($_FILES["file"],$idComercio);
         header("location:/operadorComercio/index?v=".$idComercio."&b=".$banner);
     }
+	
+	public function liquidacionesComercio(){
+		$idComercio= $_SESSION['idComercio'];
+		$comercio = new Model_Comercio();
+		$listaLiquidaciones = $comercio->listarLiquidacionesComercio($idComercio);
+		$liquidaciones = null;
+		$liquidacionSeleccionada=null;
+		$banner = $comercio->obtenerBanner($idComercio);
+		$this->view->generateSt("liquidacionesComercio_view.php",$liquidaciones,$listaLiquidaciones,$liquidacionSeleccionada,$banner);
+	 }
+	 
+	 
+	 public function verMovimientosSinLiquidarComercio(){
+		$desde = $_POST['desde'];
+        $hasta = $_POST['hasta'];
+		$idComercio= $_SESSION['idComercio'];
+        $comercio = new Model_Comercio();
+		$listaLiquidaciones = $comercio->listarLiquidacionesComercio($$idComercio);
+        $liquidaciones = $comercio->verMovimientosSinLiquidarComercio($desde,$hasta,$idComercio);
+		$liquidacionSeleccionada=null;
+		$banner = $comercio->obtenerBanner($idComercio);
+		$this->view->generateSt('liquidacionesComercio_view.php',$liquidaciones,$listaLiquidaciones,$liquidacionSeleccionada,$banner); 
+	 }
+	 
+	 public function verLiquidacionSelecionadaComercio(){
+		$idComercio= $_SESSION['idComercio'];
+		$fechaLiquidado = $_POST['fechaLiquidado'];
+		$comercio = new Model_Comercio();
+		$liquidacionSeleccionada = $comercio->verLiquidacionSelecionadaComercio($idComercio,$fechaLiquidado);
+		$listaLiquidaciones = $comercio->listarLiquidacionesComercio($idComercio);
+		$liquidaciones = null;
+		$banner = $comercio->obtenerBanner($idComercio);
+		$this->view->generateSt("liquidacionesComercio_view.php",$liquidaciones,$listaLiquidaciones,$liquidacionSeleccionada,$banner);
+	 }
 }

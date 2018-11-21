@@ -468,7 +468,7 @@ public function listarDeliverysEnEsperaDeAprobacion(){
   
   public function listarLiquidaciones($idDelivery){
 	$conn =BaseDeDatos::conectarBD();
-	$sql="select distinct fechaLiquidado from movimiento;";
+	$sql="select distinct fechaLiquidado from movimiento where usuario_idUsuario = ".$idDelivery.";";
 	$result = mysqli_query($conn,$sql);
     return $result;
   }

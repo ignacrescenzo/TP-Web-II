@@ -32,13 +32,15 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="/" title="uiCookies:FineOak">FineOak</a>
             </div>
-             <div id="navbar-collapse" class="navbar-collapse collapse">
+            <?php
+            $idComercio=$data2;
+            ?>
+            <div id="navbar-collapse" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a style="cursor:pointer" href="#" data-nav-section="welcome">Inicio</a></li>
-                    <li><a style="cursor:pointer" onclick="location.href='/delivery/pedidosDisponibles'">Pedidos disponibles</a></li>
-                    <li><a style="cursor:pointer" onclick="location.href='/delivery/pedidosEnCurso'">Pedidos en curso</a></li>
-                    <li><a style="cursor:pointer" onclick="location.href='/delivery/pedidosRealizados'">Pedidos realizados</a></li>
-					<li><a style="cursor:pointer" onclick="location.href='/delivery/liquidaciones'">liquidaciones</a></li>		
+                    <li><a href="#" data-nav-section="welcome">Inicio</a></li>
+                    <li><a style="cursor:pointer" onclick="location.href=<?php //echo "'/OperadorComercio/crearPuntoDeVenta?idComercio=".$idComercio."'" ?>">Crear punto de venta</a></li>
+                    <li><a style="cursor:pointer" onclick="location.href=<?php //echo "'/OperadorComercio/estadisticas?idComercio=".$idComercio."'" ?>">Estadisticas</a></li>
+					<li><a style="cursor:pointer" onclick="location.href='/operadorComercio/liquidacionesComercio'">liquidaciones</a></li>
                     <li><a style="cursor:pointer" onclick="location.href='/login/cerrarsesion'">Cerrar sesión</a></li>
                 </ul>
             </div>
@@ -48,12 +50,12 @@
 
 <body>
 
-    <section class="probootstrap-section-bg overlay" style="background-image: url(../application/resources/img/hero_bg_1.jpg); height: 250px;">
+       <section class="probootstrap-section-bg overlay" style="background-image: url(../application/resources/upload/<?php echo $data4; ?>); height: 250px;">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center probootstrap-animate">
                     <div class="probootstrap-heading">
-                        <h3 class="secondary-heading" style="color: black; font-size: 30px;">Liquidaciones</h3>
+                        <h3 class="secondary-heading" style="color: black;">Liquidaciones</h3>
                     </div>
                 </div>
             </div>
@@ -67,7 +69,7 @@
 					<div class="form-group">
 						<label for="c_name">Historial Liquidaciones</label>
 							<div class="form-field">
-								<form method="POST" action="/delivery/verLiquidacionSelecionada" enctype="application/x-www-form-urlencodes" class="probootstrap-form">
+								<form method="POST" action="/operadorComercio/verLiquidacionSelecionadaComercio" enctype="application/x-www-form-urlencodes" class="probootstrap-form">
 									<select  name="fechaLiquidado">
 										<option value="0">Seleccione:</option>
 										<?php
@@ -105,7 +107,7 @@
 							?>
 						<div class='text'>
 
-                            <form method="POST" action="/delivery/verMovimientosSinLiquidar" enctype="application/x-www-form-urlencodes">
+                            <form method="POST" action="/operadorComercio/verMovimientosSinLiquidarComercio" enctype="application/x-www-form-urlencodes">
 
                                 <div class="col-md-4">
                                     <div class="form-group">
@@ -166,58 +168,58 @@
 
         <!-- FOOTER -->
 
-        <section class="probootstrap-footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 probootstrap-animate">
-                        <div class="probootstrap-footer-widget">
-                            <h3><a href="#">Acerca de Restó® </a></h3>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <a href="/delivery/registrar"> Quiero ser Delivery</a>
-                                </div>
-                                <div class="col-md-6">
-                                    <a href="/operadorComercio/registrarComercio"> Quiero registrar mi Comercio</a>
-                                </div>
-                            </div>
+   <section class="probootstrap-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 probootstrap-animate">
+                <div class="probootstrap-footer-widget">
+                    <h3><a href="#">Acerca de Restó® </a></h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="/delivery/registrar"> Quiero ser Delivery</a>
                         </div>
-                    </div>
-                    <div class="col-md-6 probootstrap-animate">
-                        <div class="probootstrap-footer-widget">
-                            <h3>Horarios</h3>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <p>Todos los días <br> ¡las 24hs!</p>
-                                </div>
-                                <div class="col-md-4">
-                                    <a href="#">Ayuda</a>
-                                </div>
-                                <div class="col-md-4">
-                                    <a href="#">Medios de pago</a>
-                                </div>
-                            </div>
+                        <div class="col-md-6">
+                            <a href="/operadorComercio/registrarComercio"> Quiero registrar mi Comercio</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+            <div class="col-md-6 probootstrap-animate">
+                <div class="probootstrap-footer-widget">
+                    <h3>Horarios</h3>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p>Todos los días <br> ¡las 24hs!</p>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="#">Ayuda</a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="#">Medios de pago</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-        <section class="probootstrap-copyright">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8">
-                        <p class="copyright-text">&copy; 2018 <a href="#">Restó</a>. Todos los derechos reservados.
-                    </div>
-                    <div class="col-md-4">
-                        <ul class="probootstrap-footer-social right">
-                            <li><a href="#"><i class="icon-twitter"></i></a></li>
-                            <li><a href="#"><i class="icon-facebook"></i></a></li>
-                            <li><a href="#"><i class="icon-instagram"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
+<section class="probootstrap-copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <p class="copyright-text">&copy; 2018 <a href="#">Restó</a>. Todos los derechos reservados.
             </div>
-        </section>
+            <div class="col-md-4">
+                <ul class="probootstrap-footer-social right">
+                    <li><a href="#"><i class="icon-twitter"></i></a></li>
+                    <li><a href="#"><i class="icon-facebook"></i></a></li>
+                    <li><a href="#"><i class="icon-instagram"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
 
 </body>
 
