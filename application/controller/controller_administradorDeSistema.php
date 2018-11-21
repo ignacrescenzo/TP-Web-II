@@ -123,6 +123,24 @@ class Controller_AdministradorDeSistema extends Controller{
         $this->view->generateSt('adminEstadisticas_view.php',$totalGanancias,$entregasMensuales,$topRankingComercios,$topRankingDeliverys);        
     }
 
+    public function liquidar(){
+        $this->view->generateSt('adminLiquidacionHome_view.php'); 
+    }
+    public function liquidarPeriodo(){
+        $desde = $_GET['d'];
+        $hasta = $_GET['h'];
+        $admin = new Model_Usuario();
+        $admin->liquidarDatos($desde,$hasta);
+        header("location: /administradorDeSistema/index");
+    }
+
+    public function verMovimientos(){
+        $desde = $_POST['desde'];
+        $hasta = $_POST['hasta'];
+        $admin = new Model_Usuario();
+        $liquidaciones = $admin->mostrarDatosDeLiquidacion($desde,$hasta);
+        $this->view->generateSt('adminLiquidacionHome_view.php',$liquidaciones,$desde,$hasta); 
+    }
 }
 
 ?>

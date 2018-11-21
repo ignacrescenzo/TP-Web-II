@@ -333,10 +333,10 @@ public function listarDeliverysEnEsperaDeAprobacion(){
     $result = mysqli_query($conn,$sql);
 
     //movimiento monetario
-    $sql4 = "insert into movimiento (monto,fecha,comercio_idComercio,tipo) values (".$porcentajeAdmin.",CURDATE(),".$idComercio.",'Pago a Administrador');";
+    $sql4 = "insert into movimiento (monto,fecha,comercio_idComercio,tipo,liquidado) values (".$porcentajeAdmin.",CURDATE(),".$idComercio.",'Pago a Administrador',0);";
     mysqli_query($conn,$sql4);
 
-    $sql5 = "insert into movimiento (monto,fecha,comercio_idComercio,tipo) values (".$porcentajeDelivery.",CURDATE(),".$idComercio.",'Pago a Delivery');";
+    $sql5 = "insert into movimiento (monto,fecha,comercio_idComercio,tipo,liquidado) values (".$porcentajeDelivery.",CURDATE(),".$idComercio.",'Pago a Delivery',0);";
     mysqli_query($conn,$sql5);
 
     $sqlMontoAdmin = "(select monto from cuenta where usuario_idUsuario = 1)";
@@ -428,7 +428,7 @@ public function listarDeliverysEnEsperaDeAprobacion(){
     $sql4 = "update cuenta set monto = ".$totalParaComercio." where comercio_idComercio = ".$idComercio."";
     $result4 = mysqli_query($conn,$sql4);
 
-    $sql5 = "insert into movimiento (monto,fecha,comercio_idComercio,tipo) values (".$total.",CURDATE(),".$idComercio.",'Venta');";
+    $sql5 = "insert into movimiento (monto,fecha,comercio_idComercio,tipo,liquidado) values (".$total.",CURDATE(),".$idComercio.",'Venta',0);";
     mysqli_query($conn,$sql5);
   }
 
@@ -443,7 +443,20 @@ public function listarDeliverysEnEsperaDeAprobacion(){
 		$conn =BaseDeDatos::conectarBD();
 		$sql="select * from provincialocalidad;";
 		$result = mysqli_query($conn,$sql);
-        return $result;
-	}
+    return $result;
+  }
+  
+  public function liquidarDatos($desde,$hasta){
+    $conn =BaseDeDatos::conectarBD();
+    $sql = "update movimiento set liquidado = 1,fechaLiquidado = CURDATE() where (fecha between '".$desde."' and '".$hasta."') and liquidado = 0;";
+    $result = mysqli_query($conn,$sql);
+  }
+
+  public function mostrarDatosDeLiquidacion($desde,$hasta){
+    $conn =BaseDeDatos::conectarBD();
+    $sql = "select * from movimiento where (fecha between '".$desde."' and '".$hasta."') and liquidado = 0;";
+    $result = mysqli_query($conn,$sql);
+    return $result;
+  }
 }
 ?>

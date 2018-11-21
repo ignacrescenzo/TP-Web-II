@@ -53,7 +53,8 @@
             <div class="row">
                 <div class="col-md-12 text-center probootstrap-animate">
                     <div class="probootstrap-heading">
-                        <h3 class="secondary-heading" style="color: black; font-size: 30px;">Estadísticas generales:</h3>
+                        <h3 class="secondary-heading" style="color: black; font-size: 30px;">Ingrese periodo de tiempo
+                            para liquidar</h3>
                     </div>
                 </div>
             </div>
@@ -66,13 +67,13 @@
                     <div class='probootstrap-block-image'>
                         <div class='text'>
 
-                            <form method="POST" action="/administradorDeSistema/estadisticasDatos" enctype="application/x-www-form-urlencodes">
+                            <form method="POST" action="/administradorDeSistema/verMovimientos" enctype="application/x-www-form-urlencodes">
 
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="date">Desde <i class="icon icon-calendar"></i></label>
                                         <div class="form-field">
-                                            <input type="date" name="desde" id="date" class="form-control">
+                                            <input type="date" name="desde" id="date1" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -81,58 +82,46 @@
                                     <div class="form-group">
                                         <label for="date">Hasta</label> <i class="icon icon-calendar"></i>
                                         <div class="form-field">
-                                            <input type="date" name="hasta" id="date" class="form-control">
+                                            <input type="date" name="hasta" id="date2" class="form-control">
                                         </div>
                                     </div>
                                 </div>
 
                                 <label for="date"> </label>
                                 <div class="form-field">
-                                    <input type="submit" class='btn btn-primary' name="buscar" value="buscar">
+                                    <input type="submit" class='btn btn-primary' name="buscar" value="Ver">
                                 </div>
 
                             </form>
                             <br>
-                            <p>Total ganancias:
-                                <?php
-			if(mysqli_num_rows($data)>0){
-		    while($rows=mysqli_fetch_assoc($data)) { 		
-				echo "$".$rows['total']."";
-		    }
-		}
-		?>
-                            </p>
+                            <?php
+                            if(isset($data)){
 
-                            <p>Entregas mensuales:
+                                echo " <a href='/administradorDeSistema/liquidarPeriodo?d=".$data2."&h=".$data3."'><div class='form-field'>
+                                    <input type='button' class='btn btn-primary' name='buscar' value='Liquidar'>
+                                </div></a>";
+                while($rows = mysqli_fetch_assoc($data)) { 
+                    
+                        echo "        
+                        <div class='col-md-4 col-sm-4 probootstrap-animate'>
+                            <div class='probootstrap-block-image'>
 
-                                <?php
-			if(mysqli_num_rows($data2)>0){
-		    while($rows=mysqli_fetch_assoc($data2)) { 		
-				echo "".$rows['entregas']."";
-		    }
-		}
-		?>
-                            </p>
+                            <div class='text'>
+                                <h3>".$rows['idMovimiento']."</a></h3>
+                                <p>".$rows['monto']."</p>
+                                <p>".$rows['tipo']."</p>
+                                <p>".$rows['fecha']."</p>
+                            </div>
+                            </div>
+                        </div> 
+                        ";
+                        }
+         } ?>
 
-                            <p>Top ranking comercios que mas vendieron:
-                                <?php
-			if(mysqli_num_rows($data3)>0){
-		    while($rows=mysqli_fetch_assoc($data3)) { 		
-				echo "".$rows['nombre']."";
-		    }
-		}
-		?>
-                            </p>
 
-                            <p>Top ranking deliverys que mas entregaron:
-                                <?php
-			if(mysqli_num_rows($data4)>0){
-		    while($rows=mysqli_fetch_assoc($data4)) { 		
-				echo "".$rows['nombreUsuario']."";
-		    }
-		}
-		?>
-                            </p>
+
+
+
                         </div>
                     </div>
                 </div>
