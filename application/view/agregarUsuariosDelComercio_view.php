@@ -27,7 +27,7 @@
               <h3 class="secondary-heading" style="color: black;">Carga de usuarios:</h3>
             </div>
           </div>
-            <form method="POST" action="/login/validarContrasena" enctype="application/x-www-form-urlencodes" class="probootstrap-form">
+            <form method="POST" action="/login/cargarUsuariosDeComercio" enctype="application/x-www-form-urlencodes" class="probootstrap-form">
                 <div class="col-md-4 col-md-offset-4">               
           
                 <div class="form-group">
