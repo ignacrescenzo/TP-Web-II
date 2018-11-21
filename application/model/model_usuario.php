@@ -309,6 +309,7 @@ public function listarDeliverysEnEsperaDeAprobacion(){
    public function cambiarContrasenaUsuarioDeComercio($claveNueva,$idUsuario){
      $conn =BaseDeDatos::conectarBD();
      $sql= "update usuario set clave = '".$claveNueva."' where idUsuario=".$idUsuario.";";
+
       $result = mysqli_query($conn,$sql);
       return $result;  
    }
