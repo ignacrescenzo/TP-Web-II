@@ -132,6 +132,8 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`movimiento` (
   `monto` FLOAT NULL,
   `fecha` DATE NULL,
   `tipo` VARCHAR (30) NULL,
+  `liquidado` TINYINT (1) NULL,
+  `fechaLiquidado` DATE NULL,
   `usuario_idUsuario` INT(11) NULL,
   `comercio_idComercio` INT(11) NULL,
   PRIMARY KEY (`idMovimiento`),
@@ -5054,8 +5056,8 @@ values
 
 insert into comercio
 values
-(1,'Bajon Express','a@a.com','direccion falsa', 'b.jpg', '11535433',1,'l1.png',30),
-(2,'Don Chuy','b@b.com','direccion falsa2',null,'1246215133',1,'l2.jpg',45);
+(1,'Bajon Express','a@a.com','direccion falsa', 'b.jpg', '11535433',1,'l1.png',1),
+(2,'Don Chuy','b@b.com','direccion falsa2',null,'1246215133',1,'l2.jpg',1);
 
 
 
