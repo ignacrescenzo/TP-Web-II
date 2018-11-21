@@ -15,6 +15,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Restó | Inicio</title>
 
+   <!-- GRAFICOS -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        
+     google.charts.load('current', {'packages':['corechart']});
+
+     google.charts.setOnLoadCallback(drawChart);
+
+     function drawChart() {
+
+        // Create the data table.
+        var data = new google.visualization.arrayToDataTable([
+         ['Comercio', 'Monto Total de ventas'],
+         <?php
+      
+            while($rows=mysqli_fetch_assoc($data3)) {       
+                echo "['".$rows['nombre']."',".$rows['total']."],";
+            }
+        
+             ?>
+        ]);
+
+        var options = {'title':'Comercios que mas vendieron',
+
+                       'width':400,
+                       'height':300};
+
+                        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+
+         // Create the data table 2.
+        var data2 = new google.visualization.arrayToDataTable([
+         ['Comercio', 'Monto Total de ventas'],
+         <?php
+      
+            while($rows=mysqli_fetch_assoc($data4)) {       
+                echo "['".$rows['nombreUsuario']."',".$rows['delivery']."],";
+            }
+        
+             ?>
+        ]);
+
+        var options2 = {'title':'Deliverys que mas entregaron',
+
+                       'width':400,
+                       'height':300};
+
+                        var chart2 = new google.visualization.BarChart(document.getElementById('chart_div2'));
+        chart2.draw(data2, options2);
+      }
+
+    </script>
+
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Pinyon+Script" rel="stylesheet">
 
     <!-- <link rel="stylesheet" href="../application/resources/css/bootstrap.min.css"> -->
@@ -112,32 +165,19 @@
 		    }
 		}
 		?>
+
+        <div id="chart_div"></div>
+<div id="chart_div2"></div> 
                             </p>
 
-                            <p>Top ranking comercios que mas vendieron:
-                                <?php
-			if(mysqli_num_rows($data3)>0){
-		    while($rows=mysqli_fetch_assoc($data3)) { 		
-				echo "".$rows['nombre']."";
-		    }
-		}
-		?>
-                            </p>
-
-                            <p>Top ranking deliverys que mas entregaron:
-                                <?php
-			if(mysqli_num_rows($data4)>0){
-		    while($rows=mysqli_fetch_assoc($data4)) { 		
-				echo "".$rows['nombreUsuario']."";
-		    }
-		}
-		?>
+         
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
 
 
         <!-- FOOTER -->
