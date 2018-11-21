@@ -124,23 +124,46 @@ class Controller_AdministradorDeSistema extends Controller{
     }
 
     public function liquidar(){
-        $this->view->generateSt('adminLiquidacionHome_view.php'); 
+		$administrador = new Model_Usuario();
+		$listaLiquidaciones = $administrador->listarLiquidacionesAdministrador();
+		$liquidaciones = null;
+		$desde = null;
+		$hasta = null;
+        $this->view->generateSt('adminLiquidacionHome_view.php',$liquidaciones,$desde,$hasta,$listaLiquidaciones); 
     }
     public function liquidarPeriodo(){
         $desde = $_GET['d'];
         $hasta = $_GET['h'];
-        $admin = new Model_Usuario();
-        $admin->liquidarDatos($desde,$hasta);
+        $administrador = new Model_Usuario();
+        $administrador->liquidarDatos($desde,$hasta);
         header("location: /administradorDeSistema/index");
     }
 
     public function verMovimientos(){
         $desde = $_POST['desde'];
         $hasta = $_POST['hasta'];
-        $admin = new Model_Usuario();
-        $liquidaciones = $admin->mostrarDatosDeLiquidacion($desde,$hasta);
-        $this->view->generateSt('adminLiquidacionHome_view.php',$liquidaciones,$desde,$hasta); 
+        $administrador = new Model_Usuario();
+        $liquidaciones = $administrador->mostrarDatosDeLiquidacion($desde,$hasta);
+		$listaLiquidaciones = $administrador->listarLiquidacionesAdministrador();
+        $this->view->generateSt('adminLiquidacionHome_view.php',$liquidaciones,$desde,$hasta,$listaLiquidaciones); 
     }
+	
+	public function liquidacionesAdministrador(){
+		$administrador = new Model_Usuario();
+		$listaLiquidaciones = $administrador->listarLiquidacionesAdministrador();
+		$this->view->generateSt("adminLiquidacionHome_view.php",$listaLiquidaciones);
+	 }
+	  
+	 public function verLiquidacionSelecionadaAdministrador(){
+		$administrador = new Model_Usuario();
+		$fechaLiquidado = $_POST['fechaLiquidado'];
+		$liquidacionSeleccionada = $administrador->verLiquidacionSelecionadaAdministrador($fechaLiquidado);
+		$listaLiquidaciones = $administrador->listarLiquidacionesAdministrador();
+		$liquidaciones = null;
+		$desde = null;
+		$hasta = null;
+		$this->view->generateSt("adminLiquidacionHome_view.php",$liquidaciones,$desde,$hasta,$listaLiquidaciones,$liquidacionSeleccionada);
+	 }
 }
 
 ?>
