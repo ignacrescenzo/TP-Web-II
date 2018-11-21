@@ -479,5 +479,19 @@ public function listarDeliverysEnEsperaDeAprobacion(){
 	$result = mysqli_query($conn,$sql);
     return $result;
   }
+  
+    public function listarLiquidacionesAdministrador(){
+	$conn =BaseDeDatos::conectarBD();
+	$sql="select distinct fechaLiquidado from movimiento;";
+	$result = mysqli_query($conn,$sql);
+    return $result;
+  }
+  
+  public function verLiquidacionSelecionadaAdministrador($fechaLiquidado){
+	$conn =BaseDeDatos::conectarBD();
+	$sql = "select * from movimiento where fechaLiquidado ='".$fechaLiquidado."';";
+	$result = mysqli_query($conn,$sql);
+    return $result;
+  }
 }
 ?>

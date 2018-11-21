@@ -59,8 +59,55 @@
                 </div>
             </div>
         </div>
+		<div class="container">
+            <div class="row">
+                <div class='probootstrap-animate'>
+                    <div class='probootstrap-block-image'>
+                        <div class='text'>
+					<div class="form-group">
+						<label for="c_name">Historial Liquidaciones</label>
+							<div class="form-field">
+								<form method="POST" action="/administradorDeSistema/verLiquidacionSelecionadaAdministrador" enctype="application/x-www-form-urlencodes" class="probootstrap-form">
+									<select  name="fechaLiquidado">
+										<option value="0">Seleccione:</option>
+										<?php
+										if(isset($data4)){
+											while ($rows = mysqli_fetch_assoc($data4)) {
+											echo "<option name=".$rows['fechaLiquidado']." value=".$rows['fechaLiquidado'].">".$rows['fechaLiquidado']."</option>";
+											}
+										}
+										?>
+									</select>
+									<div class="form-field">
+										<input type="submit" class='btn btn-primary' value="ver">
+									</div>
+								</form>
+							</div>
+					</div>
+					<?php
+                            if(isset($data5)){
+								while($rows = mysqli_fetch_assoc($data5)) { 
+                    
+								echo "        
+									<div class='col-md-4 col-sm-4 probootstrap-animate'>
+										<div class='probootstrap-block-image'>
 
-
+											<div class='text'>
+												<h3>".$rows['idMovimiento']."</a></h3>
+												<p>".$rows['monto']."</p>
+												<p>".$rows['fecha']."</p>
+											</div>
+										</div>
+									</div> 
+									";
+								}
+							}
+						?>
+						</div>
+                </div>
+            </div>
+        </div>
+	</div>
         <div class="container">
             <div class="row">
                 <div class='probootstrap-animate'>
