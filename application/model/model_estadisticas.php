@@ -29,7 +29,7 @@ class Model_Estadisticas extends Model{
 	public function topRankingComercios($desde, $hasta){
 
 		$conn = BaseDeDatos::conectarBD();
-		$sql="select c.nombre as nombre, max(m.monto) from movimiento as m 
+		$sql="select c.nombre as nombre, sum(m.monto) as total from movimiento as m 
 inner join comercio as c on c.idComercio = m.comercio_idComercio where tipo = 'venta' and fecha between '".$desde."' and '".$hasta."' 
 group by c.idComercio 
 order by m.monto desc limit 5;";
@@ -41,9 +41,10 @@ order by m.monto desc limit 5;";
 	public function topRankingDeliverys($desde, $hasta){
 
 		$conn = BaseDeDatos::conectarBD();
-		$sql="select count(Usuario_idDelivery) as delivery, Usuario_idDelivery,u.nombreUsuario from pedido inner join usuario u on u.idUsuario = pedido.Usuario_idDelivery
+		$sql="select count(Usuario_idDelivery) as delivery,u.nombreUsuario from pedido inner join usuario u on u.idUsuario = pedido.Usuario_idDelivery
 where  fechaHoraGenerado between '".$desde."' and '".$hasta."' and fechaHoraEntrega is not null 
-group by Usuario_idDelivery;";
+group by Usuario_idDelivery
+desc limit 5;";
 
 	$result = mysqli_query($conn,$sql);
     return $result;
