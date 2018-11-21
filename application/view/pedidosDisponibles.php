@@ -37,6 +37,7 @@
             <li><a style="cursor:pointer" onclick="location.href='/delivery/pedidosDisponibles'">Pedidos disponibles</a></li>
             <li><a style="cursor:pointer" onclick="location.href='/delivery/pedidosEnCurso'">Pedidos en curso</a></li>
             <li><a style="cursor:pointer" onclick="location.href='/delivery/pedidosRealizados'">Pedidos realizados</a></li>
+			<li><a style="cursor:pointer" onclick="location.href='/delivery/liquidaciones'">liquidaciones</a></li>
             <li><a style="cursor:pointer" onclick="location.href='/login/cerrarsesion'" >Cerrar sesión</a></li>
           </ul>
         </div>

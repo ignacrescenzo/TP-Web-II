@@ -336,7 +336,7 @@ public function listarDeliverysEnEsperaDeAprobacion(){
     $sql4 = "insert into movimiento (monto,fecha,comercio_idComercio,tipo,liquidado) values (".$porcentajeAdmin.",CURDATE(),".$idComercio.",'Pago a Administrador',0);";
     mysqli_query($conn,$sql4);
 
-    $sql5 = "insert into movimiento (monto,fecha,comercio_idComercio,tipo,liquidado) values (".$porcentajeDelivery.",CURDATE(),".$idComercio.",'Pago a Delivery',0);";
+    $sql5 = "insert into movimiento (monto,fecha,comercio_idComercio,tipo,liquidado,usuario_idUsuario) values (".$porcentajeDelivery.",CURDATE(),".$idComercio.",'Pago a Delivery',0,".$idDelivery.");";
     mysqli_query($conn,$sql5);
 
     $sqlMontoAdmin = "(select monto from cuenta where usuario_idUsuario = 1)";
@@ -456,6 +456,27 @@ public function listarDeliverysEnEsperaDeAprobacion(){
     $conn =BaseDeDatos::conectarBD();
     $sql = "select * from movimiento where (fecha between '".$desde."' and '".$hasta."') and liquidado = 0;";
     $result = mysqli_query($conn,$sql);
+    return $result;
+  }
+  
+  public function verMovimientosSinLiquidar($desde,$hasta,$idDelivery){
+	$conn =BaseDeDatos::conectarBD();
+    $sql = "select * from movimiento where fecha between '".$desde."' and '".$hasta."' and liquidado = 0 and usuario_idUsuario =".$idDelivery.";";
+    $result = mysqli_query($conn,$sql);
+    return $result;
+  }
+  
+  public function listarLiquidaciones($idDelivery){
+	$conn =BaseDeDatos::conectarBD();
+	$sql="select distinct fechaLiquidado from movimiento where usuario_idUsuario = ".$idDelivery.";";
+	$result = mysqli_query($conn,$sql);
+    return $result;
+  }
+  
+  public function verLiquidacionSelecionada($idDelivery,$fechaLiquidado){
+	$conn =BaseDeDatos::conectarBD();
+	$sql = "select * from movimiento where usuario_idUsuario =".$idDelivery." and fechaLiquidado ='".$fechaLiquidado."';";
+	$result = mysqli_query($conn,$sql);
     return $result;
   }
 }

@@ -242,4 +242,25 @@ class Model_Comercio extends Model{
     $row = mysqli_fetch_assoc($result);
     return $row['banner'];
    }
+   
+     public function verMovimientosSinLiquidarComercio($desde,$hasta,$idComercio){
+	$conn =BaseDeDatos::conectarBD();
+    $sql = "select * from movimiento where fecha between '".$desde."' and '".$hasta."' and liquidado = 0 and comercio_idComercio =".$idComercio.";";
+    $result = mysqli_query($conn,$sql);
+    return $result;
+  }
+  
+  public function listarLiquidacionesComercio($idComercio){
+	$conn =BaseDeDatos::conectarBD();
+	$sql="select distinct fechaLiquidado from movimiento where comercio_idComercio = ".$idComercio.";";
+	$result = mysqli_query($conn,$sql);
+    return $result;
+  }
+  
+  public function verLiquidacionSelecionadaComercio($idComercio,$fechaLiquidado){
+	$conn =BaseDeDatos::conectarBD();
+	$sql = "select * from movimiento where comercio_idComercio =".$idComercio." and fechaLiquidado ='".$fechaLiquidado."';";
+	$result = mysqli_query($conn,$sql);
+    return $result;
+  }
 }
