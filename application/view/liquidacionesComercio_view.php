@@ -97,6 +97,7 @@
 											<div class='text'>
 												<h3>".$rows['idMovimiento']."</a></h3>
 												<p>".$rows['monto']."</p>
+												<p>".$rows['tipo']."</p>
 												<p>".$rows['fecha']."</p>
 											</div>
 										</div>
