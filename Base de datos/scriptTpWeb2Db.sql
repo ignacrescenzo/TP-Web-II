@@ -5137,3 +5137,7 @@ set Usuario_idDelivery=null
 where idPedido=5;
 
 */
+select * from cuenta;
+select * from movimiento;
+
+select * from movimiento where  liquidado = 0 and usuario_idUsuario =3;

@@ -34,6 +34,7 @@
         <div id="navbar-collapse" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a style="cursor:pointer" href="#" data-nav-section="welcome">Inicio</a></li>
+			<li><a style="cursor:pointer" onclick="location.href='/delivery/liquidaciones'">liquidaciones</a></li>
             <li><a style="cursor:pointer" onclick="location.href='/login/cerrarsesion'" >Cerrar sesión</a></li>
           </ul>
         </div>
