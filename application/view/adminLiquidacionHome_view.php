@@ -63,10 +63,11 @@
             <div class="row">
                 <div class='probootstrap-animate'>
                     <div class='probootstrap-block-image'>
-                        <div class='text'>
+                        <div class=''>
 					<div class="form-group">
-						<label for="c_name">Historial Liquidaciones</label>
-							<div class="form-field">
+						
+							<div class="form-field text-center">
+                            <label for="c_name">Historial Liquidaciones</label>
 								<form method="POST" action="/administradorDeSistema/verLiquidacionSelecionadaAdministrador" enctype="application/x-www-form-urlencodes" class="probootstrap-form">
 									<select  name="fechaLiquidado">
 										<option value="0">Seleccione:</option>
@@ -84,25 +85,48 @@
 								</form>
 							</div>
 					</div>
+                    <br>
+                            <br>
+                            <br>
+                    <table class="table table-striped">
+                    <?php if(isset($data5)){ 
+                        echo "
+                    <thead>
+                        <tr>
+                        <th scope='col'>Numero de movimiento</th>
+                        <th scope='col'>Monto</th>
+                        <th scope='col'>Fecha</th>
+                        <th scope='col'>Detalle</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+                    }
+                    ?>
 					<?php
                             if(isset($data5)){
 								while($rows = mysqli_fetch_assoc($data5)) { 
                     
 								echo "        
-									<div class='col-md-4 col-sm-4 probootstrap-animate'>
-										<div class='probootstrap-block-image'>
-
-											<div class='text'>
-												<h3>".$rows['idMovimiento']."</a></h3>
-												<p>".$rows['monto']."</p>
-												<p>".$rows['fecha']."</p>
-											</div>
-										</div>
-									</div> 
-									";
+                                            <tr>
+                                                <th scope='row'>".$rows['idMovimiento']."</th>
+												<td>$".$rows['monto']."</td>
+                                                <td>".$rows['fecha']."</td>";  
+                                                switch($rows['tipo']){
+                                                case "Venta": echo "<td>Venta de comercio</td>";
+                                                break;
+                                                case "Pago a Administrador": echo "<td>Ganancia</td>";
+                                                break;
+                                                case "Pago a Delivery": echo "<td>Pago a Delivery</td>";
+                                                break;
+                                                }
+                                                
+											echo"</tr>";
 								}
 							}
-						?>
+							?>
+                            </tbody>
+                    </table>
+					
 						</div>
                 </div>
             </div>

@@ -80,9 +80,9 @@
 
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="date">Hasta</label> <i class="icon icon-calendar"></i>
+                                        <label for="date2">Hasta</label> <i class="icon icon-calendar"></i>
                                         <div class="form-field">
-                                            <input type="date" name="hasta" id="date" class="form-control">
+                                            <input type="date" name="hasta" id="date2" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -103,7 +103,7 @@
 }
 ?>
 
-                                <p>Cobrado por el sistema:
+                                <p>Pagado al sistema:
                                     <?php
     if(mysqli_num_rows($data3)>0){
     while($rows=mysqli_fetch_assoc($data3)) {       
