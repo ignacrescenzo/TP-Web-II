@@ -60,11 +60,13 @@
             </div>
         </div>
     </section>
-    <a href="/administradorDeSistema/liquidar">
-        <button class="btn btn-lg btn-primary btn-block" type="submit">
-            Liquidar
-        </button>
-    </a>
+    <div class="text-center">
+        <a href="/administradorDeSistema/liquidar" >
+            <button class="btn btn-primary mx-auto" type="submit">
+                Liquidar
+            </button>
+        </a>
+    </div>
 
     <div class="container">
         <div class="row">
@@ -86,7 +88,7 @@
 			}
 			}
 			else{	
-				echo "No hay deliverys penalizados";
+				echo "<div class='ml-auto text-center'><span> No hay deliverys penalizados</span> </div>";
 			}
 		?>
                     </div>

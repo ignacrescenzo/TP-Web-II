@@ -59,12 +59,12 @@
 
         <div class="container">
             <div class="row">
-                <div class='probootstrap-animate'>
-                    <div class='probootstrap-block-image'>
-					<div class="form-group">
+                <div class='probootstrap-animate text-center'>
+                    <div class='probootstrap-block-image text-center'>
+					<div class="form-group text-center">
 						<label for="c_name">Historial Liquidaciones</label>
-							<div class="form-field">
-								<form method="POST" action="/delivery/verLiquidacionSelecionada" enctype="application/x-www-form-urlencodes" class="probootstrap-form">
+							<div class="form-field text-center">
+								<form method="POST" action="/delivery/verLiquidacionSelecionada" enctype="application/x-www-form-urlencodes" class="probootstrap-form text-center">
 									<select  name="fechaLiquidado">
 										<option value="0">Seleccione:</option>
 										<?php
