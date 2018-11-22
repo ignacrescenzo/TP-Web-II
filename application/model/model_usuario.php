@@ -191,6 +191,7 @@ class Model_Usuario extends Model{
   public function deliveryActivo($id){
     $conn =BaseDeDatos::conectarBD();
     $sql = "update Usuario set estado='1' where idUsuario=".$id.";";
+    $_SESSION['estado'] = 1;
     $result = mysqli_query($conn,$sql);
     return $result;
   }
@@ -436,6 +437,7 @@ public function listarDeliverysEnEsperaDeAprobacion(){
   public function deliverySePoneInactivo($id){
     $conn =BaseDeDatos::conectarBD();
     $sql = "update Usuario set estado=0, horaActivo=null where idUsuario=".$id.";";
+    $_SESSION['estado'] = 0;
     $result = mysqli_query($conn,$sql);
     return $result;
   }
@@ -494,5 +496,13 @@ public function listarDeliverysEnEsperaDeAprobacion(){
 	$result = mysqli_query($conn,$sql);
     return $result;
   }
+
+  public function obtenerEstadoDelivery($idDelivery){
+    $conn =BaseDeDatos::conectarBD();
+    $sql = "select estado from usuario where idUsuario ='".$idDelivery."';";
+    $result = mysqli_query($conn,$sql);
+    $row = mysqli_fetch_assoc($result);
+    return $row['estado'];
+    }
 }
 ?>
