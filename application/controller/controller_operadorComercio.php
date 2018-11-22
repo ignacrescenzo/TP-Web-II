@@ -106,7 +106,7 @@ class Controller_OperadorComercio extends Controller
 
      public function estadisticas(){
         $idComercio=$_GET['idComercio'];
-        $this->view->generateSt('estadisticasComercio.php',$idComercio);
+        $this->view->generateSt('estadisticasComercio.php',$idComercio,$_SESSION['idComercio']);
     }
 
      public function mostrarEstadisticas(){
@@ -143,7 +143,7 @@ class Controller_OperadorComercio extends Controller
         $hasta = $_POST['hasta'];
 		$idComercio= $_SESSION['idComercio'];
         $comercio = new Model_Comercio();
-		$listaLiquidaciones = $comercio->listarLiquidacionesComercio($$idComercio);
+		$listaLiquidaciones = $comercio->listarLiquidacionesComercio($idComercio);
         $liquidaciones = $comercio->verMovimientosSinLiquidarComercio($desde,$hasta,$idComercio);
 		$liquidacionSeleccionada=null;
 		$banner = $comercio->obtenerBanner($idComercio);

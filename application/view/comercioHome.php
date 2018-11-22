@@ -42,8 +42,6 @@
                     <li><a style="cursor:pointer" href="#" data-nav-section="welcome">Inicio</a></li>
                     <li><a style="cursor:pointer" onclick="location.href='<?php echo $ruta;  ?>'">Volver a Puntos de
                             venta</a></li>
-                    <li><a style="cursor:pointer" href="#" data-nav-section="welcome">Mis ofertas</a></li>
-                    <li><a style="cursor:pointer" href="#" data-nav-section="welcome">Estadísticas</a></li>
                     <li><a style="cursor:pointer" onclick="location.href='<?php echo $rutaPedidos; ?>'">Pedidos</a></li>
                     <li><a style="cursor:pointer" onclick="location.href='/login/cerrarsesion'">Cerrar sesión</a></li>
                 </ul>
