@@ -65,8 +65,9 @@
                 <div class='probootstrap-animate'>
                     <div class='probootstrap-block-image'>
                         <div class="form-group">
+                            
+                            <div class="form-field text-center">
                             <label for="c_name">Historial Liquidaciones</label>
-                            <div class="form-field">
                                 <form method="POST" action="/operadorComercio/verLiquidacionSelecionadaComercio"
                                     enctype="application/x-www-form-urlencodes" class="probootstrap-form">
                                     <select name="fechaLiquidado">
@@ -85,26 +86,41 @@
                                 </form>
                             </div>
                         </div>
-                        <?php
+                        <br>
+                            <br>
+                            <br>
+                    <table class="table table-striped">
+                    <?php if(isset($data3)){ 
+                        echo "
+                    <thead>
+                        <tr>
+                        <th scope='col'>Numero de movimiento</th>
+                        <th scope='col'>Monto</th>
+                        <th scope='col'>Fecha</th>
+                        <th scope='col'>Detalle</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+                    }
+                    ?>
+					<?php
                             if(isset($data3)){
 								while($rows = mysqli_fetch_assoc($data3)) { 
                     
 								echo "        
-									<div class='col-md-4 col-sm-4 probootstrap-animate'>
-										<div class='probootstrap-block-image'>
-
-											<div class='text'>
-												<h3>".$rows['idMovimiento']."</a></h3>
-												<p>".$rows['monto']."</p>
-												<p>".$rows['tipo']."</p>
-												<p>".$rows['fecha']."</p>
-											</div>
-										</div>
-									</div> 
+                                            <tr>
+                                                <th scope='row'>".$rows['idMovimiento']."</th>
+												<td>$".$rows['monto']."</td>
+                                                <td>".$rows['fecha']."</td>
+                                                <td>".$rows['tipo']."</td>
+											</tr>
 									";
 								}
 							}
 							?>
+                            </tbody>
+                    </table>
+                        
                         <div class='text'>
 
                             <form method="POST" action="/operadorComercio/verMovimientosSinLiquidarComercio" enctype="application/x-www-form-urlencodes">
