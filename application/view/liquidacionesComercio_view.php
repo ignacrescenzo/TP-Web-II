@@ -32,14 +32,12 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="/" title="uiCookies:FineOak">FineOak</a>
             </div>
-            <?php
-            $idComercio=$data2;
-            ?>
             <div id="navbar-collapse" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#" data-nav-section="welcome">Inicio</a></li>
-                    <li><a style="cursor:pointer" onclick="location.href=<?php //echo "'/OperadorComercio/crearPuntoDeVenta?idComercio=".$idComercio."'" ?>">Crear punto de venta</a></li>
-                    <li><a style="cursor:pointer" onclick="location.href=<?php //echo "'/OperadorComercio/estadisticas?idComercio=".$idComercio."'" ?>">Estadisticas</a></li>
+                    <li><a style="cursor:pointer" onclick="location.href=<?php echo "'/OperadorComercio/index?v=".$_SESSION['idComercio']."'" ?>" data-nav-section="welcome">Inicio</a></li>
+                    <li><a style="cursor:pointer" onclick="location.href=<?php echo "'/OperadorComercio/crearPuntoDeVenta?idComercio=".$_SESSION['idComercio']."'" ?>">Crear
+                            punto de venta</a></li>
+                    <li><a style="cursor:pointer" onclick="location.href=<?php echo "'/OperadorComercio/estadisticas?idComercio=".$_SESSION['idComercio']."'" ?>">Estadisticas</a></li>
 					<li><a style="cursor:pointer" onclick="location.href='/operadorComercio/liquidacionesComercio'">liquidaciones</a></li>
                     <li><a style="cursor:pointer" onclick="location.href='/login/cerrarsesion'">Cerrar sesión</a></li>
                 </ul>
@@ -50,7 +48,7 @@
 
 <body>
 
-       <section class="probootstrap-section-bg overlay" style="background-image: url(../application/resources/upload/<?php echo $data4; ?>); height: 250px;">
+    <section class="probootstrap-section-bg overlay" style="background-image: url(../application/resources/upload/<?php echo $data4; ?>); height: 250px;">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center probootstrap-animate">
@@ -66,47 +64,64 @@
             <div class="row">
                 <div class='probootstrap-animate'>
                     <div class='probootstrap-block-image'>
-					<div class="form-group">
-						<label for="c_name">Historial Liquidaciones</label>
-							<div class="form-field">
-								<form method="POST" action="/operadorComercio/verLiquidacionSelecionadaComercio" enctype="application/x-www-form-urlencodes" class="probootstrap-form">
-									<select  name="fechaLiquidado">
-										<option value="0">Seleccione:</option>
-										<?php
+                        <div class="form-group">
+                            
+                            <div class="form-field text-center">
+                            <label for="c_name">Historial Liquidaciones</label>
+                                <form method="POST" action="/operadorComercio/verLiquidacionSelecionadaComercio"
+                                    enctype="application/x-www-form-urlencodes" class="probootstrap-form">
+                                    <select name="fechaLiquidado">
+                                        <option value="0">Seleccione:</option>
+                                        <?php
 										if(isset($data2)){
 											while ($rows = mysqli_fetch_assoc($data2)) {
 											echo "<option name=".$rows['fechaLiquidado']." value=".$rows['fechaLiquidado'].">".$rows['fechaLiquidado']."</option>";
 											}
 										}
 										?>
-									</select>
-									<div class="form-field">
-										<input type="submit" class='btn btn-primary' value="ver">
-									</div>
-								</form>
-							</div>
-					</div>
+                                    </select>
+                                    <div class="form-field">
+                                        <input type="submit" class='btn btn-primary' value="ver">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <br>
+                            <br>
+                            <br>
+                    <table class="table table-striped">
+                    <?php if(isset($data3)){ 
+                        echo "
+                    <thead>
+                        <tr>
+                        <th scope='col'>Numero de movimiento</th>
+                        <th scope='col'>Monto</th>
+                        <th scope='col'>Fecha</th>
+                        <th scope='col'>Detalle</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+                    }
+                    ?>
 					<?php
                             if(isset($data3)){
 								while($rows = mysqli_fetch_assoc($data3)) { 
                     
 								echo "        
-									<div class='col-md-4 col-sm-4 probootstrap-animate'>
-										<div class='probootstrap-block-image'>
-
-											<div class='text'>
-												<h3>".$rows['idMovimiento']."</a></h3>
-												<p>".$rows['monto']."</p>
-												<p>".$rows['tipo']."</p>
-												<p>".$rows['fecha']."</p>
-											</div>
-										</div>
-									</div> 
+                                            <tr>
+                                                <th scope='row'>".$rows['idMovimiento']."</th>
+												<td>$".$rows['monto']."</td>
+                                                <td>".$rows['fecha']."</td>
+                                                <td>".$rows['tipo']."</td>
+											</tr>
 									";
 								}
 							}
 							?>
-						<div class='text'>
+                            </tbody>
+                    </table>
+                        
+                        <div class='text'>
 
                             <form method="POST" action="/operadorComercio/verMovimientosSinLiquidarComercio" enctype="application/x-www-form-urlencodes">
 
@@ -155,7 +170,7 @@
 								}
 							}
 							?>
-							
+
 
 
 
@@ -169,58 +184,58 @@
 
         <!-- FOOTER -->
 
-   <section class="probootstrap-footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 probootstrap-animate">
-                <div class="probootstrap-footer-widget">
-                    <h3><a href="#">Acerca de Restó® </a></h3>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <a href="/delivery/registrar"> Quiero ser Delivery</a>
+        <section class="probootstrap-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 probootstrap-animate">
+                        <div class="probootstrap-footer-widget">
+                            <h3><a href="#">Acerca de Restó® </a></h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <a href="/delivery/registrar"> Quiero ser Delivery</a>
+                                </div>
+                                <div class="col-md-6">
+                                    <a href="/operadorComercio/registrarComercio"> Quiero registrar mi Comercio</a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <a href="/operadorComercio/registrarComercio"> Quiero registrar mi Comercio</a>
+                    </div>
+                    <div class="col-md-6 probootstrap-animate">
+                        <div class="probootstrap-footer-widget">
+                            <h3>Horarios</h3>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p>Todos los días <br> ¡las 24hs!</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="#">Ayuda</a>
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="#">Medios de pago</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 probootstrap-animate">
-                <div class="probootstrap-footer-widget">
-                    <h3>Horarios</h3>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <p>Todos los días <br> ¡las 24hs!</p>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="#">Ayuda</a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="#">Medios de pago</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+        </section>
 
-<section class="probootstrap-copyright">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <p class="copyright-text">&copy; 2018 <a href="#">Restó</a>. Todos los derechos reservados.
+        <section class="probootstrap-copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <p class="copyright-text">&copy; 2018 <a href="#">Restó</a>. Todos los derechos reservados.
+                    </div>
+                    <div class="col-md-4">
+                        <ul class="probootstrap-footer-social right">
+                            <li><a href="#"><i class="icon-twitter"></i></a></li>
+                            <li><a href="#"><i class="icon-facebook"></i></a></li>
+                            <li><a href="#"><i class="icon-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4">
-                <ul class="probootstrap-footer-social right">
-                    <li><a href="#"><i class="icon-twitter"></i></a></li>
-                    <li><a href="#"><i class="icon-facebook"></i></a></li>
-                    <li><a href="#"><i class="icon-instagram"></i></a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
+        </section>
 
 </body>
 

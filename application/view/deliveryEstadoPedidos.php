@@ -36,7 +36,7 @@
             </div>
             <div id="navbar-collapse" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a style="cursor:pointer" href="#" data-nav-section="welcome">Inicio</a></li>
+                    <li><a style="cursor:pointer" onclick="location.href='/delivery/index'" data-nav-section="welcome">Inicio</a></li>
                     <li><a style="cursor:pointer" onclick="location.href='/delivery/pedidosDisponibles'">Pedidos
                             disponibles</a></li>
                     <li><a style="cursor:pointer" onclick="location.href='/delivery/pedidosEnCurso'">Pedidos en curso</a></li>

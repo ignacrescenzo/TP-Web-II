@@ -33,7 +33,7 @@
         </div>
         <div id="navbar-collapse" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a style="cursor:pointer" href="#" data-nav-section="welcome">Inicio</a></li>
+            <li><a style="cursor:pointer" onclick="location.href='/delivery/index'" data-nav-section="welcome">Inicio</a></li>
 			<li><a style="cursor:pointer" onclick="location.href='/delivery/liquidaciones'">liquidaciones</a></li>
             <li><a style="cursor:pointer" onclick="location.href='/login/cerrarsesion'" >Cerrar sesión</a></li>
           </ul>
@@ -47,10 +47,21 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center probootstrap-animate">
-            <div class="probootstrap-heading">
+            <?php if ($_SESSION['estado'] == 0){ ?>
+            <div class='probootstrap-heading'>
               <h4> Para ver los pedidos disponibles entrá a trabajar! </h4>
-              <a href="/delivery/pedidosDisponibles" class='btn btn-primary'> Comenzar a trabajar </a> <br><br><br>
+              <a href='/delivery/pedidosDisponibles' class='btn btn-primary'> Comenzar a trabajar </a> <br><br><br>
             </div>
+            
+            <?php } ?>
+
+            <?php if ($_SESSION['estado'] == 1){ ?>
+            <div class='probootstrap-heading'>
+              <h4> Si lo necesitas, puedes tomarte un descanso </h4>
+              <a href='/delivery/deliveryInactivo' class='btn btn-primary'> Tomarte un descanso </a> <br><br><br>
+            </div>
+            
+            <?php } ?>
           </div>
         </div>
       </div>

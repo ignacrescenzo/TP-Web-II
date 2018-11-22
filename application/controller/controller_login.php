@@ -29,6 +29,7 @@ class Controller_Login extends Controller{
 			case "Delivery":
 				$_SESSION["login"]="sessionDelivery";
 				$_SESSION['id'] = $usuario->obtenerIdDelivery($nombreUsuario);
+				$_SESSION['estado'] = $usuario->obtenerEstadoDelivery($usuario->obtenerIdDelivery($nombreUsuario));
 				header("location: /delivery/index");
 				break;
 			case "OperadorComercio":
