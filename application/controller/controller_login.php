@@ -101,6 +101,9 @@ class Controller_Login extends Controller{
 
 
 	}
+	function error(){
+		$this->view->generateSt('usuario_error_view.php');
+	}
 
 }
 ?>
