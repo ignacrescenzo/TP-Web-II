@@ -43,6 +43,9 @@ class Model_Usuario extends Model{
       }
       */
    }
+   else{
+     header("location:/login?e=1");
+   }
  }
 
    public function cerrarsesion(){
