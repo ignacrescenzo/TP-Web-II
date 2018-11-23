@@ -110,8 +110,8 @@ class Model_Comercio extends Model{
 
                 
                 /*Configuracion de variables para enviar el correo*/
-                $mail_username="alansnydermusic@gmail.com";//Correo electronico saliente ejemplo: tucorreo@gmail.com
-                $mail_userpassword="alan.boca12";//Tu contraseña de gmail
+                $mail_username="restocomidas@gmail.com";//Correo electronico saliente ejemplo: tucorreo@gmail.com
+                $mail_userpassword="unlam2018";//Tu contraseña de gmail
                 $mail_addAddress=$email;//correo electronico que recibira el mensaje
                 //$template="application/view/email_template.html"; // $template="email_template.html";//Ruta de la plantilla HTML para enviar nuestro mensaje
                 
