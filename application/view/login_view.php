@@ -1,3 +1,6 @@
+
+
+  
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -37,6 +40,7 @@
                       <input type="password" id="name" class="form-control" name="clave" required="" placeholder="Contraseña">
                     </div>
                   </div>
+                  <div class="text-center mb-3" id="msjError" style="display:none;color:red;">El usuario y/o la contraseña no coinciden</div>
                 </div>
 
              
@@ -54,7 +58,9 @@
 
     <script src="js/scripts.min.js"></script>
     <script src="js/custom.min.js"></script>
-
+    <?php if (isset($_GET['e'])){ ?>
+  <script>document.getElementById("msjError").style.display = "block";</script>
+  <?php } ?>
 
 </body>
 </html>
