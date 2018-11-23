@@ -1,9 +1,9 @@
 <?php
-  if(!isset($_SESSION["login"])){
-    echo "INISIA SESION WACHO";
-        echo "<br>";
-        echo "<a href='/login'>Iniciar sesion</a>";
-        exit;
+  if (!isset($_SESSION["login"])) {
+      echo "INISIA SESION WACHO";
+      echo "<br>";
+      echo "<a href='/login'>Iniciar sesion</a>";
+      exit;
   }
 ?>
 
@@ -77,9 +77,8 @@
       <div class="container">
         <div class="row">
         <?php
-                while($rows = mysqli_fetch_assoc($data)) { 
-                    
-        echo "        
+                while ($rows = mysqli_fetch_assoc($data)) {
+                    echo "        
           <div class='col-md-4 col-sm-4 probootstrap-animate'>
             <div class='probootstrap-block-image'>
 
@@ -87,24 +86,24 @@
               <div class='text'>
                 <h3>".$rows['nombre']."</a></h3>
                 <p>".$rows['nombre']."</p>";
-              if(isset($rows['direccion']) && isset($rows['descripcionLocalidad'])){
-                echo "<p>".$rows['direccion']." - ".$rows['descripcionLocalidad']."</p>";
-              }
-               echo "<p> <a href='/puntoDeVenta/mostrarMenu?c=".$rows['idComercio']."' class='probootstrap-custom-link link-sm'> Ver menú</a></p>
+                    if (isset($rows['direccion']) && isset($rows['descripcionLocalidad'])) {
+                        echo "<p>".$rows['direccion']." - ".$rows['descripcionLocalidad']."</p>";
+                    }
+                    echo "<p> <a href='/puntoDeVenta/mostrarMenu?c=".$rows['idComercio']."' class='probootstrap-custom-link link-sm'> Ver menú</a></p>
               </div>
             </div>
           </div> 
           ";
-          } ?>
+                } ?>
         </div>
       </div>
 		<div>
 		<h3>Filtro por zona:</h3>
 			<?php
-				while($row = mysqli_fetch_assoc($data2)){
-				echo "<p> <a href='/cliente/listarComerciosPorZona?idLocalidad=".$row['idLocalidad']."' class='probootstrap-custom-link link-sm'>".$row['localidad']."</a></p>";
-				}
-			?> 
+                while ($row = mysqli_fetch_assoc($data2)) {
+                    echo "<p> <a href='/cliente/listarComerciosPorZona?idLocalidad=".$row['idLocalidad']."' class='probootstrap-custom-link link-sm'>".$row['localidad']."</a></p>";
+                }
+            ?> 
 		</div>
     </section>
 	 

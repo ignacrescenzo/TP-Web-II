@@ -52,7 +52,7 @@
             
           </div>
           <div class="col-md-6 col-md-push-1 probootstrap-animate">
-            <form method="POST" action="/operadorComercio/peticionNuevoComercio" enctype="application/x-www-form-urlencodes">
+            <form method="POST" action="/operadorComercio/peticionNuevoComercio" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="c_name">Nombre Del Comercio</label>
                 <div class="form-field">
@@ -79,8 +79,15 @@
                 <div class="form-field">
                   <input required="" type="text" class="form-control" name="direccion">
                 </div>
-              </div>
-			  
+        </div>
+
+
+			  <div class="form-group">
+                <label for="c_name">Imagen</label>
+                <div class="form-field">
+                  <input type="file" name="file" class="form-control">
+                </div>
+        </div>
 			  <div class="form-group">
                 <label for="c_name">Tiempo de entrega establecido para las entregas</label>
                 <div class="form-field">
