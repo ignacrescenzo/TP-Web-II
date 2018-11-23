@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `tpWeb2Db`.`Comercio` (
   `banner` VARCHAR(200) NULL,
   `telefono` VARCHAR(200) NULL,
   `habilitado` VARCHAR(200) NULL,
-  `imagen` VARCHAR (45) NULL,
+  `imagen` VARCHAR (200) NULL,
   `tiempoEntrega` INT NULL,
   PRIMARY KEY (`idComercio`),
   UNIQUE INDEX `nombre_UNIQUE` (`nombre` ASC))
