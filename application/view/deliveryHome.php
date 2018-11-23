@@ -32,11 +32,18 @@
             <a class="navbar-brand" href="/" title="uiCookies:FineOak">FineOak</a>
         </div>
         <div id="navbar-collapse" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a style="cursor:pointer" onclick="location.href='/delivery/index'" data-nav-section="welcome">Inicio</a></li>
-			<li><a style="cursor:pointer" onclick="location.href='/delivery/liquidaciones'">liquidaciones</a></li>
-            <li><a style="cursor:pointer" onclick="location.href='/login/cerrarsesion'" >Cerrar sesión</a></li>
-          </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a style="cursor:pointer" onclick="location.href='/delivery/index'" data-nav-section="welcome">Inicio</a></li>
+                    <?php if ($_SESSION['estado'] == 1){ ?>
+                    <li><a style="cursor:pointer" onclick="location.href='/delivery/pedidosDisponibles'">Pedidos
+                            disponibles</a></li>
+                    <li><a style="cursor:pointer" onclick="location.href='/delivery/pedidosEnCurso'">Pedidos en curso</a></li>
+                    <li><a style="cursor:pointer" onclick="location.href='/delivery/pedidosRealizados'">Pedidos
+                            realizados</a></li>
+                    <?php } ?>
+					          <li><a style="cursor:pointer" onclick="location.href='/delivery/liquidaciones'">liquidaciones</a></li>		
+                    <li><a style="cursor:pointer" onclick="location.href='/login/cerrarsesion'">Cerrar sesión</a></li>
+                </ul>
         </div>
       </div>
     </nav>
