@@ -1,10 +1,6 @@
 <?php
-  if(!isset($_SESSION["login"])){
-    echo "INISIA SESION WACHO";
-        echo "<br>";
-        echo "<a href='/login'>Iniciar sesion</a>";
-        
-        exit;
+  if (!isset($_SESSION["login"])) {
+      header("location:/login");
   }
   $ruta = "/operadorComercio/index?v=".$_SESSION['idComercio']."&c=".$data2;
   $rutaPedidos = "/operadorComercio/mostrarPedidos?c=".$data2;
@@ -73,9 +69,9 @@
         <div class="container">
             <div class="row">
                 <?php
-        if(mysqli_num_rows($data) >= 1){ 
-                while($menues = mysqli_fetch_assoc($data)) {      
-        echo "        
+        if (mysqli_num_rows($data) >= 1) {
+            while ($menues = mysqli_fetch_assoc($data)) {
+                echo "        
           	<div class='col-md-4 col-sm-4 probootstrap-animate'>
             	<div class='probootstrap-block-image'>
 
@@ -93,8 +89,8 @@
 					</div>
             	</div> 
             </div>";
-                            }
-                          }
+            }
+        }
 
                         ?>
             </div>
@@ -109,9 +105,9 @@
         <div class="container">
             <div class="row">
                 <?php
-                      if(mysqli_num_rows($data3) >= 1){ 
-                       while($ofertas = mysqli_fetch_assoc($data3)) {
-                           echo"
+                      if (mysqli_num_rows($data3) >= 1) {
+                          while ($ofertas = mysqli_fetch_assoc($data3)) {
+                              echo"
 
                         <div class='col-md-4 col-sm-4 probootstrap-animate'>
             			<div class='probootstrap-block-image'>
@@ -125,12 +121,10 @@
 								</div>
 			            	</div> 
 			            </div>";
-                            }
                           }
-
-                        else{
-							  echo "<div class='text-center w-50  mt-2 mx-auto'><h3> No hay ofertas disponibles </h3> </div>";
-						  }
+                      } else {
+                            echo "<div class='text-center w-50  mt-2 mx-auto'><h3> No hay ofertas disponibles </h3> </div>";
+                        }
 
                         ?>
 

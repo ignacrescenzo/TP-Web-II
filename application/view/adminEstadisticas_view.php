@@ -1,9 +1,6 @@
 <?php
-  if(!isset($_SESSION["login"])){
-    echo "INISIA SESION WACHO";
-        echo "<br>";
-        echo "<a href='/login'>Iniciar sesion</a>";
-        exit;
+  if (!isset($_SESSION["login"])) {
+      header("location:/login");
   }
 ?>
 
@@ -30,7 +27,7 @@
          ['Comercio', 'Monto Total de ventas'],
          <?php
       
-            while($rows=mysqli_fetch_assoc($data3)) {       
+            while ($rows=mysqli_fetch_assoc($data3)) {
                 echo "['".$rows['nombre']."',".$rows['total']."],";
             }
         
@@ -50,7 +47,7 @@
          ['Comercio', 'Monto Total de ventas'],
          <?php
       
-            while($rows=mysqli_fetch_assoc($data4)) {       
+            while ($rows=mysqli_fetch_assoc($data4)) {
                 echo "['".$rows['nombreUsuario']."',".$rows['delivery']."],";
             }
         
@@ -148,23 +145,23 @@
                             <br>
                             <p>Total ganancias:
                                 <?php
-			if(mysqli_num_rows($data)>0){
-		    while($rows=mysqli_fetch_assoc($data)) { 		
-				echo "$".$rows['total']."";
-		    }
-		}
-		?>
+            if (mysqli_num_rows($data)>0) {
+                while ($rows=mysqli_fetch_assoc($data)) {
+                    echo "$".$rows['total']."";
+                }
+            }
+        ?>
                             </p>
 
                             <p>Entregas mensuales:
 
                                 <?php
-			if(mysqli_num_rows($data2)>0){
-		    while($rows=mysqli_fetch_assoc($data2)) { 		
-				echo "".$rows['entregas']."";
-		    }
-		}
-		?>
+            if (mysqli_num_rows($data2)>0) {
+                while ($rows=mysqli_fetch_assoc($data2)) {
+                    echo "".$rows['entregas']."";
+                }
+            }
+        ?>
 
         <div id="chart_div"></div>
 <div id="chart_div2"></div> 
