@@ -49,11 +49,10 @@
               <h1 class="primary-heading">Registrate</h1>
               <h3 class="secondary-heading">para ser parte de Restó </h3>
             </div>
-            <p>Amamos la comida tanto como vos y por eso queremos llevarte tu comida favorita directamente desde la cocina de los mejores restaurantes. ¿La mejor parte? ¡Te la llevamos donde estés! <br> <br> *** <br><br>
-            Registrate, ingresá tu dirección, elegí el restaurante, seleccioná tu comida favorita y listo. ¡Pedir delivery de comida nunca había sido tan sencillo, con RESTÓ lo único difícil será decidir qué comer!</p>
+            
           </div>
           <div class="col-md-6 col-md-push-1 probootstrap-animate">
-            <form method="POST" action="/operadorComercio/peticionNuevoComercio" enctype="application/x-www-form-urlencodes">
+            <form method="POST" action="/operadorComercio/peticionNuevoComercio" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="c_name">Nombre Del Comercio</label>
                 <div class="form-field">
@@ -80,8 +79,15 @@
                 <div class="form-field">
                   <input required="" type="text" class="form-control" name="direccion">
                 </div>
-              </div>
-			  
+        </div>
+
+
+			  <div class="form-group">
+                <label for="c_name">Imagen</label>
+                <div class="form-field">
+                  <input type="file" name="file" class="form-control">
+                </div>
+        </div>
 			  <div class="form-group">
                 <label for="c_name">Tiempo de entrega establecido para las entregas</label>
                 <div class="form-field">

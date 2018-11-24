@@ -29,6 +29,7 @@ class Controller_Login extends Controller{
 			case "Delivery":
 				$_SESSION["login"]="sessionDelivery";
 				$_SESSION['id'] = $usuario->obtenerIdDelivery($nombreUsuario);
+				$_SESSION['estado'] = $usuario->obtenerEstadoDelivery($usuario->obtenerIdDelivery($nombreUsuario));
 				header("location: /delivery/index");
 				break;
 			case "OperadorComercio":
@@ -99,6 +100,9 @@ class Controller_Login extends Controller{
  		$this->view->generateSt('home_view.php');
 
 
+	}
+	function error(){
+		$this->view->generateSt('usuario_error_view.php');
 	}
 
 }

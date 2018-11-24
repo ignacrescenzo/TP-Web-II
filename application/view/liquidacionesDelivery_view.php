@@ -1,9 +1,6 @@
 <?php
-  if(!isset($_SESSION["login"])){
-    echo "INISIA SESION WACHO";
-        echo "<br>";
-        echo "<a href='/login'>Iniciar sesion</a>";
-        exit;
+  if (!isset($_SESSION["login"])) {
+      header("location:/login");
   }
 ?>
 
@@ -34,10 +31,7 @@
             </div>
              <div id="navbar-collapse" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a style="cursor:pointer" href="#" data-nav-section="welcome">Inicio</a></li>
-                    <li><a style="cursor:pointer" onclick="location.href='/delivery/pedidosDisponibles'">Pedidos disponibles</a></li>
-                    <li><a style="cursor:pointer" onclick="location.href='/delivery/pedidosEnCurso'">Pedidos en curso</a></li>
-                    <li><a style="cursor:pointer" onclick="location.href='/delivery/pedidosRealizados'">Pedidos realizados</a></li>
+                    <li><a style="cursor:pointer" onclick="location.href='/delivery/index'" data-nav-section="welcome">Inicio</a></li>
 					<li><a style="cursor:pointer" onclick="location.href='/delivery/liquidaciones'">liquidaciones</a></li>		
                     <li><a style="cursor:pointer" onclick="location.href='/login/cerrarsesion'">Cerrar sesión</a></li>
                 </ul>
@@ -65,9 +59,10 @@
                 <div class='probootstrap-animate'>
                     <div class='probootstrap-block-image'>
 					<div class="form-group">
-						<label for="c_name">Historial Liquidaciones</label>
-							<div class="form-field">
-								<form method="POST" action="/delivery/verLiquidacionSelecionada" enctype="application/x-www-form-urlencodes" class="probootstrap-form">
+						
+							<div class="form-field text-center">
+                            <label for="c_name">Historial Liquidaciones</label>
+								<form method="POST" action="/delivery/verLiquidacionSelecionada" enctype="application/x-www-form-urlencodes" class="probootstrap-form text-center">
 									<select  name="fechaLiquidado">
 										<option value="0">Seleccione:</option>
 										<?php
@@ -83,26 +78,40 @@
 									</div>
 								</form>
 							</div>
+                            
 					</div>
+                            <br>
+                            <br>
+                            <br>
+                    <table class="table table-striped">
+                    <?php if(isset($data3)){ 
+                        echo "
+                    <thead>
+                        <tr>
+                        <th scope='col'>Numero de movimiento</th>
+                        <th scope='col'>Cantidad recibida</th>
+                        <th scope='col'>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+                    }
+                    ?>
 					<?php
                             if(isset($data3)){
 								while($rows = mysqli_fetch_assoc($data3)) { 
                     
 								echo "        
-									<div class='col-md-4 col-sm-4 probootstrap-animate'>
-										<div class='probootstrap-block-image'>
-
-											<div class='text'>
-												<h3>".$rows['idMovimiento']."</a></h3>
-												<p>".$rows['monto']."</p>
-												<p>".$rows['fecha']."</p>
-											</div>
-										</div>
-									</div> 
+                                            <tr>
+                                                <th scope='row'>".$rows['idMovimiento']."</th>
+												<td>$".$rows['monto']."</td>
+												<td>".$rows['fecha']."</td>
+											</tr>
 									";
 								}
 							}
 							?>
+                            </tbody>
+                    </table>
 						<div class='text'>
 
                             <form method="POST" action="/delivery/verMovimientosSinLiquidar" enctype="application/x-www-form-urlencodes">
