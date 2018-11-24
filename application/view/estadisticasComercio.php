@@ -28,15 +28,17 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand" href="/" title="uiCookies:FineOak">FineOak</a>
-            </div>
+           </div>
+            <?php
+            $idComercio=$data2;
+            ?>
             <div id="navbar-collapse" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a style="cursor:pointer" onclick="location.href='/operadorComercio/index?v=<?php echo $data2; ?>'"
-                            data-nav-section="welcome">Inicio</a></li>
-                            <li><a style="cursor:pointer" onclick="location.href=<?php echo "'/OperadorComercio/crearPuntoDeVenta?idComercio=".$data."'" ?>">Crear
+                    <li><a style="cursor:pointer" onclick="location.href=<?php echo "'/OperadorComercio/index?v=".$_SESSION['idComercio']."'" ?>" data-nav-section="welcome">Inicio</a></li>
+                    <li><a style="cursor:pointer" onclick="location.href=<?php echo "'/OperadorComercio/crearPuntoDeVenta?idComercio=".$idComercio."'" ?>">Crear
                             punto de venta</a></li>
-                    <li><a style="cursor:pointer" onclick="location.href=<?php echo "'/OperadorComercio/estadisticas?idComercio=".$data."'" ?>">Estadisticas</a></li>
-                    <li><a style="cursor:pointer" onclick="location.href='/OperadorComercio/estadisticas?idComercio=<?php echo $data; ?>'">Estadísticas</a></li>
+                    <li><a style="cursor:pointer" onclick="location.href=<?php echo "'/OperadorComercio/estadisticas?idComercio=".$idComercio."'" ?>">Estadisticas</a></li>
+                    <li><a style="cursor:pointer" onclick="location.href='/operadorComercio/liquidacionesComercio'">liquidaciones</a></li>
                     <li><a style="cursor:pointer" onclick="location.href='/login/cerrarsesion'">Cerrar sesión</a></li>
                 </ul>
             </div>
