@@ -22,8 +22,9 @@
     <script src="../application/resources/js/bootstrap.min.js"></script> -->
     <script src="../application/resources/js/scripts.min.js"></script>
     <script src="../application/resources/js/custom.min.js"></script>
-
-
+    <?php
+    $idComercio=$data;
+    ?>
     <nav class="navbar navbar-default navbar-fixed-top probootstrap-navbar">
         <div class="container">
             <div class="navbar-header">
