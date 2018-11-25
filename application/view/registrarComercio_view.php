@@ -22,24 +22,6 @@
     
  <!-- Fixed navbar -->
     
-     <nav class="navbar navbar-default navbar-fixed-top probootstrap-navbar">
-      <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="" title="uiCookies:FineOak">FineOak</a>
-        </div>
-
-        <div id="navbar-collapse" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" data-nav-section="welcome">Inicio</a></li>
-            <li><a onclick="location.href='/main/listarcomercios'" >Comercios</a></li>
-            <li><a href="#" >Ofertas del día</a></li>
-            <li><a onclick="location.href='/login'"> Iniciar Sesión </a></li>
-            <li><a onclick="location.href='/cliente/registrar'" >Registrarme</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
 
  <section class="probootstrap-section probootstrap-bg-white" data-section="contact">
       <div class="container">
