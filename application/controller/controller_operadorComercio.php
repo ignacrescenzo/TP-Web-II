@@ -122,7 +122,10 @@ class Controller_OperadorComercio extends Controller
     public function estadisticas()
     {
         $idComercio=$_GET['idComercio'];
-        $this->view->generateSt('estadisticasComercio.php', $idComercio, $_SESSION['idComercio']);
+        $comercio = new Model_Comercio();
+        $banner = $comercio->obtenerBanner($idComercio);
+        $this->view->generateSt('estadisticasComercio.php', $idComercio, $_SESSION['idComercio'], $banner);
+
     }
 
     public function mostrarEstadisticas()

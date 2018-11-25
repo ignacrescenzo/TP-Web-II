@@ -98,7 +98,7 @@
 			                <p> Descripción: ".$ofertas['descripcion']." <br>
 			                Precio: $".$ofertas['monto']."</p>
 
-			               	<a href='/menu/eliminarOferta?c=".$data2."&variable=".$ofertas['descripcion']."' class='probootstrap-custom-link link-sm'>Eliminar</a>
+			               	<a class='probootstrap-custom-link link-sm' href='/cliente/agregarAlCarrito?c=".$data2."&d=".$ofertas['descripcion']."'> AGREGAR AL CARRITO</a>
 								</div>
 			            	</div> 
 			            </div>";
