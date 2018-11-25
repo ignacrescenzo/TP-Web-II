@@ -28,9 +28,12 @@ class Controller_OperadorComercio extends Controller
     public function mostrarPedidos()
     {
         $id = $_GET['c'];
+        $idComercio= $_SESSION['idComercio'];
+        $comercio = new Model_Comercio();
         $operador = new Model_usuario();
         $pedidos = $operador->mostrarPedidosOperador($id);
-        $this->view->generateSt('pedidosOperador.php', $pedidos, $id);
+        $banner = $comercio->obtenerBanner($idComercio);
+        $this->view->generateSt('pedidosOperador.php', $pedidos, $id, $banner);
     }
 
     public function index()
@@ -119,7 +122,10 @@ class Controller_OperadorComercio extends Controller
     public function estadisticas()
     {
         $idComercio=$_GET['idComercio'];
-        $this->view->generateSt('estadisticasComercio.php', $idComercio, $_SESSION['idComercio']);
+        $comercio = new Model_Comercio();
+        $banner = $comercio->obtenerBanner($idComercio);
+        $this->view->generateSt('estadisticasComercio.php', $idComercio, $_SESSION['idComercio'], $banner);
+
     }
 
     public function mostrarEstadisticas()

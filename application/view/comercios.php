@@ -86,8 +86,12 @@
                     if (isset($rows['direccion']) && isset($rows['descripcionLocalidad'])) {
                         echo "<p>".$rows['direccion']." - ".$rows['descripcionLocalidad']."</p>";
                     }
-                    echo "<p> <a href='/puntoDeVenta/mostrarMenu?c=".$rows['idComercio']."' class='probootstrap-custom-link link-sm'> Ver menú</a></p>
-              </div>
+                    if (strpos($_SERVER['REQUEST_URI'], 'Zona') !== false) {
+                        echo "<p> <a href='/puntoDeVenta/mostrarMenuPdv?v=".$rows['idPuntoDeVenta']."&c=".$rows['idComercio']."' class='probootstrap-custom-link link-sm'> Ver menú del punto de venta</a></p>";
+                    } else {
+                        echo "<p> <a href='/puntoDeVenta/mostrarMenu?c=".$rows['idComercio']."' class='probootstrap-custom-link link-sm'> Ver menú</a></p>";
+                    }
+                    echo "</div>
             </div>
           </div> 
           ";

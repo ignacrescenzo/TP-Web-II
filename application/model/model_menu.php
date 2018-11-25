@@ -48,7 +48,7 @@ class Model_Menu extends Model
     public function cargarABd()
     {
         $conn =BaseDeDatos::conectarBD();
-        $sql="select * from menu where descripcion='$this->descripcion';";
+        $sql="select * from menu where descripcion='$this->descripcion' and idPuntoDeVenta = '$this->idPuntoDeVenta';";
         $result = mysqli_query($conn, $sql);
         $numeroFilas=mysqli_num_rows($result);
         if ($numeroFilas==0) {
@@ -78,10 +78,10 @@ class Model_Menu extends Model
         mysqli_query($conn, $grabar);
     }
 
-    public function traerParaFormulario($desc)
+    public function traerParaFormulario($desc, $idPuntoDeVenta)
     {
         $conn =BaseDeDatos::conectarBD();
-        $sql="SELECT * FROM menu m inner join precio p on m.Precio_idPrecio=p.idPrecio WHERE m.descripcion = '$desc'";
+        $sql="SELECT * FROM menu m inner join precio p on m.Precio_idPrecio=p.idPrecio WHERE m.descripcion = '$desc' AND m.idPuntoDeVenta = '$idPuntoDeVenta'";
         $result= mysqli_query($conn, $sql);
         $rows= mysqli_fetch_assoc($result);
         return $rows;
@@ -123,6 +123,18 @@ class Model_Menu extends Model
         inner join puntodeventa pdv on pdv.idPuntoDeVenta = m.idPuntoDeVenta
         inner join comercio c on c.idComercio = pdv.Comercio_idComercio
         where c.idComercio = ".$idComercio.";";
+        $result = mysqli_query($conn, $sql);
+        return $result;
+    }
+
+    public function listarMenusPdvCliente($idComercio, $idPuntoDeVenta)
+    {
+        $conn =BaseDeDatos::conectarBD();
+        $sql = "select * from menu m 
+        inner join precio p on p.idPrecio = m.Precio_idPrecio
+        inner join puntodeventa pdv on pdv.idPuntoDeVenta = m.idPuntoDeVenta
+        inner join comercio c on c.idComercio = pdv.Comercio_idComercio
+        where c.idComercio = ".$idComercio." and pdv.idPuntoDeVenta = ".$idPuntoDeVenta.";";
         $result = mysqli_query($conn, $sql);
         return $result;
     }

@@ -69,12 +69,12 @@
 									<select  name="fechaLiquidado">
 										<option value="0">Seleccione:</option>
 										<?php
-										if(isset($data4)){
-											while ($rows = mysqli_fetch_assoc($data4)) {
-											echo "<option name=".$rows['fechaLiquidado']." value=".$rows['fechaLiquidado'].">".$rows['fechaLiquidado']."</option>";
-											}
-										}
-										?>
+                                        if (isset($data4)) {
+                                            while ($rows = mysqli_fetch_assoc($data4)) {
+                                                echo "<option name=".$rows['fechaLiquidado']." value=".$rows['fechaLiquidado'].">".$rows['fechaLiquidado']."</option>";
+                                            }
+                                        }
+                                        ?>
 									</select>
 									<div class="form-field">
 										<input type="submit" class='btn btn-primary' value="ver">
@@ -86,8 +86,8 @@
                             <br>
                             <br>
                     <table class="table table-striped">
-                    <?php if(isset($data5)){ 
-                        echo "
+                    <?php if (isset($data5)) {
+                                            echo "
                     <thead>
                         <tr>
                         <th scope='col'>Numero de movimiento</th>
@@ -97,18 +97,17 @@
                         </tr>
                     </thead>
                     <tbody>";
-                    }
+                                        }
                     ?>
 					<?php
-                            if(isset($data5)){
-								while($rows = mysqli_fetch_assoc($data5)) { 
-                    
-								echo "        
+                            if (isset($data5)) {
+                                while ($rows = mysqli_fetch_assoc($data5)) {
+                                    echo "        
                                             <tr>
                                                 <th scope='row'>".$rows['idMovimiento']."</th>
 												<td>$".$rows['monto']."</td>
-                                                <td>".$rows['fecha']."</td>";  
-                                                switch($rows['tipo']){
+                                                <td>".$rows['fecha']."</td>";
+                                    switch ($rows['tipo']) {
                                                 case "Venta": echo "<td>Venta de comercio</td>";
                                                 break;
                                                 case "Pago a Administrador": echo "<td>Ganancia</td>";
@@ -117,10 +116,10 @@
                                                 break;
                                                 }
                                                 
-											echo"</tr>";
-								}
-							}
-							?>
+                                    echo"</tr>";
+                                }
+                            }
+                            ?>
                             </tbody>
                     </table>
 					
@@ -163,28 +162,46 @@
                             </form>
                             <br>
                             <?php
-                            if(isset($data)){
-
+                            if (isset($data)) {
                                 echo " <a href='/administradorDeSistema/liquidarPeriodo?d=".$data2."&h=".$data3."'><div class='form-field'>
                                     <input type='button' class='btn btn-primary' name='buscar' value='Liquidar'>
-                                </div></a>";
-                while($rows = mysqli_fetch_assoc($data)) { 
-                    
-                        echo "        
-                        <div class='col-md-4 col-sm-4 probootstrap-animate'>
-                            <div class='probootstrap-block-image'>
-
-                            <div class='text'>
-                                <h3>".$rows['idMovimiento']."</a></h3>
-                                <p>".$rows['monto']."</p>
-                                <p>".$rows['tipo']."</p>
-                                <p>".$rows['fecha']."</p>
-                            </div>
-                            </div>
-                        </div> 
-                        ";
-                        }
-         } ?>
+                                </div></a>"; ?>
+                            <br>
+                            <br>
+                            <br>
+                    <table class="table table-striped">
+                    <?php
+                        echo "
+                    <thead>
+                        <tr>
+                        <th scope='col'>Numero de movimiento</th>
+                        <th scope='col'>Monto</th>
+                        <th scope='col'>Fecha</th>
+                        <th scope='col'>Detalle</th>
+                        </tr>
+                    </thead>
+                    <tbody>"; ?>
+					<?php
+                                while ($rows = mysqli_fetch_assoc($data)) {
+                                    echo "        
+                                            <tr>
+                                                <th scope='row'>".$rows['idMovimiento']."</th>
+												<td>$".$rows['monto']."</td>
+                                                <td>".$rows['fecha']."</td>";
+                                    switch ($rows['tipo']) {
+                                                case "Venta": echo "<td>Venta de comercio</td>";
+                                                break;
+                                                case "Pago a Administrador": echo "<td>Ganancia</td>";
+                                                break;
+                                                case "Pago a Delivery": echo "<td>Pago a Delivery</td>";
+                                                break;
+                                                }
+                                                
+                                    echo"</tr>";
+                                }
+                            }?>
+                            </tbody>
+                    </table>
 
 
 

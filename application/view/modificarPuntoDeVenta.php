@@ -25,13 +25,6 @@
         <?php
             $idComercio=$data2;
             ?>
-        <div id="navbar-collapse" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" data-nav-section="welcome">Inicio</a></li>
-            <li><a onclick="location.href=<?php echo "'/OperadorComercio/crearPuntoDeVenta?idComercio=".$idComercio."'" ?>" >Crear punto de venta</a></li>
-            <li><a onclick="location.href='/login/cerrarsesion'" >Cerrar sesión</a></li>
-          </ul>
-        </div>
       </div>
     </nav>
   </head>
@@ -69,7 +62,7 @@
 				  <div class="form-group">
 					  <label for="c_name">Localidad</label>
 					 <div class="form-field">
-						<select name="idLocalidad">
+						<select name="idLocalidad" class="form-control">
 							<option value="0">Seleccione:</option>
 								<?php
 								  while ($rows = mysqli_fetch_assoc($data3)) {

@@ -45,12 +45,12 @@
 
 <body>
 
-    <section class="probootstrap-section-bg overlay" style="background-image: url(../application/resources/upload/<?php echo $data4; ?>); height: 250px;">
+    <section class="probootstrap-section-bg overlay" style="background-image: url(../application/resources/upload/<?php echo $data4; ?>); height: 300px;">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center probootstrap-animate">
                     <div class="probootstrap-heading">
-                        <h3 class="secondary-heading" style="color: black;">Liquidaciones</h3>
+                        <h3 class="secondary-heading" style="color: black; font-size: 30px;">Liquidaciones</h3>
                     </div>
                 </div>
             </div>
@@ -70,12 +70,12 @@
                                     <select name="fechaLiquidado">
                                         <option value="0">Seleccione:</option>
                                         <?php
-										if(isset($data2)){
-											while ($rows = mysqli_fetch_assoc($data2)) {
-											echo "<option name=".$rows['fechaLiquidado']." value=".$rows['fechaLiquidado'].">".$rows['fechaLiquidado']."</option>";
-											}
-										}
-										?>
+                                        if (isset($data2)) {
+                                            while ($rows = mysqli_fetch_assoc($data2)) {
+                                                echo "<option name=".$rows['fechaLiquidado']." value=".$rows['fechaLiquidado'].">".$rows['fechaLiquidado']."</option>";
+                                            }
+                                        }
+                                        ?>
                                     </select>
                                     <div class="form-field">
                                         <input type="submit" class='btn btn-primary' value="ver">
@@ -87,8 +87,8 @@
                             <br>
                             <br>
                     <table class="table table-striped">
-                    <?php if(isset($data3)){ 
-                        echo "
+                    <?php if (isset($data3)) {
+                                            echo "
                     <thead>
                         <tr>
                         <th scope='col'>Numero de movimiento</th>
@@ -98,13 +98,12 @@
                         </tr>
                     </thead>
                     <tbody>";
-                    }
+                                        }
                     ?>
 					<?php
-                            if(isset($data3)){
-								while($rows = mysqli_fetch_assoc($data3)) { 
-                    
-								echo "        
+                            if (isset($data3)) {
+                                while ($rows = mysqli_fetch_assoc($data3)) {
+                                    echo "        
                                             <tr>
                                                 <th scope='row'>".$rows['idMovimiento']."</th>
 												<td>$".$rows['monto']."</td>
@@ -112,9 +111,9 @@
                                                 <td>".$rows['tipo']."</td>
 											</tr>
 									";
-								}
-							}
-							?>
+                                }
+                            }
+                            ?>
                             </tbody>
                     </table>
                         
@@ -147,27 +146,36 @@
 
                             </form>
                             <br>
+                            <br>
+                            <br>
+                            <br>
+                    <table class="table table-striped">
                             <?php
-                            if(isset($data)){
-								while($rows = mysqli_fetch_assoc($data)) { 
-                    
-								echo "        
-									<div class='col-md-4 col-sm-4 probootstrap-animate'>
-										<div class='probootstrap-block-image'>
-
-											<div class='text'>
-												<h3>".$rows['idMovimiento']."</a></h3>
-												<p>".$rows['monto']."</p>
-												<p>".$rows['tipo']."</p>
-												<p>".$rows['fecha']."</p>
-											</div>
-										</div>
-									</div> 
+                            if (isset($data)) {
+                                echo "
+                                <thead>
+                                    <tr>
+                                    <th scope='col'>Numero de movimiento</th>
+                                    <th scope='col'>Monto</th>
+                                    <th scope='col'>Fecha</th>
+                                    <th scope='col'>Detalle</th>
+                                    </tr>
+                                </thead>
+                                <tbody>";
+                                while ($rows = mysqli_fetch_assoc($data)) {
+                                    echo "        
+                                            <tr>
+                                                <th scope='row'>".$rows['idMovimiento']."</th>
+												<td>$".$rows['monto']."</td>
+                                                <td>".$rows['fecha']."</td>
+                                                <td>".$rows['tipo']."</td>
+											</tr>
 									";
-								}
-							}
-							?>
-
+                                }
+                            }
+                            ?>
+                        </tbody>
+                 </table>
 
 
 
