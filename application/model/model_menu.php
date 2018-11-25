@@ -127,6 +127,18 @@ class Model_Menu extends Model
         return $result;
     }
 
+    public function listarMenusPdvCliente($idComercio, $idPuntoDeVenta)
+    {
+        $conn =BaseDeDatos::conectarBD();
+        $sql = "select * from menu m 
+        inner join precio p on p.idPrecio = m.Precio_idPrecio
+        inner join puntodeventa pdv on pdv.idPuntoDeVenta = m.idPuntoDeVenta
+        inner join comercio c on c.idComercio = pdv.Comercio_idComercio
+        where c.idComercio = ".$idComercio." and pdv.idPuntoDeVenta = ".$idPuntoDeVenta.";";
+        $result = mysqli_query($conn, $sql);
+        return $result;
+    }
+
     public function eliminarMenu($idPuntoDeVenta, $descripcion)
     {
         $conn =BaseDeDatos::conectarBD();

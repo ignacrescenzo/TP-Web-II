@@ -44,4 +44,16 @@ class Controller_PuntoDeVenta extends Controller
         $ofertas = $menu->listarOfertasCliente($idComercio);
         $this->view->generateSt('menu_view.php', $menus, $idComercio, $ofertas, $banner);
     }
+
+    public function mostrarMenuPdv()
+    {
+        $idComercio = $_GET['c'];
+        $idPuntoDeVenta = $_GET['v'];
+        $menu = new Model_Menu();
+        $comercio = new Model_Comercio();
+        $menus = $menu->listarMenusPdvCliente($idComercio, $idPuntoDeVenta);
+        $banner = $comercio->obtenerBanner($idComercio);
+        $ofertas = $menu->listarOfertasCliente($idComercio);
+        $this->view->generateSt('menu_view.php', $menus, $idComercio, $ofertas, $banner);
+    }
 }
