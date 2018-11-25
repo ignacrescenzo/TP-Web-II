@@ -106,14 +106,14 @@ class Model_Usuario extends Model
         return $row['idUsuario'];
     }
 
-    public function obtenerIdAdmin($username)
-    {
-        $db=BaseDeDatos::conectarBD();
-        $sql = "select idUsuario from Usuario where nombreUsuario = '".$username."';";
-        $result = mysqli_query($db, $sql);
-        $row = mysqli_fetch_assoc($result);
-        return $row['idUsuario'];
-    } 
+    //public function obtenerIdAdmin($username)
+    //{
+    //    $db=BaseDeDatos::conectarBD();
+    //    $sql = "select idUsuario from Usuario where nombreUsuario = '".$username."';";
+    //    $result = mysqli_query($db, $sql);
+    //    $row = mysqli_fetch_assoc($result);
+    //    return $row['idUsuario'];
+    //} 
 
 
     public function obtenerUsuario($idUsuario)

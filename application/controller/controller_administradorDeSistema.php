@@ -60,7 +60,7 @@ class Controller_AdministradorDeSistema extends Controller
         if (isset($_GET['idUsuario'])) {
             $idUsuario=$_GET['idUsuario'];
             $habilitar=$delivery->habilitarDelivery($idUsuario);
-            header("location: /administradorDeSistema/index");  
+            header("location: /administradorDeSistema/index?v=1");  
         }
     }
 
@@ -70,7 +70,7 @@ class Controller_AdministradorDeSistema extends Controller
         if (isset($_GET['idUsuario'])) {
             $idUsuario=$_GET['idUsuario'];
             $habilitar=$delivery->deshabilitarDelivery($idUsuario);
-            header("location: /administradorDeSistema/index");
+            header("location: /administradorDeSistema/index?v=1");
         }
    }  
 
@@ -80,7 +80,7 @@ class Controller_AdministradorDeSistema extends Controller
         if (isset($_GET['idUsuario'])) {
             $idUsuario=$_GET['idUsuario'];
             $habilitar=$delivery->eliminarDelivery($idUsuario);
-            header("location: /administradorDeSistema/index");
+            header("location: /administradorDeSistema/index?v=1");
         }
     }
 
