@@ -58,14 +58,11 @@
       <div class="container">
         <div class="row">
  	
- 	<?php if($data)
-	{
+ 	<?php if ($data) {
     $total=0;
     $nombrePalCarrito = "";
-		foreach($data as $producto)
-		{
-			$cantidad=$producto["cantidad"];
-			?>
+    foreach ($data as $producto) {
+        $cantidad=$producto["cantidad"]; ?>
           <div class="col-md-4 col-sm-4 probootstrap-animate">
             <div class="probootstrap-block-image">
               <div class="text">
@@ -73,17 +70,16 @@
              	<span class="date"> Precio unitario: $<?php echo $producto["precio"] ?> </span>
                 
 				<span class="date">Cantidad: <?php echo"<a  href='/cliente/restarProducto?c=".$data2."&d=".$producto['descripcion']."'>-</a>"; ?> <?php echo $producto["cantidad"]?> <?php echo"<a  href='/cliente/sumarProducto?c=".$data2."&d=".$producto['descripcion']."'>+</a>"; ?> </span>
-                <p> TOTAL: <?php echo ($producto["cantidad"]*$producto["precio"]); ?> </p>
+                <p> TOTAL: <?php echo($producto["cantidad"]*$producto["precio"]); ?> </p>
                 <p> <?php echo"<a href='/cliente/eliminarProducto?c=".$data2."&id=".$producto['id']."' 
                 class='probootstrap-custom-link link-sm'>Eliminar</a></p>"; ?> </p>
               </div>
             </div>
           </div>
-          <?php 
+          <?php
           $total+=($producto["cantidad"]*$producto["precio"]);
-          $nombrePalCarrito = $nombrePalCarrito . " - ".$producto['descripcion'];
-      			} 
-          ?>
+        $nombrePalCarrito = $nombrePalCarrito . " - ".$producto['descripcion'];
+    } ?>
           <div class="col-md-4 col-sm-4 probootstrap-animate">
               	<div class="text">
              		<?php echo "<h3>El precio total es $".$total."</h3>" ?> <br>
@@ -92,17 +88,17 @@
              		<br><br>
              		<?php echo "<a class='btn' href='/cliente/eliminarCarrito?c=".$data2."'>Vaciar Carrito</a>"; ?>
              		<br><br>
-             		<?php echo "<a class='btn' href='/puntoDeVenta/mostrarMenu?c=".$data2."'>Volver a Menu</a>"; ?>
+             		<a class='btn' onclick= "window.history.back()">Volver atrás</a>
              		
    				</div>
           </div>
             
     
-    <?php } else{
-		
-		echo "<h3>Carro vacio</h3>";
-		echo "<a class='btn btn-primary' href='/puntoDeVenta/mostrarMenu?c=".$data2."'>Volver al menú</a>";
-	}
+    <?php
+} else {
+        echo "<h3>Carro vacio</h3>";
+        echo "<a class='btn btn-primary' href='/puntoDeVenta/mostrarMenu?c=".$data2."'>Volver al menú</a>";
+    }
 ?>
 			     </div>
        	</div>
