@@ -150,7 +150,7 @@
                                 <p>
                                     <?php echo "$menues[descripcion]"; ?>
                                 </p>
-                                <?php echo" <a class='probootstrap-custom-link link-sm' href='/cliente/agregarAlCarrito?c=".$menues['idPuntoDeVenta']."&d=".$menues['descripcion']."'> AGREGAR AL CARRITO</a> " ?>
+                                <?php echo" <a class='probootstrap-custom-link link-sm' href='/cliente/agregarAlCarrito?c=".$data2."&d=".$menues['descripcion']."'> AGREGAR AL CARRITO</a> " ?>
                             </div> <br> <br>
                         </li>
                         <?php } ?>
