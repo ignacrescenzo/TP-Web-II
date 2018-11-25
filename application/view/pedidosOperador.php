@@ -76,11 +76,16 @@ $rutaPedidos = "/operadorComercio/mostrarPedidos?c=".$data2;
 				Direccion comercio: ".$pedido['dir']." <br>
 				Total: $".$pedido['total']." <br>
 				Estado: ";
-						if ($pedido['idDelivery'] != null) {
-							echo "Pedido Tomado";
-							} else{
-							 	echo "En espera";
-								 }
+						if($pedido['idDelivery'] == null) {
+							echo "En espera";
+							}
+						elseif($pedido['entrega'] == null){
+							echo "Tomado";
+							}
+							else{
+								echo "Entregado";
+						}
+						
 							echo"</p>
 									</div>
 								</div> 
