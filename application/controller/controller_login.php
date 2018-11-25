@@ -19,6 +19,7 @@ class Controller_Login extends Controller{
 		switch ($rol){
 			case "Administrador":
 				$_SESSION["login"]="sessionAdmin";
+				//$_SESSION['id'] = $usuario->obtenerIdAdmin($nombreUsuario);
 				header("location: /administradorDeSistema/index");
 				break;
 			case "Cliente":

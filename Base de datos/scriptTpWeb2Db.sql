@@ -5054,34 +5054,82 @@ insert into Rol
 values
 (1,'Administrador'),(2,'Cliente'),(3,'Delivery'),(4,'OperadorComercio');
 
-insert into comercio
-values
+insert into comercio (idComercio, nombre, email, direccion, banner, telefono, habilitado, imagen, tiempoEntrega)
+values 
 (1,'Bajon Express','a@a.com','direccion falsa', 'b.jpg', '11535433',1,'l1.png',1),
-(2,'Don Chuy','b@b.com','direccion falsa2',null,'1246215133',1,'l2.jpg',1);
+(2,'Don Chuy','b@b.com','direccion falsa2',null,'1246215133',1,'l2.jpg',1),
+(3,'Mc Donalds','c@c.com','Direccion falsa3','bannermc.jpg','125133',1,'l3.png',1),
+(4,'Burger King','d@d.com','Direccion falsa4','bannerburger.jpg','125133',1,'l4.jpg',1),
+(5,'Mostaza','e@e.com','Direccion falsa5','bannermostaza.jpg','125133',1,'l5.png',1);
 
 
-
-
-insert into puntodeventa
+insert into puntodeventa (idPuntoDeVenta, direccion, telefono, Comercio_idComercio, provincialocalidad_idLocalidad)
 values
-(1,'14340 Av. Rivadavia','333-444',1,14319),(2,'14532 Av. Rivadavia','666-999',1,14319);
+(1,'14340 Av. Rivadavia','333-444',1,14319),
+(2,'Av. Gral. Rojo esq. Luque Lafe,','1111-2222',3,10040),
+(3,'3910 Juan Manuel de Rosas','1111-3333',3,15376),
+(4,'14446 Brigadier Gral. Juan Manuel de Rosas','2222-2222',4,7547),
+(5,'3545 Dr. Ignacio Arieta','2222-4444',4,15376),
+(6,'14457 General Juan Manuel de Rosas','6666-7777',5,7547),
+(7,'1615 Av Gral. Rojo','6666-5555',5,10040);
 
 insert into Usuario(idUsuario, nombreUsuario, clave, Rol_idRol,Comercio_idComercio,domicilio,estado,habilitado,provincialocalidad_idLocalidad)
 values
 ( 1,'admin1',md5('1111'),1,null,null,null,null,null),
 ( 2,'cliente1',md5('2222'),2,null,'24 Av. de Mayo',null,null,14319),
 ( 3,'delivery1',md5('3333'),3,null,null,0,1,null),
-( 4,'opcomercio1',md5('4444'),4,1,null,null,null,null);
+( 4,'opcomercio1',md5('4444'),4,1,null,null,null,null),
+( 5,'opmc',md5('4444'),4,3,null,null,null,null),
+( 6,'opburger',md5('4444'),4,4,null,null,null,null),
+( 7,'opmostaza',md5('4444'),4,5,null,null,null,null),
+( 8,'delivery2',md5('3333'),3,null,null,0,1,null),
+( 9,'delivery3',md5('3333'),3,null,null,0,1,null),
+( 10,'delivery4',md5('3333'),3,null,null,0,1,null),
+( 11,'delivery5',md5('3333'),3,null,null,0,1,null);
+
 
 insert into precio 
 values 
 (1,120,null),
-(2,140,null);
+(2,140,null),
+(3,300,null),
+(4,260,null),
+(5,340,null),
+(6,230,null),
+(7,250,null),
+(8,400,null),
+(9,370,null);
 
-insert into menu
+insert into menu (idMenu, foto, ofertado, descripcion, Precio_idPrecio, Precio_idPrecioAnterior, idPuntoDeVenta)
 values
 (1,'CARNE-CON-PAPAS.jpg',0,'Carne con papas',1,null,1),
-(2,'logo2.jpg',0,'Hamburguesa',2,null,1);
+(2,'logo2.jpg',0,'Hamburguesa',2,null,1),
+
+(3,'mc1.png',0,'Big Mac',3,null,2),
+(4,'mc2.png',0,'Macnifica',4,null,2),
+(5,'mc3.png',0,'Hamburguesa de pollo',5,null,2),
+(6,'mc4.png',0,'Cuarto de libra con queso',6,null,2),
+
+(7,'mc1.png',0,'Big Mac',3,null,3),
+(8,'mc4.png',0,'Doble cuarto de libra con queso',7,null,3),
+(9,'mc6.png',0,'Hamburguesa con vegetales',5,null,3),
+
+(16,'hamb1.jpg',0,'Hamburguesa con pepino lechuga y tomate',1,null,4),
+(17,'hamb4.jpg',0,'Long napolitano',4,null,4),
+(18,'hamb8.jpg',0,'Aros de cebolla',7,null,4),
+
+(19,'hamb5.jpg',0,'Hamburguesa napolitana',3,null,5),
+(20,'hamb3.jpg',0,'Papas fritas y aros de cebolla',6,null,5),
+(21,'hamb2.jpg',0,'Long de pollo',9,null,5),
+
+(10,'mtz1.jpg',0,'Hamburguesa bacon',7,null,6),
+(11,'mtz2.jpg',0,'Hamburguesa doble queso',8,null,6),
+(12,'mtz3.jpg',0,'Doble napolitano',9,null,6),
+
+(13,'mtz4.jpg',0,'Cuarto triple',2,null,7),
+(14,'mtz5.jpg',0,'Mega pampa',1,null,7),
+(15,'mtz6.jpg',0,'Extra bacon',9,null,7);
+
 
 insert into cuenta (monto,comercio_idComercio,usuario_idUsuario)
 values
