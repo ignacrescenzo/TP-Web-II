@@ -78,14 +78,16 @@
 										Provincia: ".$pedido['provincia']."<br>
 										Total: $".$pedido['total']."<br>
 										Estado: ";
-										if ($pedido['idDelivery'] != null) {
-										 	echo "Pedido Tomado";
-										 } else{
-										 	echo "En espera <br></p>";
-
-										 	echo "<a href='/cliente/pedidoCancelado?id=".$pedido['id']."' class='btn btn-danger'>Cancelar</a>";
-
-										 }
+										if($pedido['idDelivery'] == null) {
+											echo "En espera";
+											echo "<a href='/cliente/pedidoCancelado?id=".$pedido['id']."' class='btn btn-danger'>Cancelar</a>";
+										}
+										elseif($pedido['entrega'] == null){
+											echo "Tomado";
+										}
+										else{
+											echo "Entregado";
+										}
 									echo"	</p>
 									</div>
 								</div> 
