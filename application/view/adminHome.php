@@ -53,6 +53,9 @@
                     <div class="probootstrap-heading">
                         <h3 class="secondary-heading" style="color: black; font-size: 30px;">Bienvenido Admin!</h3>
                     </div>
+
+                    <div class="text-center mb-3" id="msjError" style="display:none;color:red;">Se actualizo correctamente el estado del delivery</div>
+
                 </div>
             </div>
         </div>
@@ -150,6 +153,10 @@
         </div>
     </section>
 
+
+<?php if (isset($_GET['v'])){ ?>
+  <script>document.getElementById("msjError").style.display = "block";</script>
+  <?php } ?>
 </body>
 
 </html>
