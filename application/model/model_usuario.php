@@ -105,6 +105,17 @@ class Model_Usuario extends Model
         $row = mysqli_fetch_assoc($result);
         return $row['idUsuario'];
     }
+
+    public function obtenerIdAdmin($username)
+    {
+        $db=BaseDeDatos::conectarBD();
+        $sql = "select idUsuario from Usuario where nombreUsuario = '".$username."';";
+        $result = mysqli_query($db, $sql);
+        $row = mysqli_fetch_assoc($result);
+        return $row['idUsuario'];
+    } 
+
+
     public function obtenerUsuario($idUsuario)
     {
         $db=BaseDeDatos::conectarBD();
@@ -264,11 +275,12 @@ class Model_Usuario extends Model
         $conn =BaseDeDatos::conectarBD();
         $sql="update Usuario set habilitado=1 where idUsuario=".$idUsuario.";";
         $result = mysqli_query($conn, $sql);
-        if ($result) {
-            echo "Se habilito correctamente el delivery...";
-        } else {
-            echo "No se pudo habilitar el delivery correctamente";
-        }
+        //if ($result) {
+        //    echo "Se habilito correctamente el delivery...";
+        //} else {
+        //    echo "No se pudo habilitar el delivery correctamente";
+        //}
+
     }
 
     public function deshabilitarDelivery($idUsuario)
@@ -276,11 +288,11 @@ class Model_Usuario extends Model
         $conn =BaseDeDatos::conectarBD();
         $sql="update Usuario set habilitado=0 where idUsuario=".$idUsuario.";";
         $result = mysqli_query($conn, $sql);
-        if ($result) {
-            echo "Se deshabilito correctamente el delivery...";
-        } else {
-            echo "No se pudo deshabilitar el delivery correctamente";
-        }
+        //if ($result) {
+        //    echo "Se deshabilito correctamente el delivery...";
+        //} else {
+        //    echo "No se pudo deshabilitar el delivery correctamente";
+        //}
     }
 
     public function eliminarDelivery($idUsuario)
