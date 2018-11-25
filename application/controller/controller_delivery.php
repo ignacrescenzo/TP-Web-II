@@ -114,4 +114,34 @@ class Controller_Delivery extends Controller{
 		$delivery->deliverySePoneInactivo($id);
 		header("location: /delivery/index");
 	 }
+	 
+	 public function liquidaciones(){
+		$idDelivery = $_SESSION['id'];
+		$delivery = new Model_Usuario();
+		$listaLiquidaciones = $delivery->listarLiquidaciones($idDelivery);
+		$liquidaciones = null;
+		$this->view->generateSt("liquidacionesDelivery_view.php",$liquidaciones,$listaLiquidaciones);
+	 }
+	 
+	 
+	 public function verMovimientosSinLiquidar(){
+		$desde = $_POST['desde'];
+        $hasta = $_POST['hasta'];
+		$idDelivery= $_SESSION['id'];
+        $delivery = new Model_Usuario();
+		$listaLiquidaciones = $delivery->listarLiquidaciones($idDelivery);
+        $liquidaciones = $delivery->verMovimientosSinLiquidar($desde,$hasta,$idDelivery);
+		$this->view->generateSt('liquidacionesDelivery_view.php',$liquidaciones,$listaLiquidaciones); 
+	 }
+	 
+	 public function verLiquidacionSelecionada(){
+		$idDelivery= $_SESSION['id'];
+		$fechaLiquidado = $_POST['fechaLiquidado'];
+		$delivery = new Model_Usuario();
+		$liquidacionSeleccionada = $delivery->verLiquidacionSelecionada($idDelivery,$fechaLiquidado);
+		$listaLiquidaciones = $delivery->listarLiquidaciones($idDelivery);
+		$liquidaciones = null;
+		$this->view->generateSt("liquidacionesDelivery_view.php",$liquidaciones,$listaLiquidaciones,$liquidacionSeleccionada);
+	 }
+	 
 }

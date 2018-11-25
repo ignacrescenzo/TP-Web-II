@@ -1,10 +1,7 @@
 <?php
-	if(!isset($_SESSION["login"])){
-		echo "INISIA SESION WACHO";
-        echo "<br>";
-        echo "<a href='/login'>Iniciar sesion</a>";
-        exit;
-	}
+  if (!isset($_SESSION["login"])) {
+      header("location:/login");
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,23 +24,6 @@
   </head>
   <body>
     
- <!-- Fixed navbar -->
-    
-     <nav class="navbar navbar-default navbar-fixed-top probootstrap-navbar">
-      <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="" title="uiCookies:FineOak">FineOak</a>
-        </div>
-
-        <div id="navbar-collapse" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" data-nav-section="welcome">Inicio</a></li>
-            <li><a onclick="location.href='/main/listarcomercios'" ></a></li>
-            <li><a href="#" </a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
 
 
  <section class="probootstrap-section probootstrap-bg-white" data-section="contact">
@@ -54,8 +34,8 @@
               <h1 class="primary-heading">Restó</h1>
               <h3 class="secondary-heading">Formulario nuevo Punto de Venta</h3>
             </div>
-            <p>Agrega nuevos puntos de venta para expandir tus posibilidades!!<br> <br> *** <br><br>
-            Una vez agregado tu nueva sucursal RESTÓ hace el resto!</p>
+            <p>Agrega nuevos puntos de venta para expandir tus posibilidades!<br> <br> *** <br><br>
+            Una vez agregada tu nueva sucursal RESTÓ hace el resto!</p>
           </div>
           <div class="col-md-6 col-md-push-1 probootstrap-animate">
             <form method="POST" action="/OperadorComercio/registrarPuntoDeVenta" enctype="application/x-www-form-urlencodes" class="probootstrap-form">
@@ -66,11 +46,13 @@
                   <input required="" type="text" class="form-control" name="direccion">
                 </div>
               </div>
-			  
+
+
 			 <div class="form-group">
 			  <label for="c_name">Localidad</label>
 			  <div class="form-field">
-				<select name="idLocalidad">
+        <i class="icon icon-chevron-down"></i>
+				<select name="idLocalidad" class="form-control">
 					<option value="0">Seleccione:</option>
 						<?php
 						  while ($rows = mysqli_fetch_assoc($data2)) {

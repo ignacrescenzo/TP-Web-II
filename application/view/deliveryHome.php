@@ -1,9 +1,6 @@
 <?php
-  if(!isset($_SESSION["login"])){
-    echo "INISIA SESION WACHO";
-        echo "<br>";
-        echo "<a href='/login'>Iniciar sesion</a>";
-        exit;
+  if (!isset($_SESSION["login"])) {
+      header("location:/login");
   }
 ?>
 
@@ -32,10 +29,18 @@
             <a class="navbar-brand" href="/" title="uiCookies:FineOak">FineOak</a>
         </div>
         <div id="navbar-collapse" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a style="cursor:pointer" href="#" data-nav-section="welcome">Inicio</a></li>
-            <li><a style="cursor:pointer" onclick="location.href='/login/cerrarsesion'" >Cerrar sesión</a></li>
-          </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a style="cursor:pointer" onclick="location.href='/delivery/index'" data-nav-section="welcome">Inicio</a></li>
+                    <?php if ($_SESSION['estado'] == 1){ ?>
+                    <li><a style="cursor:pointer" onclick="location.href='/delivery/pedidosDisponibles'">Pedidos
+                            disponibles</a></li>
+                    <li><a style="cursor:pointer" onclick="location.href='/delivery/pedidosEnCurso'">Pedidos en curso</a></li>
+                    <li><a style="cursor:pointer" onclick="location.href='/delivery/pedidosRealizados'">Pedidos
+                            realizados</a></li>
+                    <?php } ?>
+					          <li><a style="cursor:pointer" onclick="location.href='/delivery/liquidaciones'">liquidaciones</a></li>		
+                    <li><a style="cursor:pointer" onclick="location.href='/login/cerrarsesion'">Cerrar sesión</a></li>
+                </ul>
         </div>
       </div>
     </nav>
@@ -46,10 +51,21 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center probootstrap-animate">
-            <div class="probootstrap-heading">
+            <?php if ($_SESSION['estado'] == 0){ ?>
+            <div class='probootstrap-heading'>
               <h4> Para ver los pedidos disponibles entrá a trabajar! </h4>
-              <a href="/delivery/pedidosDisponibles" class='btn btn-primary'> Comenzar a trabajar </a> <br><br><br>
+              <a href='/delivery/pedidosDisponibles' class='btn btn-primary'> Comenzar a trabajar </a> <br><br><br>
             </div>
+            
+            <?php } ?>
+
+            <?php if ($_SESSION['estado'] == 1){ ?>
+            <div class='probootstrap-heading'>
+              <h4> Si lo necesitas, puedes tomarte un descanso </h4>
+              <a href='/delivery/deliveryInactivo' class='btn btn-primary'> Tomarte un descanso </a> <br><br><br>
+            </div>
+            
+            <?php } ?>
           </div>
         </div>
       </div>

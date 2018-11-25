@@ -1,9 +1,6 @@
 <?php
-  if(!isset($_SESSION["login"])){
-    echo "INISIA SESION WACHO";
-        echo "<br>";
-        echo "<a href='/login'>Iniciar sesion</a>";
-        exit;
+  if (!isset($_SESSION["login"])) {
+      header("location:/login");
   }
 ?>
 
@@ -73,8 +70,8 @@
 			    echo "<div class= 'mt-4'> "; 
 			    echo "<br>";
 			    echo "<div> Nombre de usuario: ".$rows['nombreUsuario']." </div>";
-				echo "<div> Nombre: ".$rows['idUsuario']." </div>";
-				echo "<div> Apellido: ".$rows['idUsuario']." </div>";
+				echo "<div> Nombre: ".$rows['nombre']." </div>";
+				echo "<div> Apellido: ".$rows['apellido']." </div>";
 				echo "<div> Email: ".$rows['email']." </div>";
 				echo "<div> Telefono: ".$rows['telefono']." </div>";
 				echo"</div> <br>";

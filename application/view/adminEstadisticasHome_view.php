@@ -1,9 +1,6 @@
 <?php
-  if(!isset($_SESSION["login"])){
-    echo "INISIA SESION WACHO";
-        echo "<br>";
-        echo "<a href='/login'>Iniciar sesion</a>";
-        exit;
+  if (!isset($_SESSION["login"])) {
+      header("location:/login");
   }
 ?>
 
@@ -69,7 +66,7 @@
             <div class="form-group">
                 <label for="date">Desde <i class="icon icon-calendar"></i></label>
                     <div class="form-field">
-                    <input type="date" name="desde" id="date" class="form-control">
+                    <input type="date" name="desde" id="date1" class="form-control">
                 </div>
             </div>
         </div>
@@ -78,7 +75,7 @@
             <div class="form-group">
         	    <label for="date">Hasta</label> <i class="icon icon-calendar"></i>
                     <div class="form-field">
-                    <input type="date" name="hasta" id="date" class="form-control">
+                    <input type="date" name="hasta" id="date2" class="form-control">
                 </div>
             </div>
         </div>

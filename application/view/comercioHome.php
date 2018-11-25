@@ -1,10 +1,6 @@
 <?php
-  if(!isset($_SESSION["login"])){
-    echo "INISIA SESION WACHO";
-        echo "<br>";
-        echo "<a href='/login'>Iniciar sesion</a>";
-        
-        exit;
+  if (!isset($_SESSION["login"])) {
+      header("location:/login");
   }
   $ruta = "/operadorComercio/index?v=".$_SESSION['idComercio']."&c=".$data2;
   $rutaPedidos = "/operadorComercio/mostrarPedidos?c=".$data2;
@@ -40,10 +36,7 @@
             <div id="navbar-collapse" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a style="cursor:pointer" href="#" data-nav-section="welcome">Inicio</a></li>
-                    <li><a style="cursor:pointer" onclick="location.href='<?php echo $ruta;  ?>'">Volver a Puntos de
-                            venta</a></li>
-                    <li><a style="cursor:pointer" href="#" data-nav-section="welcome">Mis ofertas</a></li>
-                    <li><a style="cursor:pointer" href="#" data-nav-section="welcome">Estadísticas</a></li>
+                    <li><a style="cursor:pointer" onclick="location.href='<?php echo $ruta;  ?>'">Volver a Puntos de venta</a></li>
                     <li><a style="cursor:pointer" onclick="location.href='<?php echo $rutaPedidos; ?>'">Pedidos</a></li>
                     <li><a style="cursor:pointer" onclick="location.href='/login/cerrarsesion'">Cerrar sesión</a></li>
                 </ul>
@@ -75,9 +68,9 @@
         <div class="container">
             <div class="row">
                 <?php
-        if(mysqli_num_rows($data) >= 1){ 
-                while($menues = mysqli_fetch_assoc($data)) {      
-        echo "        
+        if (mysqli_num_rows($data) >= 1) {
+            while ($menues = mysqli_fetch_assoc($data)) {
+                echo "        
           	<div class='col-md-4 col-sm-4 probootstrap-animate'>
             	<div class='probootstrap-block-image'>
 
@@ -95,8 +88,8 @@
 					</div>
             	</div> 
             </div>";
-                            }
-                          }
+            }
+        }
 
                         ?>
             </div>
@@ -111,9 +104,9 @@
         <div class="container">
             <div class="row">
                 <?php
-                      if(mysqli_num_rows($data3) >= 1){ 
-                       while($ofertas = mysqli_fetch_assoc($data3)) {
-                           echo"
+                      if (mysqli_num_rows($data3) >= 1) {
+                          while ($ofertas = mysqli_fetch_assoc($data3)) {
+                              echo"
 
                         <div class='col-md-4 col-sm-4 probootstrap-animate'>
             			<div class='probootstrap-block-image'>
@@ -127,12 +120,10 @@
 								</div>
 			            	</div> 
 			            </div>";
-                            }
                           }
-
-                        else{
-							  echo "<div class='text-center w-50  mt-2 mx-auto'><h3> No hay ofertas disponibles </h3> </div>";
-						  }
+                      } else {
+                            echo "<div class='text-center w-50  mt-2 mx-auto'><h3> No hay ofertas disponibles </h3> </div>";
+                        }
 
                         ?>
 

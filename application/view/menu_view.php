@@ -1,10 +1,10 @@
 <?php
-	if(!isset($_SESSION["login"])){
-		echo "INISIA SESION WACHO";
+    if (!isset($_SESSION["login"])) {
+        echo "INISIA SESION WACHO";
         echo "<br>";
         echo "<a href='/login'>Iniciar sesion</a>";
         exit;
-	}
+    }
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +37,7 @@
 
             <div id="navbar-collapse" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#" data-nav-section="welcome">Inicio</a></li>
+                    <li><a style="cursor:pointer" onclick="location.href='/cliente/verComercios'" data-nav-section="welcome">Inicio</a></li>
                     <li><a style="cursor:pointer" onclick="location.href='/cliente/verComercios'">Comercios</a></li>
                     <li><a style="cursor:pointer" onclick="location.href= <?php echo "'/cliente/verCarrito?c=$data2'" ?>">Carrito</a></li>
                     <li><a style="cursor:pointer" onclick="location.href='/cliente/mostrarPedidos'">Pedidos</a></li>
@@ -86,9 +86,9 @@
 
                 <div class="row">
                     <?php
-                      if(mysqli_num_rows($data3) >= 1){ 
-                       while($ofertas = mysqli_fetch_assoc($data3)) {
-                           echo"
+                      if (mysqli_num_rows($data3) >= 1) {
+                          while ($ofertas = mysqli_fetch_assoc($data3)) {
+                              echo"
 
                         <div class='col-md-4 col-sm-4 probootstrap-animate'>
             			<div class='probootstrap-block-image'>
@@ -98,16 +98,14 @@
 			                <p> Descripción: ".$ofertas['descripcion']." <br>
 			                Precio: $".$ofertas['monto']."</p>
 
-			               	<a href='/menu/eliminarOferta?c=".$data2."&variable=".$ofertas['descripcion']."' class='probootstrap-custom-link link-sm'>Eliminar</a>
+			               	<a class='probootstrap-custom-link link-sm' href='/cliente/agregarAlCarrito?c=".$data2."&d=".$ofertas['descripcion']."'> AGREGAR AL CARRITO</a>
 								</div>
 			            	</div> 
 			            </div>";
-                            }
                           }
-
-                        else{
-							  echo "<div class='text-center w-50  mt-2 mx-auto'><h3> No hay ofertas disponibles </h3> </div>";
-						  }
+                      } else {
+                          echo "<div class='text-center w-50  mt-2 mx-auto'><h3> No hay ofertas disponibles </h3> </div>";
+                      }
 
                         ?>
 
@@ -135,9 +133,9 @@
                 <div class="col-md-6">
                     <ul class="menus">
                         <?php
-				if(mysqli_num_rows($data) >= 1){
-				while($menues = mysqli_fetch_assoc($data)) {
-					?>
+                if (mysqli_num_rows($data) >= 1) {
+                    while ($menues = mysqli_fetch_assoc($data)) {
+                        ?>
 
                         <li>
                             <?php echo '<figure class="image"> <img src="/application/resources/upload/'.$menues['foto'].'" width="100px";/> </figure>'; ?>
@@ -150,22 +148,27 @@
                                 <p>
                                     <?php echo "$menues[descripcion]"; ?>
                                 </p>
-                                <?php echo" <a class='probootstrap-custom-link link-sm' href='/cliente/agregarAlCarrito?c=".$menues['idPuntoDeVenta']."&d=".$menues['descripcion']."'> AGREGAR AL CARRITO</a> " ?>
+                                <?php
+                                if (strpos($_SERVER['REQUEST_URI'], 'Pdv') !== false) {
+                                    echo "<a class='probootstrap-custom-link link-sm' href='/cliente/agregarAlCarrito?c=".$data2."&d=".$menues['descripcion']."&v=".$menues['idPuntoDeVenta']."'> AGREGAR AL CARRITO</a> ";
+                                } else {
+                                    echo "<a class='probootstrap-custom-link link-sm' href='/cliente/agregarAlCarrito?c=".$data2."&d=".$menues['descripcion']."'> AGREGAR AL CARRITO</a> ";
+                                } ?>
                             </div> <br> <br>
                         </li>
-                        <?php } ?>
+                        <?php
+                    } ?>
                     </ul>
                 </div>
             </div>
         </div>
         <?php 		echo "<div class='container'>";
-					echo "<a class='btn btn-primary btn-lg' href='/cliente/verCarrito?c=".$data2."'>Ir al carrito!</a>";
-					echo "</div>"; 
-					}
-					else{
-							echo "<div class='text-center mx-auto'><h2>Este comercio no tiene menús cargados</h2></div>";
-						}
-					?>
+                    echo "<a class='btn btn-primary btn-lg' href='/cliente/verCarrito?c=".$data2."'>Ir al carrito!</a>";
+                    echo "</div>";
+                } else {
+                    echo "<div class='text-center mx-auto'><h2>Este comercio no tiene menús cargados</h2></div>";
+                }
+                    ?>
     </section>
 
     <!--
@@ -175,28 +178,28 @@
 			</div>
 					<div class="row">
                         <?php /*
-						if(mysqli_num_rows($data) >= 1){
-							while($menues = mysqli_fetch_assoc($data)) {
-							
-								echo "<div class='col-md-4'>
-										<div class='card'>
-											<img class='card-img-top' src='/application/resources/upload/".$menues['foto']."' alt='Mi Imagen' width='120px' height='120px'>
-											<div class='card-body'>
-												<h4 class='card-title'>Menu "."<span id ='menuId'>".$menues['idMenu']."</span></h4>
-												<p class='card-text'>".$menues['descripcion']."</p>
-												<p class='card-text'>".$menues['monto']."</p>
-												<a class='btn btn-primary agregarCarrito' href='/cliente/agregarAlCarrito?c=".$menues['idPuntoDeVenta']."&d=".$menues['descripcion']."'>Comprar</a>
-											</div>
-										</div> 
-									</div>";
-							}
-							echo "<div class='container'>";
-							echo "<a class='btn btn-info verCarrito' href='/cliente/verCarrito?c=".$data2."'>Ir al carrito!</a>";
-							echo "</div>";
-						}
-						else{
-							echo "<div class='text-center mx-auto'><h2>Este comercio no tiene menús cargados</h2></div>";
-						}	 */
+                        if(mysqli_num_rows($data) >= 1){
+                            while($menues = mysqli_fetch_assoc($data)) {
+
+                                echo "<div class='col-md-4'>
+                                        <div class='card'>
+                                            <img class='card-img-top' src='/application/resources/upload/".$menues['foto']."' alt='Mi Imagen' width='120px' height='120px'>
+                                            <div class='card-body'>
+                                                <h4 class='card-title'>Menu "."<span id ='menuId'>".$menues['idMenu']."</span></h4>
+                                                <p class='card-text'>".$menues['descripcion']."</p>
+                                                <p class='card-text'>".$menues['monto']."</p>
+                                                <a class='btn btn-primary agregarCarrito' href='/cliente/agregarAlCarrito?c=".$menues['idPuntoDeVenta']."&d=".$menues['descripcion']."'>Comprar</a>
+                                            </div>
+                                        </div>
+                                    </div>";
+                            }
+                            echo "<div class='container'>";
+                            echo "<a class='btn btn-info verCarrito' href='/cliente/verCarrito?c=".$data2."'>Ir al carrito!</a>";
+                            echo "</div>";
+                        }
+                        else{
+                            echo "<div class='text-center mx-auto'><h2>Este comercio no tiene menús cargados</h2></div>";
+                        }	 */
                         ?>
 					</div> -->
 

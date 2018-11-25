@@ -12,59 +12,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Restó | Inicio</title>
 
-   <!-- GRAFICOS -->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        
-     google.charts.load('current', {'packages':['corechart']});
-
-     google.charts.setOnLoadCallback(drawChart);
-
-     function drawChart() {
-
-        // Create the data table.
-        var data = new google.visualization.arrayToDataTable([
-         ['Comercio', 'Monto Total de ventas'],
-         <?php
-      
-            while ($rows=mysqli_fetch_assoc($data3)) {
-                echo "['".$rows['nombre']."',".$rows['total']."],";
-            }
-        
-             ?>
-        ]);
-
-        var options = {'title':'Comercios que mas vendieron',
-
-                       'width':400,
-                       'height':300};
-
-                        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-
-         // Create the data table 2.
-        var data2 = new google.visualization.arrayToDataTable([
-         ['Comercio', 'Monto Total de ventas'],
-         <?php
-      
-            while ($rows=mysqli_fetch_assoc($data4)) {
-                echo "['".$rows['nombreUsuario']."',".$rows['delivery']."],";
-            }
-        
-             ?>
-        ]);
-
-        var options2 = {'title':'Deliverys que mas entregaron',
-
-                       'width':400,
-                       'height':300};
-
-                        var chart2 = new google.visualization.BarChart(document.getElementById('chart_div2'));
-        chart2.draw(data2, options2);
-      }
-
-    </script>
-
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Pinyon+Script" rel="stylesheet">
 
     <!-- <link rel="stylesheet" href="../application/resources/css/bootstrap.min.css"> -->
@@ -103,26 +50,97 @@
             <div class="row">
                 <div class="col-md-12 text-center probootstrap-animate">
                     <div class="probootstrap-heading">
-                        <h3 class="secondary-heading" style="color: black; font-size: 30px;">Estadísticas generales:</h3>
+                        <h3 class="secondary-heading" style="color: black; font-size: 30px;">Ingrese periodo de tiempo
+                            para liquidar</h3>
                     </div>
                 </div>
             </div>
         </div>
-
-
+		<div class="container">
+            <div class="row">
+                <div class='probootstrap-animate'>
+                    <div class='probootstrap-block-image'>
+                        <div class=''>
+					<div class="form-group">
+						
+							<div class="form-field text-center">
+                            <label for="c_name">Historial Liquidaciones</label>
+								<form method="POST" action="/administradorDeSistema/verLiquidacionSelecionadaAdministrador" enctype="application/x-www-form-urlencodes" class="probootstrap-form">
+									<select  name="fechaLiquidado">
+										<option value="0">Seleccione:</option>
+										<?php
+                                        if (isset($data4)) {
+                                            while ($rows = mysqli_fetch_assoc($data4)) {
+                                                echo "<option name=".$rows['fechaLiquidado']." value=".$rows['fechaLiquidado'].">".$rows['fechaLiquidado']."</option>";
+                                            }
+                                        }
+                                        ?>
+									</select>
+									<div class="form-field">
+										<input type="submit" class='btn btn-primary' value="ver">
+									</div>
+								</form>
+							</div>
+					</div>
+                    <br>
+                            <br>
+                            <br>
+                    <table class="table table-striped">
+                    <?php if (isset($data5)) {
+                                            echo "
+                    <thead>
+                        <tr>
+                        <th scope='col'>Numero de movimiento</th>
+                        <th scope='col'>Monto</th>
+                        <th scope='col'>Fecha</th>
+                        <th scope='col'>Detalle</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+                                        }
+                    ?>
+					<?php
+                            if (isset($data5)) {
+                                while ($rows = mysqli_fetch_assoc($data5)) {
+                                    echo "        
+                                            <tr>
+                                                <th scope='row'>".$rows['idMovimiento']."</th>
+												<td>$".$rows['monto']."</td>
+                                                <td>".$rows['fecha']."</td>";
+                                    switch ($rows['tipo']) {
+                                                case "Venta": echo "<td>Venta de comercio</td>";
+                                                break;
+                                                case "Pago a Administrador": echo "<td>Ganancia</td>";
+                                                break;
+                                                case "Pago a Delivery": echo "<td>Pago a Delivery</td>";
+                                                break;
+                                                }
+                                                
+                                    echo"</tr>";
+                                }
+                            }
+                            ?>
+                            </tbody>
+                    </table>
+					
+						</div>
+                </div>
+            </div>
+        </div>
+	</div>
         <div class="container">
             <div class="row">
                 <div class='probootstrap-animate'>
                     <div class='probootstrap-block-image'>
                         <div class='text'>
 
-                            <form method="POST" action="/administradorDeSistema/estadisticasDatos" enctype="application/x-www-form-urlencodes">
+                            <form method="POST" action="/administradorDeSistema/verMovimientos" enctype="application/x-www-form-urlencodes">
 
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="date">Desde <i class="icon icon-calendar"></i></label>
                                         <div class="form-field">
-                                            <input type="date" name="desde" id="date" class="form-control">
+                                            <input type="date" name="desde" id="date1" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -131,50 +149,69 @@
                                     <div class="form-group">
                                         <label for="date">Hasta</label> <i class="icon icon-calendar"></i>
                                         <div class="form-field">
-                                            <input type="date" name="hasta" id="date" class="form-control">
+                                            <input type="date" name="hasta" id="date2" class="form-control">
                                         </div>
                                     </div>
                                 </div>
 
                                 <label for="date"> </label>
                                 <div class="form-field">
-                                    <input type="submit" class='btn btn-primary' name="buscar" value="buscar">
+                                    <input type="submit" class='btn btn-primary' name="buscar" value="Ver">
                                 </div>
 
                             </form>
                             <br>
-                            <p>Total ganancias:
-                                <?php
-            if (mysqli_num_rows($data)>0) {
-                while ($rows=mysqli_fetch_assoc($data)) {
-                    echo "$".$rows['total']."";
-                }
-            }
-        ?>
-                            </p>
+                            <?php
+                            if (isset($data)) {
+                                echo " <a href='/administradorDeSistema/liquidarPeriodo?d=".$data2."&h=".$data3."'><div class='form-field'>
+                                    <input type='button' class='btn btn-primary' name='buscar' value='Liquidar'>
+                                </div></a>"; ?>
+                            <br>
+                            <br>
+                            <br>
+                    <table class="table table-striped">
+                    <?php
+                        echo "
+                    <thead>
+                        <tr>
+                        <th scope='col'>Numero de movimiento</th>
+                        <th scope='col'>Monto</th>
+                        <th scope='col'>Fecha</th>
+                        <th scope='col'>Detalle</th>
+                        </tr>
+                    </thead>
+                    <tbody>"; ?>
+					<?php
+                                while ($rows = mysqli_fetch_assoc($data)) {
+                                    echo "        
+                                            <tr>
+                                                <th scope='row'>".$rows['idMovimiento']."</th>
+												<td>$".$rows['monto']."</td>
+                                                <td>".$rows['fecha']."</td>";
+                                    switch ($rows['tipo']) {
+                                                case "Venta": echo "<td>Venta de comercio</td>";
+                                                break;
+                                                case "Pago a Administrador": echo "<td>Ganancia</td>";
+                                                break;
+                                                case "Pago a Delivery": echo "<td>Pago a Delivery</td>";
+                                                break;
+                                                }
+                                                
+                                    echo"</tr>";
+                                }
+                            }?>
+                            </tbody>
+                    </table>
 
-                            <p>Entregas mensuales:
 
-                                <?php
-            if (mysqli_num_rows($data2)>0) {
-                while ($rows=mysqli_fetch_assoc($data2)) {
-                    echo "".$rows['entregas']."";
-                }
-            }
-        ?>
 
-        <div id="chart_div"></div>
-<div id="chart_div2"></div> 
-                            </p>
 
-         
-                            </p>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
 
 
         <!-- FOOTER -->

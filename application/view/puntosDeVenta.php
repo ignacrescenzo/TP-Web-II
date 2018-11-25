@@ -1,9 +1,6 @@
 <?php
-  if(!isset($_SESSION["login"])){
-    echo "INISIA SESION WACHO";
-        echo "<br>";
-        echo "<a href='/login'>Iniciar sesion</a>";
-        exit;
+  if (!isset($_SESSION["login"])) {
+      header("location:/login");
   }
 ?>
 
@@ -43,6 +40,7 @@
                     <li><a style="cursor:pointer" onclick="location.href=<?php echo "'/OperadorComercio/crearPuntoDeVenta?idComercio=".$idComercio."'" ?>">Crear
                             punto de venta</a></li>
                     <li><a style="cursor:pointer" onclick="location.href=<?php echo "'/OperadorComercio/estadisticas?idComercio=".$idComercio."'" ?>">Estadisticas</a></li>
+					<li><a style="cursor:pointer" onclick="location.href='/operadorComercio/liquidacionesComercio'">liquidaciones</a></li>
                     <li><a style="cursor:pointer" onclick="location.href='/login/cerrarsesion'">Cerrar sesión</a></li>
                 </ul>
             </div>
@@ -57,23 +55,14 @@
             <div class="row">
                 <div class="col-md-12 text-center probootstrap-animate">
                     <div class="probootstrap-heading">
-                        <h3 class="secondary-heading" style="color: black; font-size: 30px;">Selecciona un punto de
+                        <h3 class="secondary-heading" style="color: black; font-size: 30px;">Seleccioná un punto de
                             venta para gestionar!</h3>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <form class="form-signin  w-25" enctype="multipart/form-data" method="POST" action="/operadorComercio/cambiarBanner?v=<?php echo $data2; ?>">
-        <div class="form-group mb-2 text-center">
-            <div class="form-group mb-2">
-                <input type="file" name="file" placeholder="Cargue la imagen" class="form-control" value="">
-            </div>
-            <button class="btn btn btn-primary mx-auto" type="submit">
-                Cargar banner
-            </button>
-        </div>
-    </form>
+    
     <section class="probootstrap-section">
         <div class="container">
             <div class="row">
@@ -102,6 +91,29 @@
             </div>
         </div>
     </section>
+
+        <div class="container">
+            <div class="row">
+            <div class="col-md-12 text-center probootstrap-animate">
+                    <div class="probootstrap-heading">
+                        <h3 class="secondary-heading" style="color: black; font-size: 30px;">Cargá un banner para tu comercio:</h3>
+                        <h3 class="secondary-heading" style="color: black; font-size: 18px;">Te recomendamos utilizar una imagen con la proporción 2:1</h3>
+                    </div>
+                </div>
+                
+                <form class="form-signin  w-25" enctype="multipart/form-data" method="POST" action="/operadorComercio/cambiarBanner?v=<?php echo $data2; ?>">
+                    <div class="form-group mb-2 text-center">
+                        <div class="form-group mb-2">
+                            <input type="file" name="file" placeholder="Cargue la imagen" class="form-control" value="">
+                        </div>
+                        <button class="btn btn btn-primary mx-auto" type="submit">
+                            Cargar banner
+                        </button>
+                    </div>
+                </form>
+        </div>
+    </div>
+</section>
 
 </body>
 <!-- FOOTER -->
