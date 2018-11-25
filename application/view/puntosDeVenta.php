@@ -97,7 +97,7 @@
             <div class="col-md-12 text-center probootstrap-animate">
                     <div class="probootstrap-heading">
                         <h3 class="secondary-heading" style="color: black; font-size: 30px;">Cargá un banner para tu comercio:</h3>
-                        <h3 class="secondary-heading" style="color: black; font-size: 18px;">Te recomendamos utilizar una imagen de xxx*xxx</h3>
+                        <h3 class="secondary-heading" style="color: black; font-size: 18px;">Te recomendamos utilizar una imagen con la proporción 2:1</h3>
                     </div>
                 </div>
                 
