@@ -5056,8 +5056,8 @@ values
 
 insert into comercio (idComercio, nombre, email, direccion, banner, telefono, habilitado, imagen, tiempoEntrega)
 values 
-(1,'Bajon Express','a@a.com','direccion falsa', 'b.jpg', '11535433',1,'l1.png',1),
-(2,'Don Chuy','b@b.com','direccion falsa2',null,'1246215133',1,'l2.jpg',1),
+(1,'Bajon Express','a@a.com','direccion falsa', 'sfadfds.jpg', '11535433',1,'l1.png',1),
+(2,'Don Chuy','b@b.com','direccion falsa2','food-photography-tips-photojaanic-3-1-1080x720.jpg','1246215133',1,'l2.jpg',1),
 (3,'Mc Donalds','c@c.com','Direccion falsa3','bannermc.jpg','125133',1,'l3.png',1),
 (4,'Burger King','d@d.com','Direccion falsa4','bannerburger.jpg','125133',1,'l4.jpg',1),
 (5,'Mostaza','e@e.com','Direccion falsa5','bannermostaza.jpg','125133',1,'l5.png',1);
@@ -5131,12 +5131,12 @@ values
 (14,'mtz5.jpg',0,'Mega pampa',1,null,7),
 (15,'mtz6.jpg',0,'Extra bacon',9,null,7),
 
-(22,null,0,'Pizza',2,null,8),
-(23,null,0,'Empanada',1,null,8),
-(24,null,0,'Choripan',9,null,8);
+(22,'pizza.jpg',0,'Pizza',2,null,8),
+(23,'emp.jpg',0,'Empanada',1,null,8),
+(24,'choripan.jpg',0,'Choripan',9,null,8);
 
 
-insert into cuenta (monto,comercio_idComercio,usuario_idUsuario)
+/* insert into cuenta (monto,comercio_idComercio,usuario_idUsuario)
 values
 (0,1,null),
 (0,2,null),
@@ -5146,8 +5146,67 @@ values
 (0,null,1),
 (0,null,2),
 (0,null,3),
-(0,null,4);
+(0,null,4); */
 
+
+INSERT INTO `pedido` (`idPedido`,`fechaHoraEntrega`,`fechaHoraRetiro`,`fechaHoraGenerado`,`montoTotal`,`Usuario_idCliente`,`Usuario_idDelivery`,`idPuntoDeVenta`) 
+VALUES 
+(1,'2018-11-25 22:31:12','2018-11-25 22:31:08','2018-11-25 22:28:08',260,2,3,1),
+(2,'2018-11-25 22:31:25','2018-11-25 22:31:23','2018-11-25 22:28:25',260,2,3,8),
+(3,'2018-11-25 22:31:35','2018-11-25 22:31:32','2018-11-25 22:28:35',510,2,3,8),
+(4,'2018-11-25 22:32:11','2018-11-25 22:32:09','2018-11-25 22:28:53',280,2,8,1),
+(5,'2018-11-25 22:32:27','2018-11-25 22:32:25','2018-11-25 22:29:10',830,2,9,2),
+(6,'2018-11-25 22:32:44','2018-11-25 22:32:42','2018-11-25 22:29:26',1360,2,10,2),
+(7,'2018-11-25 22:32:59','2018-11-25 22:32:56','2018-11-25 22:29:44',980,2,10,4),
+(8,'2018-11-25 22:33:12','2018-11-25 22:33:10','2018-11-25 22:29:54',260,2,10,4),
+(9,'2018-11-25 22:33:26','2018-11-25 22:33:25','2018-11-25 22:30:10',790,2,11,6),
+(10,'2018-11-25 22:33:35','2018-11-25 22:33:32','2018-11-25 22:30:23',370,2,11,6);
+
+
+INSERT INTO `movimiento` (`idMovimiento`,`monto`,`fecha`,`tipo`,`liquidado`,`fechaLiquidado`,`usuario_idUsuario`,`comercio_idComercio`) 
+VALUES (1,260,'2018-11-25','Venta',0,NULL,NULL,1),
+(2,13,'2018-11-25','Pago a Administrador',0,NULL,NULL,1),
+(3,7.8,'2018-11-25','Pago a Delivery',0,NULL,3,1),
+(4,260,'2018-11-25','Venta',0,NULL,NULL,2),
+(5,13,'2018-11-25','Pago a Administrador',0,NULL,NULL,2),
+(6,7.8,'2018-11-25','Pago a Delivery',0,NULL,3,2),
+(7,510,'2018-11-25','Venta',0,NULL,NULL,2),
+(8,25.5,'2018-11-25','Pago a Administrador',0,NULL,NULL,2),
+(9,15.3,'2018-11-25','Pago a Delivery',0,NULL,3,2),
+(10,280,'2018-11-25','Venta',0,NULL,NULL,1),
+(11,14,'2018-11-25','Pago a Administrador',0,NULL,NULL,1),
+(12,8.4,'2018-11-25','Pago a Delivery',0,NULL,8,1),
+(13,830,'2018-11-25','Venta',0,NULL,NULL,3),
+(14,41.5,'2018-11-25','Pago a Administrador',0,NULL,NULL,3),
+(15,24.9,'2018-11-25','Pago a Delivery',0,NULL,9,3),
+(16,1360,'2018-11-25','Venta',0,NULL,NULL,3),
+(17,68,'2018-11-25','Pago a Administrador',0,NULL,NULL,3),
+(18,40.8,'2018-11-25','Pago a Delivery',0,NULL,10,3),
+(19,980,'2018-11-25','Venta',0,NULL,NULL,4),
+(20,49,'2018-11-25','Pago a Administrador',0,NULL,NULL,4),
+(21,29.4,'2018-11-25','Pago a Delivery',0,NULL,10,4),
+(22,260,'2018-11-25','Venta',0,NULL,NULL,4),
+(23,13,'2018-11-25','Pago a Administrador',0,NULL,NULL,4),
+(24,7.8,'2018-11-25','Pago a Delivery',0,NULL,10,4),
+(25,790,'2018-11-25','Venta',0,NULL,NULL,5),
+(26,39.5,'2018-11-25','Pago a Administrador',0,NULL,NULL,5),
+(27,23.7,'2018-11-25','Pago a Delivery',0,NULL,11,5),
+(28,370,'2018-11-25','Venta',0,NULL,NULL,5),
+(29,18.5,'2018-11-25','Pago a Administrador',0,NULL,NULL,5),
+(30,11.1,'2018-11-25','Pago a Delivery',0,NULL,11,5);
+
+
+INSERT INTO `cuenta` (`idCuenta`,`monto`,`comercio_idComercio`,`usuario_idUsuario`) 
+VALUES 
+(1,496.8,1,NULL),
+(2,708.4,2,NULL),
+(3,2014.8,3,NULL),
+(4,1140.8,4,NULL),
+(5,1067.2,5,NULL),
+(6,295,NULL,1),
+(7,-5900,NULL,2),
+(8,30.9,NULL,3),
+(9,0,NULL,4);
 
 
 
