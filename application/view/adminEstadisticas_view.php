@@ -163,7 +163,10 @@
             }
         ?>
 
-        <div id="chart_div"></div>
+    <p>Comercios que más vendieron: </p>
+        <div id="chart_div"> </div>
+
+        <p>Deliverys que más entregaron: </p>
 <div id="chart_div2"></div> 
                             </p>
 

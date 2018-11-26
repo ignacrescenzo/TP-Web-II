@@ -37,7 +37,7 @@
                 </div>
                 <label for="c_name">Contraseña usuario 2:</label>
                 <div class="form-field">
-                  <input required="" type="text" class="form-control" name="clave2">
+                  <input required="" type="password" class="form-control" name="clave2">
                 </div>
               </div>
               <br>
@@ -48,7 +48,7 @@
                 </div>
                 <label for="c_name">Contraseña usuario 3:</label>
                 <div class="form-field">
-                  <input required="" type="text" class="form-control" name="clave3">
+                  <input required="" type="password" class="form-control" name="clave3">
                 </div>
               </div>
               <br>
@@ -59,7 +59,7 @@
                 </div>
                 <label for="c_name">Contraseña usuario 4:</label>
                 <div class="form-field">
-                  <input required="" type="text" class="form-control" name="clave4">
+                  <input required="" type="password" class="form-control" name="clave4">
                 </div>
               </div>
               <br>
@@ -70,7 +70,7 @@
                 </div>
                 <label for="c_name">Contraseña usuario 5:</label>
                 <div class="form-field">
-                  <input required="" type="text" class="form-control" name="clave5">
+                  <input required="" type="password" class="form-control" name="clave5">
                 </div>
               </div>
               
