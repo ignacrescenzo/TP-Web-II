@@ -5071,7 +5071,8 @@ values
 (4,'14446 Brigadier Gral. Juan Manuel de Rosas','2222-2222',4,7547),
 (5,'3545 Dr. Ignacio Arieta','2222-4444',4,15376),
 (6,'14457 General Juan Manuel de Rosas','6666-7777',5,7547),
-(7,'1615 Av Gral. Rojo','6666-5555',5,10040);
+(7,'1615 Av Gral. Rojo','6666-5555',5,10040),
+(8,'1333 Sarmiento','66444338',2,12260);
 
 insert into Usuario(idUsuario, nombreUsuario, clave, Rol_idRol,Comercio_idComercio,domicilio,estado,habilitado,provincialocalidad_idLocalidad)
 values
@@ -5128,13 +5129,20 @@ values
 
 (13,'mtz4.jpg',0,'Cuarto triple',2,null,7),
 (14,'mtz5.jpg',0,'Mega pampa',1,null,7),
-(15,'mtz6.jpg',0,'Extra bacon',9,null,7);
+(15,'mtz6.jpg',0,'Extra bacon',9,null,7),
+
+(22,null,0,'Pizza',2,null,8),
+(23,null,0,'Empanada',1,null,8),
+(24,null,0,'Choripan',9,null,8);
 
 
 insert into cuenta (monto,comercio_idComercio,usuario_idUsuario)
 values
 (0,1,null),
 (0,2,null),
+(0,3,null),
+(0,4,null),
+(0,5,null),
 (0,null,1),
 (0,null,2),
 (0,null,3),
