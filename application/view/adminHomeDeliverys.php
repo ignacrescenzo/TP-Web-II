@@ -63,9 +63,9 @@
 
 
 					<select name="estado">
-					<option value=0 selected>No Habilitados</option>
+					<option value=0 selected>Esperando aprobación</option>
 					<option value=1>Habilitados</option>
-					<option value=2>Esperando Aprobacion</option>
+					<option value=2>No habilitados</option>
 					</select>
 					
 					<div class="form-field"> <br>
