@@ -2,6 +2,9 @@
   if (!isset($_SESSION["login"])) {
       header("location:/login");
   }
+  $totalComercio = 0;
+  $totalDelivery = 0;
+  $totalAdmin = 0;
 ?>
 
 <!DOCTYPE html>
@@ -108,21 +111,38 @@
 												<td>$".$rows['monto']."</td>
                                                 <td>".$rows['fecha']."</td>";
                                     switch ($rows['tipo']) {
-                                                case "Venta": echo "<td>Venta de comercio</td>";
+                                                case "Venta":
+                                                $totalComercio+=$rows['monto'];
+                                                echo "<td>Venta de comercio</td>";
                                                 break;
-                                                case "Pago a Administrador": echo "<td>Ganancia</td>";
+                                                case "Pago a Administrador":
+                                                $totalAdmin+=$rows['monto'];
+                                                echo "<td>Ganancia</td>";
                                                 break;
-                                                case "Pago a Delivery": echo "<td>Pago a Delivery</td>";
+                                                case "Pago a Delivery":
+                                                $totalDelivery+=$rows['monto'];
+                                                echo "<td>Pago a Delivery</td>";
                                                 break;
                                                 }
-                                                
+                                    
                                     echo"</tr>";
                                 }
                             }
+
                             ?>
                             </tbody>
+                            <div class="text-center">
+                            <?php
+                            if (isset($data5)) {
+                                echo "<b> Total ganancia: $".$totalAdmin." </b><br>";
+                                echo "<b> Total delivery: $".$totalDelivery." </b><br>";
+                                echo "<b> Total comercio: $".$totalComercio." </b><br><br><br>";
+                            }
+                            ?>
+                            </div>
                     </table>
-					
+                    
+                         
 						</div>
                 </div>
             </div>
@@ -186,7 +206,8 @@
                                     echo "        
                                             <tr>
                                                 <th scope='row'>".$rows['idMovimiento']."</th>
-												<td>$".$rows['monto']."</td>
+                                                <td>$".$rows['monto']."</td>
+                                                
                                                 <td>".$rows['fecha']."</td>";
                                     switch ($rows['tipo']) {
                                                 case "Venta": echo "<td>Venta de comercio</td>";
