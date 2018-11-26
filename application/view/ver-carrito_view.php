@@ -32,10 +32,13 @@
         <div id="navbar-collapse" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a style="cursor:pointer" onclick="location.href='/cliente/verComercios'" data-nav-section="welcome">Inicio</a></li>
-            <li><a onclick="location.href='/cliente/verComercios'" >Comercios</a></li>
-            <li><a onclick="location.href= <?php echo "'/cliente/verCarrito?c=$data2'" ?>" >Carrito</a></li>
-            <li><a onclick="location.href='/cliente/mostrarPedidos'">Pedidos</a></li>
-            <li><a onclick="location.href='/login/cerrarsesion'" >Cerrar sesión</a></li>
+            <?php if (empty($data)) {
+    ?>
+            <li><a style="cursor:pointer" onclick="location.href='/cliente/verComercios'" >Comercios</a></li>
+            <?php
+} ?>
+            <li><a style="cursor:pointer" onclick="location.href='/cliente/mostrarPedidos'">Pedidos</a></li>
+            <li><a style="cursor:pointer" onclick="location.href='/login/cerrarsesion'" >Cerrar sesión</a></li>
           </ul>
         </div>
       </div>
@@ -59,10 +62,10 @@
         <div class="row">
  	
  	<?php if ($data) {
-    $total=0;
-    $nombrePalCarrito = "";
-    foreach ($data as $producto) {
-        $cantidad=$producto["cantidad"]; ?>
+        $total=0;
+        $nombrePalCarrito = "";
+        foreach ($data as $producto) {
+            $cantidad=$producto["cantidad"]; ?>
           <div class="col-md-4 col-sm-4 probootstrap-animate">
             <div class="probootstrap-block-image">
               <div class="text">
@@ -78,8 +81,8 @@
           </div>
           <?php
           $total+=($producto["cantidad"]*$producto["precio"]);
-        $nombrePalCarrito = $nombrePalCarrito . " - ".$producto['descripcion'];
-    } ?>
+            $nombrePalCarrito = $nombrePalCarrito . " - ".$producto['descripcion'];
+        } ?>
           <div class="col-md-4 col-sm-4 probootstrap-animate">
               	<div class="text">
              		<?php echo "<h3>El precio total es $".$total."</h3>" ?> <br>
@@ -95,7 +98,7 @@
             
     
     <?php
-} else {
+    } else {
         echo "<h3>Carro vacio</h3>";
         echo "<a class='btn btn-primary' href='/puntoDeVenta/mostrarMenu?c=".$data2."'>Volver al menú</a>";
     }
