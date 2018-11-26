@@ -2,6 +2,7 @@
   if (!isset($_SESSION["login"])) {
       header("location:/login");
   }
+  $totalDelivery = 0;
 ?>
 
 <!DOCTYPE html>
@@ -105,11 +106,19 @@
 												<td>$".$rows['monto']."</td>
 												<td>".$rows['fecha']."</td>
 											</tr>
-									";
+                                    ";
+                                    $totalDelivery+=$rows['monto'];
                                 }
                             }
                             ?>
                             </tbody>
+                            <div class="text-center">
+                            <?php
+                            if (isset($data3)) {
+                                echo "<b> Ganancia: $".$totalDelivery." </b><br><br><br>";
+                            }
+                            ?>
+                            </div>
                     </table>
 						<div class='text'>
 

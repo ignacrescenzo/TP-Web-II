@@ -2,6 +2,9 @@
   if (!isset($_SESSION["login"])) {
       header("location:/login");
   }
+  $totalComercio = 0;
+  $totalDelivery = 0;
+  $totalAdmin = 0;
 ?>
 
 <!DOCTYPE html>
@@ -110,11 +113,31 @@
                                                 <td>".$rows['fecha']."</td>
                                                 <td>".$rows['tipo']."</td>
 											</tr>
-									";
+                                    ";
+                                    switch ($rows['tipo']) {
+                                        case "Venta":
+                                        $totalComercio+=$rows['monto'];
+                                        break;
+                                        case "Pago a Administrador":
+                                        $totalAdmin+=$rows['monto'];
+                                        break;
+                                        case "Pago a Delivery":
+                                        $totalDelivery+=$rows['monto'];
+                                        break;
+                                        }
                                 }
                             }
                             ?>
                             </tbody>
+                            <div class="text-center">
+                            <?php
+                            if (isset($data3)) {
+                                echo "<b> Descuento al sistema: $".$totalAdmin." </b><br>";
+                                echo "<b> Pago delivery: $".$totalDelivery." </b><br>";
+                                echo "<b> Ganancia: $".$totalComercio." </b><br><br><br>";
+                            }
+                            ?>
+                            </div>
                     </table>
                         
                         <div class='text'>
@@ -175,6 +198,7 @@
                             }
                             ?>
                         </tbody>
+                        
                  </table>
 
 
