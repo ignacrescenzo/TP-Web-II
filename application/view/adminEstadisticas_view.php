@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Restó | Inicio</title>
+    <title>Restó | Estadisticas</title>
 
    <!-- GRAFICOS -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

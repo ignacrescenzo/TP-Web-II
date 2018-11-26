@@ -12,7 +12,7 @@ $rutaPedidos = "/operadorComercio/mostrarPedidos?c=".$data2;
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Restó | Inicio</title>
+    <title>Restó | Pedidos</title>
     
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Pinyon+Script" rel="stylesheet">
 
